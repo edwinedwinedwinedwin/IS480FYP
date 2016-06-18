@@ -1,13 +1,12 @@
-<div class="header">
-  <div class="container">
-    
-  </div>
-</div>
+<%= render "layouts/header" %>
+<%= yield %>
 
 <div class="page-main">
-	<%= stylesheet_link_tag "style" %>
-	<%= stylesheet_link_tag "component" %>
-	<%= javascript_include_tag "application"%>
+  <%= stylesheet_link_tag "style" %>
+  <%= stylesheet_link_tag "component" %>
+  <%= stylesheet_link_tag "flickity/flickity.css" %>
+  <%= javascript_include_tag "application"%>
+
 
   <div class="page-section">
 	  <legend class="form-heading heading"> Sign Up</legend>
@@ -63,4 +62,5 @@
   </div>
 </div>
 
-
+<%= render "layouts/footer" %>
+<%= yield %>

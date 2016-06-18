@@ -275,6 +275,14 @@ button, input, textarea {
   font: inherit;
   vertical-align: baseline; }
 
+h7 {
+  position: absolute;
+  right: 0px;
+  font-size: 100%;
+  font: inherit;
+  padding: 10px;
+}
+
 article, aside, details, figcaption, figure,
 footer, header, main, hgroup, menu, nav, section {
   display: block; }
@@ -425,6 +433,12 @@ strong,
   display: block;
   margin: 2rem;
   color: #000000; }
+
+  .heading--icon--right .icon {
+    display: block;
+  margin: -2rem;
+  color: #000000;
+  }
 
 .heading--icon--left .icon {
   float: left; }
@@ -2087,7 +2101,7 @@ strong,
 .page-header {
   *zoom: 1;
   position: fixed;
-  top: 2rem;
+  top: -1rem;
   width: 100%;
   padding: 0 2.875rem;
   z-index: 1000; }

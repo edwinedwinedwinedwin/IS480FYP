@@ -1,14 +1,21 @@
-		<footer class="page-footer">
-			<section class="footer-cta" style="background-image: url('/assets/footer-hero.jpg');>
-				<div class="l--absolute-center wrap">
-					<span class="footer-cta__heading heading">Try YBCO free for 14 Days</span>
-					<p>No credit card or software download required.</p>
+		<!-- Custom Scripts -->
+		<%= stylesheet_link_tag "style" %>
+		<%= stylesheet_link_tag "component" %>
+		<%= stylesheet_link_tag "flickity/flickity.css" %>
+		<%= javascript_include_tag "application"%>
 
-					<div class="l--padded">
-						<a href="#" class="footer-cta__button">Get Started</a>
-					</div>
-				</div>
-			</section>
+		<!-- bower:js -->
+		<script src="../bower_components/jquery/dist/jquery.js"></script>
+		<script src="../bower_components/vminpoly/vminpoly.js"></script>
+		<script src="../bower_components/jquery.easing/js/jquery.easing.js"></script>
+		<script src="../bower_components/jquery.scrollTo/jquery.scrollTo.js"></script>
+		<script src="../bower_components/jquery.localScroll/jquery.localScroll.js"></script>
+		<script src="../bower_components/jquery.sticky/jquery.sticky.js"></script>
+		<script src="../bower_components/waypoints/lib/noframework.waypoints.min.js"></script>
+		<!-- endbower -->
+
+
+		<footer class="page-footer">
 
 			<section class="footer-content">
 				<div class="wrap">
@@ -32,7 +39,9 @@
 								</a></li>
 							</ul>
 						</div>
+					</div>
 
+					<div class="grid-container">
 						<div class="grid-60 push-5">
 							<ul class="footer-navigation-lists">
 								<li class="footer-navigation-list">
@@ -46,6 +55,7 @@
 										<li class="footer-navigation__item"><a href="#">Jobs</a></li>
 									</ul>
 								</li>
+
 
 								<li class="footer-navigation-list">
 									<ul class="footer-navigation">
@@ -77,8 +87,9 @@
 								</li>
 							</ul>
 						</div>
+					</div>
 
-						<div class="grid-5 push-10">
+						<div class="grid-20 push-10">
 							<a href="#" class="button--scroll-up  js-scrollto-button" data-scroll-target="html">
 								<span class="t--small"><span class="l--hidden">Back to </span>top</span>
 								<i class="icon icon--chevron-thin-up"></i>
@@ -89,17 +100,6 @@
 			</section>
 		</footer>
 
-		<!-- bower:js -->
-		<script src="../bower_components/jquery/dist/jquery.js"></script>
-		<script src="../bower_components/vminpoly/vminpoly.js"></script>
-		<script src="../bower_components/jquery.easing/js/jquery.easing.js"></script>
-		<script src="../bower_components/jquery.scrollTo/jquery.scrollTo.js"></script>
-		<script src="../bower_components/jquery.localScroll/jquery.localScroll.js"></script>
-		<script src="../bower_components/jquery.sticky/jquery.sticky.js"></script>
-		<script src="../bower_components/waypoints/lib/noframework.waypoints.min.js"></script>
-		<!-- endbower -->
 
-		<!-- Custom Scripts -->
-		<%= javascript_include_tag "application"%>
 	</body>
 </html>

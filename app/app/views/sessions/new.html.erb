@@ -1,36 +1,52 @@
-<div class="header">
-  <div class="container">
-    <h1>LOGIN</h1>
-  </div>
-</div>
+<div class="page-main">
+  <%= stylesheet_link_tag "style" %>
+  <%= stylesheet_link_tag "component" %>
+  <%= javascript_include_tag "application"%>
 
-<div class="create">
-  <div class="container">
-    <%= form_for :user, :url=>{:action => :authenticate} do |f| %>
-        <% if flash[:alert] %>
-            <div class="alert alert-danger" role="alert">
-              <b>Error:</b>
-              <ul>
-                <li><%= flash[:alert] %></li>
-              </ul>
+  <div class="page-section">
+    <legend class="form-heading heading"> Log In </legend>
+      <%= form_for :user, :url=>{:action => :authenticate} do |f| %>
+          <% if flash[:alert] %>
+              <div class="alert alert-danger" role="alert">
+                <b>Error:</b>
+                <ul>
+                  <li><%= flash[:alert] %></li>
+                </ul>
+              </div>
+          <% end %>
+          <p>
+          <div class="form-field">
+            <%= f.text_field :email, class: "form-input" %>
+            <label class="form-label" for="email">Email</label>
+          </div>
+          </p>
+
+          <p>
+          <div class="form-field">
+            <%= f.password_field :password, class: "form-input" %>
+            <label class="form-label" for="password">Password</label>
+          </div>
+          </p>
+
+          <p>
+          <div class="form-actions">
+            <%= f.submit "LOGIN", class: "button--stroke--long" %>
+          </div>
+          </p>
+
+          <p>
+            <div class="form-actions">
+              <%= link_to "Back", controller: "pages", action: "home", class: "button--stroke--long" %>
             </div>
-        <% end %>
-        <div class="form-group">
-          <%= f.text_field :email, class: "form-control", placeholder: "EMAIL ADDRESS" %>
-        </div>
-        <div class="form-group">
-          <%= f.password_field :password, class: "form-control", placeholder: "PASSWORD" %>
-        </div>
-        <div class="actions">
-          <%= f.submit "LOGIN", class: "btn btn-default btn-lg" %>
-        </div>
-    <% end %>
+          </p>
+      <% end %>
+
+      <!-- Display parameters -->
+      <hr/>
+      <!-- Inspecting Parameters
+      <%=params.inspect%>
+      Inspecting Session Parameters
+      <%= session.inspect %> -->
+
   </div>
 </div>
-
-<!-- Display parameters -->
-<hr/>
-<!-- Inspecting Parameters
-<%=params.inspect%>
-Inspecting Session Parameters
-<%= session.inspect %> -->
