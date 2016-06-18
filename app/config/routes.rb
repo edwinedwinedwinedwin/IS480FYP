@@ -1,23 +1,18 @@
 Rails.application.routes.draw do
   root 'pages#home'
 
-  #resources :users
-  get '/users/new' => 'users#new'
-  post 'users' => 'users#create'
+  resources :users
+  get 'users/new' => 'users#new'
+  post'users' => 'users#create'
 
-  get '/pages/comrules' => 'pages#comrules'
-  get '/pages/term' => 'pages#term'
-  #get '/sessions/new' => 'sessions#new'
-  get '/sessions/create' => 'sessions#create'
-  get '/sessions/destroy' => 'sessions#destroy'
-  get 'dashboard' => 'dashboards#index'
+  get 'pages/comrules' => 'pages#comrules'
+  get 'pages/term' => 'pages#term'
+  get 'sessions/new' => 'sessions#new'
+  get 'sessions/create' => 'sessions#create'
+  get 'sessions/destroy' => 'sessions#destroy'
+  get '/dashboard/index' => 'dashboards#index'
 
-  controller :sessions do
-    get 'login' => :new
-    post 'login' => :create
-    delete 'logout' => :destroy
-  end
-
+  match '/:controller/:action/(:id)', via: [:get, :post]
 
 
 
