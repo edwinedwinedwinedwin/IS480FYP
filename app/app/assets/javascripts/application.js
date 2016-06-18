@@ -10,7 +10,6 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require_tree .
 //= require main.js
 //= require sortable/Sortable.js
 //= require nlform/nlform.js
@@ -19,4 +18,4 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require turbolinks
-
+//= require_tree .

@@ -1,13 +1,14 @@
 
 <%= stylesheet_link_tag "style" %>
 <%= stylesheet_link_tag "component" %>
-
 <%= javascript_include_tag "application"%>
 
+<%= render "layouts/header" %>
+<%= yield %>
 <main class="page-main">	
  <section class="page-section--hero page-section--sky-blue l--full-height" style="background-image: url('/assets/home-hero-1.jpg');">
-<%= link_to 'Sign Up', "users/new" %>
-   <%= link_to 'Sign In', "sessions/new" %>	 
+    <%= link_to 'Sign Up', "users/new" %>
+    <%= link_to 'Sign In', "sessions/new" %>	 
 
 
   <div class="l--vertical-center l--half-width--right">
@@ -98,3 +99,4 @@
   </header>
  </section>
 </main>
+<%= render "layouts/footer" %>
