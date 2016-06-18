@@ -1,0 +1,113 @@
+.banner-notice + .page-header {
+	top: 5rem;
+}
+
+.page-header {
+	@include clearfix;
+	position: fixed;
+	top: 2rem;
+
+	width: 100%;
+	padding: 0 2.875rem;
+
+	z-index: 1000;
+}
+
+.site-logo {
+	display: table;
+	width: auto;
+	float: left;
+
+	a {
+		color: palette(black);
+	}
+}
+
+.site-utilities {
+	display: table;
+	width: auto;
+	float: right;
+}
+
+.site-menu-open {
+	@include clearfix;
+	display: table;
+	width: auto;
+	float: left;
+
+	.icon--menu {
+		position: relative;
+		float: left;
+		line-height: 2.125rem;
+		margin-right: 1.5625rem;
+
+		&:after {
+			content: '';
+			display: block;
+
+			position: absolute;
+			right: -0.5rem;
+			top: 50%;
+			margin-top: -0.125rem;
+
+			width: 0;
+			height: 0;
+
+			border-left: 0.25rem solid transparent;
+			border-right: 0.25rem solid transparent;
+			border-top: 0.25rem solid palette(black);
+
+			transition: transform, right $duration $easing;
+			transform-origin: center center;
+			backface-visibility: hidden;
+		}
+	}
+
+	&:hover .icon--menu:after {
+		transform: rotate(-90deg) translateZ(0);
+		right: -1rem;
+	}
+}
+
+.site-utilities-link {
+	color: palette(black);
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.banner-notice {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background: palette(sky blue);
+	color: white;
+	font-size: 1rem;
+	text-align: center;
+	z-index: 10000;
+	padding: 0.5rem 1rem;
+
+	a {
+		display: block;
+		padding: 0.5rem 1rem;
+		color: palette(white);
+		font-weight: 400;
+	}
+
+	.t--strong {
+		font-weight: 700;
+	}
+
+	.icon {
+		font-size: 1.5rem;
+		position: absolute;
+		right: 1rem;
+		top: 50%;
+		margin-top: -0.75rem;
+		cursor: pointer;
+
+		&:hover {
+			opacity: $hover-opacity;
+		}
+	}
+}

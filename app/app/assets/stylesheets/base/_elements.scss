@@ -1,0 +1,51 @@
+/*------------------------------------*\
+    Base Element Styles
+\*------------------------------------*/
+* {
+	box-sizing: border-box;
+}
+
+*::selection {
+  background: palette(light grey); /* WebKit/Blink Browsers */
+}
+*::-moz-selection {
+  background: palette(light grey); /* Gecko Browsers */
+}
+
+// Better font rendering on Webkit browsers
+html {
+	-webkit-font-smoothing: antialiased;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	background-color: palette(white);
+}
+
+// Use the "pointer" mouse cursor on click-able things
+button, input[type=submit] {
+	cursor: pointer;
+}
+
+// Ensures media-related elements do not exceed their container's width
+img, video, audio, table, embed, applet, iframe {
+	max-width: 100%;
+	height: auto;
+}
+
+a, button {
+	transition: opacity $duration $easing;
+	opacity: 1;
+	cursor: pointer;
+
+	&:hover {
+		opacity: $hover-opacity;
+		cursor: pointer;
+	}
+}
+
+a {
+	color: palette(sky blue);
+}
+
+input, textarea {
+	font-family: $font__primary;
+}

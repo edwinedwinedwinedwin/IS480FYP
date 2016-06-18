@@ -1,0 +1,270 @@
+.button {
+	display: table;
+	margin: auto;
+	position: relative;
+
+	color: palette(black);
+	font-size: fs(medium);
+	font-weight: bold;
+	text-align: center;
+	text-transform: uppercase;
+	text-decoration: none;
+	line-height: 1;
+
+	padding: 1.375rem 2.3125rem;
+
+	border: 2px solid palette(black);
+
+	transition: all $duration $easing;
+	transform-origin: center center;
+	backface-visibility: hidden;
+
+	.icon {
+		font-size: 1em;
+		vertical-align: top;
+	}
+
+	&:active {
+		transition: none;
+		transform: translateY(1px) translateZ(0) scale(0.9875);
+		opacity: 1;
+
+		&:after {
+			transform: scaleX(1);
+			transition: none;
+		}
+	}
+}
+
+.button--center {
+	@extend .button;
+	display: table;
+	width: auto;
+	margin: auto;
+}
+
+.button--link {
+	@extend .button;
+	@extend .t--accent;
+
+	position: relative;
+	top: 0;
+
+	display: table;
+	width: auto;
+	margin: auto;
+
+	color: palette(black);
+	font-size: fs(large);
+	letter-spacing: 0.12em;
+	font-weight: normal;
+
+	padding: 0;
+	border: none;
+
+	transition: opacity $duration $easing;
+
+	&:after {
+		content: '';
+		display: block;
+		position: absolute;
+
+		bottom: -0.1875rem;
+		left: 0;
+
+		width: 100%;
+		height: 0.1875rem;
+
+		background: palette(black);
+
+		transition: transform $duration $easing;
+		backface-visibility: hidden;
+	}
+
+	&:hover {
+		opacity: $hover-opacity;
+
+		&:after {
+			transform: scaleX(0.8);
+		}
+	}
+
+	&:active {
+		transform: translateY(1px);
+		opacity: 1;
+
+		&:after {
+			transform: scaleX(1);
+			transition: none;
+		}
+	}
+}
+
+.button--fill {
+	@extend .button;
+
+	background: palette(sky blue);
+	border: none;
+
+	color: palette(white);
+
+	transition: background $duration $easing;
+
+	&:hover {
+		opacity: 1;
+		background: darken(palette(sky blue), 15);
+	}
+}
+
+.button--fill--black {
+	@extend .button--fill;
+	background: palette(black);
+}
+
+.button--scroll {
+	@extend .button;
+
+	display: inline-block;
+	color: palette(sky blue);
+	font-size: fs(medium);
+	font-weight: bold;
+	text-transform: uppercase;
+
+	border: none;
+
+	transition: opacity $duration $easing;
+
+	.icon {
+		position: absolute;
+		display: block;
+		left: 0;
+
+		width: 100%;
+		text-align: center;
+
+		font-size: 150%;
+
+		transition: transform $duration $easing;
+	}
+
+	&:hover {
+		opacity: $hover-opacity;
+	}
+}
+
+.button--stroke {
+	@extend .button;
+
+	display: inline-block;
+	color: palette(black);
+	background: transparent;
+	font-size: 0.875rem;
+	font-weight: bold;
+	text-transform: uppercase;
+
+	border: 0.125rem solid palette(black);
+
+	transition: background color $duration $easing;
+
+	.icon {
+		margin-right: 0.25rem;
+	}
+
+	&:hover {
+		background: palette(black);
+		color: palette(white);
+		opacity: 1;
+	}
+}
+
+.button--stroke--long {
+	@extend .button--stroke;
+
+	padding-left: 4rem;
+	padding-right: 4rem;
+}
+
+.button--full {
+	width: 100%;
+}
+
+.button--stroke--full {
+	@extend .button--stroke;
+	width: 100%;
+}
+
+.button--scroll-down {
+	@extend .button--scroll;
+
+	.icon {
+		bottom: -1rem;
+	}
+
+	&:hover .icon {
+		transform: translateY(0.5rem) translateZ(0);
+	}
+}
+
+.button--scroll-up {
+	@extend .button--scroll;
+
+	.icon {
+		top: -1rem;
+	}
+
+	&:hover .icon {
+		transform: translateY(-0.5rem) translateZ(0);
+	}
+}
+
+.edit-button {
+	@include no-select;
+	display: table;
+	width: auto;
+	margin: 1rem;
+	font-size: 0.75rem;
+	font-weight: 700;
+	font-family: $font__primary;
+	letter-spacing: 0;
+	text-transform: uppercase;
+	color: palette(white);
+	background: #f09b10;
+	border-radius: 4px;
+	line-height: 1;
+	padding: 0.475rem 0.5rem 0.25rem;
+	box-shadow: 0 2px 0 #d48709;
+	cursor: pointer;
+	transition: all $duration duration(fast) $easing;
+	opacity: 0;
+	visibility: hidden;
+
+	.icon {
+		display: inline-block;
+	}
+
+	&:hover {
+		opacity: 1;
+		visibility: visible;
+		background-color: darken(#f09b10, 5);
+		box-shadow: 0 2px 0 darken(#d48709, 5);
+	}
+
+	&:active {
+		@extend .button:active;
+	}
+
+	&.hidden {
+		opacity: 0;
+		visibility: hidden;
+	}
+
+	.icon.icon--edit {
+		font-size: 0.75rem;
+	}
+
+	&.enabled {
+		opacity: 1;
+		visibility: visible;
+		transition-delay: 0;
+	}
+}

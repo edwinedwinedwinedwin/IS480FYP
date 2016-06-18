@@ -1,0 +1,95 @@
+// INCLUDE MEDIA QUERY
+// Wraps style declarations in a media query.
+
+// Allowed parameters for $_query:
+// 1) Breakpoint names (min-width)
+// 2) 'hi-res' (min-resolution)
+// 3) 'from' [breakpoint-name] to [breakpoint-name]' (min-width) and (max-width)
+// 4) 'below [breakpoint-name]' (max-width)
+
+// EXAMPLE USAGE
+// .element {
+// 	width: 100%;
+
+// 	@include mq(medium) {
+// 		width: 50%;
+// 	}
+
+// 	@include mq(hi-res) {
+// 		background-image: url(image@2x.jpg);
+// 	}
+
+// 	@include mq(from medium to large) {
+// 		text-align: center;
+// 	}
+
+// 	@include mq(smaller than medium) {
+// 		.child {
+// 			display: none;
+// 		}
+// 	}
+
+// 	@include mq(larger than small) {
+// 		font-weight: bold;
+// 	}
+// }
+
+@mixin mq($_query) {
+	// Check for single word queries
+	@if length($_query) == 1 {
+		// Check if query begins with breakpoint name
+		@if map-has-key($breakpoints, nth($_query, 1)) {
+			@media (min-width: map-get($breakpoints, nth($_query, 1))) {
+				@content;
+			}
+		}
+
+		// Check for resolution based queries
+		@else if nth($_query, 1) == 'hi-res' {
+			@media (-webkit-min-device-pixel-ratio: $hi-res-dpi-threshold/96), (min-resolution: $hi-res-dpi-threshold + "dpi") {
+				@content;
+			}
+		}
+
+		// Fallback for invalid parameters
+		@else {
+			@warn "Invalid query passed to 'mq'. Printing @media as-is.";
+
+			@media #{$_query} {
+				@content;
+			}
+		}
+	}
+
+	@else {
+		// Check for conditionals
+		@if nth($_query, 1) == 'from' {
+			@if map-has-key($breakpoints, nth($_query, 2)) and map-has-key($breakpoints, nth($_query, 4)) {
+				@media (min-width: map-get($breakpoints, nth($_query, 2))) and (max-width: map-get($breakpoints, nth($_query, 4))) {
+					@content;
+				}
+			}
+
+			@else {
+				@error "Invalid query passed to 'mq'. Tried to use mq(between...) but breakpoint name was invalid.";
+			}
+		}
+
+		@else if nth($_query, 1) == 'below' {
+			@if map-has-key($breakpoints, nth($_query, 2)) {
+				@media (max-width: map-get($breakpoints, nth($_query, 2))) {
+					@content;
+				}
+			}
+		}
+
+		@else {
+			// Fallback for invalid parameters
+			@warn "Invalid query passed to 'mq'. Printing @media as-is.";
+
+			@media #{$_query} {
+				@content;
+			}
+		}
+	}
+}

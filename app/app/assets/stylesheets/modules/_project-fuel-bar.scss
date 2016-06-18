@@ -1,0 +1,31 @@
+.project-fuel {
+	display: block;
+	width: 100%;
+	background: #e3e3e3;
+}
+
+.project-fuel-bar {
+	display: block;
+	white-space: nowrap;
+
+	width: 0;
+	overflow: hidden;
+}
+
+.project-fuel-bar__text {
+	display: block;
+	white-space: nowrap;
+
+	background: palette(lime green);
+	padding: 0.5rem;
+
+	color: palette(white);
+	font-family: $font__secondary;
+	font-size: fs(medium);
+	font-weight: normal;
+
+	text-align: right;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	line-height: 1;
+}

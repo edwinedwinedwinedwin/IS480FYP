@@ -1,0 +1,153 @@
+.accordion-manager {
+	display: block;
+}
+
+.accordion-list {
+	@include clearfix;
+	display: block;
+}
+
+.accordion-item {
+	@include clearfix;
+
+	& + & {
+		margin-top: 3rem;
+	}
+}
+
+.accordion-item-preview,
+.accordion-item-content,
+.accordion-item-number {
+	display: block;
+	float: left;
+
+	background: white;
+	padding: 1.5rem 2rem;
+	border: 1px solid #e4eaed;
+	box-shadow: 0 1px 0 #d2dfe5;
+}
+
+.accordion-item-content,
+.accordion-item-preview {
+	@include clearfix;
+	width: 90%;
+}
+
+.accordion-item-content {
+	position: relative;
+	padding-top: 0;
+	padding-bottom: 4rem;
+	display: none;
+}
+
+.accordion-item-preview {
+	font-size: 1.375rem;
+	font-weight: 600;
+	line-height: 1;
+	text-align: left;
+	cursor: pointer;
+
+	&:hover {
+		.accordion-item-preview__actions .icon {
+			opacity: 1;
+		}
+	}
+}
+
+.accordion-item-number {
+	width: 7.5%;
+
+	margin-right: 2.5%;
+	line-height: 1;
+
+	font-size: 1.375rem;
+	font-weight: 600;
+	text-align: center;
+
+	padding: 1.7125rem;
+}
+
+.accordion-item-preview__content {
+	display: block;
+	width: 80%;
+	float: left;
+
+	* {
+		display: inline-block;
+		margin-left: 1rem;
+		vertical-align: middle;
+
+		&:first-child {
+			margin-left: 0;
+		}
+	}
+}
+
+.accordion-item-preview__actions {
+	display: block;
+	width: 17.5%;
+	float: right;
+	text-align: right;
+	color: palette(sky blue);
+
+	.icon {
+		transition: opacity $duration $easing;
+		opacity: 0;
+	}
+
+	.icon + .icon {
+		margin-left: 1rem;
+	}
+}
+
+.accordion-label {
+	display: block;
+	padding: 1rem;
+	text-transform: uppercase;
+	font-size: 0.625rem;
+	color: #b2b2b1;
+	letter-spacing: 0.2em;
+	padding-left: 0;
+}
+
+.accordion-textarea {
+	display: block;
+	width: 100%;
+	border: 4px solid #eeeeee;
+	padding: 1rem 1.5rem;
+	line-height: 2;
+	font-family: $font__primary;
+	font-size: 1rem;
+	color: palette(black);
+	background: url(../img/textarea-bg.png) bottom right no-repeat;
+}
+
+.accordion-close {
+	@include no-select;
+	padding: 0.75rem 1rem;
+	padding-top: 0.875rem;
+	padding-bottom: 1.25rem;
+	font-size: 2rem;
+	font-weight: 600;
+	text-align: center;
+	background: palette(mist grey);
+	color: palette(grey);
+	position: absolute;
+	top: 0;
+	right: 0;
+	line-height: 0.125;
+}
+
+.accordion-add {
+	display: block;
+	margin-top: 2rem;
+
+	background: white;
+	padding: 1rem 2rem;
+	border: 1px solid #e4eaed;
+	box-shadow: 0 1px 0 #d2dfe5;
+	text-align: center;
+	color: #d2dfe5;
+	font-weight: 700;
+	font-size: 1.375rem;
+}

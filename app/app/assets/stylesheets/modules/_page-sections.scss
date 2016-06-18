@@ -1,0 +1,71 @@
+.page-section {
+	display: block;
+	position: relative;
+
+	padding-top: 6.6875rem;
+	padding-bottom: 6.6875rem;
+
+	text-align: center;
+}
+
+.page-section--small {
+	@extend .page-section;
+	padding-top: 3.25rem;
+	padding-bottom: 3.25rem;
+}
+
+.page-section--hero {
+	@extend .page-section;
+	min-height: 800px;
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.page-section--hero--contain {
+	@extend .page-section--hero;
+
+	background-size: contain;
+}
+
+.page-section--hero--contain--bottom {
+	@extend .page-section--hero--contain;
+
+	background-position: center bottom;
+}
+
+.page-section--sky-blue {
+	.section-heading {
+		color: palette(sky blue);
+	}
+}
+
+.page-section--ocean-blue {
+	.section-heading {
+		color: palette(ocean blue);
+	}
+}
+
+.page-section--lime-green {
+	.section-heading {
+		color: palette(lime green);
+	}
+}
+
+.page-section--pine-green {
+	.section-heading {
+		color: palette(pine green);
+	}
+}
+
+.page-section--white {
+	color: palette(white);
+
+	.section-heading {
+		color: palette(white);
+	}
+
+	.icon {
+		color: palette(white);
+	}
+}

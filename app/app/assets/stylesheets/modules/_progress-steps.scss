@@ -1,0 +1,60 @@
+.progress-steps {
+	display: table;
+	table-layout: fixed;
+	width: 100%;
+	max-width: 560px;
+
+	clear: both;
+
+	margin-left: auto;
+	margin-right: auto;
+
+	text-align: center;
+	font-weight: 700;
+}
+
+.progress-step {
+	@include no-select;
+	display: table-cell;
+	position: relative;
+	color: #b1bec2;
+	line-height: 1;
+
+	transition: all $duration $easing;
+	cursor: pointer;
+
+	&.current {
+		color: palette(sky blue);
+	}
+
+	&:before {
+		content: '•';
+		display: block;
+		position: absolute;
+		top: -1.75rem;
+		left: 0;
+		width: 100%;
+		font-size: 1.5rem;
+	}
+
+	& + & {
+		&:after {
+			content: '';
+			position: absolute;
+			display: block;
+			height: 2px;
+			width: 90%;
+			background: #eaf2f5;
+			top: -1rem;
+			left: -45%;
+		}
+	}
+
+	&:hover {
+		opacity: 0.5;
+	}
+
+	&:active {
+		@extend .button:active;
+	}
+}

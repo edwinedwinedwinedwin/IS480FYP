@@ -1,0 +1,8 @@
+// SMOOTH EDGES
+// Removes jagged edges from rotated elements.
+
+@mixin smooth-edges {
+	backface-visibility: hidden;
+	background-clip: content-box;
+	padding: 1px;
+}

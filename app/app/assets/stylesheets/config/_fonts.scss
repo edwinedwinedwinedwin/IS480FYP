@@ -1,0 +1,30 @@
+// BASELINE CONFIGURATION
+// Define the global baseline, in pixels.
+$baseline: 16;
+
+// FONT SIZE CONFIGURATION
+// Predefined font sizes.
+
+// IMPORTANT
+// 1) Do not use duplicate names for font sizes.
+$font-sizes: (
+	small: 0.875rem,
+	base: 1rem,
+	medium: 1.25rem,
+	large: 1.875rem,
+	xlarge: 2.5rem,
+	xxlarge: 3.75rem,
+	xxxlarge: 8.125rem
+);
+
+// FONT FAMILIES
+// Default font family configuration
+$font__primary: 'Proxima Nova', sans-serif !default;
+$font__secondary: 'Alternate Gothic No1 D', serif !default;
+
+$font__button: $font__secondary;
+
+// BASELINE OVERLAY
+// If set to 'true', overlays a baseline grid on the site.
+// Useful to quickly check vertical rhythm.
+$baseline__overlay: false;

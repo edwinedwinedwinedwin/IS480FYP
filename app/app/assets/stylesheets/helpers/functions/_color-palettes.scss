@@ -1,0 +1,46 @@
+// COLOR PALETTES
+// Returns a color from a map of
+// predefined colors.
+
+// $palettes is defined in:
+// config/colors
+
+// EXAMPLE USAGE
+// .module {
+// 	color: palette(light teal);
+// 	border-color: palette(dark grey);
+// 	background-color: palette(black);
+// }
+
+@function palette($_color) {
+	@if length($_color) == 1 {
+		@if map-has-key($palettes, $_color) {
+			@return map-get(map-get($palettes, $_color), 'base');
+		}
+
+		@else {
+			@error "Invalid palette name passed to 'palette'.";
+		}
+	}
+
+	@else {
+		$_tone: nth($_color, 1);
+		$_palette: nth($_color, 2);
+
+		@if map-has-key($palettes, $_palette) {
+
+			@if map-has-key(map-get($palettes, $_palette), $_tone) {
+				@return map-get(map-get($palettes, $_palette), $_tone);
+			}
+
+			@else {
+				@warn "Invalid tone passed to 'palette'. Using 'base' tone instead.";
+				@return map-get(map-get($palettes, $_palette), 'base');
+			}
+		}
+
+		@else {
+			@error "Invalid palette name passed to 'palette'."
+		}
+	}
+}

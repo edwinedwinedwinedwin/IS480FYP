@@ -1,0 +1,26 @@
+// EASING
+// Allows you to use the 'easing' function to
+// fetch an easing function from a map of
+// predefined easing functions.
+
+// $easings is defined in:
+// config/animation
+
+// EXAMPLE USAGE
+// .module {
+// 	transition-timing-function: easing(ease-out-quint); // 'cubic-bezier(0.23, 1, 0.32, 1)'
+// }
+
+@function easing($_easing-function) {
+	@if map-has-key($easings, $_easing-function) {
+		@return map-get($easings, $_easing-function);
+	}
+
+  	@else if global-variable-exists($animation__easing--default) {
+    @return $animation__easing--default;
+    }
+
+	@else {
+		@error "Invalid easing function passed to 'easing'."
+	}
+}

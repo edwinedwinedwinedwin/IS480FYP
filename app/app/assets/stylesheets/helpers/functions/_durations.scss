@@ -1,0 +1,26 @@
+// DURATION
+// Returns a duration value from a map of
+// predefined durations.
+
+// $durations is defined in:
+// config/animation
+
+// EXAMPLE USAGE
+// .module {
+// 	transition-duration: duration(short); // 0.125s
+// }
+
+@function duration($_duration-name) {
+	@if map-has-key($durations, $_duration-name) {
+		@return map-get($durations, $_duration-name);
+	}
+
+  	@else if global-variable-exists($animation__duration--default) {
+    	@return $duration__default;
+    }
+
+
+	@else {
+		@error "Invalid duration name passed to 'duration'."
+	}
+}

@@ -1,0 +1,25 @@
+// FONT SIZE
+// Returns a font size from a map of
+// predefined font sizes.
+
+// $font-sizes is defined in:
+// config/fonts
+
+// EXAMPLE USAGE
+// .module {
+// 	font-size: fs(medium); // 1.5rem
+// }
+
+@function fs($_font-size) {
+	@if map-has-key($font-sizes, $_font-size) {
+		@return map-get($font-sizes, $_font-size);
+	}
+
+  	@else if global-variable-exists($font__size--default) {
+		@return $font__size--default;
+    }
+
+	@else {
+		@error "Invalid font size passed to 'fs'."
+	}
+}

@@ -1,0 +1,154 @@
+.pricing-plan {
+	@extend .page-section--white;
+	@extend .page-section--hero;
+
+	padding-top: 6rem;
+	padding-bottom: 6rem;
+
+	font-size: 1.375rem;
+
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.pricing-plan--has-link {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.pricing-plan__link {
+	@extend .page-section--white;
+	@extend .page-section--hero;
+
+	display: block;
+	color: palette(white);
+	font-weight: normal;
+
+	padding-top: 6rem;
+	padding-bottom: 6rem;
+
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+
+	.pricing-plan__open-button {
+		transition: transform $duration $easing;
+		backface-visibility: hidden;
+
+		.icon {
+			margin-top: 2rem;
+			font-size: 3rem;
+		}
+	}
+
+	&:hover {
+		.pricing-plan__open-button {
+			@extend .button:hover;
+			transform: translateY(1rem) translateZ(0);
+		}
+	}
+
+	&:active {
+		.pricing-plan__open-button {
+			@extend .button:active;
+		}
+	}
+}
+
+.pricing-plan--lime-green {
+	@extend .pricing-plan;
+	background-color: palette(lime green);
+}
+
+.pricing-plan--pine-green {
+	@extend .pricing-plan;
+	background-color: palette(pine green);
+}
+
+.pricing-plan-header {
+	@extend .wrap--small;
+	@extend .l--absolute-center;
+}
+
+
+.pricing-plan-heading {
+	@extend .heading;
+	@extend .heading--icon;
+
+	.icon {
+		margin-top: 0;
+	}
+}
+
+.pricing-plan-content {
+	display: block;
+
+	overflow: hidden;
+
+	width: 100%;
+
+	z-index: 1;
+
+	top: 100%;
+	left: 0;
+
+	display: none;
+
+	background-color: inherit;
+
+	color: palette(black);
+
+	.icon {
+		color: palette(black);
+		font-size: 4rem;
+	}
+}
+
+.pricing-plan-content__section {
+	padding-top: 8rem;
+	padding-bottom: 2rem;
+
+	& + & {
+		border-top: 0.625rem solid rgba(0,0,0,0.1);
+	}
+}
+
+.pricing-plan-meta {
+	@extend .wrap--large;
+	position: relative;
+}
+
+.pricing-plan-meta__price {
+	position: absolute;
+	top: 0;
+	right: 0;
+
+	background: palette(sky blue);
+	padding: 0.5em;
+
+	font-size: 1rem;
+	font-weight: bold;
+	line-height: 1;
+	text-transform: uppercase;
+}
+
+.pricing-plan__close-button {
+	transition: transform $duration $easing;
+	backface-visibility: hidden;
+
+	.icon {
+		padding-top: 2rem;
+		padding-bottom: 2rem;
+		font-size: 3rem;
+	}
+
+	&:hover {
+		@extend .button:hover;
+		transform: translateY(-1rem) translateZ(0);
+	}
+
+	&:active {
+		@extend .button:active;
+	}
+}

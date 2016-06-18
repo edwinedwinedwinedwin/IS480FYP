@@ -1,0 +1,15 @@
+// BREAKPOINT CONFIGURATION
+// Predefined breakpoints.
+
+// IMPORTANT
+// 1) Breakpoints must be listed in ascending order.
+// 2) Do not use duplicate names for breakpoints.
+
+$breakpoints : (
+	small  : 37.5em,
+	medium : 62.5em
+);
+
+// DPI-BASED QUERY CONFIGURATION
+// Defines the minimum DPI threshold at which to switch to hi-res assets.
+$hi-res-dpi-threshold: 144;

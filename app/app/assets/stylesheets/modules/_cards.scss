@@ -1,0 +1,161 @@
+.cards {
+	@extend .wrap;
+}
+
+.card {
+	position: relative;
+	display: block;
+	height: 14.25rem;
+
+	overflow: auto;
+
+	background-color: palette(white);
+	border: 1px solid #e4eaed;
+	box-shadow: 0 1px 0 #d2dfe5;
+
+	padding: 1.5rem;
+
+	margin: 0.5625rem;
+	margin-top: 0;
+	margin-bottom: 1.125rem;
+
+	color: palette(black);
+	text-align: left;
+	line-height: 1;
+
+	a {
+		color: palette(black);
+	}
+}
+
+.card--fueled {
+	@extend .card;
+	background-color: palette(lime green);
+
+	color: palette(white);
+	text-align: center;
+
+	a {
+		color: palette(white);
+	}
+
+	.card-header {
+		margin-top: 1rem;
+	}
+
+	.card-header__title {
+		font-family: $font__secondary;
+		font-size: 3.75rem;
+		font-weight: normal;
+		letter-spacing: 0.12em;
+		line-height: 1.2;
+		text-transform: uppercase;
+
+		margin: 0;
+	}
+
+	.card-content {
+		font-weight: 700;
+		font-size: 1.25rem;
+		margin-top: -0.75rem;
+	}
+
+	.card-fueled-icon {
+		display: block;
+		margin: auto;
+		margin-top: 0.5rem;
+		width: 2.375rem;
+		height: 2.75rem;
+		background-image: url(../img/card-fuel-icon.png);
+		background-size: 2.375rem 2.75rem;
+		background-position: center center;
+		background-repeat: no-repeat;
+	}
+}
+
+.card--background {
+	@extend .card;
+
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+
+	text-align: center;
+	color: palette(white);
+
+	.card-header {
+		position: absolute;
+		bottom: 2.625rem;
+		left: 2rem;
+		right: 2rem;
+	}
+
+	.card-header__title {
+		margin: 0;
+	}
+}
+
+.card--long {
+	height: 21rem;
+
+	.card-header__title {
+		font-size: 1.25rem;
+		line-height: 1.2;
+	}
+}
+
+.card--square {
+	height: 23.75rem;
+
+	.card-header {
+		text-align: left;
+	}
+
+	.card-header__title {
+		font-size: 1.25rem;
+	}
+
+	.card-meta {
+		margin-bottom: 0.5rem;
+	}
+}
+
+.card-meta {
+	text-transform: uppercase;
+	font-size: 0.75rem;
+	font-weight: 600;
+	color: #c0c0c0;
+
+	.card--background &,
+	.card--fueled & {
+		color: palette(white);
+	}
+}
+
+.card-meta__new {
+	color: palette(lime green);
+	font-weight: 700;
+	margin-right: 0.5em;
+
+	&:before {
+		content: '•';
+		font-size: 2em;
+		line-height: 0;
+
+		position: relative;
+		top: 0.1em;
+
+		margin-right: 0.1em;
+	}
+}
+
+.card-content {
+	line-height: 1.375;
+}
+
+.card-header__title {
+	margin: 0.75rem 0;
+	font-size: 1.75rem;
+	font-weight: 700;
+	line-height: 1.14285;
+}

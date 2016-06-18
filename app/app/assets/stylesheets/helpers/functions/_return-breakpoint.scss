@@ -1,0 +1,24 @@
+/*------------------------------------*\
+    Return Breakpoint
+\*------------------------------------*/
+
+/*
+	Returns a breakpoint value from a map of
+	predefined breakpoints.
+
+	$breakpoints is defined in:
+	config/media-queries
+
+	EXAMPLE USAGE
+	bp(medium) // 50em
+*/
+
+@function bp($_breakpoint) {
+	@if map-has-key($breakpoints, $_breakpoint) {
+		@return map-get($breakpoints, $_breakpoint);
+	}
+
+	@else {
+		@error "Invalid breakpoint passed to 'bp'."
+	}
+}

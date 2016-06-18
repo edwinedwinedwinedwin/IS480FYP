@@ -1,0 +1,150 @@
+.comments {
+	text-align: left;
+}
+
+.comments-filters {
+	display: table;
+}
+
+.comments-filter {
+	display: table-cell;
+	padding: 0.5rem;
+
+	text-transform: uppercase;
+	font-size: 0.75rem;
+	font-weight: 700;
+
+	a {
+		color: #b1bec2;
+	}
+
+	&.current a {
+		color: palette(ocean blue);
+
+		&:after{
+			display: block;
+			text-align: center;
+			content: '•';
+			font-size: 1.5rem;
+			line-height: 1;
+			margin-top: -0.75rem;
+		}
+	}
+}
+
+.comments-list {
+	display: block;
+
+	.comments-list {
+		padding-left: 4rem;
+
+		.comments-list-item {
+			margin-top: 2rem;
+			padding-top: 0;
+			padding-bottom: 0;
+			border: none;
+			border-left: 2px solid palette(black);
+		}
+	}
+}
+
+.comments-list-item {
+	display: block;
+	padding: 1.875rem 1.25rem;
+
+	border-bottom: 4px solid #ebf2f5;
+
+	&:first-child {
+		border-top: 4px solid #ebf2f5;
+	}
+}
+
+.comment-header {
+	@include clearfix;
+
+	font-size: 0.8125rem;
+}
+
+.comment-header__avatar {
+	display: table;
+	float: left;
+	width: 3.75rem;
+	height: 3.75rem;
+	border-radius: 100%;
+	overflow: hidden;
+	margin-right: 0.5rem;
+
+	img {
+		display: block;
+	}
+}
+
+.comment-header-text {
+	display: table;
+	float: left;
+	width: auto;
+	vertical-align: middle;
+}
+
+.comment-header__author {
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.3em;
+}
+
+.comment-header__date {
+	vertical-align: middle;
+	color: #c0c0c0;
+	font-size: 0.75rem;
+	text-transform: uppercase;
+	margin-left: 1rem;
+}
+
+.comment-header-meta {
+	display: block;
+}
+
+.comment-header-meta__tag {
+	padding: 0.25rem;
+	padding-bottom: 0.125rem;
+	background: palette(lime green);
+	color: palette(white);
+	text-transform: uppercase;
+	font-weight: 700;
+	text-align: center;
+	line-height: 1;
+	display: table;
+	width: auto;
+}
+
+.comment-body {
+	font-weight: 200;
+	padding-left: 4.25rem;
+}
+
+.comment-footer {
+	padding-left: 4.25rem;
+}
+
+.comment-actions {
+	display: block;
+}
+
+.comment-action {
+	display: inline-block;
+	text-transform: uppercase;
+	font-size: 0.75rem;
+	font-weight: 700;
+
+	& + & {
+		margin-left: 1rem;
+	}
+
+	.icon {
+		font-size: 0.8rem;
+		font-weight: normal;
+		margin-top: -0.125rem;
+		margin-right: 0.25rem;
+		line-height: 1;
+	}
+}

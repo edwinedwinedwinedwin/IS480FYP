@@ -1,0 +1,39 @@
+// COLOR PALETTE CONFIGURATION
+// Predefined color palettes.
+
+// IMPORTANT
+// 1) Each palette must have at least 1 tone, named 'base'.
+// 2) Do not use duplicate names for palettes.
+
+$palettes: (
+	white: (
+		transparent: rgba(255,255,255,0.9),
+		base: #ffffff
+	),
+
+	black: (
+		transparent: rgba(0,0,0,0.70),
+		base: #000000
+	),
+
+	grey: (
+		mist: #f1f1f1,
+		salt: #eaf2f5,
+		light: #c3ced2,
+		base: #9aa2a5,
+		dark: #8299a2,
+		ash: #6d6d6d
+	),
+
+	blue: (
+		base: #00beff,
+		sky: #00beff,
+		ocean: #085169
+	),
+
+	green: (
+		base: #9fd86c,
+		lime: #9fd86c,
+		pine: #53ba84
+	)
+);

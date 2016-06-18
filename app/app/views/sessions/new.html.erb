@@ -1,0 +1,29 @@
+<div class="header">
+  <div class="container">
+    <h1>LOGIN</h1>
+  </div>
+</div>
+
+<div class="create">
+  <div class="container">
+    <%= form_for(@user) do |f| %>
+        <% if flash[:alert] %>
+            <div class="alert alert-danger" role="alert">
+              <b>Error:</b>
+              <ul>
+                <li><%= flash[:alert] %></li>
+              </ul>
+            </div>
+        <% end %>
+        <div class="form-group">
+          <%= f.text_field :email, class: "form-control", placeholder: "EMAIL ADDRESS" %>
+        </div>
+        <div class="form-group">
+          <%= f.password_field :password, class: "form-control", placeholder: "PASSWORD" %>
+        </div>
+        <div class="actions">
+          <%= f.submit "LOGIN", class: "btn btn-default btn-lg" %>
+        </div>
+    <% end %>
+  </div>
+</div>
