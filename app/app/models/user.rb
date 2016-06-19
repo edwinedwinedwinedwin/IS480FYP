@@ -11,7 +11,9 @@ class User < ActiveRecord::Base
   #	else
   # end
   # end
-  validates :username,:password,:email, :first_name, :last_name, :password, :presence => true
+  validates :username,:password,:email, :first_name, :last_name, :presence => true
   validates :email, :uniqueness => true
+
+
 
 end

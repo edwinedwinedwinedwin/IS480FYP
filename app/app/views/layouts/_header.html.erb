@@ -31,10 +31,7 @@
 		</button>
 
 		<h1 class="site-logo logo">
-			<a href="../pages/home">
-				Young & Bold
-				<i class="icon icon--ybco-logomark"></i>
-			</a>
+      <%= link_to '', root_path , class: "icon icon--ybco-logomark" %>
 		</h1>
 
 
@@ -52,22 +49,22 @@
 			<nav class="site-menu-block site-navigation">
 				<ul class="site-navigation-list">
 					<li class="site-navigation-list__item">
-						<a href="#" rel="internal">Home</a>
+            <%= link_to 'Home', root_path ,rel: "internal" %>
 					</li>
 					<li class="site-navigation-list__item">
-						<a href="#" rel="internal">Tour</a>
+            <%= link_to 'Tour', "#", rel: "internal" %>
+          </li>
+					<li class="site-navigation-list__item">
+            <%= link_to 'Explore', "#", rel: "internal" %>
 					</li>
 					<li class="site-navigation-list__item">
-						<a href="#" rel="internal">Explore</a>
+            <%= link_to 'Pricing', "#", rel: "internal" %>
 					</li>
 					<li class="site-navigation-list__item">
-						<a href="#" rel="internal">Pricing</a>
+            <%= link_to 'Log In', "../sessions/new", rel: "internal" %>
 					</li>
 					<li class="site-navigation-list__item">
-						<a href="#" rel="internal">Log In</a>
-					</li>
-					<li class="site-navigation-list__item">
-						<a href="users/new" rel="internal">Sign Up</a>
+            <%= link_to 'Sign Up', "../users/new", rel: "internal" %>
 					</li>
 				</ul>
 
@@ -99,9 +96,9 @@
 		<section class="site-utilities">
 			<ul class="site-utilities-links">
 				<li>
-					<a href="sessions/new" class="site-utilities-link" rel="internal">Login</a>
+          <%= link_to 'Log In', "../sessions/new", class: "site-utilities-link", rel: "internal" %>
 					/
-					<a href="users/new" class="site-utilities-link" rel="internal">Sign Up</a>
+          <%= link_to 'Sign Up', "../users/new", class: "site-utilities-link", rel: "internal" %>
 				</li>
 			</ul>
 		</section>

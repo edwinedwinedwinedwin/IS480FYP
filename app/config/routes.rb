@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'sessions/new' => 'sessions#new'
   get 'sessions/create' => 'sessions#create'
   get 'sessions/destroy' => 'sessions#destroy'
-  get '/dashboard/index' => 'dashboards#index'
+  get 'dashboards/index' => 'dashboards#index'
 
   match '/:controller/:action/(:id)', via: [:get, :post]
 

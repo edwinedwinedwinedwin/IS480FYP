@@ -24,8 +24,9 @@
       <label class="form-label" for="username">Username</label>
       </div>
     </p>
-   
-    <p>
+
+
+    <!--<p>
      <div class="form-field">
       <%= f.password_field :password %>
       <label class="form-label" for="password">Password</label>
@@ -37,7 +38,7 @@
       <%= f.password_field :password_confirmation %>
       <label class="form-label" for="password-confirmation">Password confirmation</label>
       </div>
-    </p>
+    </p>-->
     
     <p>
       <div class="form-field">
@@ -69,14 +70,14 @@
  
     <p>
     <div class="form-actions">
-      <%= f.submit "Submit", class: "button--stroke--long" %>
+      <%= f.submit "SUBMIT", class: "button--stroke--long" %>
       </div>
     </p>
     <% end %>
 
     <p>
     <div class="form-actions">
-    <%= link_to "Back", controller: "dashboard", action: "index", class: "button--stroke--long" %>
+    <%= link_to 'BACK', "../../dashboards/index" %>
     </div>
     </p>
   </div>

@@ -25,12 +25,12 @@ class SessionsController < ApplicationController
         if(userInDB.email==@email && userInDB.password==@password)
           @status='success'
           session[:user_id]=userInDB.id
-          redirect_to :controller => 'dashboard', :action => 'index' and return
+          redirect_to :controller => 'dashboards', :action => 'index' and return
         end
       end
     if status=='failed'
       #redirect_to "http://www.google.com"
-      flash[:alert]="Authentication Failed sia fuck"      
+      flash[:alert]="Authentication Failed"
     end  
     redirect_to action: "new" and return
   end
@@ -38,6 +38,6 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     #redirect_to login_url, alert: "Succesfully Logged Out."
-    redirect_to action: "new" and return
+    redirect_to root_path and return
   end
 end

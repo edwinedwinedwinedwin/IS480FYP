@@ -17,7 +17,7 @@
         <%= f.hidden_field :username, :value => "Update Username" %>
         <%= f.hidden_field :address, :value => "Update Address" %>
         <%= f.hidden_field :is_admin, :value => false %>
-
+        <div class="form-field">
         <% if @user.errors.any? %>
             <div class="alert alert-danger" role="alert">
               <b>Errors</b>
@@ -28,6 +28,7 @@
               </ul>
             </div>
         <% end %>
+          </div>
         <div class="form-field">
 			<%= f.text_field :first_name, class: "form-input", placeholder: "First Name" %>
 			<label class="form-label" for="first-name">First Name</label>
@@ -58,7 +59,7 @@
       <b><%= link_to 'Community Rules', pages_comrules_path %>.</b></p>
 	  </div>
     <br>
-    <p><b>Already have an account? <%= link_to 'Log in', "session/new" %>.</b></p>
+    <p><b>Already have an account? <%= link_to 'Log in', "../sessions/new" %>.</b></p>
   </div>
 </div>
 
