@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authorize, only: [:home, :comrules, :term]
+  skip_before_action :logged_in, only: [:home, :comrules, :term]
   def home
 
   end

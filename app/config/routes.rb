@@ -1,76 +1,14 @@
 Rails.application.routes.draw do
-  root 'pages#home'
-
-  resources :users
-  get 'users/new' => 'users#new'
-  post'users' => 'users#create'
-
-  get 'pages/comrules' => 'pages#comrules'
-  get 'pages/term' => 'pages#term'
-  get 'sessions/new' => 'sessions#new'
-  get 'sessions/create' => 'sessions#create'
-  get 'sessions/destroy' => 'sessions#destroy'
-  get 'dashboards/index' => 'dashboards#index'
-
-  match '/:controller/:action/(:id)', via: [:get, :post]
-
-
-
-
-
-
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
-
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
-
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+  root 'pages#home' # root page
+  resources :sessions, only: [:new, :create, :destroy] # only allow new,create,destroy action for sessions
+  resources :users   
+  get 'signup' => 'users#new' # display create user page
+  post'users' => 'users#create' # process creation of user
+  get 'pages/comrules' => 'pages#comrules' # display com rules
+  get 'pages/term' => 'pages#term' # display terms
+  get 'login' => 'sessions#new' # show login form
+  post 'sessions/create' => 'sessions#create' # process login
+  get 'sessions/destroy' => 'sessions#destroy' # log out and invalidate session
+  get '/dashboard/index' => 'dashboards#index' # Display page upon successful login
+  match '/:controller/:action/(:id)', via: [:get, :post] # last route
 end

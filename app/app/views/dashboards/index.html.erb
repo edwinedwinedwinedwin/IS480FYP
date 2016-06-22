@@ -6,15 +6,15 @@
 
  	<div class="page-section">
      	<legend class="form-heading heading"> Login Successful to DashBoard Index </legend>
-     	
+     		Welcome home, <%= @current_user.first_name %> <%= @current_user.last_name %> !<br>
 			<%= link_to "Edit Profile", controller: "users", action: "edit", id: session[:user_id] %><br>
 			<%= link_to "Logout", controller: "sessions", action: "destroy" %>
 			<!-- Display parameters -->
-			<hr/>
+			<!--<hr/>
 			Inspecting Parameters
 			<%=params.inspect%>
 			Session ID is=<%=session[:user_id] %>
-			<!-- <%= session.inspect %> -->
+			<%= session.inspect %> -->
 
 	</div>
 </div>

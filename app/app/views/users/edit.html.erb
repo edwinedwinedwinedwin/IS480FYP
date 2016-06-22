@@ -19,28 +19,6 @@
     </div>
     <% end %>
     <p>
-     <div class="form-field">
-      <%= f.text_field :username, class: "form-input" %>
-      <label class="form-label" for="username">Username</label>
-      </div>
-    </p>
-
-
-    <!--<p>
-     <div class="form-field">
-      <%= f.password_field :password %>
-      <label class="form-label" for="password">Password</label>
-      </div>
-    </p>
-    
-    <p>
-     <div class="form-field">
-      <%= f.password_field :password_confirmation %>
-      <label class="form-label" for="password-confirmation">Password confirmation</label>
-      </div>
-    </p>-->
-    
-    <p>
       <div class="form-field">
         <%= f.text_field :first_name, class: "form-input"%>
         <label class="form-label" for="first-name">First Name</label>
@@ -53,6 +31,13 @@
       <label class="form-label" for="last-name">Last Name</label>
       </div>
     </p>
+
+    <p>
+     <div class="form-field">
+      <%= f.text_field :address, class: "form-input" %>
+      <label class="form-label" for="address">Home Address</label>
+      </div>
+    </p>
     
     <p>
      <div class="form-field">
@@ -60,14 +45,21 @@
       <label class="form-label" for="email">Email</label>
       </div>
     </p>
+
+        <p>
+     <div class="form-field">
+      <%= f.password_field :password, class: "form-input" %>
+      <label class="form-label" for="password">Password</label>
+      </div>
+    </p>
     
     <p>
      <div class="form-field">
-      <%= f.text_field :address, class: "form-input" %>
-      <label class="form-label" for="address">Address</label>
+      <%= f.password_field :password_confirmation, class: "form-input" %>
+      <label class="form-label" for="password-confirmation">Password confirmation</label>
       </div>
     </p>
- 
+    
     <p>
     <div class="form-actions">
       <%= f.submit "SUBMIT", class: "button--stroke--long" %>

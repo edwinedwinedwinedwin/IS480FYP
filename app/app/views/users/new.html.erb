@@ -13,9 +13,7 @@
     <p><b>Get ready to create, innovate, and change the world.</b></p>
     <br>
     <br>
-    <%= form_for(@user) do |f| %>
-        <%= f.hidden_field :username, :value => "Update Username" %>
-        <%= f.hidden_field :address, :value => "Update Address" %>
+    <%= form_for(@user) do |f| %>              
         <%= f.hidden_field :is_admin, :value => false %>
         <div class="form-field">
         <% if @user.errors.any? %>
@@ -38,7 +36,11 @@
 			<label class="form-label" for="last-name">Last Name</label>
         </div>
         <div class="form-field">
-			<%= f.text_field :email, class: "form-input", placeholder: "Email Address" %>
+      <%= f.text_field :address, class: "form-input", placeholder: "Home Address" %>
+      <label class="form-label" for="last-name">Home Address</label>
+        </div>
+        <div class="form-field">
+			<%= f.text_field :email, class: "form-input", placeholder: "Email" %>
 			<label class="form-label" for="email">Email</label>
         </div>
         <div class="form-field">

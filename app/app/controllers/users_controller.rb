@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  #before_filter :logged_in, only: [:index]
   before_action only: [:show, :edit, :update,:destroy]
   skip_before_action :authorize, only: [:new, :create, :index]
 
@@ -45,6 +46,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:username,:email, :password, :first_name, :last_name, :address, :is_admin)
+    params.require(:user).permit(:password,:email,:first_name, :last_name, :address, :is_admin)
   end
 end
