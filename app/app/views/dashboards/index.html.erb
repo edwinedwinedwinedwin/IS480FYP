@@ -5,7 +5,7 @@
   <%= javascript_include_tag "application"%>
 
  	<div class="page-section">
-     	<legend class="form-heading heading"> Login Successful to DashBoard Index </legend>
+     	<legend class="form-heading heading"> Dashboard </legend>
      		Welcome home, <%= @current_user.first_name %> <%= @current_user.last_name %> !<br>
 			<%= link_to "Edit Profile", controller: "users", action: "edit", id: session[:user_id] %><br>
 			<%= link_to "Change Password", controller: "users", action: "changepass", id: session[:user_id] %><br>

@@ -15,6 +15,7 @@
     <br>
     <%= form_for(@user) do |f| %>              
         <%= f.hidden_field :is_admin, :value => false %>
+        <%= f.hidden_field :is_banned, :value => false %>
         <div class="form-field">
         <% if @user.errors.any? %>
             <div class="alert alert-danger" role="alert">

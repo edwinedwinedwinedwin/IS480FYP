@@ -5,8 +5,7 @@
 
   <div class="page-section">
     <legend class="form-heading heading"> Log In </legend>
-      <%= form_tag('/sessions/create') do |f| %>
-      <%# form_for :user, :url=>{:action => :authenticate} do |f| %>
+      <%= form_tag('/sessions/create') do |f| %>    
           <% if flash[:alert] %>
               <div class="alert alert-danger" role="alert">
                 <b><u>Errors:</u></b>
