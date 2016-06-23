@@ -6,9 +6,13 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by_email(params[:email])    
-    if user and user.authenticate(params[:password])
+    if user and user.authenticate(params[:password])      
         session[:user_id] = user.id
-        redirect_to :controller => 'dashboard', :action => 'index' and return
+        #if user.is_admin
+          redirect_to :controller => 'admins', :action => 'index' and return
+        #else
+        #  redirect_to :controller => 'dashboards', :action => 'index' and return
+        #end        
     else                
         redirect_to action: "new"
     end

@@ -3,6 +3,10 @@ class UsersController < ApplicationController
   before_action only: [:show, :edit, :update,:destroy]
   skip_before_action :authorize, only: [:new, :create, :index]
 
+  def changepass
+    @user=User.find(params[:id])      
+  end
+
   def index
     @users = User.all
   end
@@ -38,7 +42,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       #flash[:notice]="You have signed up successfully"
-      redirect_to :controller => 'dashboard', :action => 'index' and return
+      redirect_to :controller => 'dashboards', :action => 'index' and return
     else
       render 'new'
     end
@@ -46,6 +50,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:password,:email,:first_name, :last_name, :address, :is_admin)
+    params.require(:user).permit(:password,:password_confirmation,:email,:first_name, :last_name, :address, :is_admin)
   end
 end

@@ -18,7 +18,7 @@
         <div class="form-field">
         <% if @user.errors.any? %>
             <div class="alert alert-danger" role="alert">
-              <b>Errors</b>
+              <b><u>Errors:</u></b>
               <ul>
                 <% @user.errors.full_messages.each do |message| %>
                   <li><%= message %></li>
