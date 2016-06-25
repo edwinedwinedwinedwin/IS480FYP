@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Manage Admins</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>      
+      <th>Email</th>
+      <th>Password</th>
+      <th>First name</th>
+      <th>Last name</th>            
+      <th>Admin Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% User.all.each do |user| %>
+      <% if user.is_admin %>
+      <tr>        
+        <td><%= user.email %></td>
+        <td><%= user.password %></td>
+        <td><%= user.first_name %></td>
+        <td><%= user.last_name %></td>                
+        <td><%= user.is_admin %></td>         
+        <td><%= link_to 'Remove Admin', {:controller => "users", :action => "removeadmin", :id => user.id } %><br></td>
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'Add New Admin', {:controller => "admins", :action => "new" } %><br>
+<%= link_to 'Back', {:controller => "admins", :action => "index" } %><br>

@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-
-
   root 'pages#home' # root page
   resources :sessions, only: [:new, :create, :destroy] # only allow new,create,destroy action for sessions
   resources :users   

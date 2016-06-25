@@ -3,4 +3,8 @@ class AdminsController < ApplicationController
   def index
   	@session=session[:user_id]
   end
+
+  def new
+   @user = User.new  	
+  end
 end

@@ -6,8 +6,8 @@
  	<div class="page-section">
      	<legend class="form-heading heading"> Admin Dashboard </legend>
      		Welcome home, <%= @current_user.first_name %> <%= @current_user.last_name %> !<br>			
-			<%= link_to "Manage Admins", controller: "sessions", action: "destroy" %>Deadlink<br>
-			<%= link_to "Manage Users", controller: "users", action: "index" %>List users with Ban<br>
+			<%= link_to "Manage Admins", controller: "admins", action: "manage" %><br>
+			<%= link_to "Manage Users", controller: "users", action: "index" %><br>
 			<%= link_to "View Statistics", controller: "sessions", action: "destroy" %>Deadlink<br>			
 			<%= link_to "Manage Projects", controller: "users", action: "edit", id: session[:user_id] %>Deadlink<br>
 			<%= link_to "Logout", controller: "sessions", action: "destroy" %>

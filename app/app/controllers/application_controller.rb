@@ -11,4 +11,14 @@ class ApplicationController < ActionController::Base
   def logged_in
     redirect_to :controller => 'sessions', :action => 'new' unless current_user
   end
+
+  def authorize_admin
+    if current_user==nil   
+      redirect_to :controller => 'sessions', :action => 'new'
+    else
+      if !current_user.is_admin
+       redirect_to :controller => 'dashboards', :action => 'index'
+      end
+    end      
+  end
 end
