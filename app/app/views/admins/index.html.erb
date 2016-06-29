@@ -8,8 +8,8 @@
      		Welcome home, <%= @current_user.first_name %> <%= @current_user.last_name %> !<br>			
 			<%= link_to "Manage Admins", controller: "admins", action: "manage" %><br>
 			<%= link_to "Manage Users", controller: "users", action: "index" %><br>
-			<%= link_to "View Statistics", controller: "sessions", action: "destroy" %>Deadlink<br>			
-			<%= link_to "Manage Projects", controller: "users", action: "edit", id: session[:user_id] %>Deadlink<br>
+			<%= link_to "View Statistics", controller: "admins", action: "index" %>Deadlink<br>			
+			<%= link_to "Manage Projects", controller: "admins", action: "index" %>Deadlink<br>
 			<%= link_to "Logout", controller: "sessions", action: "destroy" %>
 			<!-- Display parameters -->
 			<!--<hr/>

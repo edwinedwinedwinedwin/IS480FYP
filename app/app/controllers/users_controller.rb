@@ -43,9 +43,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
-      #flash[:notice]="You have signed up successfully"
+    @user = User.new(user_params)    
+    if @user.save      
        if @user.is_admin
           if @user.address=='Admin'
             redirect_to :controller => 'admins', :action => 'manage' and return
@@ -56,7 +55,10 @@ class UsersController < ApplicationController
         redirect_to :controller => 'dashboards', :action => 'index' and return
       end
     else
-      render 'new'
+      if @user.is_admin
+        render '/admins/new' and return
+      end
+      render 'new' and return
     end
   end
 
@@ -77,7 +79,7 @@ class UsersController < ApplicationController
   def removeadmin  
     @user=User.find(params[:id])
     @user.destroy       
-    redirect_to :controller => 'admins', :action => 'manage' and return  
+    redirect_to :controller => 'admins', :action => 'manage'  
   end
 
   private

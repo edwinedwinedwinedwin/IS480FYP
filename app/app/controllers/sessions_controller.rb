@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  #before_filter :logged_in
+  before_filter :after_logged_in
   def new
     render 'new'
   end
@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     if user and user.authenticate(params[:password])      
         if user.is_banned          
           flash[:alert]="Your account has been banned."
-          redirect_to action:"new"#, alert: "Your account has been banned."          
+          redirect_to action:"new"       
         else
         session[:user_id] = user.id        
         if user.is_admin
@@ -25,8 +25,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
-    #redirect_to login_url, alert: "Succesfully Logged Out."
+    session[:user_id] = nil    
     redirect_to action: "new" and return
   end
 end
