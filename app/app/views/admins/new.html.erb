@@ -1,53 +1,62 @@
-<h1>Add New Admin</h1>
+<div class="page-main">
+  <%= stylesheet_link_tag "style" %>
+  <%= stylesheet_link_tag "component" %>
+  <%= stylesheet_link_tag "flickity/flickity.css" %>
+  <%= javascript_include_tag "application"%>
 
-    <%= form_for(@user) do |f| %>              
-        <%= f.hidden_field :is_admin, :value => true %>
-        <%= f.hidden_field :is_banned, :value => false %>
-        <%= f.hidden_field :address, :value => 'Admin' %>
+  <div class="page-section">
+    <legend class="form-heading heading"> Add New Admin </legend>
 
-        <% if @user.errors.any? %>
-            <div class="alert alert-danger" role="alert">
-              <b><u>Errors:</u></b>
-              <ul>
-                <% @user.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-                <% end %>
-              </ul>
-            </div>
-        <% end %>
-      <table>
-        <tr>
-          <td><label for="first-name">First Name</label></td>
-          <td><%= f.text_field :first_name %>   </td>
-        </tr>
-        
-        <tr>
-          <td><label for="last-name">Last Name</label> </td>
-          <td><%= f.text_field :last_name %></td>
-        </tr>
-        
-        <tr>
-          <td><label for="email">Email</label></td> 
-          <td><%= f.text_field :email  %></td>  
-        </tr>
+      <%= form_for(@user) do |f| %>              
+          <%= f.hidden_field :is_admin, :value => true %>
+          <%= f.hidden_field :is_banned, :value => false %>
+          <%= f.hidden_field :address, :value => 'Admin' %>
 
-        <tr>
-          <td><label for="password">Password</label></td>
-          <td><%= f.password_field :password %></td>  
-        </tr>
+          <% if @user.errors.any? %>
+              <div class="alert alert-danger" role="alert">
+                <b><u>Errors:</u></b>
+                <ul>
+                  <% @user.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+          <% end %>
 
-        <tr>
-          <td><label for="password">Confirm Password</label></td> 
-          <td><%= f.password_field :password_confirmation  %></td>           
-        </tr>
+          <div class="form-field">
+            <%= f.text_field :first_name, class: "form-input", placeholder: "First Name" %>
+            <label class="form-label" for="first-name">First Name</label>
+          </div>
 
-        <tr>
-          <td></td> 
-          <td align=right><%= f.submit "Submit" %></td>
-        </tr>
-      </table>  
+          <div class="form-field">
+            <%= f.text_field :last_name, class: "form-input", placeholder: "Last Name" %>
+            <label class="form-label" for="last-name">Last Name</label>
+          </div>
+          
+          <div class="form-field">
+            <%= f.text_field :email, class: "form-input", placeholder: "Email"  %>
+            <label class="form-label" for="email">Email</label>
+          </div>
 
-    <% end %>
-    <br>
-	  
-    <%= link_to 'Back', {:controller => "admins", :action => "manage" } %>
+          <div class="form-field">
+            <%= f.password_field :password, class: "form-input", placeholder: "Password" %>
+            <label class="form-label" for="password">Password</label>
+          </div>
+
+          <div class="form-field">
+            <%= f.password_field :password_confirmation, class: "form-input", placeholder: "Password"  %> 
+            <label class="form-label" for="password">Confirm Password</label>       
+          </div>
+
+          <div class="form-actions">
+            <td align=right><%= f.submit "Create Admin", class: "button--stroke--long" %></td>
+          </div>
+
+      <% end %>
+      <br>
+  	  
+      <%= link_to 'Back', {:controller => "admins", :action => "manage" } %>
+
+    </div>
+  </div>
+      

@@ -412,6 +412,9 @@ strong,
 .t--left {
   text-align: left !important; }
 
+.t--right {
+  text-align: right !important; }
+
 .heading, .heading--small, .heading--large, .pricing-plan-heading, .project-stat__data, #project-funding-goal, .fuel-button .fuel-button__cta {
   font-family: "Alternate Gothic No1 D", serif;
   text-transform: uppercase;
@@ -2101,7 +2104,7 @@ strong,
 .page-header {
   *zoom: 1;
   position: fixed;
-  top: -1rem;
+  top: 2rem;
   width: 100%;
   padding: 0 2.875rem;
   z-index: 1000; }
@@ -2200,7 +2203,8 @@ strong,
   position: relative;
   padding-top: 6.6875rem;
   padding-bottom: 6.6875rem;
-  text-align: center; }
+  /*text-align: center; */
+  }
 
 .page-section--small {
   padding-top: 3.25rem;
