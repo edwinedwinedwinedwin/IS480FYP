@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  
+  has_many :projects
+  has_many :project_likes
   #validates_confirmation_of :password
   #validates_presence_of :password_confirmation, :if => :password_changed?
   #validates_presence_of :password_confirmation, :if => :password_changed?
