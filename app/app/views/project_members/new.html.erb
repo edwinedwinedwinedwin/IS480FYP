@@ -1,0 +1,52 @@
+<div class="page-main">
+  <%= stylesheet_link_tag "style" %>
+  <%= stylesheet_link_tag "component" %>
+  <%= stylesheet_link_tag "flickity/flickity.css" %>
+  <%= javascript_include_tag "application"%>
+
+  <div class="page-section">
+    <legend class="form-heading heading"> Add Project Member </legend>
+
+      <%= form_for(@project_member) do |f| %>              
+          <%= f.hidden_field :project_id, :value => 1 %> <!-- :value will eventually be project_id instead of 1-->
+          <%# f.hidden_field :project_id, :value => session[:project_id] %> 
+
+          <% if @project_member.errors.any? %>
+              <div class="alert alert-danger" role="alert">
+                <b><u>Errors:</u></b>
+                <ul>
+                  <% @project_member.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+          <% end %>
+
+          <div class="form-field">
+            <%= f.text_field :name, class: "form-input", placeholder: "Name" %>
+            <label class="form-label" for="name">Name</label>
+          </div>
+
+          <div class="form-field">
+            <%= f.text_field :role, class: "form-input", placeholder: "Role" %>
+            <label class="form-label" for="role">Role</label>
+          </div>
+          
+          <div class="form-field">
+            <%= f.text_field :img_url, class: "form-input", placeholder: "Img_url"  %>
+            <label class="form-label" for="img_url">Img_url</label>
+          </div>
+         
+          <div class="form-actions">
+            <td align=right><%= f.submit "Add Project Member", class: "button--stroke--long" %></td>
+          </div>
+
+      <% end %>
+      <br>
+  	  
+      <%= link_to 'Back', {:controller => "project_members", :action => "show", :id=>1 } %>
+      <!-- :id will eventually be project_id instead of 1-->
+
+    </div>
+  </div>
+      
