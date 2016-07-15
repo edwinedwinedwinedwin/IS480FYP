@@ -1,0 +1,63 @@
+<div class="page-main">
+  <%= stylesheet_link_tag "style" %>
+  <%= stylesheet_link_tag "component" %>
+  <%= stylesheet_link_tag "flickity/flickity.css" %>
+  <%= javascript_include_tag "application"%>
+
+  <div class="page-section">
+    <legend class="form-heading heading"> Add Project Milestone </legend>
+
+	  <%= form_for(@project_milestone) do |f| %>              
+ 		<%= f.hidden_field :project_id, :value => 1 %> 	  
+	  <% #f.hidden_field :project_id, :value => session[:project_id] %>
+
+	  <% if @project_milestone.errors.any? %>
+              <div class="alert alert-danger" role="alert">
+                <b><u>Errors:</u></b>
+                <ul>
+                  <% @project_milestone.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+          <% end %>
+
+          <div class="form-field">
+            <%= f.text_field :name, class: "form-input", placeholder: "Name" %>
+            <label class="form-label" for="first-name">Name</label>
+          </div>
+
+          <div class="form-field">
+			  <%= f.date_field :start_date, class: "form-input", placeholder: "Start Date" %>
+            <label class="form-label" for="last-name">Start Date</label>
+          </div>
+          
+          <div class="form-field">
+			  <%= f.date_field :end_date, class: "form-input", placeholder: "End Date"  %>
+            <label class="form-label" for="email">End Date</label>
+          </div>
+
+          <div class="form-field">
+			  <%= f.text_field :amount_raised, class: "form-input", placeholder: "Amount Raised" %>
+            <label class="form-label" for="password">Amount Raised</label>
+          </div>
+
+          <div class="form-field">
+			  <%= f.text_field :target_amount, class: "form-input", placeholder: "Target Amount"  %> 
+            <label class="form-label" for="password">Target Amount</label>       
+          </div>
+	  	  
+	  	  <div class="form-actions">
+			  <td align=right><%= f.submit "Add Project Milestone", class: "button--stroke--long" %></td>
+          </div>
+
+	  
+
+      <% end %>
+      <br>
+  	  
+	  <%= link_to 'Back', {:controller => "project_milestones", :action => "show" } %>
+
+    </div>
+  </div>
+      

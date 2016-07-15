@@ -8,10 +8,20 @@ Rails.application.routes.draw do
   post 'project_members' => 'project_members#create'  
   #get 'project_members/edit' => => 'project_members#index'
   post 'project_members/destroy/(:id)' => 'project_members#destroy'   
+	
+	
+	
+  get 'project_milestones/new' => 'project_milestones#new'
+  get 'project_milestones/index' => 'project_milestones#index'
+  post 'project_milestones' => 'project_milestones#create'
+  get 'project_milestones/edit' => 'project_milestones#edit'    
+  post 'project_milestones/destroy/(:id)' => 'project_milestones#destroy' 
 
   resources :sessions, only: [:new, :create, :destroy] # only allow new,create,destroy action for sessions
   resources :users   
   resources :project_members
+  resources	:project_milestones
+
   get 'signup' => 'users#new' # display create user page
   post'users' => 'users#create' # process creation of user  
   get 'pages/comrules' => 'pages#comrules' # display com rules
