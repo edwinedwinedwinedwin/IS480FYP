@@ -9,18 +9,24 @@ Rails.application.routes.draw do
   #get 'project_members/edit' => => 'project_members#index'
   post 'project_members/destroy/(:id)' => 'project_members#destroy'   
 	
-	
-	
   get 'project_milestones/new' => 'project_milestones#new'
   get 'project_milestones/index' => 'project_milestones#index'
   post 'project_milestones' => 'project_milestones#create'
   get 'project_milestones/edit' => 'project_milestones#edit'    
   post 'project_milestones/destroy/(:id)' => 'project_milestones#destroy' 
 
+  # project rewards routes
+  get 'project_rewards/index' => 'project_rewards#index'
+  get 'project_rewards/edit' => 'project_rewards#edit'
+  get 'project_rewards/new' => 'project_rewards#new'
+  post 'project_rewards' => 'project_rewards#create'
+  post 'project_rewards/destroy/(:id)' => 'project_rewards#destroy'
+
   resources :sessions, only: [:new, :create, :destroy] # only allow new,create,destroy action for sessions
   resources :users   
   resources :project_members
   resources	:project_milestones
+  resources :project_rewards
 
   get 'signup' => 'users#new' # display create user page
   post'users' => 'users#create' # process creation of user  

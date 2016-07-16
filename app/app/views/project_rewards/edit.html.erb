@@ -1,0 +1,79 @@
+<%= render "layouts/header" %>
+<%= yield %>
+
+<div class="page-main">
+  <%= stylesheet_link_tag "style" %>
+  <%= stylesheet_link_tag "component" %>
+  <%= javascript_include_tag "application"%>
+
+  <div class="page-section">
+     <legend class="form-heading heading"> Edit Project Reward </legend>
+    <%= form_for(@project_reward) do |f| %>
+    <% if @project_reward.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% @project_reward.errors.full_messages.each do |msg| %>
+          <li><font color=red><%= msg %></font></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+    <p>
+      <div class="form-field">
+        <%= f.text_field :name, class: "form-input"%>
+        <label class="form-label" for="name">Name</label>
+      </div>
+    </p>
+    
+    <p>
+     <div class="form-field">
+      <%= f.text_field :min_amount, class: "form-input" %>
+      <label class="form-label" for="min_amount">Minimum Amount</label>
+      </div>
+    </p>
+
+    <p>
+     <div class="form-field">
+      <%= f.text_field :description, class: "form-input" %>
+      <label class="form-label" for="description">Description</label>
+      </div>
+    </p>
+    
+    <p>
+     <div class="form-field">
+      <%= f.text_field :estimated_delivery, class: "form-input" %>
+      <label class="form-label" for="estimated_delivery">Estimated Delivery</label>
+      </div>
+    </p>
+
+    <p>
+     <div class="form-field">
+      <%= f.text_field :no_of_rewards, class: "form-input" %>
+      <label class="form-label" for="no_of_rewards">Number of Rewards</label>
+      </div>
+    </p>
+
+    <p>
+     <div class="form-field">
+      <%= f.text_field :img_url, class: "form-input" %>
+      <label class="form-label" for="img_url">Image URL</label>
+      </div>
+    </p>
+    
+    <p>
+    <div class="form-actions">
+      <%= f.submit "SUBMIT", class: "button--stroke--long" %>
+      </div>
+    </p>
+    <% end %>
+
+    <p>
+    <div class="form-actions">
+    <%= link_to 'BACK', "../../project_rewards/index" %>
+    </div>
+    </p>
+  </div>
+</div>
+
+<%= render "layouts/footer" %>
+<%= yield %>

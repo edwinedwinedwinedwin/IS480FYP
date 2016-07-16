@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160709084923) do
+ActiveRecord::Schema.define(version: 20160716095247) do
 
   create_table "project_categories", force: :cascade do |t|
     t.string   "category",   limit: 255
@@ -67,6 +67,19 @@ ActiveRecord::Schema.define(version: 20160709084923) do
   add_index "project_milestones", ["project_id"], name: "fk_rails_8ea5131e54", using: :btree
   add_index "project_milestones", ["project_status_id"], name: "fk_rails_b00c17a24f", using: :btree
 
+  create_table "project_reward_backers", force: :cascade do |t|
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+    t.decimal  "amount_funded",                      precision: 10
+    t.integer  "user_shipping_address_id", limit: 4
+    t.integer  "user_id",                  limit: 4
+    t.integer  "project_reward_id",        limit: 4
+  end
+
+  add_index "project_reward_backers", ["project_reward_id"], name: "fk_rails_b60cbcf69a", using: :btree
+  add_index "project_reward_backers", ["user_id"], name: "fk_rails_964a5ba4fd", using: :btree
+  add_index "project_reward_backers", ["user_shipping_address_id"], name: "fk_rails_64993c7a5f", using: :btree
+
   create_table "project_rewards", force: :cascade do |t|
     t.string   "name",               limit: 255
     t.decimal  "min_amount",                       precision: 10
@@ -76,6 +89,7 @@ ActiveRecord::Schema.define(version: 20160709084923) do
     t.integer  "project_id",         limit: 4
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
+    t.string   "img_url",            limit: 255
   end
 
   add_index "project_rewards", ["project_id"], name: "fk_rails_aa9b027971", using: :btree
@@ -124,6 +138,20 @@ ActiveRecord::Schema.define(version: 20160709084923) do
   add_index "projects", ["project_type_id"], name: "fk_rails_d7ca4cafeb", using: :btree
   add_index "projects", ["user_id"], name: "fk_rails_b872a6760a", using: :btree
 
+  create_table "user_shipping_addresses", force: :cascade do |t|
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "address_line_1", limit: 255
+    t.string   "address_line_2", limit: 255
+    t.string   "country",        limit: 255
+    t.string   "state",          limit: 255
+    t.string   "city",           limit: 255
+    t.string   "postal_code",    limit: 255
+    t.integer  "user_id",        limit: 4
+  end
+
+  add_index "user_shipping_addresses", ["user_id"], name: "fk_rails_fe7a0f3f3c", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",           limit: 255
     t.string   "first_name",      limit: 255
@@ -142,10 +170,14 @@ ActiveRecord::Schema.define(version: 20160709084923) do
   add_foreign_key "project_members", "projects"
   add_foreign_key "project_milestones", "project_statuses"
   add_foreign_key "project_milestones", "projects"
+  add_foreign_key "project_reward_backers", "project_rewards"
+  add_foreign_key "project_reward_backers", "user_shipping_addresses"
+  add_foreign_key "project_reward_backers", "users"
   add_foreign_key "project_rewards", "projects"
   add_foreign_key "project_updates", "projects"
   add_foreign_key "projects", "project_categories"
   add_foreign_key "projects", "project_statuses"
   add_foreign_key "projects", "project_types"
   add_foreign_key "projects", "users"
+  add_foreign_key "user_shipping_addresses", "users"
 end
