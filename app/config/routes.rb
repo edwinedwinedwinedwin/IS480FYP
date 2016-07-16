@@ -1,5 +1,10 @@
-Rails.application.routes.draw do
+Rails.application.routes.draw do  
   root 'pages#home' # root page
+
+  # user expertises routes
+  get 'user_expertises/index' => 'user_expertises#index'
+  get 'user_expertises/new' => 'user_expertises#new'
+  post 'user_expertises' => 'user_expertises#create'
 
   # project members routes  
   get 'project_members/index' => 'project_members#index'

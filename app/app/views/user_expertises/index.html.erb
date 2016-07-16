@@ -1,0 +1,39 @@
+<%= stylesheet_link_tag "style" %>
+<%= stylesheet_link_tag "component" %>
+  <%= stylesheet_link_tag "flickity/flickity.css" %>
+  <%= javascript_include_tag "application"%>
+<p id="notice"><%= notice %></p>
+
+<legend class="form-heading heading"><h1>My Expertises</h1></legend>
+
+<table class="table-show">
+  <thead>
+    <tr class="tr-row">      
+      <th class="th-row">Expertise ID</th>      
+      <th class="th-row">User ID</th>                        
+      <th class="th-row">Expertise</th>      
+      <th class="th-row" colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>    
+    <% @userExpertises.each do |userExpertise| %>          
+    <% if userExpertise.user_id==current_user.id %>
+      <tr class="tr-row">              
+        <td class="td-row"><%= userExpertise.id %></td>        
+        <td class="td-row"><%= userExpertise.user_id %></td> 
+        <td class="td-row"><%= userExpertise.expertise_name %></td>                
+        <td class="td-row"><%= link_to 'Delete Expertise', {:controller => "user_expertises", :action => "destroy", :id => userExpertise.id } %> </td>
+
+      </tr>      
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Add Expertise', {:controller => "user_expertises", :action => "new" } %><br>
+<!-- Link back to projects-->
+<%= link_to 'Back', {:controller => "dashboards", :action => "index" } %>
+<%# link_to 'Back', {:controller => "projects", :action => "show", :id=>session[:project_id]} %>
+<!-- :id will eventually be project_id instead of 1-->
+<%= session[:user_id] %>
