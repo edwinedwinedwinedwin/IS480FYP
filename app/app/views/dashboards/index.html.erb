@@ -4,6 +4,9 @@
   <%= stylesheet_link_tag "component" %>
   <%= javascript_include_tag "application"%>
 
+  	<%= render "layouts/header" %>
+	<%= yield %>
+
  	<div class="page-section">
      	<legend class="form-heading heading"> Dashboard </legend>
      		Welcome home, <%= @current_user.first_name %> <%= @current_user.last_name %> !<br>

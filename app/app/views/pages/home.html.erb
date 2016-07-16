@@ -3,10 +3,10 @@
 <%= stylesheet_link_tag "flickity/flickity.css" %>
 <%= javascript_include_tag "application"%>
 
-<%= render "layouts/header" %>
+<%= render "layouts/headerLogin" %>
 <%= yield %>
 
-<main class="page-main">	
+<main class="page-main">  
  <section class="page-section--hero page-section--sky-blue l--full-height" style="background-image: url('/assets/home-hero-1.jpg');"> 
 
   <div class="l--vertical-center l--half-width--right">
@@ -14,7 +14,7 @@
     <h2 class="section-heading heading--large"><span class="subheading l--block">Work on</span> ideas that<br> matter</h2>
    </header>
 
-   <a href="#" class="button--link">Get Started</a>
+   <%= link_to 'Get Started', "signup", class: "button--link", rel: "internal" %>
   </div>
  </section>
 
@@ -43,7 +43,7 @@
        <i class="icon icon--coin"></i>
        Crowdfund for free
       </h2>
-		 
+     
       <p>Unlike existing crowdfunding models, Y&B does not take a cut from your target amount, only a percentage of the excess raised.</p>
      </div>
     </div>
@@ -100,6 +100,7 @@
   </header>
  </section>
 </main>
+
 <%= render "layouts/try" %>
 <%= yield %>
 

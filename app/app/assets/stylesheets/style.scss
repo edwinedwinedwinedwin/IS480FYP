@@ -275,6 +275,39 @@ button, input, textarea {
   font: inherit;
   vertical-align: baseline; }
 
+.table-show {
+  border: 1px solid black;
+  border-collapse: collapsed;
+  border-spacing: 30;
+  width: 100%;
+}
+
+.tr-row {
+  
+}
+
+.alert-danger {
+  background-color: red;
+  color: white;
+  font-size: 150%;
+}
+
+.tr-row:hover{background-color:#f5f5f5}
+
+.th-row {
+  height: 50px;
+  text-align: left;
+  padding: 15px;
+  background-color: #00C6FF;
+  color: white;
+}
+
+.td-row {
+  padding: 15px;
+}
+
+.tr-row:nth-child(even) {background-color: #f2f2f2}
+
 h7 {
   position: absolute;
   right: 0px;
@@ -1560,7 +1593,9 @@ strong,
 
 .form-heading {
   color: #9fd86c;
-  margin-bottom: 1rem; }
+  margin-bottom: 1rem; 
+  margin: auto;
+}
 
 .form-field {
   display: block;
@@ -2203,7 +2238,7 @@ strong,
   position: relative;
   padding-top: 6.6875rem;
   padding-bottom: 6.6875rem;
-  /*text-align: center; */
+  text-align: center; 
   }
 
 .page-section--small {
