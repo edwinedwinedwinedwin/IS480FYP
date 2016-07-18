@@ -3,6 +3,9 @@
   <%= stylesheet_link_tag "component" %>
   <%= javascript_include_tag "application"%>
 
+  <%= render "layouts/header" %>
+  <%= yield %>
+
   <div class="page-section">
     <legend class="form-heading heading"> Log In </legend>
       <%= form_tag('/sessions/create') do |f| %>    
@@ -36,7 +39,7 @@
 
           <p>
             <div class="form-actions">
-              <%= link_to "Back", controller: "pages", action: "home", class: "button--stroke--long" %>
+              Need an account? <%= link_to "Sign Up", controller: "users", action: "new", class: "button--stroke--long" %>
             </div>
           </p>
       <% end %>
@@ -51,3 +54,6 @@
       User is <%= @user %><br> -->
   </div>
 </div>
+
+<%= render "layouts/footer" %>
+  <%= yield %>
