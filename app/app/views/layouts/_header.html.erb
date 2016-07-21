@@ -25,16 +25,97 @@
 
 <body>
 	<header class="page-header">
-		<button class="site-menu-open js-site-menu-toggle">
-			<span class="l--hidden">Open Site Menu</span>
-			<i class="icon icon--menu"></i>
-		</button>
+		<span style="font-size:30px;cursor:pointer" onclick="openNav()">
+			<button class="site-menu-open js-site-menu-toggle">
+				<span class="l--hidden">Open Site Menu</span>
+				<i class="icon icon--menu"></i>
+			</button>
+		</span>
 
 		<h1 class="site-logo logo">
       <%= link_to '', root_path , class: "icon icon--ybco-logomark" %>
 		</h1>
 
+		<!-- Sidebar -->
 
+		<style>
+			body {
+			    font-family: "Lato", sans-serif;
+			}
+
+			.sidenav {
+			    height: 100%;
+			    width: 0;
+			    position: fixed;
+			    z-index: 1;
+			    top: 0;
+			    left: 0;
+			    background-color: #FFFFFF;
+			    overflow: scroll;
+			    transition: 1s;
+			    padding-top: 60px;
+			}
+
+			.sidenav a {
+			    padding: 8px 8px 8px 32px;
+			    text-decoration: none;
+			    font-size: 20px;
+			    color: #818181;
+			    display: block;
+			    transition: 0.3s
+			}
+
+			.sidenav a:hover, .offcanvas a:focus{
+			    color: #696969;
+			}
+
+			.closebtn {
+			    position: absolute;
+			    top: 0;
+			    right: 30px;
+			    font-size: 16px !important;
+			    margin-left: 30px;
+			    align-items: center;
+			}
+
+			@media screen and (max-height: 450px) {
+			  .sidenav {padding-top: 15px;}
+			  .sidenav a {font-size: 16px;}
+			}
+		</style>
+		
+		<div id="mySidenav" class="sidenav">
+		  	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+		  		<i class="site-menu-logo icon icon--ybco-lockup"></i>&nbsp&nbsp
+		  		<i class="icon icon--large-cross"></i>
+		  		<button class="site-menu-close js-site-menu-toggle">
+				</button>
+			</a>
+			<br/>
+			<a href="../users/new" class="button button--fill" rel="internal">
+				Get Started
+				<i class="icon icon--chevron-right"></i>
+			</a>
+			<br/>
+		  	<a href="">Home</a>
+		  	<a href="#">Tour</a>
+		 	<a href="#">Explore</a>
+		  	<a href="#">Pricing</a>
+			<a href="#">Log In</a>
+		  	<a href="#">Sign Up</a>
+		</div>
+
+		<script>
+			function openNav() {
+			    document.getElementById("mySidenav").style.width = "250px";
+			}
+
+			function closeNav() {
+			    document.getElementById("mySidenav").style.width = "0";
+			}
+		</script>
+
+		<!--
 		<section class="site-menu" id="site-menu">
 			<button class="site-menu-close js-site-menu-toggle">
 				<i class="site-menu-logo icon icon--ybco-lockup"></i>
@@ -92,6 +173,7 @@
 				</a></li>
 			</ul>
 		</section>
+		-->
 
 		<section class="site-utilities">
 			<ul class="site-utilities-links">
