@@ -1,0 +1,65 @@
+<div class="page-main">
+  <%= stylesheet_link_tag "style" %>
+  <%= stylesheet_link_tag "component" %>
+  <%= stylesheet_link_tag "flickity/flickity.css" %>
+  <%= javascript_include_tag "application"%>
+
+  <div class="page-section">
+    <legend class="form-heading heading"> Add User Shipping Address </legend>
+
+      <%= form_for(@user_shipping_address) do |f| %>              
+          <%= f.hidden_field :project_id, :value => 1 %> <!-- :value will eventually be project_id instead of 1-->
+
+          <% if @user_shipping_address.errors.any? %>
+              <div class="alert alert-danger" role="alert">
+                <b><u>Errors:</u></b>
+                <ul>
+                  <% @user_shipping_address.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+          <% end %>
+
+          <div class="form-field">
+            <%= f.text_field :address_line_1, class: "form-input", placeholder: "Address Line 1" %>
+            <label class="form-label" for="address_line_1">Address Line 1</label>
+          </div>
+
+          <div class="form-field">
+            <%= f.text_field :address_line_2, class: "form-input", placeholder: "Address Line 2" %>
+            <label class="form-label" for="address_line_2">Address Line 2</label>
+          </div>
+          
+          <div class="form-field">
+            <%= f.text_field :country, class: "form-input", placeholder: "Country"  %>
+            <label class="form-label" for="country">Country</label>
+          </div>
+
+          <div class="form-field">
+            <%= f.text_field :city, class: "form-input", placeholder: "City" %>
+            <label class="form-label" for="city">City</label>
+          </div>
+
+          <div class="form-field">
+            <%= f.text_field :state, class: "form-input", placeholder: "State"  %> 
+            <label class="form-label" for="state">State</label>       
+          </div>
+
+          <div class="form-field">
+            <%= f.text_field :postal_code, class: "form-input", placeholder: "Postal Code"  %> 
+            <label class="form-label" for="postal_code">Postal Code</label>       
+          </div>
+
+          <div class="form-actions">
+            <td align=right><%= f.submit "Add New Address", class: "button--stroke--long" %></td>
+          </div>
+
+      <% end %>
+      <br>
+  	  
+      <%= link_to 'Back', {:controller => "user_shipping_addresses", :action => "index" } %>
+
+    </div>
+  </div>
+    

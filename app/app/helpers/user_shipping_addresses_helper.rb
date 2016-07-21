@@ -1,0 +1,2 @@
+module UserShippingAddressesHelper
+end

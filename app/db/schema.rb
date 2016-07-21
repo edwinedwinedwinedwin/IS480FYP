@@ -42,19 +42,15 @@ ActiveRecord::Schema.define(version: 20160716130031) do
   add_index "project_likes", ["user_id"], name: "fk_rails_8db23f111d", using: :btree
 
   create_table "project_members", force: :cascade do |t|
-    t.string   "role",              limit: 255
-    t.text     "img_url",           limit: 65535, null: false
-    t.integer  "project_id",        limit: 4
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.string   "description",       limit: 255
-    t.integer  "project_status_id", limit: 4
-    t.integer  "user_id",           limit: 4
+    t.string   "name",       limit: 255
+    t.string   "role",       limit: 255
+    t.text     "img_url",    limit: 65535, null: false
+    t.integer  "project_id", limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   add_index "project_members", ["project_id"], name: "fk_rails_f3b43b5269", using: :btree
-  add_index "project_members", ["project_status_id"], name: "fk_rails_88e268d146", using: :btree
-  add_index "project_members", ["user_id"], name: "fk_rails_49ebe01c9d", using: :btree
 
   create_table "project_milestones", force: :cascade do |t|
     t.string   "name",              limit: 255
@@ -180,9 +176,7 @@ ActiveRecord::Schema.define(version: 20160716130031) do
   add_foreign_key "project_inspirations", "projects"
   add_foreign_key "project_likes", "projects"
   add_foreign_key "project_likes", "users"
-  add_foreign_key "project_members", "project_statuses"
   add_foreign_key "project_members", "projects"
-  add_foreign_key "project_members", "users"
   add_foreign_key "project_milestones", "project_statuses"
   add_foreign_key "project_milestones", "projects"
   add_foreign_key "project_reward_backers", "project_rewards"

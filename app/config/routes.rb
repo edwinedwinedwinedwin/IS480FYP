@@ -6,19 +6,35 @@ Rails.application.routes.draw do
   get 'user_expertises/new' => 'user_expertises#new'
   post 'user_expertises' => 'user_expertises#create'
 
+
+  # project reward backers routes
+  #get 'project_reward_backers/index' => 'project_reward_backers#index'
+  #get 'project_reward_backers/edit' => 'project_reward_backers#edit'
+  #get 'project_reward_backers/new' => 'project_reward_backers#new'
+  #post 'project_reward_backers' => 'project_reward_backers#create'
+  #post 'project_reward_backers/destroy/(:id)' => 'project_reward_backers#destroy'
+
   # project members routes  
   get 'project_members/index' => 'project_members#index'
   get 'project_members/new' => 'project_members#new'
   get 'project_members/edit' => 'project_members#edit'  
   post 'project_members' => 'project_members#create'  
   #get 'project_members/edit' => => 'project_members#index'
-  post 'project_members/destroy/(:id)' => 'project_members#destroy'   
+  post 'project_members/destroy/(:id)' => 'project_members#destroy' 
+
 	
   get 'project_milestones/new' => 'project_milestones#new'
   get 'project_milestones/index' => 'project_milestones#index'
   post 'project_milestones' => 'project_milestones#create'
   get 'project_milestones/edit' => 'project_milestones#edit'    
   post 'project_milestones/destroy/(:id)' => 'project_milestones#destroy' 
+
+  # user shipping addresses routes
+  get 'user_shipping_addresses/index' => 'user_shipping_addresses#index'
+  get 'user_shipping_addresses/edit' => 'user_shipping_addresses#edit'
+  get 'user_shipping_addresses/new' => 'user_shipping_addresses#new'
+  post 'user_shipping_addresses' => 'user_shipping_addresses#create'
+  post 'user_shipping_addresses/destroy/(:id)' => 'user_shipping_addresses#destroy'
 
   # project rewards routes
   get 'project_rewards/index' => 'project_rewards#index'

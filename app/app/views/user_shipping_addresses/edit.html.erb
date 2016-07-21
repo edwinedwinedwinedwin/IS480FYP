@@ -1,0 +1,73 @@
+<div class="page-main">
+  <%= stylesheet_link_tag "style" %>
+  <%= stylesheet_link_tag "component" %>
+  <%= javascript_include_tag "application"%>
+
+  <div class="page-section">
+     <legend class="form-heading heading"> Edit User Shipping Address</legend>
+    <%= form_for(@user_shipping_address) do |f| %>
+    <% if @user_shipping_address.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% @user_shipping_address.errors.full_messages.each do |msg| %>
+          <li><font color=red><%= msg %></font></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+    <p>
+      <div class="form-field">
+        <%= f.text_field :address_line_1, class: "form-input"%>
+        <label class="form-label" for="address_line_1">Address Line 1</label>
+      </div>
+    </p>
+    
+    <p>
+     <div class="form-field">
+      <%= f.text_field :address_line_2, class: "form-input" %>
+      <label class="form-label" for="address_line_2">Address Line 2</label>
+      </div>
+    </p>
+
+    <p>
+     <div class="form-field">
+      <%= f.text_field :country, class: "form-input" %>
+      <label class="form-label" for="country">Country</label>
+      </div>
+    </p>
+    
+    <p>
+     <div class="form-field">
+      <%= f.text_field :city, class: "form-input" %>
+      <label class="form-label" for="city">City</label>
+      </div>
+    </p>
+
+    <p>
+     <div class="form-field">
+      <%= f.text_field :state, class: "form-input" %>
+      <label class="form-label" for="state">State</label>
+      </div>
+    </p>
+
+    <p>
+     <div class="form-field">
+      <%= f.text_field :postal_code, class: "form-input" %>
+      <label class="form-label" for="postal_code">Postal Code</label>
+      </div>
+    </p>
+    
+    <p>
+    <div class="form-actions">
+      <%= f.submit "SUBMIT", class: "button--stroke--long" %>
+      </div>
+    </p>
+    <% end %>
+
+    <p>
+    <div class="form-actions">
+    <%= link_to 'BACK', "../../user_shipping_addresses/index" %>
+    </div>
+    </p>
+  </div>
+</div>
