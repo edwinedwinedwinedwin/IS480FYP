@@ -1,0 +1,2 @@
+module ProjectInspirationsHelper
+end
