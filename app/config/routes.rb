@@ -48,6 +48,9 @@ Rails.application.routes.draw do
   resources :project_members
   resources	:project_milestones
   resources :project_rewards
+  resources :project_updates
+  resources :project_inspirations
+  resources :projects
 
   get 'signup' => 'users#new' # display create user page
   post'users' => 'users#create' # process creation of user  
