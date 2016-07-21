@@ -23,7 +23,7 @@ class ProjectRewardBackersController < ApplicationController
       redirect_to :controller => 'project_reward_backers', :action => 'index' and return
       #redirect_to :controller => 'project_reward_backers', :action => 'index',:id=session[:project_id] and return
     else
-      render '/project_reward_backer/new' and return
+      render '/project_reward_backers/new' and return
     end
   end
 

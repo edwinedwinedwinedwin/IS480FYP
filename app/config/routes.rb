@@ -9,8 +9,8 @@ Rails.application.routes.draw do
 
   # project reward backers routes
   get 'project_reward_backers/index' => 'project_reward_backers#index'
-  get 'project_reward_backers/edit' => 'project_reward_backers#edit'
   get 'project_reward_backers/new' => 'project_reward_backers#new'
+  get 'project_reward_backers/edit' => 'project_reward_backers#edit'
   post 'project_reward_backers' => 'project_reward_backers#create'
   post 'project_reward_backers/destroy/(:id)' => 'project_reward_backers#destroy'
 
@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   post 'project_rewards' => 'project_rewards#create'
   post 'project_rewards/destroy/(:id)' => 'project_rewards#destroy'
 
+  resources :project_reward_backers
   resources :sessions, only: [:new, :create, :destroy] # only allow new,create,destroy action for sessions
   resources :users   
   resources :project_members
