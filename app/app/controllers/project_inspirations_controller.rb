@@ -1,0 +1,2 @@
+class ProjectInspirationsController < ApplicationController
+end

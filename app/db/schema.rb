@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160716130031) do
+ActiveRecord::Schema.define(version: 20160721121130) do
 
   create_table "project_categories", force: :cascade do |t|
     t.string   "category",   limit: 255
@@ -20,9 +20,9 @@ ActiveRecord::Schema.define(version: 20160716130031) do
   end
 
   create_table "project_inspirations", force: :cascade do |t|
-    t.string   "title",       limit: 255
+    t.string   "title",       limit: 255,   null: false
     t.text     "description", limit: 65535
-    t.text     "img_url",     limit: 65535, null: false
+    t.text     "img_url",     limit: 65535
     t.string   "caption",     limit: 255
     t.integer  "project_id",  limit: 4
     t.datetime "created_at",                null: false
@@ -107,9 +107,9 @@ ActiveRecord::Schema.define(version: 20160716130031) do
   end
 
   create_table "project_updates", force: :cascade do |t|
-    t.string   "title",       limit: 255
+    t.string   "title",       limit: 255,   null: false
     t.text     "description", limit: 65535
-    t.text     "img_url",     limit: 65535, null: false
+    t.text     "img_url",     limit: 65535
     t.datetime "created_on"
     t.integer  "project_id",  limit: 4
     t.datetime "created_at",                null: false
@@ -122,7 +122,7 @@ ActiveRecord::Schema.define(version: 20160716130031) do
     t.string   "title",               limit: 255
     t.datetime "start_date"
     t.datetime "end_date"
-    t.string   "location",            limit: 255
+    t.string   "country",             limit: 255
     t.text     "description",         limit: 65535
     t.datetime "created_on"
     t.integer  "user_id",             limit: 4
@@ -131,6 +131,8 @@ ActiveRecord::Schema.define(version: 20160716130031) do
     t.integer  "project_status_id",   limit: 4
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
+    t.string   "state",               limit: 255
+    t.string   "city",                limit: 255
   end
 
   add_index "projects", ["project_category_id"], name: "fk_rails_0cbf3d679e", using: :btree
@@ -171,6 +173,11 @@ ActiveRecord::Schema.define(version: 20160716130031) do
     t.datetime "updated_at",                  null: false
     t.string   "password_digest", limit: 255
     t.boolean  "is_banned"
+    t.string   "profile_pic_url", limit: 255
+    t.string   "bio_url",         limit: 255
+    t.string   "instagram_url",   limit: 255
+    t.string   "fb_url",          limit: 255
+    t.string   "twitter_url",     limit: 255
   end
 
   add_foreign_key "project_inspirations", "projects"
