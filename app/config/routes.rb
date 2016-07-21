@@ -8,11 +8,11 @@ Rails.application.routes.draw do
 
 
   # project reward backers routes
-  #get 'project_reward_backers/index' => 'project_reward_backers#index'
-  #get 'project_reward_backers/edit' => 'project_reward_backers#edit'
-  #get 'project_reward_backers/new' => 'project_reward_backers#new'
-  #post 'project_reward_backers' => 'project_reward_backers#create'
-  #post 'project_reward_backers/destroy/(:id)' => 'project_reward_backers#destroy'
+  get 'project_reward_backers/index' => 'project_reward_backers#index'
+  get 'project_reward_backers/edit' => 'project_reward_backers#edit'
+  get 'project_reward_backers/new' => 'project_reward_backers#new'
+  post 'project_reward_backers' => 'project_reward_backers#create'
+  post 'project_reward_backers/destroy/(:id)' => 'project_reward_backers#destroy'
 
   # project members routes  
   get 'project_members/index' => 'project_members#index'

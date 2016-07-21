@@ -1,0 +1,36 @@
+<%= stylesheet_link_tag "style" %>
+<%= stylesheet_link_tag "component" %>
+  <%= stylesheet_link_tag "flickity/flickity.css" %>
+  <%= javascript_include_tag "application"%>
+<p id="notice"><%= notice %></p>
+
+
+<legend class="form-heading heading"><h1>Manage Project Reward Backers</h1></legend>
+
+<table class="table-show">
+  <thead>
+    <tr class="tr-row">      
+      <th class="th-row">Project Reward ID</th>      
+      <th class="th-row">Amount Funded</th>
+      <th class="th-row">User ID</th>
+      <th class="th-row">User Shipping Address ID</th>
+      <th class="th-row" colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @projectRewardBackers.each do |projectRewardBacker| %>
+      <tr class="tr-row">        
+        <td class="td-row"><%= projectRewardBacker.project_reward_id %></td>        
+        <td class="td-row"><%= projectRewardBacker.amount_funded %></td>
+        <td class="td-row"><%= projectRewardBacker.user_id %></td>
+        <td class="td-row"><%= projectRewardBacker.user_shipping_address_id %>%</td>
+        <td class="td-row"><%= link_to 'Edit Reward Backer', {:controller=> "project_reward_backers", :action => "edit", :id => projectRewardBacker.id }%> </td>
+        <td class="td-row"><%= link_to 'Delete Reward Backer', {:controller => "project_reward_backers", :action => "destroy", :id => projectRewardBacker.id } %> </td>
+      </tr>
+      <% end %> 
+  </tbody>
+</table>
+
+<%= link_to 'Add Project Reward Backer', {:controller => "project_reward_backers", :action => "new"} %><br/>
+<%= link_to 'Back', {:controller => "admins", :action => "index", :id=>1 } %>

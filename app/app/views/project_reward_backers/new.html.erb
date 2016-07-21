@@ -1,0 +1,58 @@
+<div class="page-main">
+  <%= stylesheet_link_tag "style" %>
+  <%= stylesheet_link_tag "component" %>
+  <%= stylesheet_link_tag "flickity/flickity.css" %>
+  <%= javascript_include_tag "application"%>
+
+  <div class="page-section">
+    <legend class="form-heading heading"> Add Project Reward Backers </legend>
+
+	  <%= form_for(@project_reward_backer) do |f| %>              
+ 		<%= f.hidden_field :project_reward_id, :value => 1 %> 	  
+	  <% #f.hidden_field :project_reward_id, :value => session[:project_id] %>
+
+	  <% if @project_reward_backer.errors.any? %>
+              <div class="alert alert-danger" role="alert">
+                <b><u>Errors:</u></b>
+                <ul>
+                  <% @project_reward_backer.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+          <% end %>
+
+          <div class="form-field">
+            <%= f.text_field :project_reward_id, class: "form-input", placeholder: "Project Reward ID" %>
+            <label class="form-label" for="project-reward=id">Project Reward ID</label>
+          </div>
+
+          <div class="form-field">
+			  <%= f.text_field :amount_funded, class: "form-input", placeholder: "Amount Funded" %>
+            <label class="form-label" for="amount-funded">Amount Funded</label>
+          </div>
+          
+          <div class="form-field">
+			  <%= f.text_field :user_id, class: "form-input", placeholder: "User ID"  %>
+            <label class="form-label" for="user-id">User ID</label>
+          </div>
+
+          <div class="form-field">
+			  <%= f.text_field :user_shipping_address_id, class: "form-input", placeholder: "User Shipping Address ID" %>
+            <label class="form-label" for="user-shipping-address-id">User Shipping Address ID</label>
+          </div>
+
+	  	  <div class="form-actions">
+			  <td align=right><%= f.submit "Add Project Reward Backer", class: "button--stroke--long" %></td>
+          </div>
+
+	  
+
+      <% end %>
+      <br>
+  	  
+	  <%= link_to 'Back', {:controller => "project_reward_backers", :action => "show" } %>
+
+    </div>
+  </div>
+      

@@ -1,0 +1,59 @@
+<div class="page-main">
+  <%= stylesheet_link_tag "style" %>
+  <%= stylesheet_link_tag "component" %>
+  <%= javascript_include_tag "application"%>
+
+  <div class="page-section">
+     <legend class="form-heading heading"> Edit Project Reward Backers</legend>
+    <%= form_for(@project_reward_backer) do |f| %>
+    <% if @project_reward_backer.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% @project_reward_backer.errors.full_messages.each do |msg| %>
+          <li><font color=red><%= msg %></font></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+    <p>
+      <div class="form-field">
+        <%= f.text_field :project_reward_id, class: "form-input"%>
+        <label class="form-label" for="project_reward_id">Project Reward ID</label>
+      </div>
+    </p>
+    
+    <p>
+     <div class="form-field">
+      <%= f.text_field :amount_funded, class: "form-input" %>
+      <label class="form-label" for="amount_funded">Amount Funded</label>
+      </div>
+    </p>
+
+    <p>
+     <div class="form-field">
+      <%= f.text_field :user_id, class: "form-input" %>
+      <label class="form-label" for="user_id">User ID</label>
+      </div>
+    </p>
+    
+    <p>
+     <div class="form-field">
+      <%= f.text_field :user_shipping_address_id, class: "form-input" %>
+      <label class="form-label" for="user_shipping_address_id">User Shipping Address ID</label>
+      </div>
+    </p>
+
+    <p>
+    <div class="form-actions">
+      <%= f.submit "SUBMIT", class: "button--stroke--long" %>
+      </div>
+    </p>
+    <% end %>
+
+    <p>
+    <div class="form-actions">
+    <%= link_to 'BACK', "../../project_reward_backers/index" %>
+    </div>
+    </p>
+  </div>
+</div>
