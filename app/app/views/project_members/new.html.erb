@@ -23,8 +23,8 @@
           <% end %>
 
           <div class="form-field">
-            <%= f.text_field :name, class: "form-input", placeholder: "Name" %>
-            <label class="form-label" for="name">Name</label>
+            <%= f.text_field :email, class: "form-input", placeholder: "Name" %>
+            <label class="form-label" for="name">Email</label>            
           </div>
 
           <div class="form-field">
@@ -49,3 +49,8 @@
 
     </div>
   </div>
+<hr>
+<%= params.inspect %>
+user is <%= @User %><br>
+Email is <%= @email %><Br>
+Role is <%= @test %>

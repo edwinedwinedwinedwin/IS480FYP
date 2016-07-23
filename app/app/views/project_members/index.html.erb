@@ -11,6 +11,7 @@
   <thead>
     <tr class="tr-row">      
       <th class="th-row">Name</th>      
+      <th class="th-row">Email</th> 
       <th class="th-row">Role</th>
       <th class="th-row">Img_url</th>
       <th class="th-row">Project_id</th>  
@@ -20,8 +21,12 @@
 
   <tbody>
     <% @projectMembers.each do |projectMember| %>      
-      <tr class="tr-row">              
-        <td class="td-row"><%= projectMember.name %></td>        
+      <tr class="tr-row"> 
+        <%# if !projectMember.email.nil? %>             
+          <% #name=User.find_by_email(projectMember.email).first_name %>  
+        <% #end %>
+        <td class="td-row"><%#= name %></td>      
+        <td class="td-row"><%= projectMember.email %></td>      
         <td class="td-row"><%= projectMember.role %></td>
         <td class="td-row"><%= projectMember.img_url %></td>
         <td class="td-row"><%= projectMember.project_id %></td>
