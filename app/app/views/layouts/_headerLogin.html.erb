@@ -53,20 +53,20 @@
 			    background-color: #FFFFFF;
 			    overflow: scroll;
 			    transition: 1s;
-			    padding-top: 60px;
+			    padding-top: 74px;
 			}
 
 			.sidenav a {
-			    padding: 8px 8px 8px 32px;
+			    padding: 16px 16px 16px 32px;
 			    text-decoration: none;
 			    font-size: 20px;
 			    color: #818181;
 			    display: block;
-			    transition: 0.3s
+			    transition: 0.1s
 			}
 
 			.sidenav a:hover, .offcanvas a:focus{
-			    color: #696969;
+			    color: #A9A9A9;
 			}
 
 			.closebtn {
@@ -80,7 +80,7 @@
 
 			@media screen and (max-height: 450px) {
 			  .sidenav {padding-top: 15px;}
-			  .sidenav a {font-size: 16px;}
+			  .sidenav a {font-size: 50px;}
 			}
 		</style>
 		
@@ -88,8 +88,6 @@
 		  	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
 		  		<i class="site-menu-logo icon icon--ybco-lockup"></i>&nbsp&nbsp
 		  		<i class="icon icon--large-cross"></i>
-		  		<button class="site-menu-close js-site-menu-toggle">
-				</button>
 			</a>
 			<br/>
 			<a href="../users/new" class="button button--fill" rel="internal">
@@ -97,14 +95,30 @@
 				<i class="icon icon--chevron-right"></i>
 			</a>
 			<br/>
-		  	<a href="">Home</a>
-		  	<a href="#">Tour</a>
-		 	<a href="#">Explore</a>
-		  	<a href="#">Pricing</a>
-			<a href="#">Log In</a>
-		  	<a href="#">Sign Up</a>
+			<nav class="site-menu-block site-navigation">
+				<ul class="site-navigation-list">
+					<li class="site-navigation-list__item">
+            <%= link_to 'Home', root_path ,rel: "internal" %>
+					</li>
+					<li class="site-navigation-list__item">
+            <%= link_to 'Tour', "#", rel: "internal" %>
+          </li>
+					<li class="site-navigation-list__item">
+            <%= link_to 'Explore', "#", rel: "internal" %>
+					</li>
+					<li class="site-navigation-list__item">
+            <%= link_to 'Pricing', "#", rel: "internal" %>
+					</li>
+					<li class="site-navigation-list__item">
+            <%= link_to 'Log In', "../sessions/new", rel: "internal" %>
+					</li>
+					<li class="site-navigation-list__item">
+            <%= link_to 'Sign Up', "../users/new", rel: "internal" %>
+					</li>
+				</ul>
+			</nav>
 		</div>
-
+		
 		<script>
 			function openNav() {
 			    document.getElementById("mySidenav").style.width = "250px";

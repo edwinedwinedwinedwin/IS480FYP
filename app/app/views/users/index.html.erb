@@ -3,12 +3,10 @@
 <%= stylesheet_link_tag "component" %>
 <%= stylesheet_link_tag "flickity/flickity.css" %>
 <%= javascript_include_tag "application"%>
-<%= render "layouts/header" %>
-  <%= yield %>
 
 <p id="notice"><%= notice %></p>
 
-<legend class="form-heading heading"><h1>Manage Users</h1></legend>
+<legend class="form-heading heading"><h1>Manage Users</h1></legend><br>
 
 <table class="table-show">
   <thead>
@@ -49,7 +47,5 @@
     <% end %>
   </tbody>
 </table>
-
-<%= link_to 'Back', {:controller => "admins", :action => "index" } %>
-<%= render "layouts/footer" %>
-  <%= yield %>
+<br>
+<%= link_to 'Back', {:controller => "admins", :action => "index" }, class: "button222" %>
