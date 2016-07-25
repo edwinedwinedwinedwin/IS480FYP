@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160721121130) do
+ActiveRecord::Schema.define(version: 20160725112200) do
 
   create_table "project_categories", force: :cascade do |t|
     t.string   "category",   limit: 255
@@ -42,15 +42,17 @@ ActiveRecord::Schema.define(version: 20160721121130) do
   add_index "project_likes", ["user_id"], name: "fk_rails_8db23f111d", using: :btree
 
   create_table "project_members", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "role",       limit: 255
-    t.text     "img_url",    limit: 65535, null: false
-    t.integer  "project_id", limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.string   "email",             limit: 255
+    t.string   "role",              limit: 255
+    t.integer  "project_id",        limit: 4
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.text     "description",       limit: 65535
+    t.integer  "project_status_id", limit: 4
   end
 
   add_index "project_members", ["project_id"], name: "fk_rails_f3b43b5269", using: :btree
+  add_index "project_members", ["project_status_id"], name: "fk_rails_88e268d146", using: :btree
 
   create_table "project_milestones", force: :cascade do |t|
     t.string   "name",              limit: 255
@@ -183,6 +185,7 @@ ActiveRecord::Schema.define(version: 20160721121130) do
   add_foreign_key "project_inspirations", "projects"
   add_foreign_key "project_likes", "projects"
   add_foreign_key "project_likes", "users"
+  add_foreign_key "project_members", "project_statuses"
   add_foreign_key "project_members", "projects"
   add_foreign_key "project_milestones", "project_statuses"
   add_foreign_key "project_milestones", "projects"

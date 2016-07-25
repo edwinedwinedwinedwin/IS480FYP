@@ -1,52 +1,55 @@
 <div class="page-main">
   <%= stylesheet_link_tag "style" %>
   <%= stylesheet_link_tag "component" %>
+  <%= stylesheet_link_tag "flickity/flickity.css" %>
   <%= javascript_include_tag "application"%>
 
   <div class="page-section">
-     <legend class="form-heading heading"> Edit Profile </legend>
-<%= form_for(@project_member) do |f| %>
-    <% if @project_member.errors.any? %>
-    <div id="error_explanation">
-      <ul>
-        <% @project_member.errors.full_messages.each do |msg| %>
-          <li><font color=red><%= msg %></font></li>
-        <% end %>
-      </ul>
-    </div>
-    <% end %>
-    <p>
-      <div class="form-field">
-        <%= f.text_field :name, class: "form-input"%>
-        <label class="form-label" for="first-name">Name</label>
-      </div>
-    </p>
-    
-    <p>
-     <div class="form-field">
-      <%= f.text_field :role, class: "form-input" %>
-      <label class="form-label" for="last-name">Role</label>
-      </div>
-    </p>
+    <legend class="form-heading heading"> Edit Project Member </legend>
 
-    <p>
-     <div class="form-field">
-      <%= f.text_field :img_url, class: "form-input" %>
-      <label class="form-label" for="address">Img url</label>
-      </div>
-    </p>
-    
-    <p>
-    <div class="form-actions">
-      <%= f.submit "SUBMIT", class: "button--stroke--long" %>
-      </div>
-    </p>
-    <% end %>
+      <%= form_for(@project_member) do |f| %>              
+          <%= f.hidden_field :project_id, :value => 1 %> <!-- :value will eventually be project_id instead of 1-->
+          <%# f.hidden_field :project_id, :value => session[:project_id] %> 
+          <%= f.hidden_field :project_status_id, :value => 1 %> <!-- :value will eventually be project_id instead of 1-->
+          <%# f.hidden_field :project_status_id, :value => session[:project_id] %> 
 
-    <p>
-    <div class="form-actions">
-    <%= link_to 'BACK', "../../project_members/index" %>
+          <% if @project_member.errors.any? %>
+              <div class="alert alert-danger" role="alert">
+                <b><u>Errors:</u></b>
+                <ul>
+                  <% @project_member.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+          <% end %>
+
+          <div class="form-field">
+            <%= f.text_field :email, class: "form-input", placeholder: "Name" %>
+            <label class="form-label" for="name">Email</label>            
+          </div>
+
+          <div class="form-field">
+            <%= f.text_field :role, class: "form-input", placeholder: "Role" %>
+            <label class="form-label" for="role">Role</label>
+          </div>                  
+
+          <div class="form-field">
+            <%= f.text_field :description, class: "form-input", placeholder: "Description" %>
+            <label class="form-label" for="description">Description</label>
+          </div>        
+         
+          <div class="form-actions">
+            <td align=right><%= f.submit "Edit Project Member", class: "button--stroke--long" %></td>
+          </div>
+
+      <% end %>
+      <br>
+      
+      <%= link_to 'Back', {:controller => "project_members", :action => "show", :id=>1 } %>
+      <!-- :id will eventually be project_id instead of 1-->
+
     </div>
-    </p>
   </div>
-</div>
+  <hr>
+  <%= params.inspect %>

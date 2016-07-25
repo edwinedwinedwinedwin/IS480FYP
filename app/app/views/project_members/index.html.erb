@@ -11,23 +11,30 @@
   <thead>
     <tr class="tr-row">      
       <th class="th-row">Name</th>      
-      <th class="th-row">Role</th>
-      <th class="th-row">Img_url</th>
+      <th class="th-row">Email</th> 
+      <th class="th-row">Role</th>      
+      <th class="th-row">Description</th>      
       <th class="th-row">Project_id</th>  
+      <th class="th-row">Project_status_id</th>  
       <th class="th-row" colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @projectMembers.each do |projectMember| %>      
-      <tr class="tr-row">              
-        <td class="td-row"><%= projectMember.name %></td>        
-        <td class="td-row"><%= projectMember.role %></td>
-        <td class="td-row"><%= projectMember.img_url %></td>
+      <tr class="tr-row"> 
+        <%# if !projectMember.email.nil? %>             
+          <% #name=User.find_by_email(projectMember.email).first_name %>  
+        <% #end %>
+        <td class="td-row"><%#= name %></td>      
+        <td class="td-row"><%= projectMember.email %></td>      
+        <td class="td-row"><%= projectMember.role %></td>        
+        <td class="td-row"><%= projectMember.description %></td>  
         <td class="td-row"><%= projectMember.project_id %></td>
+        <td class="td-row"><%= projectMember.project_status_id %></td>        
         <td class="td-row"><%= link_to 'Edit Member', {:controller => "project_members", :action => "edit", :id=>projectMember.id }%></td>
         <td class="td-row"><%= link_to 'Delete Member', {:controller => "project_members", :action => "destroy", :id => projectMember.id } %> </td>
-        <% email=User.find_by_email("sean@ybco.com").email %>
+        <% email=User.find_by_email(projectMember.email).email %>
         <td class="td-row"><a href="mailto:<%=email%>">Message</a></td>
       </tr>      
     <% end %>
