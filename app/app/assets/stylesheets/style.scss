@@ -61,6 +61,18 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
+.button222 {
+  border: none;
+  color: white;
+  padding: 15px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  background-color: #008CBA;
+} /* Blue */
+
+
 .icon--binoculars:before {
   content: "\f101"; }
 
@@ -274,6 +286,15 @@ button, input, textarea {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline; }
+
+.button2 {
+  margin: 0;
+  padding: 20px;
+  border: 20px;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
 
 .table-show {
   border: 1px solid black;
@@ -2671,7 +2692,7 @@ strong,
   font-weight: 700;
   line-height: 1; }
 
-.fuel-button-container {
+.fuel--container {
   max-width: 15rem;
   margin-left: auto;
   margin-right: auto; }
