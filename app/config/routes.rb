@@ -54,6 +54,8 @@ Rails.application.routes.draw do
   resources :project_updates
   resources :project_inspirations
   resources :projects
+  resources :project_proposals
+
 
   get 'signup' => 'users#new' # display create user page
   post'users' => 'users#create' # process creation of user  
@@ -67,7 +69,8 @@ Rails.application.routes.draw do
   get 'admins/index' => 'admins#index'
   get 'users/changepass/:id' => 'users#changepass'
   get 'admins/index' => "admins#index"
-   
+  get 'GetStarted' => 'project_proposals#new' # display create proposal page
+  post 'project_proposals' => 'project_proposals#create' # process creation of proposal
 
   match '/:controller/:action/(:id)', via: [:get, :post] # last route
 end
