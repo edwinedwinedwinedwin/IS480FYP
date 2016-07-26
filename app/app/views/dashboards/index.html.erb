@@ -7,7 +7,7 @@
 
   	<ul>
 	  <li><%= link_to "HOME", controller: "dashboards", action: "index" %></li>
-	  <li><%= link_to "EDIT PROFILE", users_edit_path, id: session[:user_id] %></li>
+	  <li><%= link_to "EDIT PROFILE", controller: "users", action: "edit", id: session[:user_id] %></li>
 	  <li><%= link_to "CHANGE PASSWORD", controller: "users", action: "changepass", id: session[:user_id] %></li>
 	  <!--edit later-->
 	  <li><%= link_to "CREATE PROJECT", controller: "project", action: "new" %></li>
@@ -18,8 +18,8 @@
      	<legend class="form-heading heading"> Dashboard </legend>
      	<ul>
      		Welcome home, <%= @current_user.first_name %> <%= @current_user.last_name %> !<br>
-			<li><%= link_to "Edit Profile", users_edit_path, id: session[:user_id] %><br></li>
 			<li><%= link_to "Edit Expertises", controller: "user_expertises", action: "index" %><br></li>
+			<li><%= link_to "EDIT PROFILE", controller: "users", action: "edit", id: session[:user_id] %></li>
 			<li><%= link_to "Change Password", controller: "users", action: "changepass", id: session[:user_id] %><br></li>
 			<li><%= link_to "Logout", controller: "sessions", action: "destroy" %></li>
 			<!-- Display parameters -->

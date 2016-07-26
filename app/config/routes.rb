@@ -43,6 +43,8 @@ Rails.application.routes.draw do
   post 'project_rewards' => 'project_rewards#create'
   post 'project_rewards/destroy/(:id)' => 'project_rewards#destroy'
 
+  #get 'projects/new' => 'projects/new'
+
   resources :project_reward_backers
   resources :sessions, only: [:new, :create, :destroy] # only allow new,create,destroy action for sessions
   resources :users   
@@ -58,7 +60,7 @@ Rails.application.routes.draw do
   get 'pages/comrules' => 'pages#comrules' # display com rules
   get 'pages/term' => 'pages#term' # display terms
   get 'login' => 'sessions#new' # show login form
-  get 'users/edit/' => 'users#edit'
+  get 'users/edit/:id' => 'users#edit'
   post 'sessions/create' => 'sessions#create' # process login
   get 'sessions/destroy' => 'sessions#destroy' # log out and invalidate session
   get 'dashboard/index' => 'dashboards#index' # Display page upon successful login
