@@ -1,2 +1,8 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
+/** In application.css
+ *
+ *= require_self
+ *= require unsemantic/assets/stylesheets/unsemantic-grid-responsive-no-ie7
+ *= require unsemantic/assets/stylesheets/unsemantic-grid-responsive-tablet-no-ie7
+
+
+*/

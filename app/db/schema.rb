@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160725121443) do
-=======
-ActiveRecord::Schema.define(version: 20160725112200) do
->>>>>>> 937f04840746af7d5e53c81598821957e5bc3e7a
 
   create_table "project_categories", force: :cascade do |t|
     t.string   "category",   limit: 255
@@ -46,14 +42,6 @@ ActiveRecord::Schema.define(version: 20160725112200) do
   add_index "project_likes", ["user_id"], name: "fk_rails_8db23f111d", using: :btree
 
   create_table "project_members", force: :cascade do |t|
-<<<<<<< HEAD
-    t.string   "email",      limit: 255
-    t.string   "role",       limit: 255
-    t.text     "img_url",    limit: 65535, null: false
-    t.integer  "project_id", limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-=======
     t.string   "email",             limit: 255
     t.string   "role",              limit: 255
     t.integer  "project_id",        limit: 4
@@ -61,7 +49,6 @@ ActiveRecord::Schema.define(version: 20160725112200) do
     t.datetime "updated_at",                      null: false
     t.text     "description",       limit: 65535
     t.integer  "project_status_id", limit: 4
->>>>>>> 937f04840746af7d5e53c81598821957e5bc3e7a
   end
 
   add_index "project_members", ["project_id"], name: "fk_rails_f3b43b5269", using: :btree
@@ -205,7 +192,9 @@ ActiveRecord::Schema.define(version: 20160725112200) do
   add_index "user_shipping_addresses", ["user_id"], name: "fk_rails_fe7a0f3f3c", using: :btree
 
   create_table "users", force: :cascade do |t|
+    t.string   "username",        limit: 255
     t.string   "email",           limit: 255
+    t.string   "password",        limit: 255
     t.string   "first_name",      limit: 255
     t.string   "last_name",       limit: 255
     t.string   "address",         limit: 255

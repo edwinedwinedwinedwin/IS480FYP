@@ -10,12 +10,18 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery/dist/jquery.js
+//= require jquery.easing
+//= require jquery.scrollTo/jquery.scrollTo.js
+//= require jquery.localScroll/jquery.localScroll.js
+//= require jquery.sticky/jquery.sticky.js
+//= require vminpoly/vminpoly.js
+//= require waypoints
 //= require main.js
 //= require sortable/Sortable.js
 //= require nlform/nlform.js
 //= require flickity/flickity.pkgd.js
-//= require jquery
-//= require bootstrap-sprockets
 //= require jquery_ujs
+//= require bootstrap
 //= require turbolinks
 //= require_tree .
