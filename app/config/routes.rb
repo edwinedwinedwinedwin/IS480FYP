@@ -44,10 +44,16 @@ Rails.application.routes.draw do
   post 'project_rewards/destroy/(:id)' => 'project_rewards#destroy'
 
   #get 'projects/new' => 'projects/new'
+  get 'project_inspirations/new' => 'project_inspirations#new'
+  get 'project_inspirations/index' => 'project_inspirations#index'
+  get 'project_inspirations/edit' => 'project_inspirations#edit'
+  post 'project_inspirations' => 'project_inspirations#create'
+  post 'project_inspirations/destroy/(:id)' => 'project_inspirations#destroy'
 
   resources :project_reward_backers
   resources :sessions, only: [:new, :create, :destroy] # only allow new,create,destroy action for sessions
   resources :users   
+  resources :user_expertises
   resources :project_members
   resources	:project_milestones
   resources :project_rewards
