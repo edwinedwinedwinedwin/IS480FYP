@@ -8,7 +8,7 @@
 
   <div class="page-section">
      <legend class="form-heading heading"> Edit Profile </legend>
-<%= form_for :user,url: user_path(@user),method: :patch do |f| %>
+<%= form_for :user,html: { class: 'directUpload', data: { 'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host } },url: user_path(@user),method: :patch do |f| %>
     <% if @user.errors.any? %>
     <div id="error_explanation">
       <ul>
@@ -45,6 +45,13 @@
       <label class="form-label" for="email">Email</label>
       </div>
     </p>
+
+	<p>
+	  <div class="form-field">
+      <%= f.text_field :email, class: "form-input" %>
+      <label class="form-label" for="email">Email</label>
+      </div>
+	</p>
     
     <p>
     <div class="form-actions">

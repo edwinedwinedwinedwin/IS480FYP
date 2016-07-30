@@ -17,6 +17,8 @@
 //= require jquery.sticky/jquery.sticky.js
 //= require vminpoly/vminpoly.js
 //= require waypoints
+//= require jquery.ui.widget
+//= require z.jquery.fileupload
 //= require main.js
 //= require sortable/Sortable.js
 //= require nlform/nlform.js
