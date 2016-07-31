@@ -1,0 +1,16 @@
+
+  <%= stylesheet_link_tag "style" %>
+  <%= stylesheet_link_tag "component" %>
+  <%= stylesheet_link_tag "flickity/flickity.css" %>
+  <%= javascript_include_tag "application"%>
+  <div class="page-section">
+
+
+  <legend class="form-heading heading">Thank you for your submission!</legend>
+    <p><b>We will contact you soon!</b></p>
+    <%= link_to 'Click here to go back to the home page', root_path %>
+    <br/>
+    <p><b>OR</b><p>
+    
+   <%= link_to 'Click here to start editing your page!', "projectpage", class: "button--link", rel: "internal" %>
+	   <p><b>Do note that your project will only be live when we contact you!</b></p>

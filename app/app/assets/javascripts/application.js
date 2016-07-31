@@ -15,15 +15,14 @@
 //= require jquery.scrollTo/jquery.scrollTo.js
 //= require jquery.localScroll/jquery.localScroll.js
 //= require jquery.sticky/jquery.sticky.js
-//= require vminpoly/vminpoly.js
 //= require waypoints
 //= require jquery.ui.widget
 //= require z.jquery.fileupload
 //= require main.js
-//= require sortable/Sortable.js
 //= require nlform/nlform.js
 //= require flickity/flickity.pkgd.js
 //= require jquery_ujs
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
+//= require sortable/Sortable.js
