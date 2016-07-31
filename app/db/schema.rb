@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160725121443) do
+ActiveRecord::Schema.define(version: 20160731072129) do
 
   create_table "project_categories", force: :cascade do |t|
     t.string   "category",   limit: 255
@@ -192,9 +192,7 @@ ActiveRecord::Schema.define(version: 20160725121443) do
   add_index "user_shipping_addresses", ["user_id"], name: "fk_rails_fe7a0f3f3c", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "username",        limit: 255
     t.string   "email",           limit: 255
-    t.string   "password",        limit: 255
     t.string   "first_name",      limit: 255
     t.string   "last_name",       limit: 255
     t.string   "address",         limit: 255
@@ -203,11 +201,11 @@ ActiveRecord::Schema.define(version: 20160725121443) do
     t.datetime "updated_at",                  null: false
     t.string   "password_digest", limit: 255
     t.boolean  "is_banned"
-    t.string   "profile_pic_url", limit: 255
     t.string   "bio_url",         limit: 255
     t.string   "instagram_url",   limit: 255
     t.string   "fb_url",          limit: 255
     t.string   "twitter_url",     limit: 255
+    t.string   "profile_pic",     limit: 255
   end
 
   add_foreign_key "project_inspirations", "projects"
