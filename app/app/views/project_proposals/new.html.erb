@@ -8,34 +8,24 @@
 
 <main class="page-main">
   <%= form_for(@ProjectProposal) do |f| %>
-    <% if @ProjectProposal.errors.any? %>
-        <div class="alert alert-danger" role="alert">
-          <b><u>Errors:</u></b>
-          <ul>
-            <% @ProjectProposal.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
+  <div class="form-field">
+          <% if @ProjectProposal.errors.any? %>
+              <div class="panel panel-danger">
+              <div class="panel-heading"><h2><strong>Your inputs do not meet the requirements:</strong></h2></div>
+                <div class="panel-body alert-design">
+                  <ul style="list-style-type:circle">
+                    <% @ProjectProposal.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              </div>
+          <% end %>
+        </div>        
     <!-- Project title & Category Section -->
   <section class="page-section--small">
     <div class="form--large nl-form" id="nl-form">
       <fieldset>
-    <% if @ProjectProposal.errors.any? %>
-            <div class="alert alert-danger" role="alert">
-              <b><u>Errors:</u></b>
-              <ul>
-                <% @ProjectProposal.errors.full_messages.each do |message| %>
-                    <li><%= message %></li>
-                <% end %>
-              </ul>
-            </div>
-        <% end %>  
-    <div class="form--large nl-form" id="nl-form">
-    <%= form_for(@ProjectProposal) do |f| %>
-      <fieldset>
-        
         <div class="form-field">
           <p>My project title is</p>
           <%= f.text_field :title, class: "form-input" %>
@@ -118,7 +108,7 @@
 
 
 
-      <fieldset>
+      <!--fieldset>
       <div class="form-field">
         <p>Would you like to:</p>
           <%= f.radio_button :project_type_id,'1',:class=>"form-input--radio" %>
@@ -157,9 +147,9 @@
       <p>We'll contact you soon :)</p>
         <div class="form-field">
 
-        <%= f.text_area(:name, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"Name") %>
-        <%= f.text_area(:email, rows: "1", :class=>"form-input form-textarea",:placeholder=>"Email") %>
-        <%= f.text_area(:contact_number,rows: "1", :class=>"form-input form-textarea",:placeholder=>"Contact Number") %>
+        <%= f.text_field(:name, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"Name") %>
+        <%= f.text_field(:email, rows: "1", :class=>"form-input form-textarea",:placeholder=>"Email") %>
+        <%= f.text_field(:contact_number,rows: "1", :class=>"form-input form-textarea",:placeholder=>"Contact Number") %>
       </div>
 
       </fieldset>
@@ -174,4 +164,3 @@
 </main>
 <%= render "layouts/footer" %>
 <%= yield %>
-<% end %>

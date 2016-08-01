@@ -32,11 +32,17 @@
         <td class="td-row"><%= p.description %></td>
         <td class="td-row"><%= p.project_status.try(:status) %></td>
         <td class="td-row">
-        <% if p.project_status_id == 1 %>
-                  <b><%= link_to 'Accept', {:controller => "project_proposals", :action => "accept", :id => p.id } %></b>
-                  | 
-                  <b><%= link_to 'Reject', {:controller => "project_proposals", :action => "reject", :id => p.id } %></b>
+        <p><% if p.project_status_id == 1 %>
+                  <b><%= link_to '', :class=>"btn btn-success",:controller => "project_proposals", :action => "accept", :id => p.id do %>
+                  Accept
+                  <% end %></b>
+
+                  </b>
+                  <b><%= link_to '', :class=>"btn btn-danger",:controller => "project_proposals", :action => "reject", :id => p.id do %>
+                  Reject
+                  <% end %></b>
         <% end %>
+        </p>
         </td>
       </tr>
     <% end %>

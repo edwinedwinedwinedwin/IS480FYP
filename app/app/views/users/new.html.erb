@@ -17,16 +17,18 @@
         <%= f.hidden_field :is_admin, :value => false %>
         <div class="form-field">
           <% if @user.errors.any? %>
-              <div class="alert alert-danger" role="alert">
-                <b><u>Errors:</u></b>
-                <ul>
-                  <% @user.errors.full_messages.each do |message| %>
-                      <li><%= message %></li>
-                  <% end %>
-                </ul>
+              <div class="panel panel-danger">
+              <div class="panel-heading"><h2><strong>Your inputs do not meet the requirements:</strong></h2></div>
+                <div class="panel-body alert-design">
+                  <ul style="list-style-type:circle">
+                    <% @user.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                    <% end %>
+                  </ul>
+                </div>
               </div>
           <% end %>
-        </div>
+        </div>        
         <div class="form-field">
           <%= f.text_field :first_name, class: "form-input", placeholder: "First Name" %>
           <label class="form-label" for="first-name">First Name</label>

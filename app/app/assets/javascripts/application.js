@@ -23,6 +23,7 @@
 //= require flickity/flickity.pkgd.js
 //= require jquery_ujs
 //= require bootstrap
+//= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
 //= require sortable/Sortable.js
