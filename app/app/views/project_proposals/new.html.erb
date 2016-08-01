@@ -20,10 +20,8 @@
     <% end %>
     <!-- Project title & Category Section -->
   <section class="page-section--small">
-<<<<<<< Updated upstream
     <div class="form--large nl-form" id="nl-form">
       <fieldset>
-=======
     <% if @ProjectProposal.errors.any? %>
             <div class="alert alert-danger" role="alert">
               <b><u>Errors:</u></b>
@@ -38,7 +36,6 @@
     <%= form_for(@ProjectProposal) do |f| %>
       <fieldset>
         
->>>>>>> Stashed changes
         <div class="form-field">
           <p>My project title is</p>
           <%= f.text_field :title, class: "form-input" %>
@@ -77,7 +74,6 @@
         </div>
       </fieldset>
 
-<<<<<<< Updated upstream
       <div class="form-progress">
         <div class="grid-container wrap">
           <div class="grid-65 form-progress-information">
@@ -90,8 +86,7 @@
 
       <!-- Project Fundraise or Crowdsource Idea -->
       <br/><br/><br/>
-=======
->>>>>>> Stashed changes
+
       <fieldset>
         <div class="form-field">
           <p>Would you like to:</p>
@@ -118,13 +113,12 @@
           </p>
         </div>
       </fieldset>
-<<<<<<< Updated upstream
-=======
 
 
 
 
-      <fieldset>
+
+      <!--fieldset>
       <div class="form-field">
         <p>Would you like to:</p>
           <%= f.radio_button :project_type_id, :type=>"radio", :id=>"radio-crowdsource", :name=>"project-intent",:class=>"form-input--radio", :for=>"radio-fundraise"%>
@@ -139,9 +133,9 @@
           <i class="icon icon--tick"></i>
           <% end %>
       </div>
-      </fieldset>
+      </fieldset-->
 
->>>>>>> Stashed changes
+
 
       <div class="form-progress">
         <div class="grid-container wrap">
@@ -153,19 +147,19 @@
         </div>
       </div>
 
-<<<<<<< Updated upstream
+
       <!-- Personal contact information -->
       <br/><br/><br/>
-=======
+
       
->>>>>>> Stashed changes
+
       <fieldset>
       <p>We'll contact you soon :)</p>
         <div class="form-field">
-<<<<<<< Updated upstream
-        <%= f.text_area(:name, :class=>"form-input form-textarea",:placeholder=>"Name") %>
-        <%= f.text_area(:email, :class=>"form-input form-textarea",:placeholder=>"Email") %>
-        <%= f.text_area(:contact_number, :class=>"form-input form-textarea",:placeholder=>"Contact Number") %>
+
+        <%= f.text_area(:name, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"Name") %>
+        <%= f.text_area(:email, rows: "1", :class=>"form-input form-textarea",:placeholder=>"Email") %>
+        <%= f.text_area(:contact_number,rows: "1", :class=>"form-input form-textarea",:placeholder=>"Contact Number") %>
       </div>
 
       </fieldset>
@@ -236,7 +230,6 @@
       <div class="form-field">
         <%= f.text_field :contact_number, class: "form-input", placeholder: "Contact Number" %>
       </div>
-=======
         <p>My name is:</p>
 
         <%= f.text_field :name, class: "form-input", placeholder: "Name" %>
@@ -248,15 +241,15 @@
         <%= f.text_field :contact_number, class: "form-input", placeholder: "Contact Number" %>
       </div>
       </fieldset>
->>>>>>> Stashed changes
+
 
       <div class="form-actions">
         <%= f.submit "Submit Project Proposal", class: "button--stroke--long" %>
       </div>
-<<<<<<< Updated upstream
+
   <% end %>
 </div>
-=======
+
 
       </div>
       </section>
@@ -265,4 +258,3 @@
 
 
 
->>>>>>> Stashed changes

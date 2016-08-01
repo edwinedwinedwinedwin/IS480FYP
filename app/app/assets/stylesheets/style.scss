@@ -3,14 +3,14 @@
   font-family: 'Alternate Gothic No1 D';
   src: url("/assets/alternate-gothic-no1d-webfont.eot");
   /* IE9 Compat Modes */
-  src: url("/assets/alternate-gothic-no1d-webfont.eot?#iefix") format("embedded-opentype"), url("/assets/alternate-gothic-no1d-webfont.woff") format("woff"), url("/assets//alternate-gothic-no1d-webfont.ttf") format("truetype"), url("/assets/alternate-gothic-no1d-webfont.svg#2d55e36446b90be6f85f84e74f83cb6c") format("svg");
+  src: url("/assets/alternate-gothic-no1d-webfont.eot?#iefix") format("embedded-opentype"), url("/assets/alternate-gothic-no1d-webfont.woff") format("woff"), url("/assets/alternate-gothic-no1d-webfont.ttf") format("truetype"), url("/assets/alternate-gothic-no1d-webfont.svg#2d55e36446b90be6f85f84e74f83cb6c") format("svg");
   /* Legacy iOS */
   font-style: normal;
   font-weight: normal; }
 
 @font-face {
   font-family: 'Proxima Nova';
-  src: url("/assets/fonts/ProximaNova-Light.eot");
+  src: url("/assets/ProximaNova-Light.eot");
   /* IE9 Compat Modes */
   src: url("/assets/ProximaNova-Light.eot?#iefix") format("embedded-opentype"), url("/assets/ProximaNova-Light.woff") format("woff"), url("/assets/ProximaNova-Light.ttf") format("truetype"), url("/assets/ProximaNova-Light.svg#da6ddaf3cf69afbba47bd74b5010b98d") format("svg");
   /* Legacy iOS */
@@ -60,18 +60,6 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
-
-.button222 {
-  border: none;
-  color: white;
-  padding: 15px 28px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  background-color: #008CBA;
-} /* Blue */
-
 
 .icon--binoculars:before {
   content: "\f101"; }
@@ -254,14 +242,14 @@
     Return Breakpoint
 \*------------------------------------*/
 /*
-	Returns a breakpoint value from a map of
-	predefined breakpoints.
+  Returns a breakpoint value from a map of
+  predefined breakpoints.
 
-	$breakpoints is defined in:
-	config/media-queries
+  $breakpoints is defined in:
+  config/media-queries
 
-	EXAMPLE USAGE
-	bp(medium) // 50em
+  EXAMPLE USAGE
+  bp(medium) // 50em
 */
 /*------------------------------------*\
     Reset Default Styling
@@ -286,15 +274,6 @@ button, input, textarea {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline; }
-
-.button2 {
-  margin: 0;
-  padding: 20px;
-  border: 20px;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline; }
-
 
 .table-show {
   border: 1px solid black;
@@ -768,7 +747,7 @@ strong,
   font-family: "Proxima Nova", sans-serif;
   font-size: 1rem;
   color: #000000;
-  background: url(../img/textarea-bg.png) bottom right no-repeat; }
+  background: url(assets/images/textarea-bg.png) bottom right no-repeat; }
 
 .accordion-close {
   -webkit-touch-callout: none;
@@ -1039,7 +1018,7 @@ strong,
     margin-top: 0.5rem;
     width: 2.375rem;
     height: 2.75rem;
-    background-image: url(../img/card-fuel-icon.png);
+    background-image: url(/assets/card-fuel-icon.png);
     background-size: 2.375rem 2.75rem;
     background-position: center center;
     background-repeat: no-repeat; }
@@ -2095,7 +2074,7 @@ strong,
   border-top-color: #02afea; }
 
 .footer-cta {
-  background-image: url(../img/footer-hero.jpg); }
+  background-image: url(assets/images/footer-hero.jpg); }
 
 .footer-cta__heading {
   display: block;
@@ -2692,7 +2671,7 @@ strong,
   font-weight: 700;
   line-height: 1; }
 
-.fuel--container {
+.fuel-button-container {
   max-width: 15rem;
   margin-left: auto;
   margin-right: auto; }
@@ -3133,7 +3112,7 @@ strong,
   margin-top: -50px;
   left: 0;
   display: block;
-  background-image: url(../img/temp-detail-arrow.png);
+  background-image: url(/assets/temp-detail-arrow.png);
   width: 46px;
   height: 100px;
   cursor: pointer;
@@ -3154,7 +3133,7 @@ strong,
   margin-top: -50px;
   right: 0;
   display: block;
-  background-image: url(../img/temp-detail-arrow-right.png);
+  background-image: url(/assets/temp-detail-arrow-right.png);
   width: 46px;
   height: 100px;
   cursor: pointer;
@@ -3354,7 +3333,7 @@ strong,
         display: block;
         width: 34px;
         height: 34px;
-        background-image: url(../img/category-selected.png);
+        background-image: url(/assets/category-selected.png);
         position: absolute;
         right: 0.5em;
         top: 50%;

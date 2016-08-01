@@ -31,8 +31,10 @@
   		<li><%= link_to "HOME", controller: "admins", action: "index" %></li>
 	  	<li><%= link_to "MANAGE ADMINS", controller: "admins", action: "manage" %></li>
 		<li><%= link_to "MANAGE USERS", controller: "users", action: "index" %></li>
-		<li><%= link_to "VIEW STATISTICS", controller: "admins", action: "index" %></li>	
-		<li><%= link_to "MANAGE PROJECTS", controller: "admins", action: "index" %></li>
+    <li><%= link_to "MANAGE PROJECTS PROPOSALS", controller: "project_proposals", action: "index" %></li>
+
+		<li><%= link_to "VIEW STATISTICS(X)", controller: "admins", action: "index" %></li>	
+		<li><%= link_to "MANAGE PROJECTS(X)", controller: "admins", action: "index" %></li>
 		<li><%= link_to "LOG OUT", controller: "sessions", action: "destroy" %></li>
 	</ul>
 

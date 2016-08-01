@@ -78,6 +78,9 @@ Rails.application.routes.draw do
   get 'GetStarted' => 'project_proposals#new' # display create proposal page
   post 'project_proposals' => 'project_proposals#create' # process creation of proposal
   get 'project_proposals' => 'project_proposals#success' #success page after getstarted
+  post 'project_proposals' => 'project_proposals#accept' #redirect
+  post 'project_proposals' => 'project_proposals#reject' #redirect
+
 
   match '/:controller/:action/(:id)', via: [:get, :post] # last route
 end

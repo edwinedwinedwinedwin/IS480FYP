@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   skip_before_action :authorize, only: [:new, :create, :index]
 
   def changepass
-    @user=User.find(params[:id])
+    @user=User.find(params[:id])      
   end
 
   def index
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
       if @user.is_admin
         redirect_to :controller => 'users', :action => 'index' and return
       else
-        redirect_to :controller => 'dashboards', :action => 'index' and return
+        redirect_to :controller => 'dashboards', :action => 'index' and return  
       end
     else
       render 'edit'
@@ -38,21 +38,19 @@ class UsersController < ApplicationController
 
   def destroy
     @user=User.find(params[:id])
-    @user.destroy
+    @user.destroy       
     redirect_to :controller => 'users', :action => 'index' and return
   end
 
   def create
-    @user = User.new(user_params)
-    @user.is_banned = 0
-
-    if @user.save
-      if @user.is_admin
-        if @user.address=='Admin'
-          redirect_to :controller => 'admins', :action => 'manage' and return
-        else
-          redirect_to :controller => 'users', :action => 'index' and return
-        end
+    @user = User.new(user_params)    
+    if @user.save      
+       if @user.is_admin
+          if @user.address=='Admin'
+            redirect_to :controller => 'admins', :action => 'manage' and return
+          else
+            redirect_to :controller => 'users', :action => 'index' and return
+          end
       else
         redirect_to :controller => 'dashboards', :action => 'index' and return
       end
@@ -68,24 +66,24 @@ class UsersController < ApplicationController
     @user=User.find(params[:id])
     @user.is_banned=1
     @user.save
-    redirect_to :controller => 'users', :action => 'index'
+    redirect_to :controller => 'users', :action => 'index'    
   end
 
   def unban
     @user=User.find(params[:id])
     @user.is_banned=0
     @user.save
-    redirect_to :controller => 'users', :action => 'index'
+    redirect_to :controller => 'users', :action => 'index'    
   end
 
-  def removeadmin
+  def removeadmin  
     @user=User.find(params[:id])
-    @user.destroy
-    redirect_to :controller => 'admins', :action => 'manage'
+    @user.destroy       
+    redirect_to :controller => 'admins', :action => 'manage'  
   end
 
   private
   def user_params
-    params.require(:user).permit(:password,:password_confirmation,:email,:first_name, :last_name,:profile_pic,:is_admin,:bio_url, :fb_url, :twitter_url, :instagram_url)
+    params.require(:user).permit(:password,:password_confirmation,:email,:first_name, :last_name, :address, :is_admin,:is_banned)
   end
 end

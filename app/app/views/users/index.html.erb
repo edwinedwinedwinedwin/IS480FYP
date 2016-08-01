@@ -27,17 +27,31 @@
       <% if !user.is_admin %>
           <tr class="tr-row">
             <td class="td-row"><%= user.email %></td>
-            <td class="td-row"><<%= user.first_name %></td>
+            <td class="td-row"><%= user.first_name %></td>
             <td class="td-row"><%= user.last_name %></td>
 
             <td class="td-row">
               <%= link_to user.bio_url, :target => "_blank" do %>
-                  <%= image_tag('facebook.png',:class => "facebook_icon", :alt => "Facebook") %>
+                <i class="icon icon--cross" style="font-size: 3em"></i>
               <% end %>
             </td>
-            <td class="td-row"><%= user.fb_url %></td>
-            <td class="td-row"><%= user.instagram_url %></td>
-            <td class="td-row"><%= user.twitter_url %></td>
+
+            <td class="td-row">
+            <%= link_to user.fb_url, :target=>"_blank" do %>
+              <i class="icon icon--facebook-with-circle" style="font-size: 3em"></i>
+              <% end %>
+            </td>
+
+            <td class="td-row">
+            <%= link_to user.instagram_url, :target=>"_blank" do %>
+              <i class="icon icon--instagram-with-circle" style="font-size: 3em"></i>
+              <% end %>
+            </td>
+            <td class="td-row">
+            <%= link_to user.twitter_url, :target=>"_blank" do%>
+              <i class="icon icon--twitter-with-circle" style="font-size: 3em"></i>
+              <% end %>
+            </td>
 
             <td class="td-row"><% if user.is_banned %>
                   <font color=red><b><%= "Yes" %></b></font>
@@ -52,7 +66,7 @@
                   <b><%= link_to 'Un-Ban', {:controller => "users", :action => "unban", :id => user.id } , {:method=>:post} %></b>
               <% end %>
             </td>
-            <!-- <td><%# link_to 'Delete', user, method: :delete%></td> -->
+            <!--<td><% link_to 'Delete', user, method: :delete%></td>-->
           </tr>
       <% end %>
   <% end %>
