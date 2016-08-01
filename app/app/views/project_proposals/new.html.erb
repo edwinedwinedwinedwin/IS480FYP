@@ -118,17 +118,17 @@
 
 
 
-      <!--fieldset>
+      <fieldset>
       <div class="form-field">
         <p>Would you like to:</p>
-          <%= f.radio_button :project_type_id, :type=>"radio", :id=>"radio-crowdsource", :name=>"project-intent",:class=>"form-input--radio", :for=>"radio-fundraise"%>
-          <%= f.label :project_type_id, :type=>"radio", :id=>"radio-crowdsource", :name=>"project-intent",:class=>"form-input--radio", :for=>"radio-fundraise" do %>
+          <%= f.radio_button :project_type_id,'1',:class=>"form-input--radio" %>
+          <%= f.label :project_type_1, :type=>"radio", :id=>"radio-crowdsource", :name=>"project-intent",:class=>"form-input--radio" do %>
             Fundraise for an idea
           <i class="icon icon--tick"></i>
           <% end %>
 
-          <%= f.radio_button :project_type_id, :type=>"radio", :id=>"radio-crowdsource", :name=>"project-intent"%>
-          <%= f.label :project_type_id, :class=>"form-input--radio", :for=>"radio-fundraise" do %>
+          <%= f.radio_button :project_type_id,'2',:class=>"form-input--radio" %>
+          <%= f.label :project_type_2, :class=>"form-input--radio" do %>
             Crowdsource my idea<br>for feedback
           <i class="icon icon--tick"></i>
           <% end %>
@@ -174,3 +174,4 @@
 </main>
 <%= render "layouts/footer" %>
 <%= yield %>
+<% end %>

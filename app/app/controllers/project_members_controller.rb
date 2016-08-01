@@ -37,7 +37,7 @@
           render 'new' and return  
         end    		
     	else
-        @project_member.errors.add(:base,"The email entered does not belong to a valid user.")                        
+        @project_member.errors.add(:base,"The email entered does not belong to a registered user.")                        
     		render 'new' and return
     	end
     end

@@ -17,14 +17,12 @@
       <th class="th-row"><strong>Project Category</strong></th>     
       <th class="th-row"><strong>Project Description</strong></th>
       <th class="th-row"><strong>Project Status</strong></th>
-      <th class="th-row"><strong>Project Proposal Status</strong></th>
-
-      <th class="th-row" colspan="5"></th>
+      <th class="th-row"><strong>Project Proposal Status</strong></th>      
     </tr>
   </thead>
 
   <tbody>
-    <% ProjectProposal.all.each do |p| %>      
+    <% @ProjectProposals.each do |p| %>      
       <tr class="tr-row">        
         <td class="td-row"><%= p.email %></td>        
         <td class="td-row"><%= p.name %></td>
@@ -34,10 +32,10 @@
         <td class="td-row"><%= p.description %></td>
         <td class="td-row"><%= p.project_status.try(:status) %></td>
         <td class="td-row">
-        <% if p.project_status.id == 1 %>
-                  <b><%= link_to 'Accept', {:controller => "project_proposals", :action => "accept", :id => p.project_status.id }, {:method=>:post} %></b>
-                  
-                  <b><%= link_to 'Reject', {:controller => "project_proposals", :action => "reject", :id => p.project_status.id } , {:method=>:post} %></b>
+        <% if p.project_status_id == 1 %>
+                  <b><%= link_to 'Accept', {:controller => "project_proposals", :action => "accept", :id => p.id } %></b>
+                  | 
+                  <b><%= link_to 'Reject', {:controller => "project_proposals", :action => "reject", :id => p.id } %></b>
         <% end %>
         </td>
       </tr>

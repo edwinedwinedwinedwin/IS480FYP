@@ -15,7 +15,7 @@ class ProjectProposalsController < ApplicationController
     # Temporary link to "Fundraise" for project_type_id. Sort this out later.
 
     #Temporary for now
-    @ProjectProposal.project_type_id = 1
+    #@ProjectProposal.project_type_id = 1
 
     if @ProjectProposal.save
       redirect_to :controller=>'ProjectProposals', :action=>'success' and return
@@ -30,21 +30,21 @@ class ProjectProposalsController < ApplicationController
 
   def accept
     @ProjectProposal=ProjectProposal.find(params[:id])
-    @ProjectProposal.project_status_id == 3
+    @ProjectProposal.project_status_id = 3
     @ProjectProposal.save
-    redirect_to :controller => 'ProjectProposal', :action => 'index'    
+    redirect_to :controller => 'ProjectProposals', :action => 'index'    
   end
 
   def reject
     @ProjectProposal=ProjectProposal.find(params[:id])
-    @ProjectProposal.project_status_id == 4
+    @ProjectProposal.project_status_id = 4
     @ProjectProposal.save
-    redirect_to :controller => 'ProjectProposal', :action => 'index'      
+    redirect_to :controller => 'ProjectProposals', :action => 'index'      
   end
 
 
   private
   def params_pp
-    params.require(:project_proposal).permit(:title, :description, :project_category_id, :project_type_id, :name, :email, :contact_number)
+    params.require(:project_proposal).permit(:title, :description, :project_category_id,:project_type_id, :name, :email, :contact_number)
   end
 end
