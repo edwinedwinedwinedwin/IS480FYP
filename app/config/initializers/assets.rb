@@ -12,3 +12,4 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( style.css )
 Rails.application.config.assets.precompile += %w( component.css )
 Rails.application.config.assets.precompile += %w( flickity/flickity.css )
+Rails.application.config.assets.precompile += %w( _bootstrap-custom.scss )

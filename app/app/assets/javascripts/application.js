@@ -26,4 +26,3 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
-//= require sortable/Sortable.js
