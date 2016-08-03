@@ -54,16 +54,16 @@
             </td>
 
             <td class="td-row"><% if user.is_banned %>
-              <a href="#" class="btn btn-large btn-danger disabled">Yes</a>
+                  <font color=red><b><%= "Yes" %></b></font>
               <% else %>
-              <a href="#" class="btn btn-large btn-default disabled">No</a>
+                  <font color=green><b><%= "No" %></b></font>
               <% end %>
             </td>
             <td class="td-row">
               <% if !user.is_banned %>
-                  <b><%= link_to 'Ban', {:controller => "users", :action => "ban", :id => user.id }, {:class=>"btn btn-large btn-success", :method=>:post} %></b>
+                  <b><%= link_to 'Ban', {:controller => "users", :action => "ban", :id => user.id }, {:method=>:post} %></b>
               <% else %>
-                  <b><%= link_to 'Un-Ban', {:controller => "users", :action => "unban", :id => user.id } , {:class=>"btn btn-large btn-primary", :method=>:post} %></b>
+                  <b><%= link_to 'Un-Ban', {:controller => "users", :action => "unban", :id => user.id } , {:method=>:post} %></b>
               <% end %>
             </td>
             <!--<td><% link_to 'Delete', user, method: :delete%></td>-->
