@@ -33,14 +33,13 @@
         <td class="td-row"><%= p.project_status.try(:status) %></td>
         <td class="td-row">
         <p><% if p.project_status_id == 1 %>
-                  <b><%= link_to '', :class=>"btn btn-success",:controller => "project_proposals", :action => "accept", :id => p.id do %>
+                  <%= link_to '/project_proposals/accept/'+p.id.to_s, :class=>"btn btn-success" do %>
                   Accept
-                  <% end %></b>
-
-                  </b>
-                  <b><%= link_to '', :class=>"btn btn-danger",:controller => "project_proposals", :action => "reject", :id => p.id do %>
+                  <% end %>
+                  
+                  <%= link_to '/project_proposals/reject/'+p.id.to_s, :class=>"btn btn-danger" do %>
                   Reject
-                  <% end %></b>
+                  <% end %>
         <% end %>
         </p>
         </td>

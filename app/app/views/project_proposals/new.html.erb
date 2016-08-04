@@ -80,21 +80,21 @@
       <fieldset>
         <div class="form-field">
           <p>Would you like to:</p>
-
-          <input type="radio" id="radio-fundraise" name="project-intent" value="1">
-          <label class="form-input--radio" for="radio-fundraise">
+          
+          <%= f.radio_button :project_type_id,'1',:id=>"radio-fundraise"%>          
+          <%= f.label :project_type_1, :class=>"form-input--radio", :for=>"radio-fundraise" do %>
             Fundraise for an idea
             <i class="icon icon--tick"></i>
-          </label>
+          <% end %>
 
           <p>or</p>
 
-          <input type="radio" id="radio-crowdsource" name="project-intent" value="2">
-          <label class="form-input--radio" for="radio-crowdsource">
+          <%= f.radio_button :project_type_id,'2',:id=>"radio-crowdsource" %>  
+          <%= f.label :project_type_2, :class=>"form-input--radio", :for=>"radio-crowdsource" do %>
             Crowdsource my idea<br>for feedback
             <i class="icon icon--tick"></i>
-          </label>
-
+          <% end %>
+          
 
           <p class="t--small form-footnote">
             <strong>TIP:</strong> You can always change this before publishing your project.
