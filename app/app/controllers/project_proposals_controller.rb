@@ -12,10 +12,6 @@ class ProjectProposalsController < ApplicationController
   def create
     @ProjectProposal = ProjectProposal.new(params_pp)
     @ProjectProposal.project_status_id = 1
-    # Temporary link to "Fundraise" for project_type_id. Sort this out later.
-
-    #Temporary for now
-    #@ProjectProposal.project_type_id = 1
 
     if @ProjectProposal.save
       redirect_to :controller=>'ProjectProposals', :action=>'success' and return
@@ -32,6 +28,8 @@ class ProjectProposalsController < ApplicationController
     @ProjectProposal=ProjectProposal.find(params[:id])
     @ProjectProposal.project_status_id = 3
     @ProjectProposal.save
+    #Send email to user who sign up
+    SystemMailer.accept_proposal(@ProjectProposal).deliver
     redirect_to :controller => 'ProjectProposals', :action => 'index'    
   end
 
@@ -39,6 +37,8 @@ class ProjectProposalsController < ApplicationController
     @ProjectProposal=ProjectProposal.find(params[:id])
     @ProjectProposal.project_status_id = 4
     @ProjectProposal.save
+    #Send email to user who sign up
+    SystemMailer.reject_proposal(@ProjectProposal).deliver
     redirect_to :controller => 'ProjectProposals', :action => 'index'      
   end
 

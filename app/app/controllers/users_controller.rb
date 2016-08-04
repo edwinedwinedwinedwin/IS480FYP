@@ -47,10 +47,13 @@ class UsersController < ApplicationController
     @user.is_banned = 0
 
     if @user.save
+
       if @user.is_admin
         if @user.address=='Admin'
           redirect_to :controller => 'admins', :action => 'manage' and return
         else
+          #Send email to user who sign up
+          SystemMailer.welcome(@user).deliver
           redirect_to :controller => 'users', :action => 'index' and return
         end
       else

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+<h1>Dear <%= @project_proposal.name %></h1>,
+<p>
+  The YBCO Team has reviewed your project and we are very pleased to inform you that your project called <%= @project_proposal.title %> has been <b>approved</b>.
+  <br/>
+  To kick start your Young & Bold journey, you first need an account.
+  <br/>
+  If you have already registered for an account, please log in here to start editing your project.
+
+  <br/>
+  Otherwise, please click this link to sign up for an account by using this email address: <% @project_proposal.email %>
+
+  <br/>
+  We look forward to seeing your project go live!
+</p>
+</body>
+</html>
