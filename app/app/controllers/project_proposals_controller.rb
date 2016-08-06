@@ -1,12 +1,14 @@
 class ProjectProposalsController < ApplicationController
+  before_filter :logged_in,:authorize_user,  only: [:manage]
+  before_filter :logged_in,:authorize_admin, only: [:accept ,:reject, :index]
 
   def index
     @ProjectProposals = ProjectProposal.all
   end
 
-  def new
-    @ProjectProposal = ProjectProposal.new
-
+  def manage
+    @session=session[:user_id]
+    @ProjectProposals = ProjectProposal.find(param[:email])
   end
 
   def create
