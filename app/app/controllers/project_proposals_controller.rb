@@ -6,16 +6,27 @@ class ProjectProposalsController < ApplicationController
     @ProjectProposals = ProjectProposal.all
   end
 
+  def new
+    @ProjectProposal = ProjectProposal.new
+  end
+
   def manage
     @session=session[:user_id]
-    @ProjectProposals = ProjectProposal.find(param[:email])
+    @ProjectProposals = ProjectProposal.find(params[:email])
   end
 
   def create
     @ProjectProposal = ProjectProposal.new(params_pp)
-    @ProjectProposal.project_status_id = 1
-
+    @ProjectProposal.project_status_id = 1        
+    img_url=params[:project_proposal][:img_url]
     if @ProjectProposal.save
+      # upload project proposal images
+      img_url.each do |a|
+      @ProjectProposalImg = ProjectProposalImg.new(params_pp_img)            
+      @ProjectProposalImg.project_proposal_id=@ProjectProposal.id
+      @ProjectProposalImg.img_url=a
+      @ProjectProposalImg.save            
+     end 
       redirect_to :controller=>'ProjectProposals', :action=>'success' and return
     else
       render 'new' and return
@@ -47,6 +58,10 @@ class ProjectProposalsController < ApplicationController
 
   private
   def params_pp
-    params.require(:project_proposal).permit(:title, :description, :project_category_id,:project_type_id, :name, :email, :contact_number)
+    params.require(:project_proposal).permit(:title, :description, :project_category_id,:project_type_id,:name, :email, :contact_number)
   end
+  def params_pp_img
+    params.permit(:project_proposal_img).permit(:img_url)
+  end
+
 end

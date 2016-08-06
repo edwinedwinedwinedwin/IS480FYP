@@ -7,7 +7,7 @@
 <%= yield %>
 
 <main class="page-main">
-  <%= form_for(@ProjectProposal) do |f| %>
+  <%= form_for @ProjectProposal, :html => { :multipart => true } do |f| %>
   <div class="form-field">
           <% if @ProjectProposal.errors.any? %>
               <div class="panel panel-danger">
@@ -54,14 +54,18 @@
       <fieldset>
         <div class="form-field">
           <p>Tell us about your project:</p>
-<%= f.text_area(:description, rows: "8", :class=>"form-input form-textarea",:placeholder=>"Enter your description", :id=>"project-description", :maxlength=>"300") %>
-          <div class="textarea-character-limit js-textarea-limit" data-for="project-description" data-limit="300"><span class="textarea-character-limit__count">300</span> characters left</div>
+<%= f.text_area(:description, rows: "8", :class=>"form-input form-textarea",:placeholder=>"Enter your description", :id=>"project-description", :maxlength=>"1000") %>
+          <div class="textarea-character-limit js-textarea-limit" data-for="project-description" data-limit="1000"><span class="textarea-character-limit__count">1000</span> characters left</div>
 
-          <div class="form-file-dropper js-file-dropper">
+          <div class="form-file-dropper-getstarted js-file-dropper">
             <i class="icon icon--paperclip"></i>
-            To add a feature image/video files drag & drop here or <a href="#">select files from your computer</a>
+            To add feature image(s),<br> click on the 'Choose Files' button <!--/video files, drag & drop here or   -->
+            <div class="form-field-getstarted">
+                <%= f.file_field :img_url,:multiple=>true,:class=>"form-input--getstarted"  %>
+                <label class="form-label" for="bio_url">(Image File Size: < 2MB)</label>                      
+            </div>
           </div>
-        </div>
+         </div>
       </fieldset>
 
       <div class="form-progress">
@@ -103,29 +107,6 @@
           </p>
         </div>
       </fieldset>
-
-
-
-
-
-      <!--fieldset>
-      <div class="form-field">
-        <p>Would you like to:</p>
-          <%= f.radio_button :project_type_id,'1',:class=>"form-input--radio" %>
-          <%= f.label :project_type_1, :type=>"radio", :id=>"radio-crowdsource", :name=>"project-intent",:class=>"form-input--radio" do %>
-            Fundraise for an idea
-          <i class="icon icon--tick"></i>
-          <% end %>
-
-          <%= f.radio_button :project_type_id,'2',:class=>"form-input--radio" %>
-          <%= f.label :project_type_2, :class=>"form-input--radio" do %>
-            Crowdsource my idea<br>for feedback
-          <i class="icon icon--tick"></i>
-          <% end %>
-      </div>
-      </fieldset-->
-
-
 
       <div class="form-progress">
         <div class="grid-container wrap">

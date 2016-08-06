@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = User.find(params[:id])    
     if @user.update(user_params)
       if @user.is_admin
         redirect_to :controller => 'users', :action => 'index' and return
