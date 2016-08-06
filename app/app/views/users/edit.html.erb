@@ -42,7 +42,7 @@
               
         <div class="form-field">
             <%= f.file_field :profile_pic, class: "form-input" %>
-            <label class="form-label" for="bio_url">Profile Picture</label>                      
+            <label class="form-label" for="bio_url">Profile Picture (File Size: < 2MB)</label>                      
         </div>
         <% current_user=User.find(session[:user_id]) %>        
         <% if current_user.profile_pic.present? %> <!-- check if profile pic exists -->

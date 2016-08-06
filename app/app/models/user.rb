@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   has_many :projects
 
   mount_uploader :profile_pic, ProfilePicUploader
-  validates :profile_pic, file_size: { less_than: 5.megabytes }
+  validates :profile_pic, file_size: { less_than: 2.megabytes }
   
   has_secure_password # use bcrypt methods to generate password digest = no password is stored in DB; only password digest stored.
   validates :password, :length => {:within => 8..40},:on => :create # presence is automatically validated here

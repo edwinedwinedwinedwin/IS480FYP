@@ -454,7 +454,7 @@ strong,
 .heading, .heading--small, .heading--large, .pricing-plan-heading, .project-stat__data, #project-funding-goal, .fuel-button .fuel-button__cta {
   font-family: "Alternate Gothic No1 D", serif;
   text-transform: uppercase;
-  font-size: 3.75rem;
+  font-size: 5.75rem;
   letter-spacing: 0.1em;
   line-height: 1;
   margin-bottom: 2rem; }
@@ -1531,7 +1531,7 @@ strong,
     width: auto;
     min-width: 360px;
     color: #00beff;
-    font-size: 3.25rem;
+    font-size: 3.25rem;/*3.25rem*/
     border-bottom-width: 2px;
     border-bottom-style: solid;
     border-bottom-color: #00beff;
@@ -1602,7 +1602,7 @@ strong,
 
 .form-field {
   display: block;
-  max-width: 26.25rem;
+  max-width: 45.25rem;/*26.25*/
   margin: auto;
   margin-top: 4rem; }
 
@@ -1618,12 +1618,12 @@ strong,
   border-bottom: 0.25rem solid #f1f1f1;
   padding-left: 1rem;
   color: #000000;
-  font-size: 1.25rem;
+  font-size: 1.75rem;  /*1.25rem*/
   line-height: 1.25;
   border-radius: 0;
   transition: color, border 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
   .form-input:focus, .form-input--radio:focus {
-    color: #6d6d6d;
+    color: #000000;/*#6d6d6d;*/
     border-color: #c3ced2; }
     .form-input:focus + label, .form-input--radio:focus + label {
       color: #9aa2a5; }
@@ -1678,8 +1678,8 @@ strong,
   width: auto;
   margin-top: 0.5625rem;
   padding-left: 1.125rem;
-  color: #c3ced2;
-  font-size: 0.625rem;
+  color: #808080;/*#c3ced2*/
+  font-size: 1.000rem;/*0.625rem*/
   font-weight: bold;
   letter-spacing: 0.2em;
   line-height: 1;
