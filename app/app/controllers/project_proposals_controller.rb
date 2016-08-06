@@ -29,7 +29,7 @@ class ProjectProposalsController < ApplicationController
     @ProjectProposal.project_status_id = 3
     @ProjectProposal.save
     #Send email to user who sign up
-    SystemMailer.accept_proposal(@ProjectProposal).deliver
+    SysMailer.accept_proposal_email(@ProjectProposal).deliver
     redirect_to :controller => 'ProjectProposals', :action => 'index'    
   end
 
@@ -38,7 +38,7 @@ class ProjectProposalsController < ApplicationController
     @ProjectProposal.project_status_id = 4
     @ProjectProposal.save
     #Send email to user who sign up
-    SystemMailer.reject_proposal(@ProjectProposal).deliver
+    SysMailer.reject_proposal_email(@ProjectProposal).deliver
     redirect_to :controller => 'ProjectProposals', :action => 'index'      
   end
 

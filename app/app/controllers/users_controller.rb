@@ -46,24 +46,22 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.is_banned = 0
 
+    #User Save to Database
     if @user.save
-
+      #Check User is a Normal user or an Admin user
       if @user.is_admin
-        if @user.address=='Admin'
-          redirect_to :controller => 'admins', :action => 'manage' and return
-        else
-          #Send email to user who sign up
-          SystemMailer.welcome(@user).deliver
-          redirect_to :controller => 'users', :action => 'index' and return
-        end
+        redirect_to :controller => 'admins', :action => 'manage' and return
       else
-        redirect_to :controller => 'dashboards', :action => 'index' and return
+          #Send email to user who sign up
+          SysMailer.welcome_email(@user).deliver
+          redirect_to :controller => 'users', :action => 'index' and return
       end
     else
       if @user.is_admin
         render '/admins/new' and return
-      end
+      else
       render 'new' and return
+      end
     end
   end
 
