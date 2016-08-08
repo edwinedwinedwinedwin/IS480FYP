@@ -11,20 +11,20 @@ class ProjectProposalsController < ApplicationController
   end
 
   def manage
-    @session=session[:user_id]
-    @ProjectProposals = ProjectProposal.find(params[:email])
+    emailStr = params[:email]
+    @ProjectProposals = ProjectProposal.where(email: emailStr)
   end
 
   def create
     @ProjectProposal = ProjectProposal.new(params_pp)
     @ProjectProposal.project_status_id = 1        
-    img_url=params[:project_proposal][:img_url]
+    img_url = params[:project_proposal][:img_url]
     if @ProjectProposal.save
       # upload project proposal images
       img_url.each do |a|
-      @ProjectProposalImg = ProjectProposalImg.new(params_pp_img)            
+      @ProjectProposalImg = ProjectProposalImg.new(params_pp_img)
       @ProjectProposalImg.project_proposal_id=@ProjectProposal.id
-      @ProjectProposalImg.img_url=a
+      @ProjectProposalImg.img_url = a
       @ProjectProposalImg.save            
      end 
       redirect_to :controller=>'ProjectProposals', :action=>'success' and return
