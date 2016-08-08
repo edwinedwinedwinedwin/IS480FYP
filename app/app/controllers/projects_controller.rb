@@ -14,8 +14,6 @@ class ProjectsController < ApplicationController
 
   def create
     @Project = Project.new(projects_params)
-    @Project.user_id = 1
-    @Project.project_status_id = 1
     if @Project.save
       redirect_to :controller => 'projects', :action => 'index' and return
     else
@@ -38,6 +36,6 @@ class ProjectsController < ApplicationController
 
   private
   def projects_params
-    params.require(:projects).permit(:title, :start_date, :end_date, :country, :state, :city, :description, :project_category_id, :project_type_id)
+    params.require(:projects).permit(:start_date, :end_date, :country, :state, :city, :project_status_id, :project_proposal_id, :user_id)
   end
 end

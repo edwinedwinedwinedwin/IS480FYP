@@ -41,6 +41,14 @@ class ProjectProposalsController < ApplicationController
     @ProjectProposal=ProjectProposal.find(params[:id])
     @ProjectProposal.project_status_id = 3
     @ProjectProposal.save
+
+    #Project will create
+    @Project = Project.new
+    @Project.project_status_id = 1
+    @Project.project_proposal_id = @ProjectProposal.id
+    @Project.save
+
+
     #Send email to user who sign up
     SysMailer.accept_proposal_email(@ProjectProposal).deliver
     redirect_to :controller => 'ProjectProposals', :action => 'index'    
@@ -60,8 +68,11 @@ class ProjectProposalsController < ApplicationController
   def params_pp
     params.require(:project_proposal).permit(:title, :description, :project_category_id,:project_type_id,:name, :email, :contact_number)
   end
+
   def params_pp_img
     params.permit(:project_proposal_img).permit(:img_url)
   end
+
+
 
 end

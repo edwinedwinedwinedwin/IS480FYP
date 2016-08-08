@@ -33,3 +33,9 @@ bower.json
 
 # Ignore pow environment settings
 .powenv
+app/.idea/.rakeTasks
+app/.idea/app.iml
+app/.idea/workspace.xml
+app/log/development.log
+*.jpg
+app/log/development.log
