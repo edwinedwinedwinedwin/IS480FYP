@@ -38,4 +38,5 @@ app/.idea/app.iml
 app/.idea/workspace.xml
 app/log/development.log
 *.jpg
-app/log/development.log
+*.png
+app/db/schema.rb
