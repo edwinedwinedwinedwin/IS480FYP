@@ -8,6 +8,8 @@
 
   <div class="page-section">
     <legend class="form-heading heading"> Log In </legend>
+            <br>
+            <strong>TIP: </strong>Login with your registered email and password.      
       <%= form_tag('/sessions/create') do |f| %>    
           <% if flash[:alert] %>
               <div class="alert alert-danger" role="alert">
@@ -44,14 +46,7 @@
           </p>
       <% end %>
 
-      <!-- Display parameters -->
-      <!--<hr/>
-      <!-- Inspecting Parameters
-      <%=params.inspect%>
-      Inspecting Session Parameters
-      <%= @failed %><br>
-      Session ID is <%= session[:user_id] %><br>
-      User is <%= @user %><br> -->
+</p>
   </div>
 </div>
 

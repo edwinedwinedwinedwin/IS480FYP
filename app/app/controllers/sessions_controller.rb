@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     if user and user.authenticate(params[:password])      
         if user.is_banned          
           flash[:alert]="Your account has been banned."
-          redirect_to action:"new"       
+          redirect_to '/login'
         else
         session[:user_id] = user.id        
         if user.is_admin
@@ -20,13 +20,13 @@ class SessionsController < ApplicationController
       end
     else                
         flash[:alert]="Invalid username/password."
-        redirect_to action: "new"
+        redirect_to '/login'
     end
   end
 
   def destroy
     session[:user_id] = nil    
-    redirect_to action: "new" and return
+    redirect_to '/login'
   end
 end
 

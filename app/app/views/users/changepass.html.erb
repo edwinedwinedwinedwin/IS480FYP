@@ -8,9 +8,8 @@
 
   <div class="page-section">
      <legend class="form-heading heading"> Change Password </legend>
-<%= form_for :user,url: user_path(@user),method: :patch do |f| %>
+<%= form_for :user,url: user_path(@user),method: :patch do |f| %>    
     <div class="form-field">
-
           <% if @user.errors.any? %>
               <div class="panel panel-danger">
               <div class="panel-heading"><h2><strong>Your inputs do not meet the requirements:</strong></h2></div>

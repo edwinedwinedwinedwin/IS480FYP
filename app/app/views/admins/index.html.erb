@@ -1,34 +1,11 @@
-<!--
-<div class="page-main">
-  <%= stylesheet_link_tag "style" %>
-  <%= stylesheet_link_tag "component" %>
-  <%= javascript_include_tag "application"%>
-  <div class="page-section">
-      <legend class="form-heading heading"> Admin Dashboard </legend>
-       Welcome home, <%= @current_user.first_name %> <%= @current_user.last_name %> !<br>   
-   <%= link_to "Manage Admins", controller: "admins", action: "manage" %><br>
-   <%= link_to "Manage Users", controller: "users", action: "index" %><br>
-   <%= link_to "View Statistics", controller: "admins", action: "index" %>Deadlink<br>   
-   <%= link_to "Manage Projects", controller: "admins", action: "index" %>Deadlink<br>
-   <%= link_to "Logout", controller: "sessions", action: "destroy" %>
-   <!-- Display parameters -->
-   <!--<hr/>
-   Inspecting Parameters
-   <%=params.inspect%>
-   Session ID is=<%=session[:user_id] %>
-   <%= session.inspect %> 
- </div>
-</div>
--->
-<!--
-<div class="page-main">
--->
   <%= stylesheet_link_tag "style" %>
   <%= stylesheet_link_tag "component" %>
   <%= javascript_include_tag "application"%>
 
    <ul>
     <li><%= link_to "HOME", controller: "admins", action: "index" %></li>
+    <li><%= link_to "EDIT PROFILE", controller: "users", action: "edit", id: session[:user_id] %></li>
+    <li><%= link_to "CHANGE PASSWORD", controller: "users", action: "changepass", id: session[:user_id] %></li>
     <li><%= link_to "MANAGE ADMINS", controller: "admins", action: "manage" %></li>
   <li><%= link_to "MANAGE USERS", controller: "users", action: "index" %></li>
     <li><%= link_to "MANAGE PROJECTS PROPOSALS", controller: "project_proposals", action: "index" %></li>

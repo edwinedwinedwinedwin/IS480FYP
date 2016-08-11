@@ -4,7 +4,9 @@ class UsersController < ApplicationController
   skip_before_action :authorize, only: [:new, :create, :index]
 
   def changepass
-    @user=User.find(params[:id])
+    current_user_id=session[:user_id]      
+    @user=User.find(current_user_id)
+    # only able to change own account password        
   end
 
   def index
@@ -16,7 +18,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user=User.find(params[:id])
+    current_user_id=session[:user_id]      
+    @user=User.find(current_user_id) # only able to edit current logged in user
+    #@user=User.find(params[:id])    
   end
 
   def new
@@ -27,12 +31,16 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])    
     if @user.update(user_params)
       if @user.is_admin
-        redirect_to :controller => 'users', :action => 'index' and return
+        redirect_to :controller => 'admins', :action => 'index' and return
       else
         redirect_to :controller => 'dashboards', :action => 'index' and return
       end
     else
-      render 'edit'
+      #if params[:action_name]=='changepass'
+      #  render 'changepass'
+      #else
+        render 'edit'
+      #end      
     end
   end
 
@@ -53,14 +61,14 @@ class UsersController < ApplicationController
         redirect_to :controller => 'admins', :action => 'manage' and return
       else
           #Send email to user who sign up
-          SysMailer.welcome_email(@user).deliver
-          redirect_to :controller => 'users', :action => 'index' and return
+          SysMailer.welcome_email(@user).deliver                
+          redirect_to "/login"
       end
     else
       if @user.is_admin
         render '/admins/new' and return
       else
-      render 'new' and return
+        render 'new' and return      
       end
     end
   end
