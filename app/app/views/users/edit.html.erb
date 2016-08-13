@@ -79,7 +79,8 @@
 
 
     <div class="form-actions">
-      <%= link_to 'BACK', "../../dashboards/index" %>
+      <%= link_to "BACK", '/dashboards/index' %>
+      <%# link_to "BACK", request.referer.present? ? request.referer : default_path %>
     </div>
 
   </div>

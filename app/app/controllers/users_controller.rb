@@ -35,12 +35,8 @@ class UsersController < ApplicationController
       else
         redirect_to :controller => 'dashboards', :action => 'index' and return
       end
-    else
-      #if params[:action_name]=='changepass'
-      #  render 'changepass'
-      #else
-        render 'edit'
-      #end      
+    else      
+        render Rails.application.routes.recognize_path(request.referer)[:action] #renders previous get request
     end
   end
 

@@ -67,7 +67,7 @@ Rails.application.routes.draw do
   post'users' => 'users#create' # process creation of user  
   get 'pages/comrules' => 'pages#comrules' # display com rules
   get 'pages/term' => 'pages#term' # display terms
-  get 'login' => 'sessions#new' # show login form
+  get 'login' => 'sessions#new'# show login form  
   get 'users/edit/:id' => 'users#edit'
   post 'sessions/create' => 'sessions#create' # process login
   get 'sessions/destroy' => 'sessions#destroy' # log out and invalidate session
