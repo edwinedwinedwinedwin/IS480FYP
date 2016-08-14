@@ -454,10 +454,19 @@ strong,
 .heading, .heading--small, .heading--large, .pricing-plan-heading, .project-stat__data, #project-funding-goal, .fuel-button .fuel-button__cta {
   font-family: "Alternate Gothic No1 D", serif;
   text-transform: uppercase;
-  font-size: 5.75rem;
+  font-size: 3.75rem;
   letter-spacing: 0.1em;
   line-height: 1;
   margin-bottom: 2rem; }
+
+  .heading--signup, .heading--login {
+  font-family: "Alternate Gothic No1 D", serif;
+  text-transform: uppercase;
+  font-size: 4.75rem;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  margin-bottom: 2rem; }
+
 
 .heading--small {
   font-size: 2.5rem;
@@ -1614,7 +1623,7 @@ strong,
 
 .form-field {
   display: block;
-  max-width: 35.25rem;/*26.25*/
+  max-width: 30.25rem;/*26.25*/
   margin: auto;
   margin-top: 4rem; }
 
@@ -1707,7 +1716,7 @@ strong,
   margin-top: 0.5625rem;
   padding-left: 1.125rem;
   color: #808080;/*#c3ced2*/
-  font-size: 1.000rem;/*0.625rem*/
+  font-size: 0.825rem;/*0.625rem*/
   font-weight: bold;
   letter-spacing: 0.2em;
   line-height: 1;
