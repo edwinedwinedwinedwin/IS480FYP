@@ -10,8 +10,10 @@
 	  <li><%= link_to "EDIT PROFILE", controller: "users", action: "edit", id: session[:user_id] %></li>
 	  <li><%= link_to "CHANGE PASSWORD", controller: "users", action: "changepass", id: session[:user_id] %></li>
 	  <!--edit later-->
-	  <li><%= link_to "CREATE PROJECT", controller: "project", action: "new" %></li>
-	  <li><%= link_to "LOG OUT", controller: "sessions", action: "destroy" %></li>
+      <li><%= link_to "CHECK STATUS OF PROPOSAL", checkProposalStatus_path(:email => @current_user.email), method: "post" %></li>
+
+      <li><%= link_to "MANAGE PROJECT",  manageProjectStatus_path(:email => @current_user.email), method: "post" %></li>
+      <li><%= link_to "LOG OUT", controller: "sessions", action: "destroy" %></li>
 	</ul>
 
 <style>

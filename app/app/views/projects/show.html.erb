@@ -1,5 +1,13 @@
-<% render "project_members/index" %>
+<%= stylesheet_link_tag "style" %>
+<%= stylesheet_link_tag "component" %>
+<%= stylesheet_link_tag "flickity/flickity.css" %>
+<%= javascript_include_tag "application"%>
 
 <h1>HEllO</h1>
 
-<% render "project_inspirations/index" %>
+
+  <div>
+
+  <%= render "project_members/member", :all_members =>  @project_members %>
+
+</div>

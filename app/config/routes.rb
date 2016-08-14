@@ -75,11 +75,14 @@ Rails.application.routes.draw do
   get 'admins/index' => 'admins#index'
   get 'users/changepass/:id' => 'users#changepass'
   get 'admins/index' => "admins#index"
+
   get 'GetStarted' => 'project_proposals#new' # display create proposal page
   post 'project_proposals' => 'project_proposals#create' # process creation of proposal
   get 'project_proposals/success' => 'project_proposals#success' #success page after getstarted
+  post 'project_proposals/manage' => 'project_proposals#manage', as: :checkProposalStatus # display create proposal page
 
-  get 'project/show/:id' => 'projects#show'
+  post 'projects/manage' => 'projects#manage', as: :manageProjectStatus # display create proposal page
+  get 'projects/show/(:id)' => 'projects#show', as: :showProject
 
   match '/:controller/:action/(:id)', via: [:get, :post] # last route
 end

@@ -1,8 +1,7 @@
   class ProjectMembersController < ApplicationController
     before_filter :logged_in,:authorize_user
     def index
-    	@projectMembers=ProjectMember.where("project_id =1")  	  	  
-    	#@projectMembers=ProjectMember.where("project_id =?",params[:project_id])  	  	  
+      @project_members = ProjectMember.all
     end
 
     def show
@@ -19,7 +18,6 @@
 
     def create      
     	@project_member=ProjectMember.new(project_members_params)
-      @email=params[:project_member][:email]
       @user=User.find_by_email(params[:project_member][:email])
       error=0
       if @user.blank?
@@ -30,9 +28,9 @@
         end
       end    
     	if error==0
+        @project_member.user_id = @user.id
     		if @project_member.save
           redirect_to :controller => 'project_members', :action => 'index' and return
-          #redirect_to :controller => 'project_members', :action => 'index',:id=>session[:project_id] and return
         else
           render 'new' and return  
         end    		
@@ -61,7 +59,7 @@
 
     private
     def project_members_params
-      params.require(:project_member).permit(:name,:email,:role,:description,:project_id,:project_status_id)
+      params.require(:project_member).permit(:user_id, :second_role,:role,:description,:project_id,:project_status_id)
     end
 
   end

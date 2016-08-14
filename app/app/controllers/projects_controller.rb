@@ -5,11 +5,31 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @Project = Project.find(params[:id])
+    #About Us
+    @project = Project.select("*").joins(:project_proposal).where(:projects => {:id=>params[:id]})
+
+    #Overview
+    @project_coverImgs = ProjectProposalImg.select("*").joins(:project_proposal).where(:project_proposals => {:id=> @project.project_proposal.id} )
+
+    #Details
+    @project_inspirations = ProjectInspiration.select("*").joins(:project).where(:project_inspirations => {:project_id => params[:id]})
+    #Updates
+    @project_updates = ProjectUpdate.select("*").joins(:project).where(:project_updates => {:project_id => params[:id]})
+    #Team
+    @project_members = ProjectMember.select("*").joins(:project).where(:project_members => {:project_id => params[:id]})
+    #Fuel
+    @project_rewards = ProjectReward.select("*").joins(:project).where(:project_rewards => {:project_id => params[:id]})
+    #TimeLine
+    @project_milestones = ProjectMilestone.select("*").joins(:project).where(:project_members => {:project_id => params[:id]})
+
   end
 
   def new
     @Project = Project.new
+  end
+
+  def manage
+    @Projects = Project.joins(:project_proposal).where(:project_proposals => {:email=>params[:email],:project_status_id=>3})
   end
 
   def create

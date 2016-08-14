@@ -21,12 +21,12 @@ class ProjectProposalsController < ApplicationController
     img_url = params[:project_proposal][:img_url]
     if @ProjectProposal.save
       # upload project proposal images
-      img_url.each do |a|
-      @ProjectProposalImg = ProjectProposalImg.new(params_pp_img)
-      @ProjectProposalImg.project_proposal_id=@ProjectProposal.id
-      @ProjectProposalImg.img_url = a
-      @ProjectProposalImg.save            
-     end 
+        img_url.each do |a|
+        @ProjectProposalImg = ProjectProposalImg.new(params_pp_img)
+        @ProjectProposalImg.project_proposal_id=@ProjectProposal.id
+        @ProjectProposalImg.img_url = a
+        @ProjectProposalImg.save
+      end
       redirect_to :controller=>'ProjectProposals', :action=>'success' and return
     else
       render 'new' and return
@@ -43,10 +43,27 @@ class ProjectProposalsController < ApplicationController
     @ProjectProposal.save
 
     #Project will create
-    @Project = Project.new
-    @Project.project_status_id = 1
-    @Project.project_proposal_id = @ProjectProposal.id
-    @Project.save
+    @user = User.find_by_email(@ProjectProposal.email)
+    @project = Project.new
+    @project.project_status_id = 1
+    @project.project_proposal_id = @ProjectProposal.id
+    if (@user.blank?)
+      @project.user_id = @user.id
+    end
+    @project.save
+
+    #Project Creator will create
+
+    @projectMember = ProjectMember.new
+    @projectMember.role = "Founder"
+    @projectMember.second_role = "Creator"
+    @projectMember.project_id = @project.id
+    @projectMember.project_status_id = 3
+
+    if (@user.blank?)
+      @projectMember.user_id = @user.id
+    end
+    @projectMember.save
 
 
     #Send email to user who sign up

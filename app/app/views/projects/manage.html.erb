@@ -1,0 +1,38 @@
+<%= stylesheet_link_tag "style" %>
+<%= stylesheet_link_tag "component" %>
+<%= stylesheet_link_tag "flickity/flickity.css" %>
+<%= javascript_include_tag "application"%>
+
+<p id="notice"><%= notice %></p>
+
+<legend class="form-heading heading"><h1>Manage Project</h1></legend><br>
+
+<table class="table-show">
+  <thead>
+  <tr class="tr-row">
+    <th class="th-row"><strong>Project Title</strong></th>
+    <th class="th-row"><strong>Project Category</strong></th>
+    <th class="th-row"><strong>Project Description</strong></th>
+    <th class="th-row"><strong>Project Status</strong></th>
+    <th class="th-row"><strong>Actions</strong></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @Projects.each do |p| %>
+      <tr class="tr-row">
+        <td class="td-row"><%= p.project_proposal.title%></td>
+        <td class="td-row"><%= p.project_proposal.project_category.try(:category)%></td>
+        <td class="td-row"><%= p.project_proposal.description %></td>
+        <td class="td-row"><%= p.project_status.try(:status) %></td>
+        <td class="td-row">
+          <%= link_to showProject_path(:id => p.id), :class=>"btn btn-success" do %>View<% end %>
+
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<br>
+
+<%= link_to 'Back', {:controller => "dashboards", :action => "index" } %>
