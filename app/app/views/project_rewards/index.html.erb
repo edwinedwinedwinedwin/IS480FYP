@@ -29,7 +29,7 @@
         <td class="td-row"><%= projectReward.description %></td>
         <td class="td-row"><%= projectReward.estimated_delivery %>%</td>
         <td class="td-row"><%= projectReward.no_of_rewards %></td>
-        <td class="td-row"><%= projectReward.img_url %></td>      
+        <td class="td-row"><%= projectReward.img_url %></td>
         <td class="td-row"><%= projectReward.project_id %></td>
         <td class="td-row"><%= link_to 'Edit Reward', {:controller=> "project_rewards", :action => "edit", :id => projectReward.id }%> </td>
         <td class="td-row"><%= link_to 'Delete Reward', {:controller => "project_rewards", :action => "destroy", :id => projectReward.id } %> </td>

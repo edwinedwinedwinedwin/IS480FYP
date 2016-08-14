@@ -1,0 +1,31 @@
+<legend class="form-heading heading"><h1>Project Milestones</h1></legend>
+
+<table class="table-show">
+  <thead>
+  <tr class="tr-row">
+    <th class="th-row">Name</th>
+    <th class="th-row">Start Date</th>
+    <th class="th-row">End Date</th>
+    <th class="th-row">Amount Raised</th>
+    <th class="th-row">Target Amount</th>
+    <th class="th-row">Project ID</th>
+    <th class="th-row" colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% all_milestones.each do |f| %>
+      <tr class="tr-row">
+        <td class="td-row"><%= f.name %></td>
+        <td class="td-row"><%= f.start_date %></td>
+        <td class="td-row"><%= f.end_date %></td>
+        <td class="td-row"><%= f.amount_raised %></td>
+        <td class="td-row"><%= f.target_amount %></td>
+        <td class="td-row"><%= f.project_id %></td>
+        <td class="td-row"><%= link_to 'Edit Milestone', {:controller => "project_milestones", :action => "edit", :id=>f.id }%></td>
+
+        <td class="td-row"><%= link_to 'Delete Milestone', {:controller => "project_milestones", :action => "destroy", :id=>f.id} %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
