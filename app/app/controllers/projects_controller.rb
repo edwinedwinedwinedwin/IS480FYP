@@ -5,18 +5,21 @@ class ProjectsController < ApplicationController
   end
 
   def show
+
+    @project = Project.find(params[:id])
+
     #About Us
-    @project = Project.select("*").joins(:project_proposal).where(:projects => {:id=>params[:id]})
+    @project_proposal = ProjectProposal.select("*").joins(:project).where(:projects => {:id=>params[:id]}).first
 
     #Overview
-    @project_coverImgs = ProjectProposalImg.select("*").joins(:project_proposal).where(:project_proposals => {:id=> @project.project_proposal.id} )
+    @project_coverImgs = ProjectProposalImg.select("*").joins(:project_proposal).where(:project_proposal_imgs => {:project_proposal_id => @project.project_proposal_id} )
 
     #Details
     @project_inspirations = ProjectInspiration.select("*").joins(:project).where(:project_inspirations => {:project_id => params[:id]})
     #Updates
     @project_updates = ProjectUpdate.select("*").joins(:project).where(:project_updates => {:project_id => params[:id]})
     #Team
-    @project_members = ProjectMember.select("*").joins(:project).where(:project_members => {:project_id => params[:id]})
+    @project_members = ProjectMember.select("*").joins(:user).where(:project_members => {:project_id => params[:id]})
     #Fuel
     @project_rewards = ProjectReward.select("*").joins(:project).where(:project_rewards => {:project_id => params[:id]})
     #TimeLine
