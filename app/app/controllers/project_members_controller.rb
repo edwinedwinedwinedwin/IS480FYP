@@ -21,12 +21,12 @@
       @user=User.find_by_email(params[:project_member][:email])
       error=0
       if @user.blank?
-        error=1   
-      else        
+        error=1
+      else
         if @user.is_admin
           error=2
         end
-      end    
+      end
     	if error==0
         @project_member.user_id = @user.id
     		if @project_member.save
@@ -53,8 +53,7 @@
     def destroy
     	@project_member=ProjectMember.find(params[:id])
       @project_member.destroy   
-      redirect_to :controller => 'project_members', :action => 'index'    
-      #redirect_to :controller => 'project_members', :action => 'index',:id=>session[:project_id] and return
+      redirect_to :controller => 'project_members', :action => 'index'
     end
 
     private

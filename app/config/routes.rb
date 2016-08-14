@@ -78,6 +78,8 @@ Rails.application.routes.draw do
 
   get 'GetStarted' => 'project_proposals#new' # display create proposal page
   post 'project_proposals' => 'project_proposals#create' # process creation of proposal
+  post 'project_proposals/accept/(:id)' => 'project_proposals#accept', as: :approveProposal
+  post 'project_proposals/reject/(:id)' => 'project_proposals#reject', as: :rejectProposal
   get 'project_proposals/success' => 'project_proposals#success' #success page after getstarted
   post 'project_proposals/manage' => 'project_proposals#manage', as: :checkProposalStatus # display create proposal page
 

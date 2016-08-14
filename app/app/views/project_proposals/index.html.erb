@@ -33,11 +33,11 @@
         <td class="td-row"><%= p.project_status.try(:status) %></td>
         <td class="td-row">
         <p><% if p.project_status_id == 1 %>
-                  <%= link_to '/project_proposals/accept/'+p.id.to_s, :class=>"btn btn-success" do %>
+                  <%= link_to approveProposal_path(:id => p.id), :class=>"btn btn-success" do %>
                   Accept
                   <% end %>
                   
-                  <%= link_to '/project_proposals/reject/'+p.id.to_s, :class=>"btn btn-danger" do %>
+                  <%= link_to rejectProposal_path(:id => p.id), :class=>"btn btn-danger" do %>
                   Reject
                   <% end %>
         <% end %>

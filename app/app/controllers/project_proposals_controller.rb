@@ -47,23 +47,24 @@ class ProjectProposalsController < ApplicationController
     @project = Project.new
     @project.project_status_id = 1
     @project.project_proposal_id = @ProjectProposal.id
-    if (@user.blank?)
-      @project.user_id = @user.id
+    if (!@user.blank?)
+     @project.user_id = @user.id
     end
     @project.save
 
     #Project Creator will create
+    @ProjectMember = ProjectMember.new
+    @ProjectMember.role = 'Founder'
+    @ProjectMember.second_role = 'Creator'
+    @ProjectMember.project_id = @project.id
+    @ProjectMember.project_status_id = 3
 
-    @projectMember = ProjectMember.new
-    @projectMember.role = "Founder"
-    @projectMember.second_role = "Creator"
-    @projectMember.project_id = @project.id
-    @projectMember.project_status_id = 3
-
-    if (@user.blank?)
-      @projectMember.user_id = @user.id
+    if (!@user.blank?)
+      @ProjectMember.user_id = @user.id
     end
-    @projectMember.save
+    @ProjectMember.save
+
+    Rails.logger.info(@ProjectMember.errors.inspect)
 
 
     #Send email to user who sign up
