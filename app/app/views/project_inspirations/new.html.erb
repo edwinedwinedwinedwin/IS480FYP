@@ -7,52 +7,47 @@
   <div class="page-section">
     <legend class="form-heading heading"> Add Project Inspiration </legend>
 
-	  <%= form_for(@projectInspiration) do |f| %>              
- 		<%= f.hidden_field :project_id, :value => 1 %> 	  
-	  <% #f.hidden_field :project_id, :value => session[:project_id] %>
-
-	  <% if @projectInspiration.errors.any? %>
-              <div class="alert alert-danger" role="alert">
-                <b><u>Errors:</u></b>
-                <ul>
-                  <% @projectInspiration.errors.full_messages.each do |message| %>
+    <%= form_for(@projectInspiration) do |f| %>
+        <%= f.hidden_field :project_id, :value => @projectInspiration.project_id %>
+        <% if @projectInspiration.errors.any? %>
+            <div class="alert alert-danger" role="alert">
+              <b><u>Errors:</u></b>
+              <ul>
+                <% @projectInspiration.errors.full_messages.each do |message| %>
                     <li><%= message %></li>
-                  <% end %>
-                </ul>
-              </div>
-          <% end %>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
 
-          <div class="form-field">
-            <%= f.text_field :title, class: "form-input", placeholder: "Project Inspiration Title" %>
-            <label class="form-label" for="title">Project Inspiration Title</label>
-          </div>
+        <div class="form-field">
+          <%= f.text_field :title, class: "form-input", placeholder: "Project Inspiration Title" %>
+          <label class="form-label" for="title">Project Inspiration Title</label>
+        </div>
 
-          <div class="form-field">
-			  <%= f.text_area :description, class: "form-input" %>
-            <label class="form-label" for="description">Description</label>
-          </div>
-          
-          <div class="form-field">
-			  <%= f.file_field :img_url, class: "form-input", placeholder: "Image URL"  %>
-            <label class="form-label" for="img_url">Image URL</label>
-          </div>
+        <div class="form-field">
+          <%= f.text_area :description, class: "form-input" %>
+          <label class="form-label" for="description">Description</label>
+        </div>
 
-          <div class="form-field">
-			  <%= f.text_field :caption, class: "form-input", placeholder: "Caption" %>
-            <label class="form-label" for="caption">Inspiration Caption</label>
-          </div>
+        <div class="form-field">
+          <%= f.file_field :img_url, class: "form-input", placeholder: "Image URL"  %>
+          <label class="form-label" for="img_url">Image URL</label>
+        </div>
 
-	  	  <div class="form-actions">
-			  <td align=right><%= f.submit "Add Project Inspiration", class: "button--stroke--long" %></td>
-          </div>
+        <div class="form-field">
+          <%= f.text_field :caption, class: "form-input", placeholder: "Caption" %>
+          <label class="form-label" for="caption">Inspiration Caption</label>
+        </div>
 
-	  
+        <div class="form-actions">
+          <td align=right><%= f.submit "Add Project Inspiration", class: "button--stroke--long" %></td>
+        </div>
 
-      <% end %>
-      <br>
-  	  
-	  <%= link_to 'Back', {:controller => "project_inspirations", :action => "show" } %>
+    <% end %>
+    <br>
 
-    </div>
+    <%= link_to 'Back', {:controller => "projects", :action => "show", :id => @projectInspiration.project_id } %>
+
   </div>
-      
+</div>

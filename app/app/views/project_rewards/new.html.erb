@@ -7,7 +7,7 @@
   <div class="page-section">
     <legend class="form-heading heading"> Add Project Reward </legend>
         <%= form_for(@project_reward) do |f| %>
-          <%= f.hidden_field :project_id, :value =>  params[:project_id]%>
+          <%= f.hidden_field :project_id, :value =>  @project_reward.project_id %>
 
           <% if @project_reward.errors.any? %>
               <div class="alert alert-danger" role="alert">
@@ -57,7 +57,7 @@
       <% end %>
       <br>
   	  
-      <%= link_to 'Back', {:controller => "project_rewards", :action => "index" } %>
+      <%= link_to 'Back',{:controller => "projects", :action => "show", :id=>@project_reward.project_id } %>
 
     </div>
   </div>

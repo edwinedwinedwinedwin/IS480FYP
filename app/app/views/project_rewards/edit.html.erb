@@ -73,7 +73,7 @@
 
     <p>
     <div class="form-actions">
-    <%= link_to 'BACK', "../../project_rewards/index" %>
+    <%= link_to 'BACK',{:controller => "projects", :action => "show", :id=>@project_reward.project_id } %>
     </div>
     </p>
   </div>

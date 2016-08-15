@@ -1,0 +1,174 @@
+<section class="project-content-section" id="details">
+  <div class="wrap">
+    <h2 class="heading--small" id="project-inspiration-heading" style="position: relative; display: table; width: auto; margin-left: auto; margin-right: auto;">
+      Our Inspiration
+
+      <span class="edit-button js-edit-button" id="project-inspiration-edit" data-container="project-inspiration-heading">
+						<i class="icon icon--edit"></i>
+						Edit
+					</span>
+    </h2>
+
+    <% if all_inspiration.blank? %>
+        <%= link_to 'Add Slide', {:controller => "project_inspirations", :action => "new", :project_id => project.id}, :class=>"accordion-add"%>
+
+    <% else %>
+        <div class="grid-container t--left" style="position: relative;" id="project-inspiration-view">
+          <% all_inspiration.each do |pI| %>
+             <% if !pI.img_url.blank? %>
+              <div class="grid-50">
+                <%= image_tag(pI.img_url,:class=> "img-square") %>
+                <p class="t--small caption"><%= pI.caption %></p>
+              </div>
+              <% end %>
+
+              <div class="grid-45 push-5">
+                <p class="t--large">
+                  <%= pI.description %>
+                </p>
+              </div>
+          <% end%>
+          <i class="temp-slider-arrow-left"></i>
+          <i class="temp-slider-arrow-right"></i>
+        </div>
+
+        <div class="grid-container t--left" id="project-inspiration-management">
+          <ul class="progress-steps" id="inspiration-progress">
+            <li class="progress-step current">Select Layout</li>
+            <li class="progress-step">Add Content</li>
+            <li class="progress-step">Preview + Complete</li>
+          </ul>
+
+          <section class="js-inspiration-step" id="inspiration-1">
+            <ul class="list--horizontal">
+              <li class="list-item">
+                <input class="l--hidden" type="radio" id="image-text" name="inspiration-radio">
+                <label class="radio-image" for="image-text">
+                  <i class="icon icon--inspiration-image-text"></i>
+                  Image + Text
+                </label>
+              </li>
+
+              <li class="list-item">
+                <input class="l--hidden" type="radio" id="image-only" name="inspiration-radio">
+                <label class="radio-image" for="image-only">
+                  <i class="icon icon--inspiration-image-only"></i>
+                  Image Only
+                </label>
+              </li>
+
+              <li class="list-item">
+                <input class="l--hidden" type="radio" id="text-only" name="inspiration-radio">
+                <label class="radio-image" for="text-only">
+                  <i class="icon icon--inspiration-text-only"></i>
+                  Text Only
+                </label>
+              </li>
+            </ul>
+
+            <a href="#" class="button--inspiration js-inspiration-next">
+              Next
+              <i class="icon icon--button-arrow-right"></i>
+            </a>
+          </section>
+
+          <section class="js-inspiration-step" id="inspiration-2">
+            <div class="accordion-manager">
+              <ul class="accordion-list" id="accordion-list">
+                <% sNo = 1 %>
+                <% all_inspiration.each do |pI| %>
+                    <li class="accordion-item js-delete-container js-draggable">
+                      <div class="accordion-item-number">
+                        <%= sNo %>
+                        <% sNo+=1 %>
+                      </div>
+
+                      <div class="accordion-item-preview">
+                        <div class="accordion-item-preview__content">
+                          <% if !pI.img_url.blank? %>
+                          <%= image_tag(pI.img_url,:class=> "img-square") %>
+                          <% end %>
+                          <p><%= pI.title %></p>
+                        </div>
+
+                        <ul class="accordion-item-preview__actions">
+                          <li class="accordion-item-action">
+                            <i class="icon icon--reorder-vertical js-reorder-handle"></i>
+                            <i class="icon icon--trash-can js-delete">
+
+                            </i>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div class="accordion-item-content">
+                        <button class="accordion-close js-accordion-close">-</button>
+                        <div class="grid-container">
+                          <div class="grid-25">
+                            <label class="accordion-label">Image</label>
+                            <% if !pI.img_url.blank? %>
+                                <%= image_tag(pI.img_url,:class=> "img-square") %>
+                            <% end %>
+
+                          </div>
+
+                          <div class="grid-70 push-5">
+                            <div>
+                              <label class="accordion-label">Body Copy</label>
+                              <textarea rows="7" class="accordion-textarea">
+                            <%= pI.description %>
+                          </textarea>
+                            </div>
+
+                            <div class="l--plunge">
+                              <label class="accordion-label">Caption</label>
+                              <textarea rows="7" class="accordion-textarea">
+                            <%= pI.caption %>
+                          </textarea>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                <% end %>
+              </ul>
+              <%= link_to 'Add Slide', {:controller => "project_inspirations", :action => "new", :project_id => project.id}, :class=>"accordion-add"%>
+            </div>
+
+            <a href="#" class="button--inspiration js-inspiration-next">
+              Next
+              <i class="icon icon--button-arrow-right"></i>
+            </a>
+          </section>
+
+          <section class="js-inspiration-step" id="inspiration-3">
+            <div class="grid-container" style="position: relative;">
+              <% all_inspiration.each do |pI| %>
+                  <div class="grid-50">
+                    <% if !pI.img_url.blank? %>
+                        <%= image_tag(pI.img_url,:class=> "img-square") %>
+                        <p class="t--small caption"><%= pI.caption %></p>
+                    <% end %>
+
+                  </div>
+
+                  <div class="grid-45 push-5">
+                    <p class="t--large">
+                      <%= pI.description %>
+                    </p>
+                  </div>
+              <% end %>
+              <i class="temp-slider-arrow-left"></i>
+              <i class="temp-slider-arrow-right"></i>
+            </div>
+
+            <a href="#" class="button--inspiration js-inspiration-next">
+              Finish
+              <i class="icon icon--button-arrow-right"></i>
+            </a>
+          </section>
+        </div>
+    <% end %>
+
+  </div>
+</section>

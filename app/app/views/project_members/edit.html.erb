@@ -7,49 +7,39 @@
   <div class="page-section">
     <legend class="form-heading heading"> Edit Project Member </legend>
 
-      <%= form_for(@project_member) do |f| %>              
-          <%= f.hidden_field :project_id, :value => 1 %> <!-- :value will eventually be project_id instead of 1-->
-          <%# f.hidden_field :project_id, :value => session[:project_id] %> 
-          <%= f.hidden_field :project_status_id, :value => 1 %> <!-- :value will eventually be project_id instead of 1-->
-          <%# f.hidden_field :project_status_id, :value => session[:project_id] %> 
+    <%= form_for(@project_member) do |f| %>
+        <%= f.hidden_field :project_id, :value => @project_member.project_id %>
 
-          <% if @project_member.errors.any? %>
-              <div class="alert alert-danger" role="alert">
-                <b><u>Errors:</u></b>
-                <ul>
-                  <% @project_member.errors.full_messages.each do |message| %>
+        <% if @project_member.errors.any? %>
+            <div class="alert alert-danger" role="alert">
+              <b><u>Errors:</u></b>
+              <ul>
+                <% @project_member.errors.full_messages.each do |message| %>
                     <li><%= message %></li>
-                  <% end %>
-                </ul>
-              </div>
-          <% end %>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
 
-          <div class="form-field">
-            <%= f.text_field :email, class: "form-input", placeholder: "Name" %>
-            <label class="form-label" for="name">Email</label>            
-          </div>
 
-          <div class="form-field">
-            <%= f.text_field :role, class: "form-input", placeholder: "Role" %>
-            <label class="form-label" for="role">Role</label>
-          </div>                  
+        <div class="form-field">
+          <%= f.text_field :role, class: "form-input", placeholder: "Role" %>
+          <label class="form-label" for="role">Role</label>
+        </div>
 
-          <div class="form-field">
-            <%= f.text_field :description, class: "form-input", placeholder: "Description" %>
-            <label class="form-label" for="description">Description</label>
-          </div>        
-         
-          <div class="form-actions">
-            <td align=right><%= f.submit "Edit Project Member", class: "button--stroke--long" %></td>
-          </div>
+        <div class="form-field">
+          <%= f.text_field :description, class: "form-input", placeholder: "Description" %>
+          <label class="form-label" for="description">Description</label>
+        </div>
 
-      <% end %>
-      <br>
-      
-      <%= link_to 'Back', {:controller => "project_members", :action => "show", :id=>1 } %>
-      <!-- :id will eventually be project_id instead of 1-->
+        <div class="form-actions">
+          <td align=right><%= f.submit "Edit Project Member", class: "button--stroke--long" %></td>
+        </div>
 
-    </div>
+    <% end %>
+    <br>
+
+    <%= link_to 'Back',  {:controller => "projects", :action => "show", :id=>@project_member.project_id } %>
+
   </div>
-  <hr>
-  <%= params.inspect %>
+</div>

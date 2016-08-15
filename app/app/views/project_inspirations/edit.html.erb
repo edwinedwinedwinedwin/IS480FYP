@@ -8,10 +8,7 @@
     <legend class="form-heading heading"> Edit Project Member </legend>
 
       <%= form_for(@projectInspiration) do |f| %>              
-          <%= f.hidden_field :project_id, :value => 1 %> <!-- :value will eventually be project_id instead of 1-->
-          <%# f.hidden_field :project_id, :value => session[:project_id] %> 
-          <%= f.hidden_field :project_status_id, :value => 1 %> <!-- :value will eventually be project_id instead of 1-->
-          <%# f.hidden_field :project_status_id, :value => session[:project_id] %> 
+          <%= f.hidden_field :project_id, :value => @projectInspiration.project_id %>
 
           <% if @projectInspiration.errors.any? %>
               <div class="alert alert-danger" role="alert">
@@ -50,10 +47,8 @@
 
       <% end %>
       <br>
-      <%= link_to 'Back', {:controller => "project_inspirations", :action => "show", :id=>1 } %>
+      <%= link_to 'Back', {:controller => "projects", :action => "show", :id=>  @projectInspiration.project_id } %>
       <!-- :id will eventually be project_id instead of 1-->
 
     </div>
   </div>
-  <hr>
-  <%= params.inspect %>

@@ -5,13 +5,13 @@ class ProjectInspirationsController < ApplicationController
 
   def new
     @projectInspiration = ProjectInspiration.new
+    @projectInspiration.project_id = params[:project_id]
   end
 
   def create
     @projectInspiration = ProjectInspiration.new(project_inspirations_params)
-    @projectInspiration.project_id = 1
     if @projectInspiration.save
-      redirect_to :controller => 'project_inspirations', :action => 'index' and return
+      redirect_to showProject_path(:id => @projectInspiration.project_id) and return
     else
       render 'new'
     end
@@ -24,21 +24,22 @@ class ProjectInspirationsController < ApplicationController
   def update
     @projectInspiration = ProjectInspiration.find(params[:id])
     if @projectInspiration.update(project_inspirations_params)
-      redirect_to :controller => 'project_inspirations', :action => 'index' and return
+      redirect_to showProject_path(:id => @projectInspiration.project_id) and return
     else
       render 'edit'
     end
   end
 
   def destroy
-      @projectInspiration=ProjectInspiration.find(params[:id])
-      @projectInspiration.destroy   
-      redirect_to :controller => 'project_inspirations', :action => 'index'    
-      #redirect_to :controller => 'project_inspirations', :action => 'index',:id=>session[:project_id] and return
-    end
+
+    @projectInspiration=ProjectInspiration.find(params[:id])
+    projectID = @projectInspiration.project_id
+    @projectInspiration.destroy
+    redirect_to showProject_path(:id => projectID) and return
+  end
 
   private
   def project_inspirations_params
-    params.require(:project_inspiration).permit(:id, :title, :description, :img_url, :caption, :project_id)
+    params.require(:project_inspiration).permit(:title, :description, :img_url, :caption, :project_id)
   end
 end
