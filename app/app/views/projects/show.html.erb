@@ -3,6 +3,13 @@
 <%= stylesheet_link_tag "flickity/flickity.css" %>
 <%= javascript_include_tag "application"%>
 
+<article class="project-content">
+  <%= render "layouts/projectMenu" %>
+
+<section class="project-content-section" id="about">
+  <%= render "project_proposals/about", :proposal_details=> @project_proposal, :project => @project, :all_milestones =>  @project_milestones%>
+</section>
+
 <section class="project-content-section" id="details">
   <%= render "project_inspirations/inspirations", :all_inspiration =>  @project_inspirations, :project => @project%>
 </section>
@@ -22,3 +29,5 @@
 <section class="project-content-section" id="timeline">
   <%= render "project_milestones/milestone", :all_milestones =>  @project_milestones, :project => @project , :last_milestone => @project_milestones_last, :project_proposal => @project_proposal%>
 </section>
+
+</article>

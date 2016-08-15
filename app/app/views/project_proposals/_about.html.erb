@@ -1,0 +1,130 @@
+<section class="project-content-section" id="about">
+  <div class="wrap">
+    <div class="grid-container">
+      <div class="grid-65">
+        <div class="project-stats grid-container">
+
+          <div class="project-funding-goal-overlay" id="project-funding-goal-overlay"></div>
+
+          <div class="grid-30">
+            <div class="project-stat">
+              <span class="project-stat__data">0</span>
+              <span class="project-stat__description">Days remaining</span>
+            </div>
+          </div>
+          <div class="grid-30 push-5">
+            <div class="project-stat">
+              <span class="project-stat__data">0%</span>
+              <span class="project-stat__description">Fueled</span>
+            </div>
+          </div>
+          <div class="grid-30 push-10">
+            <div class="project-stat" id="project-funding">
+              <% total_target_amt = 0.00
+                total_amt_raise = 0.00
+              %>
+
+              <% all_milestones.each do |pMilestones| %>
+                  <% total_target_amt +=  pMilestones.target_amount
+                     total_amt_raise  += pMilestones.amount_raised
+                  %>
+              <% end %>
+              <span class="project-stat__data">$ <%= total_amt_raise %> </span>
+              <span class="project-stat__description">of <span id="project-funding-value">$ <%= total_target_amt %> </span> fueled</span>
+
+            </div>
+          </div>
+        </div>
+
+        <div id="project-about">
+          <div class="project-about-title" id="project-about-title">
+            <h2 class="heading--small">
+              About the Project
+            </h2>
+
+            <span class="edit-button js-edit-button" id="project-description-edit" data-container="project-about">
+									<i class="icon icon--edit"></i>
+              <%= link_to 'Edit', {:controller => "project_proposals", :action => "edit", :project_id => project.id}%>
+								</span>
+          </div>
+
+          <div class="project-description" id="project-description">
+            <p class="t--large"><%= proposal_details.description %> </p>
+          </div>
+        </div>
+
+        <span class="edit-save-button js-edit-save-button" id="project-description-save">
+							Done
+						</span>
+      </div>
+
+      <div class="grid-25 push-10">
+        <ul class="list">
+          <li class="list-item fuel-button-container">
+            <a href="#fuel" class="fuel-button js-scrollto-button" data-scroll-target="#fuel">
+									<span class="fuel-button__content">
+										<span class="fuel-button__cta">Fuel</span>
+										<span class="fuel-button__text">This Project</p>
+                      <i class="icon icon--chevron-down"></i>
+									</span>
+                  </span>
+            </a>
+          </li>
+
+          <li class="list-item">
+            <ul class="list--narrow">
+
+              <li class="list-item">
+                <a href="#" class="button--stroke--full">
+                  <span>Discuss</span>
+                </a>
+              </li>
+
+              <li class="list-item">
+                <a href="#" class="project-location">
+                  <i class="icon icon--location-pin"></i>
+                  Singapore, SG, SG
+                </a>
+              </li>
+
+              <li class="list-item">
+                <span class="project-meta-text">Share</span>
+                <ul class="project-share-buttons">
+                  <li class="project-share-button">
+                    <a href="#">
+                      <i class="icon icon--facebook"></i>
+                    </a>
+                  </li>
+
+                  <li class="project-share-button">
+                    <a href="#">
+                      <i class="icon icon--twitter"></i>
+                    </a>
+                  </li>
+
+                  <li class="project-share-button">
+                    <a href="#">
+                      <i class="icon icon--youtube"></i>
+                    </a>
+                  </li>
+
+                  <li class="project-share-button">
+                    <a href="#">
+                      <i class="icon icon--pinterest"></i>
+                    </a>
+                  </li>
+
+                  <li class="project-share-button">
+                    <a href="#">
+                      <i class="icon icon--google-plus"></i>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
