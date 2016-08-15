@@ -19,7 +19,7 @@
 
     def create      
     	@project_member=ProjectMember.new(project_members_params)
-      user_email= [:project_member][:email]
+      user_email= params[:project_member][:email]
       @user = User.find_by_email(user_email)
       error=0
       if @user.blank?

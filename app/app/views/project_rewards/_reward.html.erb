@@ -8,7 +8,7 @@
   </div>
 
   <ul class="fuel-rewards">
-    <% all_rewards.each do |pRewards| %>
+    <% ProjectReward.all.each do |pRewards| %>
         <li class="fuel-reward js-lightbox-open" data-content-container="#fuel-lightbox-content-<%= pRewards.id %>">
           <header class="fuel-reward-header">
             <span class="fuel-reward__price">$<%= pRewards.min_amount %></span>
@@ -17,7 +17,7 @@
           </header>
 
           <div class="fuel-reward-description">
-            <p><%= pRewards.description %></p>
+            <p><%= pRewards.description %></p>             
             <!--<p>Every dollar makes a big impact. The WATERisLIFE team will send you a personal thank you e-mail so you can feel the love and stay connected. Thank you!</p>-->
           </div>
 
@@ -27,8 +27,7 @@
           </div>
 
           <figure class="fuel-reward-thumbnail">
-            <%= image_tag(pRewards.img_url, :size => "150x150",:class=> "img-circular") %>
-
+            <%= image_tag(pRewards.img_url,:class=> "img-square") %>
           </figure>
 
           <!-- To set edit and select -->
@@ -52,7 +51,7 @@
   </div>
 </div>
 
-<% all_rewards.each do |pRewards| %>
+<% ProjectReward.all.each do |pRewards| %>
     <div class="l--hidden" id="fuel-lightbox-content-<%= pRewards.id %>">
       <div class="fuel-lightbox-container">
         <span class="fuel-lightbox__heading">You selected:</span>

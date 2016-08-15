@@ -3693,5 +3693,10 @@ strong,
  -moz-border-radius: 100px;
  align-content: center;
 }
+
+.img-square{
+  width: 200px;
+  height: 200px;    
+}
 /*# sourceMappingURL=style.css.map */
 
