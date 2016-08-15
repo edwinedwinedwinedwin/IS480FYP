@@ -32,7 +32,9 @@
 
           <!-- To set edit and select -->
           <div class="fuel-reward-select">
-            <a href="#" class="button--stroke">Select</a>
+            <%= link_to 'Edit', {:controller => "project_rewards", :action => "edit", :id => pRewards.id}, :class=>"button--stroke"%>
+
+            <!--<a href="#" class="button&#45;&#45;stroke">Select</a>-->
           </div>
         </li>
     <% end %>

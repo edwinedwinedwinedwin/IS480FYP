@@ -32,8 +32,7 @@ class ProjectRewardsController < ApplicationController
   def update
     @project_reward=ProjectReward.find(params[:id])
     if @project_reward.update_attributes(project_rewards_params)
-    	redirect_to :controller => 'project_rewards', :action => 'index' and return
-      #redirect_to :controller => 'project_rewards', :action => 'index',:id=session[:project_id] and return
+      redirect_to showProject_path(:id => @project_reward.project_id) and return
     else
       render 'edit'
     end
