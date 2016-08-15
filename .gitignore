@@ -40,3 +40,6 @@ app/log/development.log
 *.jpg
 *.png
 app/db/schema.rb
+app/.idea/.rakeTasks
+app/db/schema.rb
+app/.idea/workspace.xml
