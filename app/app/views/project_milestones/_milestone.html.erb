@@ -1,31 +1,71 @@
-<legend class="form-heading heading"><h1>Project Milestones</h1></legend>
+<section class="project-content-section" id="timeline">
+  <div class="wrap" style="position: relative;">
+  <h2 class="heading--small section-heading">Timeline</h2>
+  <p>
+    <%= link_to 'Add Project Milestone', {:controller => "project_milestones", :action => "new", :project_id => project.id }, class: "button--stroke--long" %>
+  </p>
+<% if !last_milestone.blank? %>
+    <% total_target_amt = 0.00 %>
+    <% all_milestones.each do |pMilestones| %>
+        <% total_target_amt +=  pMilestones.target_amount %>
+    <% end %>
 
-<table class="table-show">
-  <thead>
-  <tr class="tr-row">
-    <th class="th-row">Name</th>
-    <th class="th-row">Start Date</th>
-    <th class="th-row">End Date</th>
-    <th class="th-row">Amount Raised</th>
-    <th class="th-row">Target Amount</th>
-    <th class="th-row">Project ID</th>
-    <th class="th-row" colspan="3"></th>
-  </tr>
-  </thead>
+    <ul class="fuel-rewards">
+      <li class="fuel-reward js-lightbox-open">
+        <header class="fuel-reward-header">
+          <span class="uel-reward__backers">$ <%= total_target_amt %></span> <br>
+          <span class="uel-reward__backers"><%= project_proposal.title %> Productions</span>
+        </header>
+      </li>
+     </ul>
 
-  <tbody>
-  <% all_milestones.each do |f| %>
-      <tr class="tr-row">
-        <td class="td-row"><%= f.name %></td>
-        <td class="td-row"><%= f.start_date %></td>
-        <td class="td-row"><%= f.end_date %></td>
-        <td class="td-row"><%= f.amount_raised %></td>
-        <td class="td-row"><%= f.target_amount %></td>
-        <td class="td-row"><%= f.project_id %></td>
-        <td class="td-row"><%= link_to 'Edit Milestone', {:controller => "project_milestones", :action => "edit", :id=>f.id }%></td>
 
-        <td class="td-row"><%= link_to 'Delete Milestone', {:controller => "project_milestones", :action => "destroy", :id=>f.id} %></td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
+    <ul class="fuel-rewards">
+      <% all_milestones.each do |pMilestone| %>
+          <li class="fuel-reward js-lightbox-open" data-content-container="#milestone-lightbox-content-<%= pMilestone.id%>" >
+
+            <header class="fuel-reward-header">
+              <span class="fuel-reward__backers">$ <%= pMilestone.amount_raised %> / $ <%= pMilestone.target_amount %></span>
+              <span class="fuel-reward__backers"><%= pMilestone.name %></span>
+            </header>
+
+              <!-- To set edit and select -->
+              <div class="fuel-reward-select">
+                <a href="#" class="button--stroke">Select</a>
+              </div>
+          </li>
+      <% end %>
+      <i class="temp-slider-arrow-left" style="margin-top: -75px;"></i>
+      <i class="temp-slider-arrow-right" style="margin-top: -75px;"></i>
+    </ul>
+
+<% end %>
+  </div>
+</section>
+
+<div class="lightbox js-lightbox">
+  <div class="js-lightbox-close lightbox-close icon icon--lightbox-close"></div>
+
+  <div class="js-lightbox-content">
+
+  </div>
+</div>
+
+<% all_milestones.each do |pMilestone| %>
+    <div class="l--hidden" id="milestone-lightbox-content-<%= pMilestone.id %>">
+      <div class="fuel-lightbox-container">
+        <span class="fuel-lightbox__heading">You selected:</span>
+        <span class="fuel-lightbox__title"><%= pMilestone.name %></span>
+
+
+        <div class="fuel-lightbox__description">
+          <p class="t--large"><%= pMilestone.start_date %> - <%= pMilestone.end_date %> </p>
+         </div>
+
+
+        <a href="#" class="button--fill">Edit</a>
+      </div>
+
+    </div>
+<% end %>
+

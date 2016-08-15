@@ -24,7 +24,7 @@ class ProjectsController < ApplicationController
     @project_rewards = ProjectReward.select("*").joins(:project).where(:project_rewards => {:project_id => params[:id]})
     #TimeLine
     @project_milestones = ProjectMilestone.select("*").joins(:project).where(:project_milestones => {:project_id => params[:id]})
-
+    @project_milestones_last =  @project_milestones.last
   end
 
   def new

@@ -7,10 +7,10 @@
   <div class="page-section">
     <legend class="form-heading heading"> Add Project Milestone </legend>
 
-	  <%= form_for(@project_milestone) do |f| %>              
- 		<%= f.hidden_field :project_id, :value => 1 %> 	  
-	  <% #f.hidden_field :project_id, :value => session[:project_id] %>
-
+	  <%= form_for(@project_milestone) do |f| %>
+        <%= f.hidden_field :project_id, :value => @project_milestone.project_id %>
+        <%= f.hidden_field :project_status_id, :value => 1%>
+        <%= f.hidden_field :amount_raised, :value => 0 %>
 	  <% if @project_milestone.errors.any? %>
               <div class="alert alert-danger" role="alert">
                 <b><u>Errors:</u></b>
@@ -37,10 +37,6 @@
             <label class="form-label" for="email">End Date</label>
           </div>
 
-          <div class="form-field">
-			  <%= f.text_field :amount_raised, class: "form-input", placeholder: "Amount Raised" %>
-            <label class="form-label" for="password">Amount Raised</label>
-          </div>
 
           <div class="form-field">
 			  <%= f.text_field :target_amount, class: "form-input", placeholder: "Target Amount"  %> 
@@ -50,8 +46,6 @@
 	  	  <div class="form-actions">
 			  <td align=right><%= f.submit "Add Project Milestone", class: "button--stroke--long" %></td>
           </div>
-
-	  
 
       <% end %>
       <br>

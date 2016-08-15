@@ -1,8 +1,7 @@
 class ProjectRewardsController < ApplicationController
   before_filter :logged_in,:authorize_user
   def index
-    @projectRewards=ProjectReward.where("project_id =1")    
-    #@projectRewards=ProjectReward.where("project_id =?",params[:project_id])    
+    @projectRewards=ProjectReward.all
   end
 
   def show
@@ -10,7 +9,8 @@ class ProjectRewardsController < ApplicationController
   end
 
   def new
-    @project_reward=ProjectReward.new
+    @project_reward= ProjectReward.new
+    @project_reward.project_id = params[:project_id]
   end
 
   def edit
@@ -20,10 +20,9 @@ class ProjectRewardsController < ApplicationController
   def create
     @project_reward=ProjectReward.new(project_rewards_params)
     if @project_reward.save
-      redirect_to :controller => 'project_rewards', :action => 'index' and return
-      #redirect_to :controller => 'project_rewards', :action => 'index',:id=session[:project_id] and return
+      redirect_to  '/projects/show/' + params[:project_id].to_s  and return
     else
-      render '/project_members/new' and return
+      render 'new' and return
     end
   end
 

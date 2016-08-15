@@ -3,12 +3,11 @@
   <%= stylesheet_link_tag "component" %>
   <%= stylesheet_link_tag "flickity/flickity.css" %>
   <%= javascript_include_tag "application"%>
-
+  params[:project_id]
   <div class="page-section">
     <legend class="form-heading heading"> Add Project Reward </legend>
-
-      <%= form_for(@project_reward) do |f| %>              
-          <%= f.hidden_field :project_id, :value => 1 %> <!-- :value will eventually be project_id instead of 1-->
+        <%= form_for(@project_reward) do |f| %>
+          <%= f.hidden_field :project_id, :value =>  params[:project_id]%>
 
           <% if @project_reward.errors.any? %>
               <div class="alert alert-danger" role="alert">

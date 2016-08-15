@@ -8,7 +8,9 @@
       </span>
       <span class="edit-save-button" id="project-team-save">Done</span>
     </h2>
-
+    <p>
+      <%= link_to 'Add Crew', {:controller => "project_members", :action => "new", :project_id => project.id}, class: "button--stroke--long" %>
+    </p>
     <%= hidden_field_tag :project_id, project.id, class: "form-input" %>
 
     <ul class="project-team-members" style="position: relative;" id="project-team-members">

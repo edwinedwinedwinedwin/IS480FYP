@@ -3,26 +3,14 @@
 <%= stylesheet_link_tag "flickity/flickity.css" %>
 <%= javascript_include_tag "application"%>
 
-<h1>HEllO</h1>
+<section class="project-content-section" id="team">
+  <%= render "project_members/member", :all_members =>  @project_members, :project => @project %>
+</section>
 
-<div id="overview">
-  <%= render "project_proposals/coverpage", :all_imgs =>  @project_coverImgs, :project => @project, :proposal_details=> @project_proposal%>
-</div>
-<div id="about">
-  <%= render "project_proposals/about", :proposal_details=> @project_proposal, :project => @project%>
-</div>
-<div  id="details">
-  <%= render "project_inspirations/inspirations", :all_inspiration =>  @project_inspirations, :project => @project%>
-</div>
-<div id="updates">
-  <%= render "project_updates/updates", :all_updates =>  @project_updates, :project => @project%>
-</div>
-<div id="teams">
-  <%= render "project_members/member", :all_members =>  @project_members, :project => @project%>
-</div>
-<div id="fuels">
-  <%= render "project_rewards/reward", :all_rewards =>  @project_rewards, :project => @project%>
-</div>
-<div id="timeline">
-  <%= render "project_milestones/milestone", :all_milestones =>  @project_milestones, :project => @project%>
-</div>
+<section class="project-content-section" id="fuel">
+  <%= render "project_rewards/reward", :all_rewards =>  @project_rewards, :project => @project %>
+</section>
+
+<section class="project-content-section" id="timeline">
+<%= render "project_milestones/milestone", :all_milestones =>  @project_milestones, :project => @project , :last_milestone => @project_milestones_last, :project_proposal => @project_proposal%>
+</section>

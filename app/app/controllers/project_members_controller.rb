@@ -10,6 +10,7 @@
 
     def new
     	@project_member=ProjectMember.new
+      @project_member.project_id = params[:project_id]
     end
 
     def edit
@@ -18,7 +19,8 @@
 
     def create      
     	@project_member=ProjectMember.new(project_members_params)
-      @user=User.find_by_email(params[:project_member][:email])
+      user_email= [:project_member][:email]
+      @user = User.find_by_email(user_email)
       error=0
       if @user.blank?
         error=1
@@ -30,7 +32,7 @@
     	if error==0
         @project_member.user_id = @user.id
     		if @project_member.save
-          redirect_to :controller => 'project_members', :action => 'index' and return
+          redirect_to :controller => 'projects', :action => 'show', :id => params[:project_id] and return
         else
           render 'new' and return  
         end    		
@@ -59,6 +61,7 @@
     private
     def project_members_params
       params.require(:project_member).permit(:user_id, :second_role,:role,:description,:project_id,:project_status_id)
+      params.permit(:project_member).permit(:email)
     end
 
   end

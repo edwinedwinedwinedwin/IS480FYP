@@ -1,17 +1,16 @@
-<div class="page-main">
-  <%= stylesheet_link_tag "style" %>
-  <%= stylesheet_link_tag "component" %>
-  <%= stylesheet_link_tag "flickity/flickity.css" %>
-  <%= javascript_include_tag "application"%>
+<%= stylesheet_link_tag "style" %>
+<%= stylesheet_link_tag "component" %>
+<%= stylesheet_link_tag "flickity/flickity.css" %>
+<%= javascript_include_tag "application"%>
 
+<div class="page-main">
   <div class="page-section">
     <legend class="form-heading heading"> Add Project Member </legend>
 
       <%= form_for(@project_member) do |f| %>              
-          <%= f.hidden_field :project_id, :value => 1 %> <!-- :value will eventually be project_id instead of 1-->
-          <%# f.hidden_field :project_id, :value => session[:project_id] %> 
-          <%= f.hidden_field :project_status_id, :value => 1 %> <!-- :value will eventually be project_id instead of 1-->
-          <%# f.hidden_field :project_status_id, :value => session[:project_id] %> 
+          <%= f.hidden_field :project_id, :value => @project_member.project_id %>
+          <%= f.hidden_field :project_status_id, :value => 3 %>
+          <%= f.hidden_field :second_role, :value => 'Crew' %>
 
           <% if @project_member.errors.any? %>
               <div class="alert alert-danger" role="alert">
@@ -25,8 +24,8 @@
           <% end %>
 
           <div class="form-field">
-            <%= f.text_field :email, class: "form-input", placeholder: "Name" %>
-            <label class="form-label" for="name">Email</label>            
+            <%= f.text_field :email, class: "form-input", placeholder: "Email" %>
+            <label class="form-label" for="email">Email</label>
           </div>
 
           <div class="form-field">
@@ -46,8 +45,6 @@
       <% end %>
       <br>
   	  
-      <%= link_to 'Back', {:controller => "project_members", :action => "show", :id=>1 } %>
-      <!-- :id will eventually be project_id instead of 1-->
-
+      <%= link_to 'Back', {:controller => "projects", :action => "show", :id=>@project_member.project_id} %>
     </div>
   </div>
