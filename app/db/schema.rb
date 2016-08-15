@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160731072129) do
+ActiveRecord::Schema.define(version: 20160815170448) do
 
   create_table "project_categories", force: :cascade do |t|
     t.string   "category",   limit: 255
@@ -22,11 +22,11 @@ ActiveRecord::Schema.define(version: 20160731072129) do
   create_table "project_inspirations", force: :cascade do |t|
     t.string   "title",       limit: 255,   null: false
     t.text     "description", limit: 65535
-    t.text     "img_url",     limit: 65535
     t.string   "caption",     limit: 255
     t.integer  "project_id",  limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.string   "img_url",     limit: 255
   end
 
   add_index "project_inspirations", ["project_id"], name: "fk_rails_d433d28e4f", using: :btree
@@ -42,17 +42,19 @@ ActiveRecord::Schema.define(version: 20160731072129) do
   add_index "project_likes", ["user_id"], name: "fk_rails_8db23f111d", using: :btree
 
   create_table "project_members", force: :cascade do |t|
-    t.string   "email",             limit: 255
     t.string   "role",              limit: 255
     t.integer  "project_id",        limit: 4
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.text     "description",       limit: 65535
     t.integer  "project_status_id", limit: 4
+    t.integer  "user_id",           limit: 4
+    t.string   "second_role",       limit: 255
   end
 
   add_index "project_members", ["project_id"], name: "fk_rails_f3b43b5269", using: :btree
   add_index "project_members", ["project_status_id"], name: "fk_rails_88e268d146", using: :btree
+  add_index "project_members", ["user_id"], name: "fk_rails_49ebe01c9d", using: :btree
 
   create_table "project_milestones", force: :cascade do |t|
     t.string   "name",              limit: 255
@@ -137,35 +139,31 @@ ActiveRecord::Schema.define(version: 20160731072129) do
   create_table "project_updates", force: :cascade do |t|
     t.string   "title",       limit: 255,   null: false
     t.text     "description", limit: 65535
-    t.text     "img_url",     limit: 65535
     t.datetime "created_on"
     t.integer  "project_id",  limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.string   "img_url",     limit: 255
   end
 
   add_index "project_updates", ["project_id"], name: "fk_rails_4f9b2ad919", using: :btree
 
   create_table "projects", force: :cascade do |t|
-    t.string   "title",               limit: 255
     t.datetime "start_date"
     t.datetime "end_date"
     t.string   "country",             limit: 255
-    t.text     "description",         limit: 65535
     t.datetime "created_on"
     t.integer  "user_id",             limit: 4
-    t.integer  "project_type_id",     limit: 4
-    t.integer  "project_category_id", limit: 4
     t.integer  "project_status_id",   limit: 4
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "state",               limit: 255
     t.string   "city",                limit: 255
+    t.integer  "project_proposal_id", limit: 4
   end
 
-  add_index "projects", ["project_category_id"], name: "fk_rails_0cbf3d679e", using: :btree
+  add_index "projects", ["project_proposal_id"], name: "fk_rails_e41b99fa5a", using: :btree
   add_index "projects", ["project_status_id"], name: "fk_rails_9a8c72b8ef", using: :btree
-  add_index "projects", ["project_type_id"], name: "fk_rails_d7ca4cafeb", using: :btree
   add_index "projects", ["user_id"], name: "fk_rails_b872a6760a", using: :btree
 
   create_table "user_expertises", force: :cascade do |t|
@@ -213,6 +211,7 @@ ActiveRecord::Schema.define(version: 20160731072129) do
   add_foreign_key "project_likes", "users"
   add_foreign_key "project_members", "project_statuses"
   add_foreign_key "project_members", "projects"
+  add_foreign_key "project_members", "users"
   add_foreign_key "project_milestones", "project_statuses"
   add_foreign_key "project_milestones", "projects"
   add_foreign_key "project_proposal_imgs", "project_proposals"
@@ -224,9 +223,8 @@ ActiveRecord::Schema.define(version: 20160731072129) do
   add_foreign_key "project_reward_backers", "users"
   add_foreign_key "project_rewards", "projects"
   add_foreign_key "project_updates", "projects"
-  add_foreign_key "projects", "project_categories"
+  add_foreign_key "projects", "project_proposals"
   add_foreign_key "projects", "project_statuses"
-  add_foreign_key "projects", "project_types"
   add_foreign_key "projects", "users"
   add_foreign_key "user_expertises", "users"
   add_foreign_key "user_shipping_addresses", "users"
