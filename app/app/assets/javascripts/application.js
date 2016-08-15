@@ -9,6 +9,8 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
+// require bxslider.js 
+// require jquery.bxslider.min.js
 //
 //= require jquery/dist/jquery.js
 //= require jquery.easing

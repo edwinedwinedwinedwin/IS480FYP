@@ -212,3 +212,7 @@ $(function() {
 		});
 	});
 });
+/* for bxslider
+$(document).ready(function(){
+  $('.bxslider').bxSlider();
+});*/
