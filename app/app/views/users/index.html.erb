@@ -4,8 +4,10 @@
 <%= javascript_include_tag "application"%>
 
 <p id="notice"><%= notice %></p>
-
+<br>
 <legend class="form-heading heading"><h1>Manage Users</h1></legend><br>
+
+<%= link_to '< BACK', {:controller => "admins", :action => "index" }, class: "back--button" %>
 
 <table class="table-show">
   <thead>
@@ -13,7 +15,7 @@
     <th class="th-row">Email</th>
     <th class="th-row">First name</th>
     <th class="th-row">Last name</th>
-    <th class="th-row">Bio</th>
+    <th class="th-row">Personal Website</th>
     <th class="th-row">Facebook</th>
     <th class="th-row">Instagram</th>
     <th class="th-row">Twitter</th>
@@ -73,4 +75,4 @@
   </tbody>
 </table>
 <br>
-<%= link_to 'Back', {:controller => "admins", :action => "index" }, class: "button222" %>
+

@@ -276,7 +276,6 @@ button, input, textarea {
   vertical-align: baseline; }
 
 .table-show {
-  border: 1px solid black;
   border-collapse: collapsed;
   border-spacing: 30;
   width: 100%;
@@ -812,6 +811,39 @@ strong,
           transform-origin: center center;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden; }
+
+          .back--button {
+
+            margin-left: 2em;
+          }
+
+.button--stroke--long--add{
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  color: #000000;
+  font-size: 1.25rem;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  line-height: 1;
+  padding: 1.375rem 2.3125rem;
+  border: 2px solid #000000;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -webkit-transform-origin: center center;
+      -ms-transform-origin: center center;
+          transform-origin: center center;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+          font-size: 1em;
+    vertical-align: top;
+    transition: none;
+    -webkit-transform: translateY(1px) translateZ(0) scale(0.9875);
+            transform: translateY(1px) translateZ(0) scale(0.9875);
+    opacity: 1;
+}
   .button .icon, .button--center .icon, .button--link .icon, .button--fill .icon, .button--fill--black .icon, .button--scroll .icon, .button--scroll-down .icon, .button--scroll-up .icon, .button--stroke .icon, .button--stroke--long .icon, .button--stroke--full .icon, .project-content__load-more .icon, .project-explore__load-more .icon, .footer-cta__button .icon, .edit-save-button .icon, #project-title-save .icon, .button--inspiration .icon {
     font-size: 1em;
     vertical-align: top; }
