@@ -7,6 +7,10 @@
   <%= render "project_inspirations/inspirations", :all_inspiration =>  @project_inspirations, :project => @project%>
 </section>
 
+<section class="project-content-section" id="updates">
+  <%= render "project_updates/updates", :all_updates =>  @project_updates, :project => @project %>
+</section>
+
 <section class="project-content-section" id="team">
   <%= render "project_members/member", :all_members =>  @project_members, :project => @project %>
 </section>

@@ -8,7 +8,7 @@
   </div>
 
   <ul class="fuel-rewards">
-    <% ProjectReward.all.each do |pRewards| %>
+    <% all_rewards.each do |pRewards| %>
         <li class="fuel-reward js-lightbox-open" data-content-container="#fuel-lightbox-content-<%= pRewards.id %>">
           <header class="fuel-reward-header">
             <span class="fuel-reward__price">$<%= pRewards.min_amount %></span>
@@ -53,7 +53,7 @@
   </div>
 </div>
 
-<% ProjectReward.all.each do |pRewards| %>
+<% all_rewards.each do |pRewards| %>
     <div class="l--hidden" id="fuel-lightbox-content-<%= pRewards.id %>">
       <div class="fuel-lightbox-container">
         <span class="fuel-lightbox__heading">You selected:</span>

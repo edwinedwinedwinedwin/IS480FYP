@@ -1,0 +1,41 @@
+<section class="project-content-section" id="updates">
+  <div class="wrap" style="position: relative;">
+  <h2 class="section-heading heading--small">Updates</h2>
+  <p>  <%= link_to 'Add Update', {:controller => "project_updates", :action => "new", :project_id => project.id}, class: "button--stroke--long" %></p>
+  <ul class="update-icons">
+    <li class="selected">
+      <i class="icon icon--updates-grid"></i>
+    </li>
+
+    <li>
+      <i class="icon icon--updates-list"></i>
+      </li>
+    </ul>
+  </div>
+<% if !all_updates.blank? %>
+  <div class="cards grid-container">
+    <div class="grid-50">
+    <% all_updates.each do |pUpdate| %>
+      <section href="" class="card">
+        <header class="card-header">
+          <div class="card-meta">
+            <span class="card-meta__new">New</span>
+            <span class="card-meta__date">Today 3:32</span>
+          </div>
+
+          <h3 class="card-header__title">
+               <% pUpdate.title %>
+          </h3>
+        </header>
+
+        <div class="card-content">
+          <p><% pUpdate.description %></p>
+        </div>
+      </section>
+    </div>
+
+   <% end %>
+  </div>
+<% end %>
+  <a href="#" class="project-content__load-more">Load More</a>
+</section>
