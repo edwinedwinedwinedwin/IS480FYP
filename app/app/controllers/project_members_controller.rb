@@ -60,8 +60,7 @@
 
     private
     def project_members_params
-      params.require(:project_member).permit(:user_id, :second_role,:role,:description,:project_id,:project_status_id)
-      params.permit(:project_member).permit(:email)
+      params.require(:project_member).permit(:email,:user_id, :second_role,:role,:description,:project_id,:project_status_id)      
     end
 
   end
