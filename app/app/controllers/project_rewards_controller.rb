@@ -2,6 +2,7 @@ class ProjectRewardsController < ApplicationController
   before_filter :logged_in,:authorize_user
   def index
     @projectRewards=ProjectReward.all
+
   end
 
   def show
@@ -19,8 +20,10 @@ class ProjectRewardsController < ApplicationController
 
   def create
     @project_reward=ProjectReward.new(project_rewards_params)
+
+    pID = @project_reward.project_id
     if @project_reward.save
-      redirect_to  '/projects/show/' + params[:project_id].to_s  and return
+      redirect_to showProject_path(:id => @project_reward.project_id) and return
     else
       render 'new' and return
     end

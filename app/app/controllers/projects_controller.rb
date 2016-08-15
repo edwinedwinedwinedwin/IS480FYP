@@ -5,7 +5,6 @@ class ProjectsController < ApplicationController
   end
 
   def show
-
     @project = Project.find(params[:id])
 
     #About Us

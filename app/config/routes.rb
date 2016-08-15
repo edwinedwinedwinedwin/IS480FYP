@@ -84,7 +84,7 @@ Rails.application.routes.draw do
   post 'project_proposals/manage' => 'project_proposals#manage', as: :checkProposalStatus # display create proposal page
 
   post 'projects/manage' => 'projects#manage', as: :manageProjectStatus # display create proposal page
-  get 'projects/show/(:id)' => 'projects#show', as: :showProject
+  get 'projects/show/:id' => 'projects#show', as: :showProject
 
   match '/:controller/:action/(:id)', via: [:get, :post] # last route
 end

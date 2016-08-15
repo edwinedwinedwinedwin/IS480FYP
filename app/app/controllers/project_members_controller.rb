@@ -32,7 +32,7 @@
     	if error==0
         @project_member.user_id = @user.id
     		if @project_member.save
-          redirect_to :controller => 'projects', :action => 'show', :id => params[:project_id] and return
+          redirect_to showProject_path(:id => @project_member.project_id) and return
         else
           render 'new' and return  
         end    		

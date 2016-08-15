@@ -16,8 +16,8 @@ class ProjectMilestonesController < ApplicationController
 	
   def create
 	  @project_milestone = ProjectMilestone.new(project_milestones_params)
-	  if @project_milestone.save      
-		  redirect_to :controller => 'projects', :action => 'show', :id => params[:project_id] and return
+	  if @project_milestone.save
+			redirect_to showProject_path(:id => @project_milestone.project_id) and return
 		else
 		  render '/project_milestones/new' and return
 	  end

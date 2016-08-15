@@ -3,7 +3,7 @@
   <%= stylesheet_link_tag "component" %>
   <%= stylesheet_link_tag "flickity/flickity.css" %>
   <%= javascript_include_tag "application"%>
-  params[:project_id]
+<%= params[:project_id] %>
   <div class="page-section">
     <legend class="form-heading heading"> Add Project Reward </legend>
         <%= form_for(@project_reward) do |f| %>
