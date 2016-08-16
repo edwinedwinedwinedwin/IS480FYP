@@ -1,0 +1,85 @@
+<section class="project-hero" id="overview">
+  <div class="project-hero-overlay" id="project-hero-overlay"></div>
+
+  <header class="project-header" id="project-header">
+    <ul class="meta-tags">
+
+      <span class="meta-tag" id="project-category">
+					<i class="icon icon--leaf"></i>
+					<span id="project-category__text"><%= proposal_details.project_category.try(:category) %></span>
+
+					<span class="edit-button js-edit-button" id="project-category-edit" data-container="project-header">
+						<i class="icon icon--edit"></i>
+						Edit
+					</span>
+				</span>
+    </ul>
+
+    <div class="project-title">
+      <h1 class="heading--large" id="project-title">
+        <%= proposal_details.title %>
+      </h1>
+
+      <span class="edit-save-button js-edit-save-button" id="project-title-save">
+					Done
+				</span>
+
+      <span class="edit-button js-edit-button" id="project-title-edit" data-container="project-header">
+					<i class="icon icon--edit"></i>
+					Edit
+				</span>
+    </div>
+
+    <div class="profile-tag">
+
+
+    </div>
+  </header>
+
+  <div class="project-gallery" id="project-gallery">
+    <% all_imgs.each do |projectImg| %>
+    <div class="project-gallery-item" style="background-image:url(<%= projectImg.img_url%>);"></div>
+    <%end %>
+  </div>
+
+  <div class="project-gallery-overlay" id="project-gallery-overlay"></div>
+
+  <div class="project-gallery-management" id="project-gallery-management">
+    <span class="project-gallery-management__heading">Edit Covers</span>
+
+    <ul class="gallery-thumbnails" id="gallery-thumbnails">
+      <% sNo = 1 %>
+      <% all_imgs.each do |projectImg| %>
+      <li class="gallery-thumbnail js-draggable js-delete-container">
+        <div class="gallery-thumbnail-card">
+          <span class="gallery-thumbnail__index"><%= sNo %> <% sNo += 1 %></span>
+          <span class="gallery-thumbnail__type">
+							<i class="icon icon--image-file"></i>
+							Image
+						</span>
+          <%= image_tag(projectImg.img_url) %>
+
+          <div class="gallery-thumbnail-actions">
+            <i class="icon icon--reorder-horizontal js-reorder"></i>
+            <i class="icon icon--trash-can js-delete"></i>
+          </div>
+        </div>
+      </li>
+
+<% end %>
+    </ul>
+  </div>
+
+  <span class="edit-button js-edit-button" id="project-images-edit" data-container="project-gallery">
+			<i class="icon icon--edit"></i>
+			Edit Cover Images
+		</span>
+
+  <div class="project-fuel">
+    <div class="project-fuel-bar js-project-fuel-bar" data-fuel="0%">
+      <div class="project-fuel-bar__text">
+        0% fueled
+      </div>
+    </div>
+  </div>
+</section>

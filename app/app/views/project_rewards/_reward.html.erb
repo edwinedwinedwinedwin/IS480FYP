@@ -45,34 +45,4 @@
   <a href="#" class="fuel-pledge-another">Pledge Another Amount <i class="icon icon--chevron-right"></i></a>
 </section>
 
-<div class="lightbox js-lightbox">
-  <div class="js-lightbox-close lightbox-close icon icon--lightbox-close"></div>
 
-  <div class="js-lightbox-content">
-
-  </div>
-</div>
-
-<% all_rewards.each do |pRewards| %>
-    <div class="l--hidden" id="fuel-lightbox-content-<%= pRewards.id %>">
-      <div class="fuel-lightbox-container">
-        <span class="fuel-lightbox__heading">You selected:</span>
-        <span class="fuel-lightbox__value">$<%= pRewards.min_amount %></span>
-        <span class="fuel-lightbox__title"><%= pRewards.name %></span>
-
-        <p class="t--small">Feeling generous? Fuel Up! <a href="#">Increase your support.</a></p>
-
-        <div class="fuel-lightbox__description">
-          <p class="t--large"><%= pRewards.description %></p>
-          <!--<p class="t&#45;&#45;large">This package includes our filtration book to be sent to ten (10) families in need. And receive a personal thank you from us.</p>-->
-        </div>
-
-        <span class="fuel-lightbox__delivery">
-			<span class="t--strong">Estimated delivery:</span> <%= pRewards.estimated_delivery %>
-		</span>
-
-        <a href="#" class="button--fill">Continue</a>
-      </div>
-
-    </div>
-<% end %>

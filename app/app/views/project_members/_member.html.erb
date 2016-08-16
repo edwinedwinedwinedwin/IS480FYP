@@ -18,8 +18,11 @@
           <li class="project-team-member">
             <div class="project-team-member-thumbnail js-lightbox-open" data-content-container="#team-lightbox-content-<%= projectMember.id %>" >
               <%= hidden_field_tag :project_member_id, projectMember.id %>
-              <%= image_tag(projectMember.user.profile_pic, :size => "240x240",:class=> "img-circular") %>
-
+              <% if projectMember.user.profile_pic.blank? %>
+                  <%= image_tag('userprofile.jpg',:class=> "img-circular") %>
+              <% else %>
+                  <%= image_tag(projectMember.user.profile_pic,:class=> "img-circular") %>
+              <% end %>
             </div>
             <span class="project-team-member__name"><%= projectMember.user.last_name %> <%= projectMember.user.first_name %></span>
             <span class="project-team-member__position"><%= projectMember.role %></span>
@@ -31,100 +34,3 @@
   </div>
 </section>
 
-<div class="lightbox js-lightbox">
-  <div class="js-lightbox-close lightbox-close icon icon--lightbox-close"></div>
-
-  <div class="js-lightbox-content">
-
-  </div>
-</div>
-
-<div class="lightbox-overlay js-lightbox-overlay js-lightbox-close"></div>
-
-<% all_members.each do |projectMember| %>
-    <div class="l--hidden" id="team-lightbox-content-<%= projectMember.id%>">
-      <div class="team-lightbox-top">
-        <div class="grid-container">
-
-          <div class="grid-30">
-            <div class="team-lightbox-image">
-              <%= image_tag(projectMember.user.profile_pic, :size => "240x240",:class=> "img-circular") %>
-            </div>
-          </div>
-
-          <div class="grid-60 push-5">
-            <span class="team-lightbox__name"><%= projectMember.user.last_name %> <%= projectMember.user.first_name %></span>
-            <span class="team-lightbox__position"><%= projectMember.role %></span>
-
-            <ul class="meta-tags">
-              <li class="meta-tag">
-                <i class="icon icon--location-pin"></i>
-                Singapore, Republic of Singapore
-              </li>
-            </ul>
-
-            <ul class="meta-tags">
-              <li class="meta-tag">
-                <% bio = projectMember.user.bio_url %>
-
-                <%= link_to bio, :target=>"_blank" do %>
-                    <i class="icon icon--visit"></i>
-                    <%= projectMember.user.bio_url %>
-                <% end %>
-              </li>
-            </ul>
-
-            <div class="team-lightbox-social-links">
-              <%  twitter = projectMember.user.twitter_url %>
-              <%  fb = projectMember.user.fb_url %>
-              <%  instagram = projectMember.user.instagram_url %>
-              <% if !(twitter.nil? || twitter.empty?) %>
-                  <%= link_to twitter, :target=>"_blank" do %>
-                      <i class="icon icon--twitter-with-circle"></i>
-                  <% end %>
-              <% end %>
-              <% if !(instagram.nil? || instagram.empty?) %>
-                  <%= link_to instagram, :target=>"_blank" do %>
-                      <i class="icon icon--instagram-with-circle"></i>
-                  <% end %>
-              <% end %>
-              <% if !(fb.nil? || fb.empty?)  %>
-                  <%= link_to fb, :target=>"_blank" do %>
-                      <i class="icon icon--facebook-with-circle"></i>
-                  <% end %>
-              <% end %>
-            </div>
-          </div>
-        </div>
-
-        <div class="grid-container">
-          <div class="grid-30">
-            <ul class="team-lightbox-actions">
-              <li>
-                <a href="#" class="button--stroke--full">Message</a>
-              </li>
-            </ul>
-          </div>
-
-          <div class="grid-60 push-5">
-            <div class="team-lightbox-description">
-              <p class="t--large"><%= projectMember.description %></p>
-              <p>He’s a graphic design graduate who felt the lure of digital early on. An expert in web accessibility and standards-based web design, Jerry oversees all the technical aspects of our projects. You could describe Jerry as a mountain biker, road cyclist, outdoor pursuits instructor and owner of a dog called Surprise.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-<% end %>
-
-<div class="team-lightbox-expertise">
-  <span class="team-lightbox-expertise__heading">Expertise</span>
-  <ul class="meta-tags">
-    <li class="meta-tag">Environment</li>
-    <li class="meta-tag">Entrepreneurship</li>
-    <li class="meta-tag">Journalism</li>
-    <li class="meta-tag">Photography</li>
-    <li class="meta-tag">Illustration</li>
-    <li class="meta-tag endorse">Endorse an Expertise +</li>
-  </ul>
-</div>
-</div>

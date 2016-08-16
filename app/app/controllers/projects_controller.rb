@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
 
     #About Us
     @project_proposal = ProjectProposal.select("*").joins(:project).where(:projects => {:id=>params[:id]}).first
-
+    @user = User.select("*").joins(:projects).where(:projects => {:id => params[:id]}).first
     #Overview
     @project_coverImgs = ProjectProposalImg.select("*").joins(:project_proposal).where(:project_proposal_imgs => {:project_proposal_id => @project.project_proposal_id} )
 

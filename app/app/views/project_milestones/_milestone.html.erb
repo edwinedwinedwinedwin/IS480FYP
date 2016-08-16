@@ -44,29 +44,8 @@
   </div>
 </section>
 
-<div class="lightbox js-lightbox">
-  <div class="js-lightbox-close lightbox-close icon icon--lightbox-close"></div>
 
-  <div class="js-lightbox-content">
 
-  </div>
-</div>
 
-<div class="lightbox-overlay js-lightbox-overlay js-lightbox-close"></div>
-
-<% all_milestones.each do |pMilestone| %>
-    <div class="l--hidden" id="timeline-lightbox-content-<%= pMilestone.id %>">
-      <div class="fuel-lightbox-container">
-        <span class="fuel-lightbox__heading">You are viewing:</span>
-        <span class="fuel-lightbox__title"><%= pMilestone.name %> Phase</span>
-
-        <div class="fuel-lightbox__description">
-          <p class="t--large">Date to Date  </p>
-
-          <%= link_to 'Edit', {:controller => "project_milestones", :action => "edit", :id=> pMilestone.id }, class: "button--fill" %>
-        </div>
-      </div>
-    </div>
-<% end %>
 
 
