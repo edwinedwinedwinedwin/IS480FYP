@@ -17,7 +17,7 @@ class ProjectProposalsController < ApplicationController
 
   def create
     @ProjectProposal = ProjectProposal.new(params_pp)
-    @ProjectProposal.project_status_id = 1        
+    @ProjectProposal.project_status_id = 2
     img_url = params[:project_proposal][:img_url]
     if @ProjectProposal.save
       # upload project proposal images
