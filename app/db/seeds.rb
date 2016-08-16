@@ -7,8 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 #List of Admin
-User.create!(email: 'sean@ybco.com', first_name: 'Sean', last_name: 'Tan', is_admin: true, is_banned: false, password: '12345678', password_confirmation: '12345678')
-User.create!(email: 'uttam@ybco.com', first_name: 'Uttam', is_admin: true, is_banned: false, password: '12345678', password_confirmation: '12345678')
+User.create!(email: 'sean@ybco.com', first_name: 'Sean', last_name: 'Low', is_admin: true, is_banned: false, password: '12345678', password_confirmation: '12345678')
+User.create!(email: 'uttam@ybco.com', first_name: 'Uttam', last_name: 'Chopra',is_admin: true, is_banned: false, password: '12345678', password_confirmation: '12345678')
 User.create!(email: 'sky@ybco.com', first_name: 'Sky', last_name: 'Chew', is_admin: true, is_banned: false, password: '12345678', password_confirmation: '12345678')
 User.create!(email: 'luqman@ybco.com', first_name: 'Luqman', is_admin: true, is_banned: false, password: '12345678', password_confirmation: '12345678')
 User.create!(email: 'edwin@ybco.com', first_name: 'Edwin', last_name: 'Peter', is_admin: true, is_banned: false, password: '12345678', password_confirmation: '12345678')
@@ -20,6 +20,7 @@ categoryNames = ["Technology", "Education", "Arts", "Entertainment", "Water & Sa
 categoryNames.each do |c|
   ProjectCategory.create!( {:category => c})
 end
+
 
 #List of Project Status
   # In progress           (1) - For Project which information not up yet after Project Proposal is Approved
