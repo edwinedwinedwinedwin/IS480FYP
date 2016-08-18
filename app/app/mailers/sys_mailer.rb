@@ -5,8 +5,9 @@ class SysMailer < ApplicationMailer
     mail(to: @user.email, subject: '[YBCO] Welcome to Young & Bold Company')
   end
 
- def reset_password_email(user)
+ def reset_password_email(user,new_password)
    @user = user
+   @new_password=new_password
    mail(to: @user.email, subject: '[YBCO] Password Reset')
  end
 
@@ -18,5 +19,5 @@ class SysMailer < ApplicationMailer
  def reject_proposal_email(project_proposal)
    @project_proposal = project_proposal
    mail(to: @project_proposal.email, subject: '[YBCO] Proposal Proposal Result: Rejected')
- end
+ end 
 end

@@ -21,11 +21,13 @@ class ProjectProposalsController < ApplicationController
     img_url = params[:project_proposal][:img_url]
     if @ProjectProposal.save
       # upload project proposal images
-        img_url.each do |a|
-        @ProjectProposalImg = ProjectProposalImg.new(params_pp_img)
-        @ProjectProposalImg.project_proposal_id=@ProjectProposal.id
-        @ProjectProposalImg.img_url = a
-        @ProjectProposalImg.save
+        if img_url.present?
+          img_url.each do |a|
+          @ProjectProposalImg = ProjectProposalImg.new(params_pp_img)
+          @ProjectProposalImg.project_proposal_id=@ProjectProposal.id
+          @ProjectProposalImg.img_url = a
+          @ProjectProposalImg.save
+        end
       end
       redirect_to :controller=>'ProjectProposals', :action=>'success' and return
     else

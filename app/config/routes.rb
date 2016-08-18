@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   # project members routes  
   get 'project_members/index' => 'project_members#index'
   get 'project_members/new' => 'project_members#new'
-  get 'project_members/edit' => 'project_members#edit'  
+  get 'project_members/edit/:id' => 'project_members#edit'  
   post 'project_members' => 'project_members#create'  
   #get 'project_members/edit' => => 'project_members#index'
   post 'project_members/destroy/(:id)' => 'project_members#destroy' 
@@ -75,6 +75,7 @@ Rails.application.routes.draw do
   get 'admins/index' => 'admins#index'
   get 'users/changepass/:id' => 'users#changepass'
   get 'admins/index' => "admins#index"
+  post 'sessions/resetpass' => 'users#resetpass'
 
   get 'GetStarted' => 'project_proposals#new' # display create proposal page
   post 'project_proposals' => 'project_proposals#create' # process creation of proposal

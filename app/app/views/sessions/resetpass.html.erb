@@ -7,10 +7,10 @@
   <%= yield %>
 
   <div class="page-section">
-    <legend class="form-heading heading--login"> Log In </legend>
+    <legend class="form-heading heading--login"> Reset Password </legend>
             <br>
-            <strong>TIP: </strong>Login with your registered email and password.      
-      <%= form_tag('/sessions/create') do |f| %>    
+            <strong>TIP: </strong>Enter the email you registered with.
+      <%= form_for :user,controller:'users',action:'resetpass',method: :post do |f| %>  
           <% if flash[:alert] %>
               <div class="alert alert-danger" role="alert">
                 <b><u>Errors:</u></b>
@@ -24,25 +24,17 @@
             <%= text_field_tag :email, nil,class: "form-input" %>
             <label class="form-label" for="email">Email</label>
           </div>
-          </p>
-
-          <p>
-          <div class="form-field">
-            <%= password_field_tag :password,nil, class: "form-input" %>
-            <label class="form-label" for="password">Password</label>
-          </div>
-          </p>
+          </p>         
 
           <p>
           <div class="form-actions">
-            <%= submit_tag "LOGIN", class: "button--stroke--long" %>
+            <%= submit_tag "RESET", class: "button--stroke--long" %>
           </div>
           </p>
 
           <p>
             <div class="form-actions">
-              Need an account? <%= link_to "Sign Up", controller: "users", action: "new", class: "button--stroke--long" %><br>
-              Forget your password? <%= link_to "Reset Password", '/sessions/resetpass' %>
+              <%= link_to "Back", controller: "sessions", action: "new", class: "button--stroke--long" %><br>              
             </div>
           </p>
       <% end %>

@@ -33,7 +33,7 @@
         <td class="td-row"><%= p.description %></td>
         <td class="td-row"><%= p.project_status.try(:status) %></td>
         <td class="td-row">
-        <p><% if p.project_status_id == 1 %>
+        <p><% if p.project_status_id == 2 %>
                   <%= link_to approveProposal_path(:id => p.id), :class=>"btn btn-success" do %>
                   Accept
                   <% end %>

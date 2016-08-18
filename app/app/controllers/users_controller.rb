@@ -9,6 +9,20 @@ class UsersController < ApplicationController
     # only able to change own account password        
   end
 
+  def resetpass    
+    @user = User.find_by_email(params[:email])
+    if @user.nil?
+      flash[:alert]='You have entered an invalid email.'
+      redirect_to '/sessions/resetpass'
+    else
+      new_password=Array.new(8){[*'0'..'9', *'a'..'z', *'A'..'Z'].sample}.join # generate random password
+      new_password_digest=BCrypt::Password.create(new_password, :cost => 11) # generate password digest
+      User.update(@user.id,:password_digest=>new_password_digest)
+      SysMailer.reset_password_email(@user,new_password).deliver            
+      redirect_to '/sessions/new'
+    end    
+  end
+
   def index
     @users = User.all
   end
@@ -29,12 +43,12 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])    
-    if @user.update(user_params)
-      if @user.is_admin
-        redirect_to :controller => 'admins', :action => 'index' and return
-      else
-        redirect_to :controller => 'dashboards', :action => 'index' and return
-      end
+    if @user.update(user_params)      
+        if @user.is_admin
+          redirect_to :controller => 'admins', :action => 'index' and return
+        else
+          redirect_to :controller => 'dashboards', :action => 'index' and return
+        end      
     else      
         render Rails.application.routes.recognize_path(request.referer)[:action] #renders previous get request
     end
