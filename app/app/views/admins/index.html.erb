@@ -1,97 +1,29 @@
-
-
 <%= stylesheet_link_tag "userpage" %>
 <%= stylesheet_link_tag "style" %>
 <%= stylesheet_link_tag "component" %>
 <%= stylesheet_link_tag "flickity/flickity.css" %>
 <%= javascript_include_tag "application"%>
 
-<body class="home">
-    <div class="container-fluid display-table">
-        <div class="row display-table-row">
-            <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box" id="navigation">
-                <div class="logo">
-                    <i class="icon icon--ybco-lockup visible-xs visible-sm circle-logo" style="font-size:6rem"></i>
-                </div>
-                <div class="navi">
-                    <ul>
-                        <%= link_to "Edit Profile", controller: "users", action: "edit", id: session[:user_id] %>
-                        <%= link_to "Change Password", controller: "users", action: "changepass", id: session[:user_id] %>
-                        <%= link_to "Manage Admins", controller: "admins", action: "manage" %>
-                        <%= link_to "Manage Users", controller: "users", action: "index" %>
-                        <%= link_to "Manage Project Proposals", controller: "project_proposals", action: "index" %>
-                        <%= link_to "View Statistics(X)", controller: "admins", action: "index" %>
-                        <%= link_to "Manage Projects(X)", controller: "admins", action: "index" %>
+<%= render "layouts/headerAdmin" %>
+<%= yield %>
 
-                    </ul>
-                </div>
-                <li class="action-btn"><%= link_to "Logout", controller: "sessions", action: "destroy" %></li>
-            </div>
+<!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+<div id="main">
+    <!-- Use any element to open the sidenav -->
+    <div>
+        <span class="nav--open" onclick="openNav()"><i class="icon icon--menu"></i>&nbsp;&nbsp;&nbsp;<%= link_to '', root_path , class: "icon icon--color icon--ybco-logomark" %></span>
+    </div>
 
-            
-            <div class="user-dashboard">
-                                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-6 toppad" >
-
-                <div class="row">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
-                              <h3 class="panel-title"><strong>Welcome, <%= @current_user.first_name.capitalize %></strong></h3>
-                            </div>
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-md-3 col-lg-12" align="left"> <!--img alt="User Pic" src="/assets/userprofile.jpg" class="img-circle img-responsive"> </div-->
-                                    
-                                    <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
-                                      <dl>
-                                        <dt>DEPARTMENT:</dt>
-                                        <dd>Administrator</dd>
-                                        <dt>HIRE DATE</dt>
-                                        <dd>11/12/2013</dd>
-                                        <dt>DATE OF BIRTH</dt>
-                                           <dd>11/12/2013</dd>
-                                        <dt>GENDER</dt>
-                                        <dd>Male</dd>
-                                      </dl>
-                                    </div>-->
-
-                                          <table class="table table-user-information">
-                                            <tbody>
-                                              <tr align="right">
-                                                <td><strong>Home Address</strong></td>
-                                                
-                                                <td><%#= @current_user.address%></td>
-                                              </tr>
-                                              <tr>
-                                                <td><strong>Email</strong></td>
-                                                
-                                                <td>
-                                                <%= mail_to @current_user.email, @current_user.email %>
-                                                </td>
-                                              
-                                             
-                                            </tbody>
-                                          </table>
-                                          
-                                          <!--a href="#" class="btn btn-primary">My Sales Performance</a>
-                                          <a href="#" class="btn btn-primary">Team Sales Performance</a-->
-                                        
-                                    </div>
-                                </div>
-
-                                <!--div class="panel-footer">
-                                    <a type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
-                                        <a href="edit.html" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
-                                        <a type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>  
-                                </div-->
-                        </div>
-                    </div>
-                </div>
-            </div>  
-            
-
-            </div>
+    <legend class="dash-heading heading--admin--dash">
+        Welcome, <%= @current_user.first_name.capitalize %>
+    </legend>
+    <br/>
+    <div class="row">
+        <div class="col-sm-6">
+            <%= image_tag("Picture1.png") %>
+        </div>
+        <div class="col-sm-6">
+            <%= image_tag("Picture2.png") %>
         </div>
     </div>
-</body>
-<br/>
-<br/>
+</div>
