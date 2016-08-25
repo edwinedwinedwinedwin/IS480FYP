@@ -8,10 +8,12 @@ $(function() {
 
 	// Site Menu
 	var $siteMenu = $('#site-menu'),
+	$pageHeader = $('#page-header'),
 		$menuToggleButtons = $('.js-site-menu-toggle');
 
 	$menuToggleButtons.on('click', function() {
 		$siteMenu.toggleClass('enabled');
+		$pageHeader.toggleClass('enabled');
 	});
 
 	// scrollTo Buttons
@@ -92,6 +94,7 @@ $(function() {
 				var _filter = '[href=' + target + ']';
 
 				$siteMenu.removeClass('enabled');
+				$pageHeader.removeClass('enabled');
 
 				$projectNavigationLinks
 					.parents('li')
