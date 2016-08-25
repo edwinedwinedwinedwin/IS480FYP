@@ -89,13 +89,13 @@ Rails.application.configure do
       :enable_starttls_auto => true
   }
   # Carrierwave-Fog settings for S3 Upload  
-  config.fog_credentials = {
+ config.fog_credentials = {
       :provider               => 'AWS',
-      :aws_access_key_id      => "AKIAJTLNEP6IBMKQDKFQ",
-      :aws_secret_access_key  => "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",
+      :aws_access_key_id      => "AKIAIQNXC56XKQD6X4KQ",
+      :aws_secret_access_key  => "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",
       :region                 => 'ap-southeast-1' # Change this for different AWS region. Default is 'us-east-1'      
       #:path_style => true
   }
-  config.fog_directory  = 'ybcouploads'  
+  config.fog_directory  = 'ybcoupload'  
 
 end
