@@ -13,8 +13,8 @@
                 </div>
                 <div class="navi">
                     <ul>
-                        <%= link_to "Edit Profile", controller: "users", action: "edit", id: session[:user_id] %>
-                        <%= link_to "Change Password", controller: "users", action: "changepass", id: session[:user_id] %>
+                        <%= link_to "Edit Profile", '/editprofile' %>
+                        <%= link_to "Change Password", '/changepass' %>
                         <%= link_to "Create a Project", controller: "project_proposals", action: "new" %>
                         
                         <%= link_to "Check Proposal Status", checkProposalStatus_path(:email => @current_user.email), method: "post" %>

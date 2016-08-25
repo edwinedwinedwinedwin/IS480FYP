@@ -107,8 +107,8 @@ function closeNav() {
 
         <nav class="site-menu-block site-navigation">
             <ul class="site-navigation-list">
-                <li><%= link_to "Edit Profile", controller: "users", action: "edit", id: session[:user_id] %></li>
-                <li><%= link_to "Change Password", controller: "users", action: "changepass", id: session[:user_id] %></li>
+                <li><%= link_to "Edit Profile", 'editprofile' %></li>
+                <li><%= link_to "Change Password", 'changepass' %></li>
                 <li><%= link_to "Manage Admins", controller: "admins", action: "manage" %></li>
                 <li><%= link_to "Manage Users", controller: "users", action: "index" %></li>
                 <li><%= link_to "Manage Project Proposals", controller: "project_proposals", action: "index" %></li>

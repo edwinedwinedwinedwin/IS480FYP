@@ -68,12 +68,14 @@ Rails.application.routes.draw do
   get 'pages/comrules' => 'pages#comrules' # display com rules
   get 'pages/term' => 'pages#term' # display terms
   get 'login' => 'sessions#new'# show login form  
-  get 'users/edit/:id' => 'users#edit'
+  get 'editprofile' => 'users#edit#:id'
+  get 'admins/editprofile' => 'users#edit#:id'
   post 'sessions/create' => 'sessions#create' # process login
   get 'sessions/destroy' => 'sessions#destroy' # log out and invalidate session
   get 'dashboard/index' => 'dashboards#index' # Display page upon successful login
   get 'admins/index' => 'admins#index'
-  get 'users/changepass/:id' => 'users#changepass'
+  get 'changepass' => 'users#changepass#:id'
+  get 'admins/changepass' => 'users#changepass#:id'
   get 'admins/index' => "admins#index"
   post 'sessions/resetpass' => 'users#resetpass'
 
