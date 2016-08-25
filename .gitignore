@@ -38,3 +38,7 @@ app/.idea/app.iml
 app/.idea/workspace.xml
 app/log/development.log
 app/db/schema.rb
+app/config/environments/development.rb
+app/config/initializers/s3.rb
+app/config/initializers/aws.rb
+app/config/environments/production.rb
