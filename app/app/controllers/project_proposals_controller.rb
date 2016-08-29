@@ -18,7 +18,7 @@ class ProjectProposalsController < ApplicationController
   def create
     @ProjectProposal = ProjectProposal.new(params_pp)
     @ProjectProposal.project_status_id = 2
-    img_url = params[:project_proposal][:img_url]
+    img_url = params[:project_proposal][:img_url]    
     if @ProjectProposal.save
       # upload project proposal images
         if img_url.present?
@@ -29,6 +29,7 @@ class ProjectProposalsController < ApplicationController
           @ProjectProposalImg.save
         end
       end
+      SysMailer.new_proposal_email(@ProjectProposal).deliver
       redirect_to :controller=>'ProjectProposals', :action=>'success' and return
     else
       render 'new' and return
@@ -44,33 +45,42 @@ class ProjectProposalsController < ApplicationController
     @ProjectProposal.project_status_id = 3
     @ProjectProposal.save
 
-    #Project will create
+    # Project Proposal will be added to Projects table
     @user = User.find_by_email(@ProjectProposal.email)
+      
+    @new_password=Array.new(8){[*'0'..'9', *'a'..'z', *'A'..'Z'].sample}.join # generate random password
+
+    # Automatically create account for user who submitted project proposal if user not registered
+    if !@user.blank?            
+      SysMailer.accept_proposal_email(@ProjectProposal).deliver    
+    else          
+      #@new_password_digest=BCrypt::Password.create(@new_password, :cost => 11) # generate password digest      
+      @user=User.new
+      @user.first_name=@ProjectProposal.first_name
+      @user.last_name=@ProjectProposal.last_name
+      @user.email=@ProjectProposal.email
+      @user.password=@new_password      
+      @user.password_confirmation=@new_password
+      @user.save
+      #Send acceptance email to user who sign up containing new account password
+      SysMailer.accept_new_proposal_email(@new_password,@ProjectProposal).deliver  
+    end
+
     @project = Project.new
     @project.project_status_id = 1
     @project.project_proposal_id = @ProjectProposal.id
-    if (!@user.blank?)
-     @project.user_id = @user.id
-    end
+    @project.user_id = @user.id
     @project.save
 
-    #Project Creator will create
+    # Project Founder will be assigned to person who submitted project proposal
     @ProjectMember = ProjectMember.new
     @ProjectMember.role = 'Founder'
     @ProjectMember.second_role = 'Creator'
     @ProjectMember.project_id = @project.id
     @ProjectMember.project_status_id = 3
+    @ProjectMember.user_id = @user.id    
+    @ProjectMember.save    
 
-    if (!@user.blank?)
-      @ProjectMember.user_id = @user.id
-    end
-    @ProjectMember.save
-
-    Rails.logger.info(@ProjectMember.errors.inspect)
-
-
-    #Send email to user who sign up
-    SysMailer.accept_proposal_email(@ProjectProposal).deliver
     redirect_to :controller => 'ProjectProposals', :action => 'index'    
   end
 
@@ -86,7 +96,7 @@ class ProjectProposalsController < ApplicationController
 
   private
   def params_pp
-    params.require(:project_proposal).permit(:title, :description, :project_category_id,:project_type_id,:name, :email, :contact_number)
+    params.require(:project_proposal).permit(:title, :description, :project_category_id,:first_name,:last_name, :email, :contact_number)
   end
 
   def params_pp_img

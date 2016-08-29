@@ -43,7 +43,7 @@
         <div class="grid-container wrap">
           <div class="grid-65 form-progress-information">
             <span class="form-progress__title">Project Proposal</span>
-            <span class="form-progress__section">1 / 4</span>
+            <span class="form-progress__section">1 / 3</span>
             <span class="form-progress__description">Basic Info</span>
           </div>
         </div>
@@ -72,52 +72,11 @@
         <div class="grid-container wrap">
           <div class="grid-65 form-progress-information">
             <span class="form-progress__title">Project Proposal</span>
-            <span class="form-progress__section">2 / 4</span>
+            <span class="form-progress__section">2 / 3</span>
             <span class="form-progress__description">Project Description</span>
           </div>
         </div>
       </div>
-
-      <!-- Project Fundraise or Crowdsource Idea -->
-      <br/>
-
-      <fieldset>
-        <div class="form-field">
-          <p>Would you like to:</p>
-          
-          <%= f.radio_button :project_type_id,'1',:id=>"radio-fundraise"%>          
-          <%= f.label :project_type_1, :class=>"form-input--radio", :for=>"radio-fundraise" do %>
-            Fundraise for an idea
-            <i class="icon icon--tick"></i>
-          <% end %>
-
-          <p>or</p>
-
-          <%= f.radio_button :project_type_id,'2',:id=>"radio-crowdsource" %>  
-          <%= f.label :project_type_2, :class=>"form-input--radio", :for=>"radio-crowdsource" do %>
-            Crowdsource my idea<br>for feedback
-            <i class="icon icon--tick"></i>
-          <% end %>
-          
-
-          <p class="t--small form-footnote">
-            <strong>TIP:</strong> You can always change this before publishing your project.
-            <br>
-            Once it is live, there is no changing back.
-          </p>
-        </div>
-      </fieldset>
-
-      <div class="form-progress">
-        <div class="grid-container wrap">
-          <div class="grid-65 form-progress-information">
-            <span class="form-progress__title">Project Proposal</span>
-            <span class="form-progress__section">3 / 4</span>
-            <span class="form-progress__description">Crowdfund?</span>
-          </div>
-        </div>
-      </div>
-
 
       <!-- Personal contact information -->
       <br/>
@@ -128,12 +87,24 @@
       <p>We'll contact you soon :)</p>
         <div class="form-field">
 
-        <%= f.text_field(:name, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"Name") %>
+        <%= f.text_field(:first_name, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"First Name") %>
+        <%= f.text_field(:last_name, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"Last Name") %>
         <%= f.text_field(:email, rows: "1", :class=>"form-input form-textarea",:placeholder=>"Email") %>
         <%= f.text_field(:contact_number,rows: "1", :class=>"form-input form-textarea",:placeholder=>"Contact Number") %>
       </div>
 
       </fieldset>
+        
+      <div class="form-progress">
+        <div class="grid-container wrap">
+          <div class="grid-65 form-progress-information">
+            <span class="form-progress__title">Project Proposal</span>
+            <span class="form-progress__section">3 / 3</span>
+            <span class="form-progress__description">Contact Details</span>
+          </div>
+        </div>
+      </div>
+
       <div class="form-actions">
         <%= f.submit "Submit Project Proposal", class: "button--fill--black button--full" %>
       </div>

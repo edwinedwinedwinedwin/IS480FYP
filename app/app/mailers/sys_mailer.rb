@@ -11,13 +11,24 @@ class SysMailer < ApplicationMailer
    mail(to: @user.email, subject: '[YBCO] Password Reset')
  end
 
+ def new_proposal_email(project_proposal)
+   @project_proposal = project_proposal
+   mail(to: @project_proposal.email, subject: '[YBCO] Project Proposal Submission')
+ end
+
  def accept_proposal_email(project_proposal)
    @project_proposal = project_proposal
-   mail(to: @project_proposal.email, subject: '[YBCO] Proposal Proposal Result: Approved')
+   mail(to: @project_proposal.email, subject: '[YBCO] Project Proposal Result: Approved')
+ end
+
+ def accept_new_proposal_email(password,project_proposal)
+   @project_proposal = project_proposal
+   @new_password=password
+   mail(to: @project_proposal.email, subject: '[YBCO] Project Proposal Approved & Account Created')
  end
 
  def reject_proposal_email(project_proposal)
    @project_proposal = project_proposal
-   mail(to: @project_proposal.email, subject: '[YBCO] Proposal Proposal Result: Rejected')
+   mail(to: @project_proposal.email, subject: '[YBCO] Project Proposal Result: Rejected')
  end 
 end

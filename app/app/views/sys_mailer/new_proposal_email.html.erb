@@ -6,14 +6,13 @@
 <body>
 <h1>Dear <%= @project_proposal.first_name+" "+@project_proposal.last_name %></h1>,
 <p>
-  The YBCO Team has reviewed your project and we are very pleased to inform you that your project called <%= @project_proposal.title %> has been <b>approved</b>.
+The YBCO Team has received your project proposal and we are in the midst of reviewing your proposal called <%= @project_proposal.title %>.
   <br/>  
   <br/>
-  To begin, please log in <a href='https://ybcosg.herokuapp.com/login'>here</a> using <%= @project_proposal.email %> to start editing your project.
-  <br/>
+  An account will be created automatically using <%= @project_proposal.email %> upon project acceptance.
+  <br/>  
   <br/>
   We look forward to seeing your project go live!
-
   <br/>
   <br/>
   <img src="https://s3-ap-southeast-1.amazonaws.com/ybco-images/ybco_emailer_footer.jpg"/>

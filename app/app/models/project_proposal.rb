@@ -5,9 +5,9 @@ class ProjectProposal < ActiveRecord::Base
   belongs_to :project_type  
   has_one :project
 
-  validates :title, :description, :name, :email, :contact_number, :presence => true, :on => :create
+  validates :title, :description, :first_name, :last_name, :email, :contact_number, :presence => true, :on => :create
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
-  validates :contact_number, numericality:{ message: "must be numeric."}  
-  validates :project_type_id, presence: { message: "must either be fundraise or crowdsource."}
+  validates :contact_number, numericality:{ message: "must be numeric."}    
+  #validates :project_type_id, presence: { message: "must either be fundraise or crowdsource."}
 
 end
