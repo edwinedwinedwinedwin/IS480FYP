@@ -15,6 +15,11 @@ pickle-email-*.html
 # TODO Comment out these rules if you are OK with secrets being uploaded to the repo
 config/initializers/secret_token.rb
 config/secrets.yml
+config/environments/development.rb
+config/initializers/s3.rb
+config/initializers/aws.rb
+config/environments/production.rb
+config/testing.txt
 
 ## Environment normalization:
 /.bundle
@@ -38,7 +43,4 @@ app/.idea/app.iml
 app/.idea/workspace.xml
 app/log/development.log
 app/db/schema.rb
-app/config/environments/development.rb
-app/config/initializers/s3.rb
-app/config/initializers/aws.rb
-app/config/environments/production.rb
+app/config/testing.txt
