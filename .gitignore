@@ -46,3 +46,10 @@ app/config/environments/development.rb
 app/config/environments/production.rb
 app/config/initializers/s3.rb
 app/config/initializers/aws.rb
+app/config/environments/development.rb
+
+app/config/environments/production.rb
+
+app/config/initializers/aws.rb
+
+app/config/initializers/s3.rb
