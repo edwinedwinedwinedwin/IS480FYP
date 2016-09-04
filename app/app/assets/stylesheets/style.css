@@ -278,11 +278,13 @@ button, input, textarea {
 .table-show {
   border-collapse: collapsed;
   border-spacing: 30;
-  width: 100%;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .tr-row {
-  
+  border-bottom: 1px solid #ddd;
 }
 
 .alert-design {
@@ -299,16 +301,15 @@ button, input, textarea {
 .th-row {
   height: 50px;
   text-align: left;
-  padding: 15px;
-  background-color: #00C6FF;
-  color: white;
+  padding: 12px;
+  background-color: #FFFFFF;
+  color: black;
+  border-bottom: 3px solid #000000;
 }
 
 .td-row {
   padding: 15px;
 }
-
-.tr-row:nth-child(even) {background-color: #f2f2f2}
 
 h7 {
   position: absolute;
@@ -1649,6 +1650,12 @@ strong,
 
 .form-heading {
   color: #9fd86c;
+  margin-bottom: 1rem; 
+  margin: auto;
+}
+
+.form-heading--tables {
+  color: #000000;
   margin-bottom: 1rem; 
   margin: auto;
 }
