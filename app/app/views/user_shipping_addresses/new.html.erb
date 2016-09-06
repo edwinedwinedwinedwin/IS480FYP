@@ -32,9 +32,10 @@
           </div>
           
           <div class="form-field">
-            <%= f.text_field :country, class: "form-input", placeholder: "Country"  %>
+            <%= f.text_field :country, class: "form-input", placeholder: "Country" %>
+            <%# f.select :country, ['hello','bye'], :class=>"form-input" %>
             <label class="form-label" for="country">Country</label>
-          </div>
+          </div>          
 
           <div class="form-field">
             <%= f.text_field :city, class: "form-input", placeholder: "City" %>

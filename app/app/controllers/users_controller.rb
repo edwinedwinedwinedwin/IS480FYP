@@ -72,7 +72,9 @@ class UsersController < ApplicationController
       else
           #Send email to user who sign up
           SysMailer.welcome_email(@user).deliver                
-          redirect_to "/login"
+          # redirect to edit profile
+          session[:user_id]=@user.id
+          redirect_to "/editprofile"
       end
     else
       if @user.is_admin

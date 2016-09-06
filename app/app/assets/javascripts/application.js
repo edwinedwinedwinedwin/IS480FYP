@@ -25,5 +25,5 @@
 //= require flickity/flickity.pkgd.js
 //= require jquery_ujs
 //= require bootstrap
-//= require bootstrap-sprockets
+//= require bootstrap-sprockets 
 //= require_tree .
