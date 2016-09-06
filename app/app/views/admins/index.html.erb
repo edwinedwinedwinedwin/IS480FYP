@@ -8,22 +8,113 @@
 <%= yield %>
 
 <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
-<div id="main">
-    <!-- Use any element to open the sidenav -->
-    <div>
+
+<div class="container-fluid">
+    <di class="row">
         <span class="nav--open" onclick="openNav()"><i class="icon icon--menu"></i>&nbsp;&nbsp;&nbsp;<%= link_to '', root_path , class: "icon icon--color icon--ybco-logomark" %></span>
     </div>
-
-    <legend class="dash-heading heading--admin--dash">
-        Welcome, <%= @current_user.first_name.capitalize %>
-    </legend>
-    <br/>
     <div class="row">
-        <div class="col-sm-6">
-            <%= image_tag("Picture1.png") %>
-        </div>
-        <div class="col-sm-6">
-            <%= image_tag("Picture2.png") %>
+        <div class="col-sm-12 custom-page-header">
+            Dashboard <small>statistics overview</small>
         </div>
     </div>
-</div>
+    <div class="row">
+        <div class="col-sm-12 breadcrumbs-custom">
+            <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li class="active">
+                    <span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span> Dashboard
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="col-sm-3">
+                <div class="admin-dashboard-content">
+                    <div class="display">
+                        <div class="float-left">
+                            <div class="admin-dashboard-header-value-profit">787,976</div>
+                            <div class="admin-dashboard-header">TOTAL PROFIT</div>
+                        </div>
+                        <div class="float-right">
+                            <span class="glyphicon glyphicon-usd" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class="display-stats">
+                        <div class="progress">
+                          <div class="progress-bar progress-bar-profit" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                          </div>
+                        </div>
+                        <div class="progress-bar-info-custom-left">PROGRESS</div>
+                        <div class="progress-bar-info-custom-right">100%</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="admin-dashboard-content">
+                    <div class="display">
+                        <div class="float-left">
+                            <div class="admin-dashboard-header-value-projects">101</div>
+                            <div class="admin-dashboard-header">TOTAL PROJECTS</div>
+                        </div>
+                        <div class="float-right">
+                            <span class="glyphicon glyphicon-blackboard" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class="display-stats">
+                        <div class="progress">
+                          <div class="progress-bar progress-bar-projects" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                          </div>
+                        </div>
+                        <div class="progress-bar-info-custom-left">PROGRESS</div>
+                        <div class="progress-bar-info-custom-right">70%</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="admin-dashboard-content">
+                    <div class="display">
+                        <div class="float-left">
+                            <div class="admin-dashboard-header-value-completed">15</div>
+                            <div class="admin-dashboard-header">TOTAL COMPLETED PROJECTS</div> 
+                        </div>
+                        <div class="float-right">
+                            <span class="glyphicon glyphicon-education" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class="display-stats">
+                        <div class="progress">
+                          <div class="progress-bar progress-bar-completed" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                          </div>
+                        </div>
+                        <div class="progress-bar-info-custom-left">PROGRESS</div>
+                        <div class="progress-bar-info-custom-right">30%</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="admin-dashboard-content">
+                    <div class="display">
+                        <div class="float-left">
+                            <div class="admin-dashboard-header-value-users">1749</div>
+                            <div class="admin-dashboard-header">TOTAL NUMBER OF USERS</div>
+                        </div>
+                        <div class="float-right">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class="display-stats">
+                        <div class="progress">
+                          <div class="progress-bar progress-bar-users" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                          </div>
+                        </div>  
+                        <div class="progress-bar-info-custom-left">PROGRESS</div>
+                        <div class="progress-bar-info-custom-right">60%</div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>   
