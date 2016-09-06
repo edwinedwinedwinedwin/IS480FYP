@@ -4,9 +4,11 @@
   <%= javascript_include_tag "application"%>
 <p id="notice"><%= notice %></p>
 
-
-<legend class="form-heading heading"><h1>Project Members</h1></legend>
-
+<br>
+<legend class="form-heading--tables heading"><h1>Project Members</h1></legend>
+<br>
+<%= link_to '< BACK', {:controller => "dashboards", :action => "index" }, class: "back--button" %>
+<br>
 <table class="table-show">
   <thead>
     <tr class="tr-row">      
@@ -40,9 +42,7 @@
     <% end %>
   </tbody>
 </table>
+<br>
+<br>
+<%= link_to 'Add Project Member', {:controller => "project_members", :action => "new" }, class: "button--stroke--long--add" %><br>
 
-<%= link_to 'Add Project Member', {:controller => "project_members", :action => "new" } %><br>
-<!-- Link back to projects-->
-<%= link_to 'Back', {:controller => "dashboards", :action => "index" } %>
-<%# link_to 'Back', {:controller => "projects", :action => "show", :id=>session[:project_id]} %>
-<!-- :id will eventually be project_id instead of 1-->
