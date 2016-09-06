@@ -7,8 +7,7 @@
 <br>
 <legend class="form-heading--tables heading"><h1>Manage User's Shipping Addresses</h1></legend>
 
-<%= link_to 'Add Shipping Address', {:controller => "user_shipping_addresses", :action => "new"},class: "back--button"  %><br/>
-<%= link_to 'Back', {:controller => "admins", :action => "index", :id=>1 },class: "back--button" %>
+<%= link_to '< BACK', {:controller => "admins", :action => "index", :id=>1 },class: "back--button" %>
 <table class="table-show">
   <thead>
     <tr class="tr-row">      
@@ -37,3 +36,6 @@
       <% end %> 
   </tbody>
 </table>
+
+<br><br>
+<%= link_to 'Add Shipping Address', {:controller => "user_shipping_addresses", :action => "new"},class: "button--stroke--long--add"  %><br/>
