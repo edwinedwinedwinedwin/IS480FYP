@@ -31,8 +31,8 @@ Rails.application.routes.draw do
 
   # user shipping addresses routes
   get 'user_shipping_addresses/index' => 'user_shipping_addresses#index'
-  get 'user_shipping_addresses/edit' => 'user_shipping_addresses#edit'
-  get 'user_shipping_addresses/new' => 'user_shipping_addresses#new'
+  #get 'user_shipping_addresses/edit' => 'user_shipping_addresses#edit'
+  #get 'user_shipping_addresses/new' => 'user_shipping_addresses#new'
   post 'user_shipping_addresses' => 'user_shipping_addresses#create'
   post 'user_shipping_addresses/destroy/(:id)' => 'user_shipping_addresses#destroy'
 
@@ -69,6 +69,8 @@ Rails.application.routes.draw do
   get 'pages/term' => 'pages#term' # display terms
   get 'login' => 'sessions#new'# show login form  
   get 'editprofile' => 'users#edit#:id'
+  get 'manageaddress' => 'user_shipping_addresses#index#:user_id' # edit user shipping address
+  get 'newaddress' => 'user_shipping_addresses#new' # new user shipping address
   get 'admins/editprofile' => 'users#edit#:id'
   post 'sessions/create' => 'sessions#create' # process login
   get 'sessions/destroy' => 'sessions#destroy' # log out and invalidate session

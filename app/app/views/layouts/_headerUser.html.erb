@@ -48,7 +48,10 @@
             Profile
 					</li>
 					<li class="site-navigation-list--sub">
-						<%= link_to "Edit Profile", controller: "users", action: "edit", id: session[:user_id] %>
+						<%= link_to "Edit Profile", "/editprofile" %>
+					</li>
+					<li class="site-navigation-list--sub">
+						<%= link_to "Manage Address", "/manageaddress",user_id: session[:user_id] %>
 					</li>
 					<li class="site-navigation-list--sub">
             <%= link_to "Change Password", controller: "users", action: "changepass", id: session[:user_id] %>
