@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
     @Projects = Project.all
   end
 
-  def shows
+  def show
     @project = Project.find(params[:id])
 
     @project_proposal = ProjectProposal.find(@project.project_proposal_id)

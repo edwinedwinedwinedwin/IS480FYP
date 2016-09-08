@@ -17,7 +17,7 @@
   </section>
 
 
-      <ul class="list--horizontal">
+  <ul class="list--horizontal">
         <li class="list-item current"><%= link_to 'Overview', "#overview" %></li>
         <li class="list-item"><%= link_to 'About', "#about" %></li>
         <li class="list-item"><%= link_to 'Detail', "#details" %></li>
@@ -26,7 +26,7 @@
         <li class="list-item"><%= link_to 'Fuel', "#fuel" %></li>
         <li class="list-item"><%= link_to 'Timeline', "#timeline" %></li>
         <li class="list-item"><%= link_to 'Discuss', "#discuss" %></li>
-      </ul>
+   </ul>
 
     <section class="project-content-section" id="about">
       <div class="wrap">
@@ -178,3 +178,90 @@
   </div>
 </div>
 <div class="lightbox-overlay js-lightbox-overlay js-lightbox-close"></div>
+
+<% @project_members.each do |pm| %>
+<div class="l--hidden" id="team-lightbox-content-<%= pm.pm_id %>">
+  <div class="team-lightbox-top">
+    <div class="grid-container">
+      <div class="grid-30">
+        <div class="team-lightbox-image">
+          <%= image_tag(User.find(pm.user_id).profile_pic) %>
+        </div>
+      </div>
+
+      <div class="grid-60 push-5">
+        <span class="team-lightbox__name"><%= User.find(pm.user_id).last_name %> <%= User.find(pm.user_id).first_name %></span>
+        <span class="team-lightbox__position"><%= pm.role %></span>
+
+        <ul class="meta-tags">
+          <li class="meta-tag">
+            <i class="icon icon--location-pin"></i>
+            Singapore, Republic of Singapore
+          </li>
+        </ul>
+
+        <ul class="meta-tags">
+          <li class="meta-tag">
+           <% bio = pm.bio_url %>
+            <%= link_to bio, :target=>"_blank" do %>
+                <i class="icon icon--visit"></i>
+                <%= bio %>
+            <% end %>
+          </li>
+        </ul>
+
+        <div class="team-lightbox-social-links">
+          <%  twitter = pm.twitter_url %>
+          <%  fb = pm.facebook_url %>
+          <%  instagram = pm.instagram_url %>
+          <% if !(twitter.nil? || twitter.empty?) %>
+                  <%= link_to twitter, :target=>"_blank" do %>
+                      <i class="icon icon--twitter-with-circle"></i>
+                  <% end %>
+              <% end %>
+          <% if !(instagram.nil? || instagram.empty?) %>
+                  <%= link_to instagram, :target=>"_blank" do %>
+                      <i class="icon icon--instagram-with-circle"></i>
+                  <% end %>
+              <% end %>
+          <% if !(fb.nil? || fb.empty?)  %>
+                  <%= link_to fb, :target=>"_blank" do %>
+                      <i class="icon icon--facebook-with-circle"></i>
+                  <% end %>
+              <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-container">
+      <div class="grid-30">
+        <ul class="team-lightbox-actions">
+          <li>
+            <a href="#" class="button--stroke--full">Message</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="grid-60 push-5">
+        <div class="team-lightbox-description">
+          <p class="t--large">Jerry is a co-founder of Mixd and a creative at heart who has become more technical over the years.</p>
+          <p>He’s a graphic design graduate who felt the lure of digital early on. An expert in web accessibility and standards-based web design, Jerry oversees all the technical aspects of our projects. You could describe Jerry as a mountain biker, road cyclist, outdoor pursuits instructor and owner of a dog called Surprise.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="team-lightbox-expertise">
+    <span class="team-lightbox-expertise__heading">Expertise</span>
+      <% userExpertises = UserExpertise.find_by_user_id(pm.user_id) %>
+      <ul class="meta-tags">
+        <% if !userExpertises.nil? %>
+            <% userExpertises.each do |uE| %>
+              <li class="meta-tag"><%= uE.expertise_name %></li>
+          <% end %>
+        <% end %>
+        <li class="meta-tag endorse">Endorse an Expertise +</li>
+      </ul>
+  </div>
+</div>
+<% end %>
