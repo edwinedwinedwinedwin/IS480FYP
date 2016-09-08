@@ -4339,7 +4339,7 @@ Sidebar
     display: none;
   }
   .cd-side-nav .has-children.selected > a {
-    /* focus state -> show sub pages */
+    /* focus state -> shows sub pages */
     background-color: #f0ddf0;
   }
   .cd-top-nav .has-children {
@@ -4385,7 +4385,7 @@ Sidebar
     box-shadow: none;
   }
   .no-touch .cd-side-nav .has-children:hover > ul, .cd-side-nav .has-children.hover > ul {
-    /* show subnavigation on hover */
+    /* shows subnavigation on hover */
     display: block;
     opacity: 1;
     visibility: visible;

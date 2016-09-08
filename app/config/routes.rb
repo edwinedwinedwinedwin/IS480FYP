@@ -67,7 +67,7 @@ Rails.application.routes.draw do
   post'users' => 'users#create' # process creation of user  
   get 'pages/comrules' => 'pages#comrules' # display com rules
   get 'pages/term' => 'pages#term' # display terms
-  get 'login' => 'sessions#new'# show login form  
+  get 'login' => 'sessions#new'# shows login form
   get 'editprofile' => 'users#edit#:id'
   get 'manageaddress' => 'user_shipping_addresses#index#:user_id' # edit user shipping address
   get 'newaddress' => 'user_shipping_addresses#new' # new user shipping address
@@ -89,7 +89,9 @@ Rails.application.routes.draw do
   post 'project_proposals/manage' => 'project_proposals#manage', as: :checkProposalStatus # display create proposal page
 
   post 'projects/manage' => 'projects#manage', as: :manageProjectStatus # display create proposal page
+  get 'projects/shows/:id' => 'projects#shows', as: :showProjects
   get 'projects/show/:id' => 'projects#show', as: :showProject
+  post 'projects/updateCategory/(:id)' => 'projects#updateCategory', as: :updateCategory
 
   match '/:controller/:action/(:id)', via: [:get, :post] # last route
 end

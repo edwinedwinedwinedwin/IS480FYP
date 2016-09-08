@@ -1,28 +1,173 @@
-<%= render "layouts/headerBanner" %>
-<%= yield %>
-
 <%= stylesheet_link_tag "style" %>
 <%= stylesheet_link_tag "component" %>
 <%= stylesheet_link_tag "flickity/flickity.css" %>
 <%= javascript_include_tag "application"%>
 
 <main class="page-main">
-<%= render "project_proposals/coverpage", :all_imgs =>  @project_coverImgs, :project => @project, :proposal_details=> @project_proposal%>
-  <article class="project-content">
-<%= render "layouts/projectMenu" %>
+  <section class="project-hero" id="overview">
+    <%= render "projects/overview", :project_id => @project.id, :project_proposal=> @project_proposal, :project_categories => @project_categories%>
+    <%= render "projects/coverpage",  :project_proposal=> @project_proposal, :project_proposal_imgs => @project_proposal_imgs  %>
+    <div class="project-fuel">
+      <div class="project-fuel-bar js-project-fuel-bar" data-fuel="50%">
+        <div class="project-fuel-bar__text">
+          50% fueled
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <%= render "project_proposals/about", :proposal_details=> @project_proposal, :project => @project, :all_milestones =>  @project_milestones%>
 
-  <%= render "project_inspirations/inspirations", :all_inspiration =>  @project_inspirations, :project => @project%>
+      <ul class="list--horizontal">
+        <li class="list-item current"><%= link_to 'Overview', "#overview" %></li>
+        <li class="list-item"><%= link_to 'About', "#about" %></li>
+        <li class="list-item"><%= link_to 'Detail', "#details" %></li>
+        <li class="list-item"><%= link_to 'Updates', "#updates" %></li>
+        <li class="list-item"><%= link_to 'Team', "#team" %></li>
+        <li class="list-item"><%= link_to 'Fuel', "#fuel" %></li>
+        <li class="list-item"><%= link_to 'Timeline', "#timeline" %></li>
+        <li class="list-item"><%= link_to 'Discuss', "#discuss" %></li>
+      </ul>
 
-  <%= render "project_updates/updates", :all_updates =>  @project_updates, :project => @project %>
+    <section class="project-content-section" id="about">
+      <div class="wrap">
+        <div class="grid-container">
+          <div class="grid-65">
+            <div class="project-stats grid-container">
+              <div class="project-funding-goal">
+                <span id="project-funding-goal" contenteditable>$10,000</span>
 
-  <%= render "project_members/member", :all_members =>  @project_members, :project => @project %>
+                <span class="edit-save-button js-edit-save-button" id="project-funding-goal-save">
+									Done
+								</span>
+              </div>
 
-  <%= render "project_rewards/reward", :all_rewards =>  @project_rewards, :project => @project %>
+              <div class="project-funding-goal-overlay" id="project-funding-goal-overlay"></div>
 
-  <%= render "project_milestones/milestone", :all_milestones =>  @project_milestones, :project => @project , :last_milestone => @project_milestones_last, :project_proposal => @project_proposal%>
-</article>
+              <div class="grid-30">
+                <div class="project-stat">
+                  <span class="project-stat__data">20</span>
+                  <span class="project-stat__description">Days remaining</span>
+                </div>
+              </div>
+              <div class="grid-30 push-5">
+                <div class="project-stat">
+                  <span class="project-stat__data">50%</span>
+                  <span class="project-stat__description">Fueled</span>
+                </div>
+              </div>
+              <div class="grid-30 push-10">
+                <div class="project-stat" id="project-funding">
+                  <span class="project-stat__data">$5,000</span>
+                  <span class="project-stat__description">of <span id="project-funding-value">$10,000</span> fueled</span>
+
+                  <span class="edit-button js-edit-button" id="project-funding-goal-edit" data-container="project-funding">
+										<i class="icon icon--edit"></i>
+										Edit
+									</span>
+                </div>
+              </div>
+            </div>
+
+            <div id="project-about">
+              <div class="project-about-title" id="project-about-title">
+                <h2 class="heading--small">
+                  About the Project
+                </h2>
+
+                <span class="edit-button js-edit-button" id="project-description-edit" data-container="project-about">
+									<i class="icon icon--edit"></i>
+									Edit
+								</span>
+              </div>
+
+              <div class="project-description" id="project-description">
+               <p class="t--large"><%= @project_proposal.description %></p>
+               <p> </p>
+              </div>
+            </div>
+
+            <span class="edit-save-button js-edit-save-button" id="project-description-save">
+							Done
+						</span>
+          </div>
+
+          <div class="grid-25 push-10">
+            <ul class="list">
+              <li class="list-item fuel-button-container">
+                <a href="#fuel" class="fuel-button js-scrollto-button" data-scroll-target="#fuel">
+									<span class="fuel-button__content">
+										<span class="fuel-button__cta">Fuel</span>
+										<span class="fuel-button__text">This Project</span>
+                      <i class="icon icon--chevron-down"></i>
+									</span>
+                </a>
+              </li>
+
+              <li class="list-item">
+                <ul class="list--narrow">
+                  <li class="list-item">
+                    <a href="#" class="button--stroke--full">
+                      <span>Discuss</span>
+                    </a>
+                  </li>
+
+                  <li class="list-item">
+                    <a href="#" class="project-location">
+                      <i class="icon icon--location-pin"></i>
+                      <%= @project.state %> , <%= @project.city %> , <%= @project.country %>
+                    </a>
+                  </li>
+
+                  <li class="list-item">
+                    <span class="project-meta-text">Share</span>
+                    <ul class="project-share-buttons">
+                      <li class="project-share-button">
+                        <a href="#">
+                          <i class="icon icon--facebook"></i>
+                        </a>
+                      </li>
+
+                      <li class="project-share-button">
+                        <a href="#">
+                          <i class="icon icon--twitter"></i>
+                        </a>
+                      </li>
+
+                      <li class="project-share-button">
+                        <a href="#">
+                          <i class="icon icon--youtube"></i>
+                        </a>
+                      </li>
+
+                      <li class="project-share-button">
+                        <a href="#">
+                          <i class="icon icon--pinterest"></i>
+                        </a>
+                      </li>
+
+                      <li class="project-share-button">
+                        <a href="#">
+                          <i class="icon icon--google-plus"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  <section class="project-content-section" id="details">
+    <%= render "projects/inspirations", :project_id => @project.id, :project_inspiration => @project_inspirations %>
+  </section>
+
+  <section class="project-content-section" id="team">
+    <%= render "projects/members", :project_id => @project.id, :project_members => @project_members %>
+  </section>
+
 </main>
 
 <div class="lightbox js-lightbox">
@@ -32,136 +177,4 @@
 
   </div>
 </div>
-
 <div class="lightbox-overlay js-lightbox-overlay js-lightbox-close"></div>
-
-<% @project_rewards.each do |pRewards| %>
-    <div class="l--hidden" id="fuel-lightbox-content-<%= pRewards.id %>">
-      <div class="fuel-lightbox-container">
-        <span class="fuel-lightbox__heading">You selected:</span>
-        <span class="fuel-lightbox__value">$<%= pRewards.min_amount %></span>
-        <span class="fuel-lightbox__title"><%= pRewards.name %></span>
-
-        <p class="t--small">Feeling generous? Fuel Up! <a href="#">Increase your support.</a></p>
-
-        <div class="fuel-lightbox__description">
-          <p class="t--large"><%= pRewards.description %></p>
-          <!--<p class="t&#45;&#45;large">This package includes our filtration book to be sent to ten (10) families in need. And receive a personal thank you from us.</p>-->
-        </div>
-
-        <span class="fuel-lightbox__delivery">
-			<span class="t--strong">Estimated delivery:</span> <%= pRewards.estimated_delivery %>
-		</span>
-
-        <a href="#" class="button--fill">Continue</a>
-      </div>
-
-    </div>
-<% end %>
-
-<% @project_members.each do |projectMember| %>
-    <div class="l--hidden" id="team-lightbox-content-<%= projectMember.id%>">
-      <div class="team-lightbox-top">
-        <div class="grid-container">
-
-          <div class="grid-30">
-            <div class="team-lightbox-image">
-              <% if projectMember.user.profile_pic.blank? %>
-                  <%= image_tag('userprofile.jpg',:class=> "img-circular") %>
-              <% else %>
-                  <%= image_tag(projectMember.user.profile_pic,:class=> "img-circular") %>
-              <% end %>
-            </div>
-          </div>
-
-          <div class="grid-60 push-5">
-            <span class="team-lightbox__name"><%= projectMember.user.last_name %> <%= projectMember.user.first_name %></span>
-            <span class="team-lightbox__position"><%= projectMember.role %></span>
-
-            <ul class="meta-tags">
-              <li class="meta-tag">
-                <i class="icon icon--location-pin"></i>
-                Singapore, Republic of Singapore
-              </li>
-            </ul>
-
-            <ul class="meta-tags">
-              <li class="meta-tag">
-                <% bio = projectMember.user.bio_url %>
-
-                <%= link_to bio, :target=>"_blank" do %>
-                    <i class="icon icon--visit"></i>
-                    <%= projectMember.user.bio_url %>
-                <% end %>
-              </li>
-            </ul>
-
-            <div class="team-lightbox-social-links">
-              <%  twitter = projectMember.user.twitter_url %>
-              <%  fb = projectMember.user.fb_url %>
-              <%  instagram = projectMember.user.instagram_url %>
-              <% if !(twitter.nil? || twitter.empty?) %>
-                  <%= link_to twitter, :target=>"_blank" do %>
-                      <i class="icon icon--twitter-with-circle"></i>
-                  <% end %>
-              <% end %>
-              <% if !(instagram.nil? || instagram.empty?) %>
-                  <%= link_to instagram, :target=>"_blank" do %>
-                      <i class="icon icon--instagram-with-circle"></i>
-                  <% end %>
-              <% end %>
-              <% if !(fb.nil? || fb.empty?)  %>
-                  <%= link_to fb, :target=>"_blank" do %>
-                      <i class="icon icon--facebook-with-circle"></i>
-                  <% end %>
-              <% end %>
-            </div>
-          </div>
-        </div>
-
-        <div class="grid-container">
-          <div class="grid-30">
-            <ul class="team-lightbox-actions">
-              <li>
-                <a href="#" class="button--stroke--full">Message</a>
-              </li>
-            </ul>
-          </div>
-
-          <div class="grid-60 push-5">
-            <div class="team-lightbox-description">
-              <p class="t--large"><%= projectMember.description %></p>
-              <p>He’s a graphic design graduate who felt the lure of digital early on. An expert in web accessibility and standards-based web design, Jerry oversees all the technical aspects of our projects. You could describe Jerry as a mountain biker, road cyclist, outdoor pursuits instructor and owner of a dog called Surprise.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-<div class="team-lightbox-expertise">
-  <span class="team-lightbox-expertise__heading">Expertise</span>
-  <ul class="meta-tags">
-    <li class="meta-tag">Environment</li>
-    <li class="meta-tag">Entrepreneurship</li>
-    <li class="meta-tag">Journalism</li>
-    <li class="meta-tag">Photography</li>
-    <li class="meta-tag">Illustration</li>
-    <li class="meta-tag endorse">Endorse an Expertise +</li>
-  </ul>
-</div>
-</div>
-<% end %>
-
-<% @project_milestones.each do |pMilestone| %>
-    <div class="l--hidden" id="timeline-lightbox-content-<%= pMilestone.id %>">
-      <div class="fuel-lightbox-container">
-        <span class="fuel-lightbox__heading">You are viewing:</span>
-        <span class="fuel-lightbox__title"><%= pMilestone.name %> Phase</span>
-
-        <div class="fuel-lightbox__description">
-          <p class="t--large">Date to Date  </p>
-
-          <%= link_to 'Edit', {:controller => "project_milestones", :action => "edit", :id=> pMilestone.id }, class: "button--fill" %>
-        </div>
-      </div>
-    </div>
-<% end %>

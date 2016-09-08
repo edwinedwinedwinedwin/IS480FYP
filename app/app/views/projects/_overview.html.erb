@@ -1,0 +1,56 @@
+<div class="project-hero-overlay" id="project-hero-overlay"></div>
+
+<header class="project-header" id="project-header">
+  <ul class="meta-tags">
+        <span class="meta-tag" id="project-category">
+					<i class="icon icon--leaf"></i>
+					<span id="project-category__text"><%= project_proposal.project_category.try(:category) %></span>
+
+					<div class="project-category-selector" id="project-category-selector">
+						<ul class="project-category-list" id="project-category-list">
+
+             <% ProjectCategory.all.to_a.each do |pc| %>
+                <% if pc.category.eql?(project_proposal.project_category.try(:category)) %>
+                      <%= link_to updateCategory_path(:id => project_proposal.id, :project_id => project_id, :project_category_id => pc.id), :class => "project-category-list" do %>
+                        <li class="selected" value=<%=pc.id %>><%= pc.category %></li>
+                       <% end %>
+                  <% else %>
+                        <%= link_to updateCategory_path(:id => project_proposal.id, :project_id => project_id, :project_category_id => pc.id), :class => "project-category-list" do %>
+                        <li value=<%=pc.id %>><%= pc.category %></li>
+                          <% end %>
+                  <% end %>
+              <% end %>
+						</ul>
+
+						<span class="edit-save-button js-edit-save-button" id="project-category-save">
+							Done
+						</span></div>
+
+
+					<span class="edit-button js-edit-button" id="project-category-edit" data-container="project-header">
+						<i class="icon icon--edit"></i>
+						Edit
+					</span>
+				</span>
+  </ul>
+
+  <div class="project-title">
+    <h1 class="heading--large" id="project-title">
+      The Drinkable book
+    </h1>
+
+    <span class="edit-save-button js-edit-save-button" id="project-title-save">
+					Done
+				</span>
+
+    <span class="edit-button js-edit-button" id="project-title-edit" data-container="project-header">
+					<i class="icon icon--edit"></i>
+					Edit
+				</span>
+  </div>
+
+  <div class="profile-tag">
+    </assets class="profile-tag-image" src="/assets/temp-1.png" alt="">
+    <span class="profile-tag-text">by <span class="profile-tag__user">Waterislife</span></span>
+  </div>
+</header>
