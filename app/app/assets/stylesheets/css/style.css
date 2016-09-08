@@ -3245,10 +3245,11 @@ strong,
   .project-category-selector .edit-save-button, .project-category-selector #project-title-save, .project-category-selector .button--inspiration {
     float: right; }
 
-.project-category-list {
-  position: relative;
+.project-category-list,  .project-category-list a   {
+    color: #000000;
+    position: relative;
   background: #ffffff;
-  display: block;
+  #display: block;
   font-size: 2.4375rem;
   text-transform: none;
   font-weight: 200;
