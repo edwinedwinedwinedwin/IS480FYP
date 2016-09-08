@@ -74,12 +74,14 @@ class ProjectProposalsController < ApplicationController
 
     # Project Founder will be assigned to person who submitted project proposal
     @ProjectMember = ProjectMember.new
+    @ProjectMember.email = @user.email
     @ProjectMember.role = 'Founder'
     @ProjectMember.second_role = 'Creator'
     @ProjectMember.project_id = @project.id
     @ProjectMember.project_status_id = 3
-    @ProjectMember.user_id = @user.id    
-    @ProjectMember.save    
+    @ProjectMember.user_id = @user.id
+    @ProjectMember.description = @user.last_name + ' ' + @user.first_name
+    @ProjectMember.save
 
     redirect_to :controller => 'ProjectProposals', :action => 'index'    
   end
