@@ -4,8 +4,8 @@
 <%= javascript_include_tag "application"%>
 
 <p id="notice"><%= notice %></p>
-
-<legend class="form-heading heading"><h1>Manage Project</h1></legend><br>
+<legend class="form-heading--tables heading"><h1>Manage Project</h1></legend><br>
+<%= link_to '< BACK', {:controller => "dashboards", :action => "index" }, class: "back--button" %>
 
 <table class="table-show">
   <thead>
@@ -34,5 +34,3 @@
   </tbody>
 </table>
 <br>
-
-<%= link_to 'Back', {:controller => "dashboards", :action => "index" } %>

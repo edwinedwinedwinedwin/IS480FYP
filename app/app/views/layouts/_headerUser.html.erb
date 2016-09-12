@@ -19,146 +19,52 @@
 </head>
 
 <body>
-	<header class="page-header">
-
-	<div class="lightbox js-lightbox">
-		<div class="js-lightbox-close-image lightbox-close icon icon--lightbox-close"></div>
-		<div class="js-lightbox-content">
-		</div>
-	</div>
-	<div class="lightbox-overlay js-lightbox-overlay js-lightbox-close"></div>
-
-		<span style="font-size:30px;cursor:pointer">
+	<header class="page-header" id="page-header">
+		<span style="font-size:30px;cursor:pointer" onclick="openNav()">
 			<button class="site-menu-open js-site-menu-toggle">
 				<span class="l--hidden">Open Site Menu</span>
-				<i class="icon icon--menu" id="page-button"></i>
-				<i class="icon icon--medium-cross l--hidden" id="cross"></i>
-
+				<i class="icon icon--menu"></i>
 			</button>
-			<!--a type="button" class="btn" style="width:100%;" href="#responsive" data-toggle="modal">Add Image</a-->
-
-
 		</span>
-		
+
 		<h1 class="site-logo logo">
-      <%= link_to '', root_path , class: "icon icon--ybco-logomark",  id: "ybcologo" %>
+      <%= link_to '', root_path , class: "icon icon--ybco-logomark" %>
 		</h1>
 
 		<!-- Sidebar -->
-
 		
 		<section class="site-menu" id="site-menu">
-		<a href="someurl" data-toggle="lightbox">Launch modal</a>
-			
-		<div class="site-user">
-			<div class="site-avatar">
-			<% current_user=User.find(session[:user_id]) %>        
-	        <% if current_user.profile_pic.present? %> <!-- check if profile pic exists -->
-	        	<% url = current_user.profile_pic%> <!-- get entire url-->
-	        	<% index=url.to_s.rindex('/') %> <!-- get last index of '/'-->
-	        	
-        		<%= link_to image_tag(current_user.profile_pic, :class=> "img-circular-avatar"),
-:action => 'edit', :controller => 'users', :id=>session[:user_id]%>	
-        	<% else %>
-
-        		<%= link_to image_tag("defaultprofile.png", :class=> "img-circular-avatar js-lightbox-open-image"),data: {container: "#fuel-lightbox-content"},:id=>session[:user_id]%>
-
-<!--
-<%= link_to image_tag("card-fuel-icon.png", :class=>"img-circular-avatar"), data: {toggle: "modal", target: "#responsive"} %> -->
-
-
-        	<% end %>
-        	</div> 
-        	<div class="site-avatar-name">
-	        	Hello, <%= @current_user.first_name.capitalize %>!
-        	</div>
-	        <div class="site-avatar-logout">
-	        	<%= link_to "LOGOUT", {:controller=> "sessions", :action=>"destroy"}%>
-        	</div>
-        </div>
+			<button class="site-menu-close js-site-menu-toggle">
+				<i class="site-menu-logo icon icon--ybco-lockup"></i>
+				<i class="icon icon--large-cross"></i>
+			</button>
 		   
-			<nav class="site-menu-block-user site-navigation">
-
+			<nav class="site-menu-block site-navigation">
 				<ul class="site-navigation-list">
-					<li class="site-navigation-list__item-project">
-            			My Projects
-	            		<ul class="site-navigation-list--project">
-	            			<% pp_id = 0 %>
-			        		<% images.each do |p| %>
-								<% if pp_id != p.pp_id %>
-									<% pp_id = p.pp_id %>
-									
-									<%= image_tag(ProjectProposalImg.find(p.ppi_id).img_url, :class=> "img-circular-project") %>		
-								
-									
-								<li class="site-navigation-list--project__item-title">
-									<%= link_to showProject_path(:id => p.p_id) do %><%= p.title.capitalize%><% end %>
-								</li>     
-
-								<li class="site-navigation-list--project-percentage">
-								40% complete
-							</li>
-							<li class="site-navigation-list--project-details">
-								<%= link_to "Metrics"%>
-							</li>
-							<li class="site-navigation-list--project-details">
-								<%= link_to "Settings"%>
-							</li>
-							<li class="site-navigation-list--project-details">
-								<%= link_to "Tiles"%>
-							</li>
-							<li class="site-navigation-list--project-details">
-								<%= link_to "Help"%>
-							</li>
-								<% end %>
-								
-							<% end %>
-							
-						</ul>
-						
+					<li class="site-navigation-list__item">
+            <%= link_to 'Home', root_path ,rel: "internal" %>
 					</li>
-
-    						
-    						
-
-					
-
-
-					<!--li class="site-navigation-list__item">
+					<li class="site-navigation-list__item">
             Profile
 					</li>
-					<ul class="site-navigation-list--sub">
-					<li class="site-navigation-list--sub__item">
-						<%= link_to "Edit Profile", :controller=>"users", :action=>"edit", :id=>session[:user_id]%>
+					<li class="site-navigation-list--sub">
+						<%= link_to "Edit Profile", "/editprofile" %>
 					</li>
-					<li class="site-navigation-list--sub__item">
+					<li class="site-navigation-list--sub">
+						<%= link_to "Manage Address", "/manageaddress",user_id: session[:user_id] %>
+					</li>
+					<li class="site-navigation-list--sub">
             <%= link_to "Change Password", controller: "users", action: "changepass", id: session[:user_id] %>
 					</li>
-					</ul-->
 
-					<!--li class="site-navigation-list__item">
+					<li class="site-navigation-list__item">
             <%= link_to "Create a Project", controller: "project_proposals", action: "new" %>
 					</li>
 					<li class="site-navigation-list__item">
             <%= link_to "Manage Project",  manageProjectStatus_path(:email => @current_user.email), method: "post" %>
-					</li-->
-				<li class="site-navigation-list__item">
-				
-            <%= link_to "Explore"%>
-            </li>
-            		<ul class="site-navigation-list--sub">
-            			<li class="site-navigation-list--sub__item">
-            			<%= link_to "Trending"%>
-            			</li>
-            			<li class="site-navigation-list--sub__item">
-            			<%= link_to "Curated"%>
-            			</li>
-            			<li class="site-navigation-list--sub__item">
-            			<%= link_to "Fresh"%>
-            			</li>
-            		</ul>
-				<li class="site-navigation-list__item">
-            <%= link_to "Funded"%>
+					</li>
+					<li class="site-navigation-list__item">
+            <%= link_to "Logout", {:controller=> "sessions", :action=>"destroy"}%>
 					</li>
 				</ul>
 
@@ -185,16 +91,6 @@
 					<i class="icon icon--twitter-with-circle"></i>
 				</a></li>
 			</ul>
-
-
-				
-					<div class="fuel-reward js-lightbox-open" data-content-container="#fuel-lightbox-content">
-					<div class="fuel-reward-select">
-						<a href="#" class="button--stroke">Select</a>
-					</div>
-					</div>
-			</ul>
-
 		</section>
 		
 
@@ -209,5 +105,3 @@
 		</section>
 	</header>
 </body>
-<%= yield %>
-

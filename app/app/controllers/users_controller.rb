@@ -72,7 +72,9 @@ class UsersController < ApplicationController
       else
           #Send email to user who sign up
           SysMailer.welcome_email(@user).deliver                
-          redirect_to "/login"
+          # redirect to edit profile
+          session[:user_id]=@user.id
+          redirect_to "/editprofile"
       end
     else
       if @user.is_admin
@@ -81,17 +83,6 @@ class UsersController < ApplicationController
         render 'new' and return      
       end
     end
-  end
-
-  def updateProfilePic
-    @user=User.find(params[:id])
-    if (params[:profile_pic].nil?)
-      flash[:errors] = "Profile picture is empty."
-    else
-     @user.profile_pic = params[:profile_pic]
-      @user.save
-  end
-    redirect_to :controller => 'dashboards', :action => 'index'
   end
 
   def ban

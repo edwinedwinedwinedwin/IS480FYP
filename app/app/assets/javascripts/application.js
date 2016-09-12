@@ -24,5 +24,6 @@
 //= require nlform/nlform.js
 //= require flickity/flickity.pkgd.js
 //= require jquery_ujs
-//= require bootstrap-sprockets
+//= require bootstrap
+//= require bootstrap-sprockets 
 //= require_tree .

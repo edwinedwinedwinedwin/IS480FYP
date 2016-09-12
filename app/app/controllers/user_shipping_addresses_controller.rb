@@ -14,7 +14,7 @@ class UserShippingAddressesController < ApplicationController
   end
 
   def edit
-  	@user_shipping_address=UserShippingAddress.find(params[:id])  
+  	@user_shipping_address=UserShippingAddress.find_by_user_id(params[:user_id])  
   end
 
   def create

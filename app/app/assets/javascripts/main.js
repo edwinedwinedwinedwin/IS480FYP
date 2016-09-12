@@ -5,19 +5,15 @@ $(function() {
 			event.preventDefault();
 		}
 	});
-	
+
 	// Site Menu
 	var $siteMenu = $('#site-menu'),
-	$pageButton = $('#page-button'),
-	$menuToggleButtons = $('.js-site-menu-toggle'),
-	$cross = $('#cross'),
-	$ybcologo = $('#ybcologo');
+	$pageHeader = $('#page-header'),
+		$menuToggleButtons = $('.js-site-menu-toggle');
 
 	$menuToggleButtons.on('click', function() {
 		$siteMenu.toggleClass('enabled');
-		$pageButton.toggleClass('enabled');
-		$ybcologo.toggleClass('enabled');
-		$cross.toggleClass('enabled');
+		$pageHeader.toggleClass('enabled');
 	});
 
 	// scrollTo Buttons
@@ -39,7 +35,7 @@ $(function() {
 			event.preventDefault();
 			$(window).scrollTo(target, 400);
 		});
-	});			
+	});
 
 	// Pricing Plans
 	var $pricingOpenButtons = $('.js-pricing-open');
@@ -98,7 +94,7 @@ $(function() {
 				var _filter = '[href=' + target + ']';
 
 				$siteMenu.removeClass('enabled');
-				$pageButton.removeClass('enabled');
+				$pageHeader.removeClass('enabled');
 
 				$projectNavigationLinks
 					.parents('li')
@@ -173,11 +169,6 @@ $(function() {
 			$count.text(limit - $textarea.val().length);
 		});
 	});
-	
-	$(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
-    	event.preventDefault();
-    	$(this).ekkoLightbox();
-	}); 
 
 	// Lightbox
 	var lightbox = $('.js-lightbox'),
@@ -209,18 +200,6 @@ $(function() {
 		closeLightbox();
 	});
 
-	$('.js-lightbox-open-image').on('click', function() {
-		var $this = $(this),
-			contentContainer = $($this.attr('container')),
-			content = contentContainer.html();
-
-		openLightbox(content);
-	});
-
-	$('.js-lightbox-close-image').on('click', function() {
-		closeLightbox();
-	});
-
 	$(document).keyup(function(e) {
 		if (e.keyCode == 27) { // Escape
 			closeLightbox();
@@ -240,4 +219,3 @@ $(function() {
 $(document).ready(function(){
   $('.bxslider').bxSlider();
 });*/
-

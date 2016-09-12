@@ -4,8 +4,11 @@
   <%= javascript_include_tag "application"%>
 <p id="notice"><%= notice %></p>
 
-
-<legend class="form-heading heading"><h1>Manage Project Inspirations</h1></legend>
+<br>
+<legend class="form-heading--tables heading"><h1>Manage Project Inspirations</h1></legend>
+<br>
+<%= link_to '< BACK', {:controller => "admins", :action => "index", :id=>1 }, class: "back--button" %>
+<br>
 
 <table class="table-show">
   <thead>
@@ -34,5 +37,8 @@
   </tbody>
 </table>
 
-<%= link_to 'Add Project Inspiration', {:controller => "project_inspirations", :action => "new"} %><br/>
-<%= link_to 'Back', {:controller => "admins", :action => "index", :id=>1 } %>
+<br>
+<br>
+
+<%= link_to 'Add Project Inspiration', {:controller => "project_inspirations", :action => "new"}, class: "button--stroke--long--add" %><br/>
+

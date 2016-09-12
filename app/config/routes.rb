@@ -31,8 +31,8 @@ Rails.application.routes.draw do
 
   # user shipping addresses routes
   get 'user_shipping_addresses/index' => 'user_shipping_addresses#index'
-  get 'user_shipping_addresses/edit' => 'user_shipping_addresses#edit'
-  get 'user_shipping_addresses/new' => 'user_shipping_addresses#new'
+  #get 'user_shipping_addresses/edit' => 'user_shipping_addresses#edit'
+  #get 'user_shipping_addresses/new' => 'user_shipping_addresses#new'
   post 'user_shipping_addresses' => 'user_shipping_addresses#create'
   post 'user_shipping_addresses/destroy/(:id)' => 'user_shipping_addresses#destroy'
 
@@ -67,14 +67,14 @@ Rails.application.routes.draw do
   post'users' => 'users#create' # process creation of user  
   get 'pages/comrules' => 'pages#comrules' # display com rules
   get 'pages/term' => 'pages#term' # display terms
-  get 'login' => 'sessions#new'# show login form  
+  get 'login' => 'sessions#new'# shows login form
   get 'editprofile' => 'users#edit#:id'
+  get 'manageaddress' => 'user_shipping_addresses#index#:user_id' # edit user shipping address
+  get 'newaddress' => 'user_shipping_addresses#new' # new user shipping address
   get 'admins/editprofile' => 'users#edit#:id'
   post 'sessions/create' => 'sessions#create' # process login
   get 'sessions/destroy' => 'sessions#destroy' # log out and invalidate session
   get 'dashboard/index' => 'dashboards#index' # Display page upon successful login
-
-  post 'users/updateProfilePic/(:id)' => 'users#updateProfilePic', as: :updateProfilePic
   get 'admins/index' => 'admins#index'
   get 'changepass' => 'users#changepass#:id'
   get 'admins/changepass' => 'users#changepass#:id'
@@ -89,7 +89,9 @@ Rails.application.routes.draw do
   post 'project_proposals/manage' => 'project_proposals#manage', as: :checkProposalStatus # display create proposal page
 
   post 'projects/manage' => 'projects#manage', as: :manageProjectStatus # display create proposal page
+  get 'projects/shows/:id' => 'projects#shows', as: :showProjects
   get 'projects/show/:id' => 'projects#show', as: :showProject
+  post 'projects/updateCategory/(:id)' => 'projects#updateCategory', as: :updateCategory
 
   match '/:controller/:action/(:id)', via: [:get, :post] # last route
 end

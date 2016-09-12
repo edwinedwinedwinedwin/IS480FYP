@@ -5,7 +5,7 @@
 
 <p id="notice"><%= notice %></p>
 <br>
-<legend class="form-heading heading"><h1>Manage Project Proposals</h1></legend><br>
+<legend class="form-heading--tables heading"><h1>Manage Project Proposals</h1></legend><br>
 
 <%= link_to '< BACK', {:controller => "admins", :action => "index" }, class: "back--button" %><br>
 <table class="table-show">
@@ -17,6 +17,7 @@
       <th class="th-row"><strong>Project Title</strong></th>  
       <th class="th-row"><strong>Project Category</strong></th>     
       <th class="th-row"><strong>Project Description</strong></th>
+      <th class="th-row"><strong>Project Images</strong></th>
       <th class="th-row"><strong>Proposal Status</strong></th>
       <th class="th-row"><strong>Actions</strong></th>
     </tr>
@@ -31,6 +32,11 @@
         <td class="td-row"><%= p.title %></td>
         <td class="td-row"><%= p.project_category.try(:category)%></td>
         <td class="td-row"><%= p.description %></td>
+        <td class="td-row"><% @ProjectProposalImgs = p.project_proposal_imgs %> <!-- get project proposal images-->
+        <% @ProjectProposalImgs.each do | pImg | %> <!-- loop through project proposal images -->
+          <%= image_tag(pImg.img_url,:class=>"img-circular-project") %> <!-- display project proposal image-->
+        <% end %>
+        </td>
         <td class="td-row"><%= p.project_status.try(:status) %></td>
         <td class="td-row">
         <p><% if p.project_status_id == 2 %>
