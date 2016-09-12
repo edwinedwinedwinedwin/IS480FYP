@@ -4,10 +4,8 @@
   <%= javascript_include_tag "application"%>
 
 <p id="notice"><%= notice %></p>
-<br>
-<legend class="form-heading--tables heading"><h1>Project Milestones</h1></legend>
-<br>
-<%= link_to '< BACK', {:controller => "admins", :action => "index", :id=>1 },class: "back--button" %>
+<legend class="form-heading heading"><h1>Project Milestones</h1></legend>
+
 <table class="table-show">
   <thead>
     <tr class="tr-row">      
@@ -37,7 +35,5 @@
 	  <% end %>
   	</tbody>
 </table>
-<br>
-<br>
 
-<%= link_to 'Add Project Milestones', {:controller => "project_milestones", :action => "new"}, class: "button--stroke--long--add" %>
+<%= link_to 'Add Project Milestones', {:controller => "project_milestones", :action => "new"} %>

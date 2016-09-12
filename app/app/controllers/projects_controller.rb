@@ -7,27 +7,23 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
 
-    @project_proposal = ProjectProposal.find(@project.project_proposal_id)
-    @user = User.find(@project.user_id)
-    @project_proposal_imgs = ProjectProposalImg.find_by_project_proposal_id(@project_proposal.id)
-    @project_inspirations = ProjectInspiration.find_by_project_id(params[:id])
+    #About Us
+    @project_proposal = ProjectProposal.select("*").joins(:project).where(:projects => {:id=>params[:id]}).first
+    @user = User.select("*").joins(:projects).where(:projects => {:id => params[:id]}).first
+    #Overview
+    @project_coverImgs = ProjectProposalImg.select("*").joins(:project_proposal).where(:project_proposal_imgs => {:project_proposal_id => @project.project_proposal_id} )
 
-    @project_members = ProjectMember.joins(:user).select('project_members.id as pm_id,
-                        users.id as user_id,
-                        users.bio_url as bio_url,
-                        users.instagram_url as instagram_url,
-                        users.twitter_url as twitter_url,
-                        users.fb_url as facebook_url,
-                        project_members.role as role,
-                        project_members.project_status_id as member_status,
-                        project_members.description as description').where(:project_members => {:project_id => params[:id]})
-
-    @project_updates = ProjectMember.find_by_project_id(params[:id])
-    @project_rewards = ProjectReward.find_by_project_id(params[:id])
-    @project_milestones = ProjectMilestone.find_by_project_id(params[:id])
-    #@project_milestones_start = ProjectMilestone.find_by_project_id(params[:id]).first
-    #@project_milestones_end = ProjectMilestone.find_by_project_id(params[:id]).last
-
+    #Details
+    @project_inspirations = ProjectInspiration.select("*").joins(:project).where(:project_inspirations => {:project_id => params[:id]})
+    #Updates
+    @project_updates = ProjectUpdate.select("*").joins(:project).where(:project_updates => {:project_id => params[:id]})
+    #Team
+    @project_members = ProjectMember.select("*").joins(:user).where(:project_members => {:project_id => params[:id]})
+    #Fuel
+    @project_rewards = ProjectReward.select("*").joins(:project).where(:project_rewards => {:project_id => params[:id]})
+    #TimeLine
+    @project_milestones = ProjectMilestone.select("*").joins(:project).where(:project_milestones => {:project_id => params[:id]})
+    @project_milestones_last =  @project_milestones.last
   end
 
   def new
@@ -58,13 +54,6 @@ class ProjectsController < ApplicationController
     else
       render 'edit'
     end
-  end
-
-  def updateCategory
-    @project_proposal = ProjectProposal.find(params[:id])
-    @project_proposal.project_category_id = params[:project_category_id]
-    @project_proposal.save
-    redirect_to showProject_path(params[:project_id]) and return
   end
 
   private
