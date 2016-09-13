@@ -85,10 +85,12 @@ class UsersController < ApplicationController
 
   def updateProfilePic
     @user=User.find(params[:id])
-   
-    @user.profile_pic = params[:user][:profile_pic]
-    @user.save
+    if !params[:user].nil? && !params[:user][:profile_pic].nil?
+      @user.profile_pic = params[:user][:profile_pic]
+      @user.save
+    end
     redirect_to :controller => 'dashboards', :action => 'index'
+
   end
 
   def ban
