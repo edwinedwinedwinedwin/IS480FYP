@@ -47,7 +47,6 @@ class ProjectProposalsController < ApplicationController
 
     # Project Proposal will be added to Projects table
     @user = User.find_by_email(@ProjectProposal.email)
-      
     @new_password=Array.new(8){[*'0'..'9', *'a'..'z', *'A'..'Z'].sample}.join # generate random password
 
     # Automatically create account for user who submitted project proposal if user not registered
@@ -61,6 +60,8 @@ class ProjectProposalsController < ApplicationController
       @user.email=@ProjectProposal.email
       @user.password=@new_password      
       @user.password_confirmation=@new_password
+      @user.is_banned = 0
+      @user.is_admin = 0
       @user.save
       #Send acceptance email to user who sign up containing new account password
       SysMailer.accept_new_proposal_email(@new_password,@ProjectProposal).deliver  
@@ -75,6 +76,8 @@ class ProjectProposalsController < ApplicationController
     # Project Founder will be assigned to person who submitted project proposal
     @ProjectMember = ProjectMember.new
     @ProjectMember.role = 'Founder'
+    @ProjectMember.email = @user.email
+    @ProjectMember.description = @user.last_name + ' ' + @user.first_name
     @ProjectMember.second_role = 'Creator'
     @ProjectMember.project_id = @project.id
     @ProjectMember.project_status_id = 3

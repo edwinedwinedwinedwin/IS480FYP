@@ -24,7 +24,8 @@
   </thead>
 
   <tbody>
-    <% @ProjectProposals.each do |p| %>      
+    <% @ProjectProposals.each do |p| %>
+      <% if p.project_status_id == 2 %>
       <tr class="tr-row">        
         <td class="td-row"><%= p.email %></td>        
         <td class="td-row"><%= p.first_name+" "+p.last_name %></td>
@@ -51,6 +52,7 @@
         </p>
         </td>
       </tr>
+    <% end %>
     <% end %>
   </tbody>
 </table>
