@@ -52,7 +52,7 @@
   </div>
 
   <div class="profile-tag">
-    <%= image_tag(User.find(Project.find(project_id).user_id).profile_pic) %>
+    <%= image_tag(User.find(Project.find(project_id).user_id).profile_pic, :class=>"img-circular-project-avatar") %>
     <span class="profile-tag-text">by <span class="profile-tag__user">Waterislife</span></span>
   </div>
 </header>

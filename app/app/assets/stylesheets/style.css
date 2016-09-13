@@ -2902,6 +2902,11 @@ strong,
   word-wrap: break-word;
 }
 
+.lightbox-pic{ 
+  width:9.35em;
+  height:9.35em; 
+}
+
 .project-team-member-thumbnail {
   cursor: pointer;
   position: relative;
@@ -3744,6 +3749,18 @@ strong,
  -moz-border-radius: 35px;
  align-content: center;
  display:inline-block;
+}
+
+.img-circular-project-avatar{
+  width: 3.7em; 
+  height: 3.7em;
+  background-size: cover;
+  border-radius: 1.85em;
+ -webkit-border-radius: 1.85em;
+ -moz-border-radius: 1.85em;
+ align-content: center;
+ display:inline-block;
+ vertical-align: middle;
 }
 
 .site-menu-block {
