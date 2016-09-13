@@ -1,8 +1,7 @@
 <div class="project-gallery" id="project-gallery">
-  <div class="project-gallery-item" style="background-image:url(/assets/project-hero-1.jpg);"></div>
-  <div class="project-gallery-item" style="background-image:url(/assets/project-hero-2.jpg);"></div>
-  <div class="project-gallery-item" style="background-image:url(/assets/project-hero-3.jpg);"></div>
-  <div class="project-gallery-item" style="background-image:url(/assets/project-hero-4.jpg);"></div>
+  <% project_proposal_imgs.each do |imgs| %>
+      <div class="project-gallery-item" style="background-image:url(<%= imgs.img_url %>);"></div>
+  <% end %>
 </div>
 
 <div class="project-gallery-overlay" id="project-gallery-overlay"></div>
@@ -27,16 +26,17 @@
         </div>
       </div>
     </li>
-
-    <li class="gallery-thumbnail js-draggable js-delete-container">
+    <% i = 1 %>
+    <% project_proposal_imgs.each do |imgs| %>
+      <li class="gallery-thumbnail js-draggable js-delete-container">
       <div class="gallery-thumbnail-card">
-        <span class="gallery-thumbnail__index">2</span>
+        <span class="gallery-thumbnail__index"><%= i %> <% i += 1%></span>
         <span class="gallery-thumbnail__type">
-							<i class="icon icon--image-file"></i>
+          <i class="icon icon--image-file"></i>
 							Image
-						</span>
+        </span>
 
-        </assets src="/assets/pt2.jpg" alt="">
+        <%= image_tag(imgs.img_url) %>
 
         <div class="gallery-thumbnail-actions">
           <i class="icon icon--reorder-horizontal js-reorder"></i>
@@ -44,40 +44,7 @@
         </div>
       </div>
     </li>
-
-    <li class="gallery-thumbnail js-draggable js-delete-container">
-      <div class="gallery-thumbnail-card">
-        <span class="gallery-thumbnail__index">3</span>
-        <span class="gallery-thumbnail__type">
-							<i class="icon icon--image-file"></i>
-							Image
-						</span>
-
-        </assets src="/assets/pt3.jpg" alt="">
-
-        <div class="gallery-thumbnail-actions">
-          <i class="icon icon--reorder-horizontal js-reorder"></i>
-          <i class="icon icon--trash-can js-delete"></i>
-        </div>
-      </div>
-    </li>
-
-    <li class="gallery-thumbnail js-draggable js-delete-container">
-      <div class="gallery-thumbnail-card">
-        <span class="gallery-thumbnail__index">4</span>
-        <span class="gallery-thumbnail__type">
-							<i class="icon icon--image-file"></i>
-							Image
-						</span>
-
-        </assets src="/assets/pt4.jpg" alt="">
-
-        <div class="gallery-thumbnail-actions">
-          <i class="icon icon--reorder-horizontal js-reorder"></i>
-          <i class="icon icon--trash-can js-delete"></i>
-        </div>
-      </div>
-    </li>
+    <% end %>
 
     <li class="gallery-thumbnail js-ignore">
       <div class="gallery-thumbnail-card">
@@ -88,11 +55,11 @@
 
   <span class="edit-save-button js-edit-save-button" id="project-gallery-management-save">
 				Done
-			</span>
+  </span>
 </div>
 
 <div class="project-gallery-counter">
-  <span class="project-gallery-counter__current" id="project-gallery-counter__current">1</span>/<span class="project-gallery-counter__max">4</span>
+  <span class="project-gallery-counter__current" id="project-gallery-counter__current">1</span>/<span class="project-gallery-counter__max"><%= i-1 %></span>
 </div>
 
 <div class="project-gallery-play">

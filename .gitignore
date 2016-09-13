@@ -53,3 +53,8 @@ app/config/environments/production.rb
 app/config/initializers/aws.rb
 
 app/config/initializers/s3.rb
+*.jpg
+*.png
+app/.idea/workspace.xml
+app/.idea/.rakeTasks
+*.log

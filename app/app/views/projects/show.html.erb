@@ -234,8 +234,8 @@
       <div class="team-lightbox-top">
         <div class="grid-container">
           <div class="grid-30">
-            <div class="team-lightbox-image">
-              <%= image_tag(User.find(pm.user_id).profile_pic) %>
+            <div class="team-lightbox-image lightbox-pic">
+              <%= image_tag(User.find(pm.user_id).profile_pic, :class => "lightbox-pic") %>
             </div>
           </div>
 
