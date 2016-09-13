@@ -164,6 +164,26 @@
     <%= render "projects/inspirations", :project_id => @project.id, :project_inspiration => @project_inspirations %>
   </section>
 
+  <section class="project-content-section" id="updates">
+    <div class="wrap" style="position: relative;">
+      <h2 class="section-heading heading--small">Updates<span class="notification-bubble">3</span></h2>
+
+      <ul class="update-icons">
+        <li class="selected">
+          <i class="icon icon--updates-grid"></i>
+        </li>
+
+        <li>
+          <i class="icon icon--updates-list"></i>
+        </li>
+      </ul>
+    </div>
+
+    <%= render "projects/updates", :project_id => @project.id, :project_updates => @project_updates %>
+
+    <a href="#" class="project-content__load-more">Load More</a>
+  </section>
+
   <section class="project-content-section" id="team">
     <%= render "projects/members", :project_id => @project.id, :project_members => @project_members %>
   </section>
