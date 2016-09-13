@@ -18,6 +18,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
+<%= render "layouts/headerBanner"%>
+
 <main class="page-main">
   <section class="project-hero" id="overview">
     <%= render "projects/overview", :project_id => @project.id, :project_proposal=> @project_proposal, :project_categories => @project_categories%>
@@ -31,18 +33,19 @@
     </div>
   </section>
 
-  <nav class="project-navigation list-horizontal-scroller" id="project-navigation">
-  <ul class="list--horizontal">
-    <li class="list-item current"><%= link_to 'Overview', "#overview" %></li>
-    <li class="list-item"><%= link_to 'About', "#about" %></li>
-    <li class="list-item"><%= link_to 'Detail', "#details" %></li>
-    <li class="list-item"><%= link_to 'Updates', "#updates" %></li>
-    <li class="list-item"><%= link_to 'Team', "#team" %></li>
-    <li class="list-item"><%= link_to 'Fuel', "#fuel" %></li>
-    <li class="list-item"><%= link_to 'Timeline', "#timeline" %></li>
-    <li class="list-item"><%= link_to 'Discuss', "#discuss" %></li>
-  </ul>
-  </nav>
+<article class="project-content">
+<div id="project-navigation-sticky-wrapper" class="sticky-wrapper">
+      <ul class="list--horizontal">
+        <li class="list-item current"><a href="#overview">Overview</a></li>
+        <li class="list-item"><a href="#about">About</a></li>
+        <li class="list-item"><a href="#details">Details</a></li>
+        <li class="list-item"><a href="#updates">Updates</a></li>
+        <li class="list-item"><a href="#team">Team</a></li>
+        <li class="list-item"><a href="#fuel">Fuel</a></li>
+        <li class="list-item"><a href="#timeline">Timeline</a></li>
+        <li class="list-item"><a href="#discuss">Discuss</a></li>
+      </ul>
+    </div>
 
   <section class="project-content-section" id="about">
     <div class="wrap">
@@ -214,7 +217,7 @@
 
     <a href="#" class="fuel-pledge-another">Pledge Another Amount <i class="icon icon--chevron-right"></i></a>
   </section>
-
+</article>
 </main>
 
 <div class="lightbox js-lightbox">
