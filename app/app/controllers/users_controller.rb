@@ -90,7 +90,6 @@ class UsersController < ApplicationController
       @user.save
     end
     redirect_to :controller => 'dashboards', :action => 'index'
-
   end
 
   def ban

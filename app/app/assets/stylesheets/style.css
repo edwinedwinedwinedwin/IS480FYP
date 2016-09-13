@@ -2893,6 +2893,15 @@ strong,
     .project-team-member {
       width: 25%; } }
 
+.member-image{
+  width:15em;
+  height:15em;
+}
+
+.wordwrapper{
+  word-wrap: break-word;
+}
+
 .project-team-member-thumbnail {
   cursor: pointer;
   position: relative;
