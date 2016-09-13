@@ -1,7 +1,22 @@
-<%= stylesheet_link_tag "style" %>
-<%= stylesheet_link_tag "component" %>
-<%= stylesheet_link_tag "flickity/flickity.css" %>
-<%= javascript_include_tag "application"%>
+<html lang="en">
+
+<head>
+  <meta name="robots" content="noindex">
+  <meta charset="UTF-8">
+  <title>YBCO</title>
+  <%= stylesheet_link_tag "style" %>
+  <%= stylesheet_link_tag "component" %>
+  <%= stylesheet_link_tag "flickity/flickity.css" %>
+  <%= javascript_include_tag "application"%>
+
+  <!-- bower:css -->
+  <link rel="stylesheet" href="/assets/unsemantic/assets/stylesheets/unsemantic-grid-responsive-no-ie7.css" >
+  <link rel="stylesheet" href="/assets/unsemantic/assets/stylesheets/unsemantic-grid-responsive-tablet-no-ie7.css">
+  <!-- endbower -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
 
 <main class="page-main">
   <section class="project-hero" id="overview">
@@ -16,7 +31,7 @@
     </div>
   </section>
 
-
+  <nav class="project-navigation list-horizontal-scroller" id="project-navigation">
   <ul class="list--horizontal">
     <li class="list-item current"><%= link_to 'Overview', "#overview" %></li>
     <li class="list-item"><%= link_to 'About', "#about" %></li>
@@ -27,6 +42,7 @@
     <li class="list-item"><%= link_to 'Timeline', "#timeline" %></li>
     <li class="list-item"><%= link_to 'Discuss', "#discuss" %></li>
   </ul>
+  </nav>
 
   <section class="project-content-section" id="about">
     <div class="wrap">
