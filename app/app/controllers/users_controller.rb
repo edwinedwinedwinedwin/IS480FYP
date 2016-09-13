@@ -85,12 +85,8 @@ class UsersController < ApplicationController
 
   def updateProfilePic
     @user=User.find(params[:id])
-    if (params[:profile_pic].nil?)
-      flash[:errors] = "Profile picture is empty."
-    else
-     @user.profile_pic = params[:profile_pic]
-      @user.save
-  end
+    @user.profile_pic = params[:user][:profile_pic] if
+    @user.save
     redirect_to :controller => 'dashboards', :action => 'index'
   end
 
