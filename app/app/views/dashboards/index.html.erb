@@ -7,7 +7,24 @@
 
 
 <main class="page-main">
-		<section class="project-content-section" id="fuel">
+
+  <div class="form-field">
+
+    <% if @user.errors.any? %>
+        <div class="panel panel-danger">
+          <div class="panel-heading"><h2><strong>Your inputs do not meet the requirements:</strong></h2></div>
+          <div class="panel-body alert-design">
+            <ul style="list-style-type:circle">
+              <% @user.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+    <% end %>
+  </div>
+
+  <section class="project-content-section" id="fuel">
 			<ul class="fuel-rewards">
 				<li class="fuel-reward js-lightbox-open" data-content-container="#fuel-lightbox-content">
 					
@@ -47,7 +64,8 @@
 		<a href="#" class="button--fill">asdkjasd</a>
 		-->
 
-		<%= form_for :user,url: user_path(@user),method: :patch do |f| %>    
+		<%= form_for :user, url:  updateProfilePic_path(session[:user_id]) ,method: :post do |f| %>
+
         <div class="form-field">
 
           <% if @user.errors.any? %>
@@ -66,10 +84,10 @@
 
 
         <div class="form-field">
-            <%= f.file_field :profile_pic, class: "form-input", value: @user.profile_pic %>
+            <%= f.file_field :profile_pic, class: "form-input" %>
             <label class="form-label" for="profile_pic">Profile Picture (File Size: < 2MB)</label>
         </div>
-        <% current_user=User.find(session[:user_id]) %>        
+        <% current_user=User.find(session[:user_id]) %>
         <% if current_user.profile_pic.present? %> <!-- check if profile pic exists -->
         <% url = current_user.profile_pic%> <!-- get entire url-->
         <% index=url.to_s.rindex('/') %> <!-- get last index of '/'-->
@@ -78,7 +96,7 @@
         <% end %>
 
         <div class="form-actions">
-          <%= link_to "Submit" , updateProfilePic_path(@user.id), class: "button--stroke--long" %>
+          <%= f.submit "Submit", class: "button--stroke--long" %>
         </div>
 
         <% end %> 

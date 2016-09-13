@@ -85,7 +85,8 @@ class UsersController < ApplicationController
 
   def updateProfilePic
     @user=User.find(params[:id])
-    @user.profile_pic = params[:user][:profile_pic] if
+   
+    @user.profile_pic = params[:user][:profile_pic]
     @user.save
     redirect_to :controller => 'dashboards', :action => 'index'
   end
