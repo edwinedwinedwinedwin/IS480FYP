@@ -52,7 +52,7 @@
   </div>
 
   <div class="profile-tag">
-    </assets class="profile-tag-image" src="/assets/temp-1.png" alt="">
+    <%= image_tag(User.find(Project.find(project_id).user_id).profile_pic) %>
     <span class="profile-tag-text">by <span class="profile-tag__user">Waterislife</span></span>
   </div>
 </header>
