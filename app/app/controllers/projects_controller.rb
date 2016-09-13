@@ -9,8 +9,8 @@ class ProjectsController < ApplicationController
 
     @project_proposal = ProjectProposal.find(@project.project_proposal_id)
     @user = User.find(@project.user_id)
-    @project_proposal_imgs = ProjectProposalImg.find_by_project_proposal_id(@project_proposal.id)
-    @project_inspirations = ProjectInspiration.find_by_project_id(params[:id])
+    @project_proposal_imgs = ProjectProposalImg.where(:project_proposal_id => @project_proposal.id)
+    @project_inspirations = ProjectInspiration.where(:project_id => params[:id])
 
     @project_members = ProjectMember.joins(:user).select('project_members.id as pm_id,
                         users.id as user_id,
@@ -22,9 +22,9 @@ class ProjectsController < ApplicationController
                         project_members.project_status_id as member_status,
                         project_members.description as description').where(:project_members => {:project_id => params[:id]})
 
-    @project_updates = ProjectMember.find_by_project_id(params[:id])
-    @project_rewards = ProjectReward.find_by_project_id(params[:id])
-    @project_milestones = ProjectMilestone.find_by_project_id(params[:id])
+    @project_updates = ProjectUpdate.where(:project_id => params[:id])
+    @project_rewards = ProjectReward.where(:project_id => params[:id])
+    @project_milestones = ProjectMilestone.where(:project_id => params[:id])
     #@project_milestones_start = ProjectMilestone.find_by_project_id(params[:id]).first
     #@project_milestones_end = ProjectMilestone.find_by_project_id(params[:id]).last
 

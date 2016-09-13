@@ -1,12 +1,6 @@
 Rails.application.routes.draw do  
   root 'pages#home' # root page
 
-  # user expertises routes
-  get 'user_expertises/index' => 'user_expertises#index'
-  get 'user_expertises/new' => 'user_expertises#new'
-  post 'user_expertises' => 'user_expertises#create'
-
-
   # project reward backers routes
   get 'project_reward_backers/index' => 'project_reward_backers#index'
   get 'project_reward_backers/new' => 'project_reward_backers#new'
@@ -95,5 +89,11 @@ Rails.application.routes.draw do
   post 'projects/updateCategory/(:id)' => 'projects#updateCategory', as: :updateCategory
   get 'projects/show/:id' => 'projects#show', as: :showProject
 
+  # user expertises routes
+  get 'user_expertises/index' => 'user_expertises#index'
+  get 'user_expertises/new' => 'user_expertises#new', as: :newExpertise
+  post 'user_expertises' => 'user_expertises#create'
+
   match '/:controller/:action/(:id)', via: [:get, :post] # last route
+
 end

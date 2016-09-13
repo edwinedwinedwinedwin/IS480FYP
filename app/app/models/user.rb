@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :projects
   has_many :project_members
+  has_many :user_expertises
 
   mount_uploader :profile_pic, ProfilePicUploader
   validates :profile_pic, file_size: { less_than: 2.megabytes }  
