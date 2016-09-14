@@ -36,14 +36,18 @@
 				</span>
   </ul>
 
+
   <div class="project-title">
+
     <h1 class="heading--large" id="project-title">
-      The Drinkable book
+      <%= form_for :project_proposal, url: updateTitle_path(:id => project_proposal.id) do |f| %>rake
+      <%= f.text_field :title , :value => project_proposal.title, :class => "heading--large" %>
     </h1>
 
     <span class="edit-save-button js-edit-save-button" id="project-title-save">
-					Done
-				</span>
+      <%= f.submit 'Done' %>
+    </span>
+    <% end %>
 
     <span class="edit-button js-edit-button" id="project-title-edit" data-container="project-header">
 					<i class="icon icon--edit"></i>
@@ -53,6 +57,9 @@
 
   <div class="profile-tag">
     <%= image_tag(User.find(Project.find(project_id).user_id).profile_pic, :class=>"img-circular-project-avatar") %>
-    <span class="profile-tag-text">by <span class="profile-tag__user">Waterislife</span></span>
+    <% first_name = User.find(Project.find(project_id).user_id).first_name %>
+    <% last_name = User.find(Project.find(project_id).user_id).last_name %>
+    <% full_name = last_name + ' ' + first_name %>
+    <span class="profile-tag-text">by <span class="profile-tag__user"><%= full_name%></span></span>
   </div>
 </header>

@@ -87,6 +87,7 @@
             </div>
           </div>
 
+
           <div id="project-about">
             <div class="project-about-title" id="project-about-title">
               <h2 class="heading--small">
@@ -99,16 +100,22 @@
 								</span>
             </div>
 
+
             <div class="project-description" id="project-description">
-              <p class="t--large wordwrapper"><%= @project_proposal.description %></p>
-              <p class="wordwrapper"> </p>
+              <%= form_for :project_proposal, url: updateDescription_path(:id => @project_proposal.id) do |f| %>
+
+              <p class="t--large wordwrapper"><%= f.text_area :description , :value => @project_proposal.description, :class => "project-description" %></p>
+              <p class="wordwrapper"></p>
+
             </div>
           </div>
 
           <span class="edit-save-button js-edit-save-button" id="project-description-save">
-							Done
-						</span>
+            <%= f.submit 'Done' %>
+					</span>
+              <% end %>
         </div>
+
 
         <div class="grid-25 push-10">
           <ul class="list">

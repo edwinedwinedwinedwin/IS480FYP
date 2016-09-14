@@ -88,6 +88,8 @@ Rails.application.routes.draw do
   post 'projects/manage' => 'projects#manage', as: :manageProjectStatus # display create proposal page
   post 'projects/updateCategory/(:id)' => 'projects#updateCategory', as: :updateCategory
   get 'projects/show/:id' => 'projects#show', as: :showProject
+  post 'projects/updateDescription/(:id)' => 'projects#updateDescription', as: :updateDescription
+  post 'projects/updateTitle/(:id)' => 'projects#updateTitle', as: :updateTitle
 
   # user expertises routes
   get 'user_expertises/index' => 'user_expertises#index'

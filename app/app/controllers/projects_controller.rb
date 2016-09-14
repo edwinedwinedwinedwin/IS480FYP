@@ -67,6 +67,26 @@ class ProjectsController < ApplicationController
     redirect_to showProject_path(params[:project_id]) and return
   end
 
+  def updateDescription
+    @project_proposal = ProjectProposal.find(params[:id])
+    @project = Project.where(:project_proposal_id => params[:id]).first
+    if !params[:project_proposal].nil? && !params[:project_proposal][:description].nil?
+      @project_proposal.description = params[:project_proposal][:description]
+      @project_proposal.save
+    end
+    redirect_to showProject_path(@project.id) and return
+  end
+
+  def updateTitle
+    @project_proposal = ProjectProposal.find(params[:id])
+    @project = Project.where(:project_proposal_id => params[:id]).first
+    if !params[:project_proposal].nil? && !params[:project_proposal][:title].nil?
+      @project_proposal.title = params[:project_proposal][:title]
+      @project_proposal.save
+    end
+    redirect_to showProject_path(@project.id) and return
+  end
+
   private
   def projects_params
     params.require(:projects).permit(:start_date, :end_date, :country, :state, :city, :project_status_id, :project_proposal_id, :user_id)
