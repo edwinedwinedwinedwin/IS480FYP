@@ -15,7 +15,12 @@ class SessionsController < ApplicationController
         if user.is_admin
           redirect_to :controller => 'admins', :action => 'index' and return
         else
-          redirect_to :controller => 'dashboards', :action => 'index' and return
+          @checkProject = Project.where(:user_id => user.id).first
+          if @checkProject.nil?
+            redirect_to dashboardIndex_path()
+          else
+            redirect_to showProject_path(:id => @checkProject.id)
+          end
         end        
       end
     else                

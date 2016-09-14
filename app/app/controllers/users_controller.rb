@@ -83,6 +83,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def manage
+      @user = User.find(params[:id])
+      @projects = Project.joins(:project_proposal).where(:project_proposals => {:email=> @user.email, :project_status_id=>3})
+  end
+
   def updateProfilePic
     @user=User.find(params[:id])
     if !params[:user].nil? && !params[:user][:profile_pic].nil?

@@ -34,10 +34,6 @@ class ProjectsController < ApplicationController
     @Project = Project.new
   end
 
-  def manage
-    @Projects = Project.joins(:project_proposal).where(:project_proposals => {:email=>params[:email],:project_status_id=>3})
-  end
-
   def create
     @Project = Project.new(projects_params)
     if @Project.save

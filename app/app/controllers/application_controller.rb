@@ -15,7 +15,6 @@ class ApplicationController < ActionController::Base
   def after_logged_in
     if !session[:user_id].nil?
       session[:user_id]=nil
-      #redirect_to :controller => 'sessions', :action => 'new'
     end
   end
 
@@ -24,7 +23,7 @@ class ApplicationController < ActionController::Base
       redirect_to :controller => 'sessions', :action => 'new'
     else
       if !current_user.is_admin
-        redirect_to :controller => 'dashboards', :action => 'index' and return    
+       redirect_to dashboardIndex_path()
       end
     end      
   end

@@ -68,7 +68,7 @@ Rails.application.routes.draw do
   get 'admins/editprofile' => 'users#edit#:id'
   post 'sessions/create' => 'sessions#create' # process login
   get 'sessions/destroy' => 'sessions#destroy' # log out and invalidate session
-  get 'dashboard/index' => 'dashboards#index' # Display page upon successful login
+  get 'dashboard/index' => 'dashboards#index', as: :dashboardIndex # Display page upon successful login
 
   post 'users/updateProfilePic/(:id)' => 'users#updateProfilePic', as: :updateProfilePic
   get 'admins/index' => 'admins#index'
@@ -85,7 +85,7 @@ Rails.application.routes.draw do
   post 'project_proposals/manage' => 'project_proposals#manage', as: :checkProposalStatus # display create proposal page
 
 
-  post 'projects/manage' => 'projects#manage', as: :manageProjectStatus # display create proposal page
+  get 'users/manage/(:id)' => 'users#manage', as: :manageProject # display create proposal page
   post 'projects/updateCategory/(:id)' => 'projects#updateCategory', as: :updateCategory
   get 'projects/show/:id' => 'projects#show', as: :showProject
   post 'projects/updateDescription/(:id)' => 'projects#updateDescription', as: :updateDescription
