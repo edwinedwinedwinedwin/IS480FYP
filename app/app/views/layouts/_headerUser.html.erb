@@ -20,14 +20,6 @@
 
 <body>
 	<header class="page-header">
-
-	<div class="lightbox js-lightbox">
-		<div class="js-lightbox-close-image lightbox-close icon icon--lightbox-close"></div>
-		<div class="js-lightbox-content">
-		</div>
-	</div>
-	<div class="lightbox-overlay js-lightbox-overlay js-lightbox-close"></div>
-
 		<span style="font-size:30px;cursor:pointer">
 			<button class="site-menu-open js-site-menu-toggle">
 				<span class="l--hidden">Open Site Menu</span>
@@ -44,29 +36,23 @@
       <%= link_to '', root_path , class: "icon icon--ybco-logomark",  id: "ybcologo" %>
 		</h1>
 
-		<!-- Sidebar -->
-
-		
+		<!-- Sidebar -->	
 		<section class="site-menu" id="site-menu">
-		<a href="someurl" data-toggle="lightbox">Launch modal</a>
 			
 		<div class="site-user">
 			<div class="site-avatar">
+			<div class="js-lightbox-open" data-content-container="#fuel-lightbox-content">
 			<% current_user=User.find(session[:user_id]) %>        
 	        <% if current_user.profile_pic.present? %> <!-- check if profile pic exists -->
 	        	<% url = current_user.profile_pic%> <!-- get entire url-->
 	        	<% index=url.to_s.rindex('/') %> <!-- get last index of '/'-->
-	        	
-        		<%= link_to image_tag(current_user.profile_pic, :class=> "img-circular-avatar"),
-:action => 'edit', :controller => 'users', :id=>session[:user_id]%>	
+	        	<!--
+        		<%= link_to image_tag(current_user.profile_pic, :class=> "img-circular-avatar")%>	-->
+        		<a href="#" class="img-circular-avatar"><%= image_tag(current_user.profile_pic) %></a>
         	<% else %>
-
-        		<%= link_to image_tag("defaultprofile.png", :class=> "img-circular-avatar js-lightbox-open-image"),data: {container: "#fuel-lightbox-content"},:id=>session[:user_id]%>
-
-<!--
-<%= link_to image_tag("card-fuel-icon.png", :class=>"img-circular-avatar"), data: {toggle: "modal", target: "#responsive"} %> -->
-
-
+        		<!--<%= link_to image_tag("defaultprofile.png", :class=> "img-circular-avatar")%>-->
+        		<a href="#" class="img-circular-avatar"><%= image_tag("defaultprofile.png") %></a>
+			</div>
         	<% end %>
         	</div> 
         	<div class="site-avatar-name">
@@ -76,12 +62,13 @@
 	        	<%= link_to "LOGOUT", {:controller=> "sessions", :action=>"destroy"}%>
         	</div>
         </div>
-		   
-			<nav class="site-menu-block-user site-navigation">
 
+			<nav class="site-menu-block-user site-navigation">
+			<div class="site-navigation-list__item">
+            			<%= link_to "My Projects",  manageProjectStatus_path(:email => @current_user.email), method: "post" %>
+            			</div>
 				<ul class="site-navigation-list">
 					<li class="site-navigation-list__item-project">
-            			My Projects
 	            		<ul class="site-navigation-list--project">
 	            			<% pp_id = 0 %>
 			        		<% images.each do |p| %>
@@ -107,7 +94,7 @@
 							<li class="site-navigation-list--project-details">
 								<%= link_to "Tiles"%>
 							</li>
-							<li class="site-navigation-list--project-details">
+							<li class="site-navigation-list--project-details bottom-push">
 								<%= link_to "Help"%>
 							</li>
 								<% end %>
@@ -117,13 +104,6 @@
 						</ul>
 						
 					</li>
-
-    						
-    						
-
-					
-
-
 					<!--li class="site-navigation-list__item">
             Profile
 					</li>
@@ -185,18 +165,7 @@
 					<i class="icon icon--twitter-with-circle"></i>
 				</a></li>
 			</ul>
-
-
-				
-					<div class="fuel-reward js-lightbox-open" data-content-container="#fuel-lightbox-content">
-					<div class="fuel-reward-select">
-						<a href="#" class="button--stroke">Select</a>
-					</div>
-					</div>
-			</ul>
-
 		</section>
-		
 
 		<section class="site-utilities">
 			<ul class="site-utilities-links">
@@ -209,5 +178,75 @@
 		</section>
 	</header>
 </body>
+
+<!--LIGHTBOX -->
+
+<div class="lightbox js-lightbox">
+	<div class="js-lightbox-close lightbox-close icon icon--lightbox-close"></div>
+	<div class="js-lightbox-content">
+	</div>
+</div>
+<div class="lightbox-overlay js-lightbox-overlay js-lightbox-close"></div>
+
+<div class="l--hidden" id="fuel-lightbox-content">
+	<div class="fuel-lightbox-container">
+	
+		<legend class="form-heading heading"> Edit Profile </legend>
+		<span class="fuel-lightbox__heading">Upload your profile picture</span>
+		<!--
+		<span class="fuel-lightbox__title">Gift of water to ten (10) families</span>
+
+		<p class="t--small">lorem<a href="#">Loremmasdas</a></p>
+
+		<div class="fuel-lightbox__description">
+			<p class="t--large">asdjasdkjd</p>
+		</div>
+
+		<span class="fuel-lightbox__delivery">
+			<span class="t--strong">HAHAHA</span> May 2015
+		</span>
+
+		<a href="#" class="button--fill">asdkjasd</a>
+		-->
+
+		<%= form_for :user, url:  updateProfilePic_path(session[:user_id]) ,method: :post do |f| %>
+
+        <div class="form-field">
+
+          <% if @user.errors.any? %>
+              <div class="panel panel-danger">
+              <div class="panel-heading"><h2><strong>Your inputs do not meet the requirements:</strong></h2></div>
+                <div class="panel-body alert-design">
+                  <ul style="list-style-type:circle">
+                    <% @user.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              </div>
+          <% end %>
+        </div>        
+
+
+        <div class="form-field">
+            <%= f.file_field :profile_pic, class: "form-input" %>
+            <label class="form-label" for="profile_pic">Profile Picture (File Size: < 2MB)</label>
+        </div>
+        <% current_user=User.find(session[:user_id]) %>
+        <% if current_user.profile_pic.present? %> <!-- check if profile pic exists -->
+        <% url = current_user.profile_pic%> <!-- get entire url-->
+        <% index=url.to_s.rindex('/') %> <!-- get last index of '/'-->
+        <!--
+        <div align=center> <%= url.to_s[index+1..url.to_s.length] %> </div>
+        <div align=center><%= image_tag(current_user.profile_pic,:class=> "img-circular") %></div> -->
+        <% end %>
+
+        <div class="form-actions">
+          <%= f.submit "Submit", class: "button--stroke--long" %>
+        </div>
+
+        <% end %> 
+	</div>
+</div>
 <%= yield %>
 
