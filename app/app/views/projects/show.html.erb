@@ -17,10 +17,14 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+<div class="banner-notice">
+    Don't let your work go to waste. <a href="signup.php" style="display:inline;padding: 0;"><span class="t--strong">Be a part</span></a> of YBCO and create projects you're passionate about.
+    <i class="icon icon--cross js-close"></i>
+  </div>
+<%= render "layouts/headerUser", :projects=>@projects, :images =>  @project_coverImgs%>
 
-<%= render "layouts/headerBanner"%>
 
-<main class="page-main">
+<main class="page-main" id="page-main">
   <section class="project-hero" id="overview">
     <%= render "projects/overview", :project_id => @project.id, :project_proposal=> @project_proposal, :project_categories => @project_categories%>
     <%= render "projects/coverpage",  :project_proposal=> @project_proposal, :project_proposal_imgs => @project_proposal_imgs  %>

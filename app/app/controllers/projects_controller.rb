@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-
+before_filter :logged_in,:authorize_user
   def index
     @Projects = Project.all
   end
@@ -28,6 +28,18 @@ class ProjectsController < ApplicationController
     #@project_milestones_start = ProjectMilestone.find_by_project_id(params[:id]).first
     #@project_milestones_end = ProjectMilestone.find_by_project_id(params[:id]).last
 
+    @session=session[:user_id]
+    
+    @projects=ProjectProposal.select("*").joins(:project).where(:projects => {:user_id=>@session})
+    @project_coverImgs = ProjectProposalImg.select('
+                project_proposal_imgs.project_proposal_id as pp_id,
+                project_proposal_imgs.id as ppi_id,
+                project_proposals.title as title,
+                projects.id as p_id
+                ').joins(project_proposal: :project).where(:projects => {:user_id => @session})
+    #@project_coverImgs = ProjectProposalImg.select("*").joins(:project_proposal).where(:project_proposal_imgs => {:project_proposal_id => @project.project_proposal_id} )
+
+    @user=User.find(@session) # only able to edit current logged in user
   end
 
   def new

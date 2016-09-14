@@ -11,13 +11,15 @@ $(function() {
 	$pageButton = $('#page-button'),
 	$menuToggleButtons = $('.js-site-menu-toggle'),
 	$cross = $('#cross'),
-	$ybcologo = $('#ybcologo');
+	$ybcologo = $('#ybcologo'),
+	$main = $('#page-main');
 
 	$menuToggleButtons.on('click', function() {
 		$siteMenu.toggleClass('enabled');
 		$pageButton.toggleClass('enabled');
 		$ybcologo.toggleClass('enabled');
 		$cross.toggleClass('enabled');
+		$main.toggleClass('enabled');
 	});
 
 	// scrollTo Buttons
