@@ -1,221 +1,221 @@
 <html lang="en">
 
 <head>
-	<meta name="robots" content="noindex">
-	<meta charset="UTF-8">
-	<title>YBCO</title>
-	<%= stylesheet_link_tag "style" %>
-	<%= stylesheet_link_tag "component" %>
-	<%= stylesheet_link_tag "flickity/flickity.css" %>
-	<%= javascript_include_tag "application"%>
+  <meta name="robots" content="noindex">
+  <meta charset="UTF-8">
+  <title>YBCO</title>
+  <%= stylesheet_link_tag "style" %>
+  <%= stylesheet_link_tag "component" %>
+  <%= stylesheet_link_tag "flickity/flickity.css" %>
+  <%= javascript_include_tag "application"%>
 
-	<!-- bower:css -->
-	<link rel="stylesheet" href="/assets/unsemantic/assets/stylesheets/unsemantic-grid-responsive-no-ie7.css" >
-	<link rel="stylesheet" href="/assets/unsemantic/assets/stylesheets/unsemantic-grid-responsive-tablet-no-ie7.css">
-	<!-- endbower -->
-	<link rel="icon" type="image/png" href="favicon.png">
+  <!-- bower:css -->
+  <link rel="stylesheet" href="/assets/unsemantic/assets/stylesheets/unsemantic-grid-responsive-no-ie7.css" >
+  <link rel="stylesheet" href="/assets/unsemantic/assets/stylesheets/unsemantic-grid-responsive-tablet-no-ie7.css">
+  <!-- endbower -->
+  <link rel="icon" type="image/png" href="favicon.png">
 
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
-	<header class="page-header">
-		<span style="font-size:30px;cursor:pointer">
-			<button class="site-menu-open js-site-menu-toggle">
-				<span class="l--hidden">Open Site Menu</span>
-				<i class="icon icon--menu" id="page-button"></i>
-				<i class="icon icon--medium-cross l--hidden" id="cross"></i>
+<header class="page-header">
+  <span style="font-size:30px;cursor:pointer">
+   <button class="site-menu-open js-site-menu-toggle">
+    <span class="l--hidden">Open Site Menu</span>
+    <i class="icon icon--menu" id="page-button"></i>
+    <i class="icon icon--medium-cross l--hidden" id="cross"></i>
 
-			</button>
-			<!--a type="button" class="btn" style="width:100%;" href="#responsive" data-toggle="modal">Add Image</a-->
+   </button>
+    <!--a type="button" class="btn" style="width:100%;" href="#responsive" data-toggle="modal">Add Image</a-->
 
 
-		</span>
-		
-		<h1 class="site-logo logo">
-      <%= link_to '', root_path , class: "icon icon--ybco-logomark",  id: "ybcologo" %>
-		</h1>
+  </span>
 
-		<!-- Sidebar -->	
-		<section class="site-menu" id="site-menu">
-			
-		<div class="site-user">
-			<div class="site-avatar">
-			<div class="js-lightbox-open" data-content-container="#fuel-lightbox-content">
-			<% current_user=User.find(session[:user_id]) %>        
-	        <% if current_user.profile_pic.present? %> <!-- check if profile pic exists -->
-	        	<% url = current_user.profile_pic%> <!-- get entire url-->
-	        	<% index=url.to_s.rindex('/') %> <!-- get last index of '/'-->
-	        	<!--
-        		<%= link_to image_tag(current_user.profile_pic, :class=> "img-circular-avatar")%>	-->
-        		<a href="#" class="img-circular-avatar"><%= image_tag(current_user.profile_pic) %></a>
-        	<% else %>
-        		<!--<%= link_to image_tag("defaultprofile.png", :class=> "img-circular-avatar")%>-->
-        		<a href="#" class="img-circular-avatar"><%= image_tag("defaultprofile.png") %></a>
-			</div>
-        	<% end %>
-        	</div> 
-        	<div class="site-avatar-name">
-	        	Hello, <%= @current_user.first_name.capitalize %>!
-        	</div>
-	        <div class="site-avatar-logout">
-	        	<%= link_to "LOGOUT", {:controller=> "sessions", :action=>"destroy"}%>
-        	</div>
-        </div>
+  <h1 class="site-logo logo">
+    <%= link_to '', root_path , class: "icon icon--ybco-logomark",  id: "ybcologo" %>
+  </h1>
 
-			<nav class="site-menu-block-user site-navigation">
-			<div class="site-navigation-list__item">
-            			<%= link_to "My Projects",  manageProject_path(:id => @current_user.id), method: "post" %>
-            			</div>
-				<ul class="site-navigation-list">
-					<li class="site-navigation-list__item-project">
-	            		<ul class="site-navigation-list--project">
-	            			<% pp_id = 0 %>
-			        		<% images.each do |p| %>
-								<% if pp_id != p.pp_id %>
-									<% pp_id = p.pp_id %>
-									
-									<%= image_tag(ProjectProposalImg.find(p.ppi_id).img_url, :class=> "img-circular-project") %>		
-								
-									
-								<li class="site-navigation-list--project__item-title">
-									<%= link_to showProject_path(:id => p.p_id) do %><%= p.title.capitalize%><% end %>
-								</li>     
+  <!-- Sidebar -->
+  <section class="site-menu" id="site-menu">
 
-								<li class="site-navigation-list--project-percentage">
-								40% complete
-							</li>
-							<li class="site-navigation-list--project-details">
-								<%= link_to "Metrics"%>
-							</li>
-							<li class="site-navigation-list--project-details">
-								<%= link_to "Settings"%>
-							</li>
-							<li class="site-navigation-list--project-details">
-								<%= link_to "Tiles"%>
-							</li>
-							<li class="site-navigation-list--project-details bottom-push">
-								<%= link_to "Help"%>
-							</li>
-								<% end %>
-								
-							<% end %>
-							
-						</ul>
-						
-					</li>
-					<!--li class="site-navigation-list__item">
-            Profile
-					</li>
-					<ul class="site-navigation-list--sub">
-					<li class="site-navigation-list--sub__item">
-						<%= link_to "Edit Profile", :controller=>"users", :action=>"edit", :id=>session[:user_id]%>
-					</li>
-					<li class="site-navigation-list--sub__item">
+    <div class="site-user">
+      <div class="site-avatar">
+        <div class="js-lightbox-open" data-content-container="#fuel-lightbox-content">
+          <% current_user=User.find(session[:user_id]) %>
+          <% if current_user.profile_pic.present? %> <!-- check if profile pic exists -->
+              <% url = current_user.profile_pic%> <!-- get entire url-->
+              <% index=url.to_s.rindex('/') %> <!-- get last index of '/'-->
+              <!--
+          <%= link_to image_tag(current_user.profile_pic, :class=> "img-circular-avatar")%> -->
+              <a href="#"><%= image_tag(current_user.profile_pic, :class=>"img-circular-avatar") %></a>
+          <% else %>
+              <!--<%= link_to image_tag("defaultprofile.png", :class=> "img-circular-avatar")%>-->
+              <a href="#" class="img-circular-avatar"><%= image_tag("defaultprofile.png") %></a>
+              </div>
+          <% end %>
+          </div>
+      <div class="site-avatar-name">
+        Hello, <%= @current_user.first_name.capitalize %>!
+      </div>
+      <div class="site-avatar-logout">
+        <%= link_to "LOGOUT", {:controller=> "sessions", :action=>"destroy"}%>
+      </div>
+    </div>
+
+    <nav class="site-menu-block-user site-navigation">
+      <div class="site-navigation-list__item">
+        <%= link_to "My Projects",  manageProjectStatus_path(:email => @current_user.email), method: "post" %>
+      </div>
+      <ul class="site-navigation-list">
+        <li class="site-navigation-list__item-project">
+          <ul class="site-navigation-list--project">
+            <% pp_id = 0 %>
+            <% images.each do |p| %>
+                <% if pp_id != p.pp_id %>
+                    <% pp_id = p.pp_id %>
+
+                    <%= image_tag(ProjectProposalImg.find(p.ppi_id).img_url, :class=> "img-circular-project") %>
+
+
+                    <li class="site-navigation-list--project__item-title">
+                      <%= link_to showProject_path(:id => p.p_id) do %><%= p.title.capitalize%><% end %>
+                    </li>
+
+                    <li class="site-navigation-list--project-percentage">
+                      40% complete
+                    </li>
+                    <li class="site-navigation-list--project-details">
+                      <%= link_to "Metrics"%>
+                    </li>
+                    <li class="site-navigation-list--project-details">
+                      <%= link_to "Settings"%>
+                    </li>
+                    <li class="site-navigation-list--project-details">
+                      <%= link_to "Tiles"%>
+                    </li>
+                    <li class="site-navigation-list--project-details bottom-push">
+                      <%= link_to "Help"%>
+                    </li>
+                <% end %>
+
+            <% end %>
+
+          </ul>
+
+        </li>
+        <!--li class="site-navigation-list__item">
+               Profile
+        </li>
+        <ul class="site-navigation-list--sub">
+        <li class="site-navigation-list--sub__item">
+         <%= link_to "Edit Profile", :controller=>"users", :action=>"edit", :id=>session[:user_id]%>
+     </li>
+     <li class="site-navigation-list--sub__item">
             <%= link_to "Change Password", controller: "users", action: "changepass", id: session[:user_id] %>
-					</li>
-					</ul-->
+     </li>
+     </ul-->
 
-					<!--li class="site-navigation-list__item">
+        <!--li class="site-navigation-list__item">
             <%= link_to "Create a Project", controller: "project_proposals", action: "new" %>
-					</li>
-					<li class="site-navigation-list__item">
-            <%= link_to "Manage Project",  manageProject_path(:id => @current_user.id), method: "post" %>
-					</li-->
-				<li class="site-navigation-list__item">
-				
-            <%= link_to "Explore"%>
-            </li>
-            		<ul class="site-navigation-list--sub">
-            			<li class="site-navigation-list--sub__item">
-            			<%= link_to "Trending"%>
-            			</li>
-            			<li class="site-navigation-list--sub__item">
-            			<%= link_to "Curated"%>
-            			</li>
-            			<li class="site-navigation-list--sub__item">
-            			<%= link_to "Fresh"%>
-            			</li>
-            		</ul>
-				<li class="site-navigation-list__item">
-            <%= link_to "Funded"%>
-					</li>
-				</ul>
+     </li>
+     <li class="site-navigation-list__item">
+            <%= link_to "Manage Project",  manageProjectStatus_path(:email => @current_user.email), method: "post" %>
+     </li-->
+        <li class="site-navigation-list__item">
 
-				<ul class="site-navigation-list--small">
-					<li class="site-navigation-list__item">
-						<a href="#" rel="internal">About Y&B</a>
-					</li>
-					<li class="site-navigation-list__item">
-						<a href="#" rel="internal">Support</a>
-					</li>
-					<li class="site-navigation-list__item">
-						<a href="#" rel="internal">Community Guidelines</a>
-					</li>
-				</ul>
-			</nav>
+          <%= link_to "Explore"%>
+        </li>
+        <ul class="site-navigation-list--sub">
+          <li class="site-navigation-list--sub__item">
+            <%= link_to "Trending"%>
+          </li>
+          <li class="site-navigation-list--sub__item">
+            <%= link_to "Curated"%>
+          </li>
+          <li class="site-navigation-list--sub__item">
+            <%= link_to "Fresh"%>
+          </li>
+        </ul>
+        <li class="site-navigation-list__item">
+          <%= link_to "Funded"%>
+        </li>
+      </ul>
 
-			<ul class="site-menu-block social-links">
-				<li class="social-link"><a href="http://www.facebook.com/ybco.co" target="_blank">
-					<span class="l--hidden">Facebook</span>
-					<i class="icon icon--facebook-with-circle"></i>
-				</a></li>
-				<li class="social-link"><a href="http://www.twitter.com/youngboldco" target="_blank">
-					<span class="l--hidden">Twitter</span>
-					<i class="icon icon--twitter-with-circle"></i>
-				</a></li>
-			</ul>
-		</section>
+      <ul class="site-navigation-list--small">
+        <li class="site-navigation-list__item">
+          <a href="#" rel="internal">About Y&B</a>
+        </li>
+        <li class="site-navigation-list__item">
+          <a href="#" rel="internal">Support</a>
+        </li>
+        <li class="site-navigation-list__item">
+          <a href="#" rel="internal">Community Guidelines</a>
+        </li>
+      </ul>
+    </nav>
 
-		<section class="site-utilities">
-			<ul class="site-utilities-links">
-				<li>
-          <%= link_to "Logout", {:controller=> "sessions", :action=>"destroy"}, :class=>"site-utilities-link"%>
-					
-				</li>
+    <ul class="site-menu-block social-links">
+      <li class="social-link"><a href="http://www.facebook.com/ybco.co" target="_blank">
+        <span class="l--hidden">Facebook</span>
+        <i class="icon icon--facebook-with-circle"></i>
+      </a></li>
+      <li class="social-link"><a href="http://www.twitter.com/youngboldco" target="_blank">
+        <span class="l--hidden">Twitter</span>
+        <i class="icon icon--twitter-with-circle"></i>
+      </a></li>
+    </ul>
+  </section>
 
-			</ul>
-		</section>
-	</header>
+  <section class="site-utilities">
+    <ul class="site-utilities-links">
+      <li>
+        <%= link_to "Logout", {:controller=> "sessions", :action=>"destroy"}, :class=>"site-utilities-link"%>
+
+      </li>
+
+    </ul>
+  </section>
+</header>
 </body>
 
 <!--LIGHTBOX -->
 
 <div class="lightbox js-lightbox">
-	<div class="js-lightbox-close lightbox-close icon icon--lightbox-close"></div>
-	<div class="js-lightbox-content">
-	</div>
+  <div class="js-lightbox-close lightbox-close icon icon--lightbox-close"></div>
+  <div class="js-lightbox-content">
+  </div>
 </div>
 <div class="lightbox-overlay js-lightbox-overlay js-lightbox-close"></div>
 
 <div class="l--hidden" id="fuel-lightbox-content">
-	<div class="fuel-lightbox-container">
-	
-		<legend class="form-heading heading"> Edit Profile </legend>
-		<span class="fuel-lightbox__heading">Upload your profile picture</span>
-		<!--
-		<span class="fuel-lightbox__title">Gift of water to ten (10) families</span>
+  <div class="fuel-lightbox-container">
 
-		<p class="t--small">lorem<a href="#">Loremmasdas</a></p>
+    <legend class="form-heading heading"> Edit Profile </legend>
+    <span class="fuel-lightbox__heading">Upload your profile picture</span>
+    <!--
+    <span class="fuel-lightbox__title">Gift of water to ten (10) families</span>
 
-		<div class="fuel-lightbox__description">
-			<p class="t--large">asdjasdkjd</p>
-		</div>
+    <p class="t--small">lorem<a href="#">Loremmasdas</a></p>
 
-		<span class="fuel-lightbox__delivery">
-			<span class="t--strong">HAHAHA</span> May 2015
-		</span>
+    <div class="fuel-lightbox__description">
+     <p class="t--large">asdjasdkjd</p>
+    </div>
 
-		<a href="#" class="button--fill">asdkjasd</a>
-		-->
+    <span class="fuel-lightbox__delivery">
+     <span class="t--strong">HAHAHA</span> May 2015
+    </span>
 
-		<%= form_for :user, url:  updateProfilePic_path(session[:user_id]) ,method: :post do |f| %>
+    <a href="#" class="button--fill">asdkjasd</a>
+    -->
+
+    <%= form_for :user, url:  updateProfilePic_path(session[:user_id]) ,method: :post do |f| %>
 
         <div class="form-field">
 
           <% if @user.errors.any? %>
               <div class="panel panel-danger">
-              <div class="panel-heading"><h2><strong>Your inputs do not meet the requirements:</strong></h2></div>
+                <div class="panel-heading"><h2><strong>Your inputs do not meet the requirements:</strong></h2></div>
                 <div class="panel-body alert-design">
                   <ul style="list-style-type:circle">
                     <% @user.errors.full_messages.each do |message| %>
@@ -225,18 +225,18 @@
                 </div>
               </div>
           <% end %>
-        </div>        
+        </div>
 
 
         <div class="form-field">
-            <%= f.file_field :profile_pic, class: "form-input" %>
-            <label class="form-label" for="profile_pic">Profile Picture (File Size: < 2MB)</label>
+          <%= f.file_field :profile_pic, class: "form-input" %>
+          <label class="form-label" for="profile_pic">Profile Picture (File Size: < 2MB)</label>
         </div>
         <% current_user=User.find(session[:user_id]) %>
         <% if current_user.profile_pic.present? %> <!-- check if profile pic exists -->
-        <% url = current_user.profile_pic%> <!-- get entire url-->
-        <% index=url.to_s.rindex('/') %> <!-- get last index of '/'-->
-        <!--
+            <% url = current_user.profile_pic%> <!-- get entire url-->
+            <% index=url.to_s.rindex('/') %> <!-- get last index of '/'-->
+            <!--
         <div align=center> <%= url.to_s[index+1..url.to_s.length] %> </div>
         <div align=center><%= image_tag(current_user.profile_pic,:class=> "img-circular") %></div> -->
         <% end %>
@@ -245,8 +245,8 @@
           <%= f.submit "Submit", class: "button--stroke--long" %>
         </div>
 
-        <% end %> 
-	</div>
+    <% end %>
+  </div>
 </div>
 <%= yield %>
 
