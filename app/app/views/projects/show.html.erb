@@ -24,6 +24,7 @@
   <section class="project-hero" id="overview">
     <%= render "projects/overview", :project_id => @project.id, :project_proposal=> @project_proposal, :project_categories => @project_categories%>
     <%= render "projects/coverpage",  :project_proposal=> @project_proposal, :project_proposal_imgs => @project_proposal_imgs  %>
+
     <div class="project-fuel">
       <div class="project-fuel-bar js-project-fuel-bar" data-fuel="50%">
         <div class="project-fuel-bar__text">
