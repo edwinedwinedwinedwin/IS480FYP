@@ -3673,8 +3673,7 @@ strong,
         -ms-transform: rotate(-90deg) scale(0.8);
             transform: rotate(-90deg) scale(0.8); }
 .icon--medium-cross{
-    position: fixed;
-    top: 4.8%;
+    position: absolute;
     left:20.75rem;
     margin-top: -0.5625rem;
     font-size: 1.10rem;
@@ -3687,6 +3686,7 @@ strong,
 
 .icon--medium-cross.enabled{
   display:inline !important;
+  top:1em;
 }
 
 
@@ -3883,6 +3883,7 @@ strong,
     padding-top: 0em;
     padding-left:0.6em;
     padding-bottom: 0.2em;
+    margin-left:2em;
     color: #000000;
     color: #000000;
     font-size: 1rem;
@@ -3896,7 +3897,7 @@ strong,
             transform: translateX(1px); }
 
 ul.site-navigation-list--project li{
-  display: -webkit-box; 
+  display: block; 
   vertical-align: top;
 }
 
@@ -3921,6 +3922,7 @@ ul.site-navigation-list--project li{
   font-size: 0.75rem;
   font-weight: 700;
   transition: padding 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  margin-left:1.9rem;
 }
 .site-navigation-list--project-details, .site-navigation-list--project-details a{
   padding-left:1.3em;
