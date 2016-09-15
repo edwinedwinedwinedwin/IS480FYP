@@ -98,6 +98,13 @@ Rails.application.routes.draw do
   post 'project_rewards/create' => 'project_rewards#create', as: :createProjectReward
   post 'project_rewards/destroy/(:id)' => 'project_rewards#destroy'
 
+  # project updates routes
+  get 'project_updates/index' => 'project_updates#index'
+  get 'project_updates/edit' => 'project_updates#edit'
+  get 'project_updates/new' => 'project_updates#new'
+  post 'project_updates/create' => 'project_updates#create', as: :createProjectUpdate
+  post 'project_updates/destroy/(:id)' => 'project_updates#destroy'
+
   match '/:controller/:action/(:id)', via: [:get, :post] # last route
 
 end

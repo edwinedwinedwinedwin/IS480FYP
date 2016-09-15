@@ -30,7 +30,7 @@ before_filter :logged_in,:authorize_user
 
 
     @new_reward = ProjectReward.new
-
+    @new_update = ProjectUpdate.new
     @session=session[:user_id]
 
     @projects=ProjectProposal.select("*").joins(:project).where(:projects => {:user_id=>@session})

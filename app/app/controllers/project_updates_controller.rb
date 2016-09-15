@@ -11,11 +11,15 @@ class ProjectUpdatesController < ApplicationController
   def create
     @ProjectUpdate = ProjectUpdate.new(project_updates_params)
     @ProjectUpdate.created_on = Time.now
-    if @ProjectUpdate.save
-      redirect_to showProject_path(:id => @ProjectUpdate.project_id) and return
-    else
-      render 'new'
+
+    if !params[:img_url].nil?
+      @ProjectUpdate.img_url = params{:img_url}
     end
+
+    @ProjectUpdate.save
+      redirect_to showProject_path(:id => @ProjectUpdate.project_id) and return
+
+    
   end
 
   def edit
@@ -33,6 +37,6 @@ class ProjectUpdatesController < ApplicationController
 
   private
   def project_updates_params
-    params.require(:project_update).permit(:title, :description, :img_url, :caption, :project_id)
+    params.require(:project_update).permit(:title, :description,:project_id)
   end
 end

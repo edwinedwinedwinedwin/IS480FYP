@@ -1,134 +1,47 @@
 <div class="cards grid-container">
-  <div class="grid-50">
-    <section href="" class="card">
-      <header class="card-header">
-        <div class="card-meta">
-          <span class="card-meta__new">New</span>
-          <span class="card-meta__date">Today 3:32</span>
-        </div>
+  <% i = 1 %>
+<% project_updates.each do |u| %>
 
-        <h3 class="card-header__title">
-          5 Organizations to Support on World Water Day
-        </h3>
-      </header>
+  <% if i % 2 == 0 %>
+          <div class="grid-50">
+            <section href="" class="card">
+              <header class="card-header">
+                <div class="card-meta">
+                  <span class="card-meta__new">New</span>
+                  <span class="card-meta__date"><%= u.created_on%></span>
+                </div>
 
-      <div class="card-content">
-        <p>In honor of this year’s World Water Day, a number of organizations are working on forward-looking clean-water initiatives. These initiatives are helping protect...</p>
-      </div>
-    </section>
+                <h3 class="card-header__title">
+                  <%= u.title %>
+                </h3>
+              </header>
 
-    <section class="card--fueled">
-      <header class="card-header">
-        <div class="card-meta">
-          <span class="card-meta__date">Today 2:51</span>
-        </div>
-
-        <h3 class="card-header__title">
-          50% Fueled
-        </h3>
-      </header>
-
-      <div class="card-content">
-        <p>$5,000 of $10,000 fueled</p>
-        <i class="card-fueled-icon"></i>
-      </div>
-    </section>
-
-    <div class="grid-container">
-      <div class="grid-50">
-        <section class="card--background card--long" style="background-image:url(/assets/update-blog-2.jpg)">
-          <header class="card-header">
-            <div class="card-meta">
-              <span class="card-meta__date">Today 3:32</span>
-            </div>
-
-            <h3 class="card-header__title">
-              More Time Around the Kiln
-            </h3>
-          </header>
-        </section>
-      </div>
-
-      <div class="grid-50">
-        <section class="card--background card--long" style="background-image:url(/assets/update-blog-1.jpg)">
-          <header class="card-header">
-            <div class="card-meta">
-              <span class="card-meta__date">Today 3:32</span>
-            </div>
-
-            <h3 class="card-header__title">
-              A Difference You Can See
-            </h3>
-          </header>
-        </section>
-      </div>
-    </div>
-  </div>
-
-  <div class="grid-50">
-    <div class="grid-container">
-      <div class="grid-50">
-        <section class="card card--long">
-          <header class="card-header">
-            <div class="card-meta">
-              <span class="card-meta__new">New</span>
-              <span class="card-meta__date">Today 3:32</span>
-            </div>
-
-            <h3 class="card-header__title">
-              Can a Piece of Paper Change Everything?
-            </h3>
-          </header>
-
-          <div class="card-content">
-            <p>A lot of water issues aren't just because people don't have the right technology, but also because they aren't informed why they need to treat water.</p>
+              <div class="card-content">
+                <p><%= u.description %></p>
+              </div>
+            </section>
           </div>
-        </section>
-      </div>
+  <% else %>
+          <div class="grid-50">
+            <section href="" class="card">
+              <header class="card-header">
+                <div class="card-meta">
+                  <span class="card-meta__new">New</span>
+                  <span class="card-meta__date"><%= u.created_on%></span>
+                </div>
 
-      <div class="grid-50">
-        <section class="card--background card--long" style="background-image:url(/assets/update-blog-3.jpg)">
-          <header class="card-header">
-            <div class="card-meta">
-              <span class="card-meta__date">Today 3:32</span>
-            </div>
+                <h3 class="card-header__title">
+                  <%= u.title %>
+                </h3>
+              </header>
 
-            <h3 class="card-header__title">
-              Production will begin in 2015
-            </h3>
-          </header>
-        </section>
-      </div>
-    </div>
-
-    <div class="grid-container">
-      <section class="card--background card--square" style="background-image:url(/assets/update-blog-4.jpg)">>
-        <header class="card-header">
-          <div class="card-meta">
-            <span class="card-meta__date">Today 3:32</span>
+              <div class="card-content">
+                <p><%= u.description %></p>
+              </div>
+            </section>
           </div>
 
-          <h3 class="card-header__title">
-            Can a Piece of Paper Change Everything?
-          </h3>
-        </header>
-      </section>
-
-      <section href="" class="card">
-        <header class="card-header">
-          <div class="card-meta">
-            <span class="card-meta__date">Today 3:32</span>
-          </div>
-
-          <h3 class="card-header__title">
-            Purify Contaminated Drinking Water for an Entire Year
-          </h3>
-        </header>
-
-        <div class="card-content">
-          <p>780 million people around the world lack access to clean drinking water and 3.4 million people die every year from diseases related to contaminated water.</p>
-        </div>
-      </section>
-    </div>
-  </div>
+  <% end %>
+    <% i += 1 %>
+<% end %>
 </div>
