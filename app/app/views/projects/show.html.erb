@@ -441,7 +441,6 @@
     <%= form_for :project_update, url: createProjectUpdate_path, method: :post do |f| %>
 
         <%= f.hidden_field :project_id, :value => @project.id %>
-
         <% if @new_update.errors.any? %>
             <div class="alert alert-danger" role="alert">
               <b><u>Errors:</u></b>
