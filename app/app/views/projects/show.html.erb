@@ -7,23 +7,30 @@
   <%= stylesheet_link_tag "style" %>
   <%= stylesheet_link_tag "component" %>
   <%= stylesheet_link_tag "flickity/flickity.css" %>
-  <%= javascript_include_tag "application"%>
+  <%= javascript_include_tag "application" %>
 
   <!-- bower:css -->
-  <link rel="stylesheet" href="/assets/unsemantic/assets/stylesheets/unsemantic-grid-responsive-no-ie7.css" >
+  <link rel="stylesheet" href="/assets/unsemantic/assets/stylesheets/unsemantic-grid-responsive-no-ie7.css">
   <link rel="stylesheet" href="/assets/unsemantic/assets/stylesheets/unsemantic-grid-responsive-tablet-no-ie7.css">
   <!-- endbower -->
   <link rel="icon" type="image/png" href="favicon.png">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+<div class="banner-notice">
+  Don't let your work go to waste.
+  <a href="signup.php" style="display:inline;padding: 0;"><span class="t--strong">Be a part</span></a> of YBCO and
+  create projects you're passionate about.
+  <i class="icon icon--cross js-close"></i>
+</div>
 
 <%= render "layouts/headerBanner"%>
 
-<main class="page-main">
+
+<main class="page-main" id="page-main">
   <section class="project-hero" id="overview">
-    <%= render "projects/overview", :project_id => @project.id, :project_proposal=> @project_proposal, :project_categories => @project_categories%>
-    <%= render "projects/coverpage",  :project_proposal=> @project_proposal, :project_proposal_imgs => @project_proposal_imgs  %>
+    <%= render "projects/overview", :project_id => @project.id, :project_proposal => @project_proposal, :project_categories => @project_categories %>
+    <%= render "projects/coverpage", :project_proposal => @project_proposal, :project_proposal_imgs => @project_proposal_imgs %>
 
     <div class="project-fuel">
       <div class="project-fuel-bar js-project-fuel-bar" data-fuel="50%">
@@ -34,8 +41,8 @@
     </div>
   </section>
 
-<article class="project-content">
-<div id="project-navigation-sticky-wrapper" class="sticky-wrapper">
+  <article class="project-content">
+    <div id="project-navigation-sticky-wrapper" class="sticky-wrapper">
       <ul class="list--horizontal">
         <li class="list-item current"><a href="#overview">Overview</a></li>
         <li class="list-item"><a href="#about">About</a></li>
@@ -48,193 +55,193 @@
       </ul>
     </div>
 
-  <section class="project-content-section" id="about">
-    <div class="wrap">
-      <div class="grid-container">
-        <div class="grid-65">
-          <div class="project-stats grid-container">
-            <div class="project-funding-goal">
-              <span id="project-funding-goal" contenteditable>$10,000</span>
+    <section class="project-content-section" id="about">
+      <div class="wrap">
+        <div class="grid-container">
+          <div class="grid-65">
+            <div class="project-stats grid-container">
+              <div class="project-funding-goal">
+                <span id="project-funding-goal" contenteditable>$10,000</span>
 
-              <span class="edit-save-button js-edit-save-button" id="project-funding-goal-save">
+                <span class="edit-save-button js-edit-save-button" id="project-funding-goal-save">
 									Done
 								</span>
-            </div>
-
-            <div class="project-funding-goal-overlay" id="project-funding-goal-overlay"></div>
-
-            <div class="grid-30">
-              <div class="project-stat">
-                <span class="project-stat__data">20</span>
-                <span class="project-stat__description">Days remaining</span>
               </div>
-            </div>
-            <div class="grid-30 push-5">
-              <div class="project-stat">
-                <span class="project-stat__data">50%</span>
-                <span class="project-stat__description">Fueled</span>
-              </div>
-            </div>
-            <div class="grid-30 push-10">
-              <div class="project-stat" id="project-funding">
-                <span class="project-stat__data">$5,000</span>
-                <span class="project-stat__description">of <span id="project-funding-value">$10,000</span> fueled</span>
 
-                <span class="edit-button js-edit-button" id="project-funding-goal-edit" data-container="project-funding">
+              <div class="project-funding-goal-overlay" id="project-funding-goal-overlay"></div>
+
+              <div class="grid-30">
+                <div class="project-stat">
+                  <span class="project-stat__data">20</span>
+                  <span class="project-stat__description">Days remaining</span>
+                </div>
+              </div>
+              <div class="grid-30 push-5">
+                <div class="project-stat">
+                  <span class="project-stat__data">50%</span>
+                  <span class="project-stat__description">Fueled</span>
+                </div>
+              </div>
+              <div class="grid-30 push-10">
+                <div class="project-stat" id="project-funding">
+                  <span class="project-stat__data">$5,000</span>
+                  <span class="project-stat__description">of <span id="project-funding-value">$10,000</span> fueled</span>
+
+                  <span class="edit-button js-edit-button" id="project-funding-goal-edit" data-container="project-funding">
 										<i class="icon icon--edit"></i>
 										Edit
 									</span>
+                </div>
               </div>
             </div>
-          </div>
 
 
-          <div id="project-about">
-            <div class="project-about-title" id="project-about-title">
-              <h2 class="heading--small">
-                About the Project
-              </h2>
+            <div id="project-about">
+              <div class="project-about-title" id="project-about-title">
+                <h2 class="heading--small">
+                  About the Project
+                </h2>
 
-              <span class="edit-button js-edit-button" id="project-description-edit" data-container="project-about">
+                <span class="edit-button js-edit-button" id="project-description-edit" data-container="project-about">
 									<i class="icon icon--edit"></i>
 									Edit
 								</span>
-            </div>
+              </div>
 
 
-            <div class="project-description" id="project-description">
-              <%= form_for :project_proposal, url: updateDescription_path(:id => @project_proposal.id) do |f| %>
+              <div class="project-description" id="project-description">
+                <%= form_for :project_proposal, url: updateDescription_path(:id => @project_proposal.id) do |f| %>
 
-              <p class="t--large wordwrapper"><%= f.text_area :description , :value => @project_proposal.description, :class => "project-description" %></p>
-              <p class="wordwrapper"></p>
+                    <p class="t--large wordwrapper"><%= f.text_area :description, :value => @project_proposal.description, :class => "project-description" %></p>
+                    <p class="wordwrapper"></p>
 
-            </div>
-          </div>
+                    </div>
+                    </div>
 
-          <span class="edit-save-button js-edit-save-button" id="project-description-save">
+                    <span class="edit-save-button js-edit-save-button" id="project-description-save">
             <%= f.submit 'Done' %>
 					</span>
-              <% end %>
-        </div>
+                <% end %>
+                </div>
 
 
-        <div class="grid-25 push-10">
-          <ul class="list">
-            <li class="list-item fuel-button-container">
-              <a href="#fuel" class="fuel-button js-scrollto-button" data-scroll-target="#fuel">
+          <div class="grid-25 push-10">
+            <ul class="list">
+              <li class="list-item fuel-button-container">
+                <a href="#fuel" class="fuel-button js-scrollto-button" data-scroll-target="#fuel">
 									<span class="fuel-button__content">
 										<span class="fuel-button__cta">Fuel</span>
 										<span class="fuel-button__text">This Project</span>
                       <i class="icon icon--chevron-down"></i>
 									</span>
-              </a>
-            </li>
+                </a>
+              </li>
 
-            <li class="list-item">
-              <ul class="list--narrow">
-                <li class="list-item">
-                  <a href="#" class="button--stroke--full">
-                    <span>Discuss</span>
-                  </a>
-                </li>
+              <li class="list-item">
+                <ul class="list--narrow">
+                  <li class="list-item">
+                    <a href="#" class="button--stroke--full">
+                      <span>Discuss</span>
+                    </a>
+                  </li>
 
-                <li class="list-item">
-                  <a href="#" class="project-location">
-                    <i class="icon icon--location-pin"></i>
-                    <%= @project.state %> , <%= @project.city %> , <%= @project.country %>
-                  </a>
-                </li>
+                  <li class="list-item">
+                    <a href="#" class="project-location">
+                      <i class="icon icon--location-pin"></i>
+                      <%= @project.state %> , <%= @project.city %> , <%= @project.country %>
+                    </a>
+                  </li>
 
-                <li class="list-item">
-                  <span class="project-meta-text">Share</span>
-                  <ul class="project-share-buttons">
-                    <li class="project-share-button">
-                      <a href="#">
-                        <i class="icon icon--facebook"></i>
-                      </a>
-                    </li>
+                  <li class="list-item">
+                    <span class="project-meta-text">Share</span>
+                    <ul class="project-share-buttons">
+                      <li class="project-share-button">
+                        <a href="#">
+                          <i class="icon icon--facebook"></i>
+                        </a>
+                      </li>
 
-                    <li class="project-share-button">
-                      <a href="#">
-                        <i class="icon icon--twitter"></i>
-                      </a>
-                    </li>
+                      <li class="project-share-button">
+                        <a href="#">
+                          <i class="icon icon--twitter"></i>
+                        </a>
+                      </li>
 
-                    <li class="project-share-button">
-                      <a href="#">
-                        <i class="icon icon--youtube"></i>
-                      </a>
-                    </li>
+                      <li class="project-share-button">
+                        <a href="#">
+                          <i class="icon icon--youtube"></i>
+                        </a>
+                      </li>
 
-                    <li class="project-share-button">
-                      <a href="#">
-                        <i class="icon icon--pinterest"></i>
-                      </a>
-                    </li>
+                      <li class="project-share-button">
+                        <a href="#">
+                          <i class="icon icon--pinterest"></i>
+                        </a>
+                      </li>
 
-                    <li class="project-share-button">
-                      <a href="#">
-                        <i class="icon icon--google-plus"></i>
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-          </ul>
+                      <li class="project-share-button">
+                        <a href="#">
+                          <i class="icon icon--google-plus"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="project-content-section" id="details">
-    <%= render "projects/inspirations", :project_id => @project.id, :project_inspiration => @project_inspirations %>
-  </section>
+    <section class="project-content-section" id="details">
+      <%= render "projects/inspirations", :project_id => @project.id, :project_inspiration => @project_inspirations %>
+    </section>
 
-  <section class="project-content-section" id="updates">
-    <div class="wrap" style="position: relative;">
-      <h2 class="section-heading heading--small">Updates<span class="notification-bubble">3</span></h2>
+    <section class="project-content-section" id="updates">
+      <div class="wrap" style="position: relative;">
+        <h2 class="section-heading heading--small">Updates<span class="notification-bubble">3</span></h2>
 
-      <ul class="update-icons">
-        <li class="selected">
-          <i class="icon icon--updates-grid"></i>
-        </li>
+        <ul class="update-icons">
+          <li class="selected">
+            <i class="icon icon--updates-grid"></i>
+          </li>
 
-        <li>
-          <i class="icon icon--updates-list"></i>
-        </li>
-      </ul>
-    </div>
+          <li>
+            <i class="icon icon--updates-list"></i>
+          </li>
+        </ul>
+      </div>
 
-    <%= render "projects/updates", :project_id => @project.id, :project_updates => @project_updates %>
+      <%= render "projects/updates", :project_id => @project.id, :project_updates => @project_updates %>
 
-    <a href="#" class="project-content__load-more">Load More</a>
-  </section>
+      <a href="#" class="project-content__load-more">Load More</a>
+    </section>
 
-  <section class="project-content-section" id="team">
-    <%= render "projects/members", :project_id => @project.id, :project_members => @project_members %>
-  </section>
+    <section class="project-content-section" id="team">
+      <%= render "projects/members", :project_id => @project.id, :project_members => @project_members %>
+    </section>
 
-  <section class="project-content-section" id="fuel">
-    <div class="wrap">
-      <h2 class="section-heading heading--small">Fuel Us Up
+    <section class="project-content-section" id="fuel">
+      <div class="wrap">
+        <h2 class="section-heading heading--small">Fuel Us Up
 
-        <div class="js-lightbox-open" data-content-container="#fuel-lightbox-content-add">
-          <%= image_tag("defaultprofile.png", :class=> "img-circular-avatar")%>
-    </div>
-      </h2>
+          <div class="js-lightbox-open" data-content-container="#fuel-lightbox-content-add">
+            <%= image_tag("defaultprofile.png", :class => "img-circular-avatar") %>
+          </div>
+        </h2>
 
 
-    </div>
+      </div>
 
       <p>Select a reward level and support our project.</p>
-    </div>
+      </div>
 
-    <%= render "projects/rewards", :project_id => @project.id, :project_rewards => @project_rewards %>
+      <%= render "projects/rewards", :project_id => @project.id, :project_rewards => @project_rewards %>
 
-    <a href="#" class="fuel-pledge-another">Pledge Another Amount <i class="icon icon--chevron-right"></i></a>
-  </section>
-</article>
+      <a href="#" class="fuel-pledge-another">Pledge Another Amount <i class="icon icon--chevron-right"></i></a>
+    </section>
+  </article>
 </main>
 
 <div class="lightbox js-lightbox">
@@ -270,7 +277,7 @@
             <ul class="meta-tags">
               <li class="meta-tag">
                 <% bio = pm.bio_url %>
-                <%= link_to bio, :target=>"_blank" do %>
+                <%= link_to bio, :target => "_blank" do %>
                     <i class="icon icon--visit"></i>
                     <%= bio %>
                 <% end %>
@@ -278,21 +285,21 @@
             </ul>
 
             <div class="team-lightbox-social-links">
-              <%  twitter = pm.twitter_url %>
-              <%  fb = pm.facebook_url %>
-              <%  instagram = pm.instagram_url %>
+              <% twitter = pm.twitter_url %>
+              <% fb = pm.facebook_url %>
+              <% instagram = pm.instagram_url %>
               <% if !(twitter.nil? || twitter.empty?) %>
-                  <%= link_to twitter, :target=>"_blank" do %>
+                  <%= link_to twitter, :target => "_blank" do %>
                       <i class="icon icon--twitter-with-circle"></i>
                   <% end %>
               <% end %>
               <% if !(instagram.nil? || instagram.empty?) %>
-                  <%= link_to instagram, :target=>"_blank" do %>
+                  <%= link_to instagram, :target => "_blank" do %>
                       <i class="icon icon--instagram-with-circle"></i>
                   <% end %>
               <% end %>
-              <% if !(fb.nil? || fb.empty?)  %>
-                  <%= link_to fb, :target=>"_blank" do %>
+              <% if !(fb.nil? || fb.empty?) %>
+                  <%= link_to fb, :target => "_blank" do %>
                       <i class="icon icon--facebook-with-circle"></i>
                   <% end %>
               <% end %>
@@ -313,8 +320,12 @@
             <div class="team-lightbox-description">
               <% %>
 
-              <p class="t--large">Jerry is a co-founder of Mixd and a creative at heart who has become more technical over the years.</p>
-              <p>He’s a graphic design graduate who felt the lure of digital early on. An expert in web accessibility and standards-based web design, Jerry oversees all the technical aspects of our projects. You could describe Jerry as a mountain biker, road cyclist, outdoor pursuits instructor and owner of a dog called Surprise.</p>
+              <p class="t--large">Jerry is a co-founder of Mixd and a creative at heart who has become more technical
+                over the years.</p>
+              <p>He’s a graphic design graduate who felt the lure of digital early on. An expert in web accessibility
+                and standards-based web design, Jerry oversees all the technical aspects of our projects. You could
+                describe Jerry as a mountain biker, road cyclist, outdoor pursuits instructor and owner of a dog called
+                Surprise.</p>
             </div>
           </div>
         </div>
@@ -325,11 +336,11 @@
         <% userExpertises = UserExpertise.select(:expertise_name).where(:user_id => pm.user_id).uniq %>
         <ul class="meta-tags">
           <% if !userExpertises.nil? %>
-              <% userExpertises.each do |uE|%>
+              <% userExpertises.each do |uE| %>
                   <li class="meta-tag"><%= uE.expertise_name %></li>
               <% end %>
           <% end %>
-          <li class = "meta-tag endorse" >
+          <li class="meta-tag endorse">
             <%= link_to newExpertise_path(:user_id => pm.user_id, :project_id => @project.id) do %>
                 Endorse an Expertise +
             <% end %>
@@ -344,12 +355,13 @@
       <div class="fuel-lightbox-container">
         <span class="fuel-lightbox__heading">You selected:</span>
         <span class="fuel-lightbox__value"><%= pr.min_amount %></span>
-        <span class="fuel-lightbox__title"><%= pr.name  %> </span>
+        <span class="fuel-lightbox__title"><%= pr.name %> </span>
 
         <p class="t--small">Feeling generous? Fuel Up! <a href="#">Increase your support.</a></p>
 
         <div class="fuel-lightbox__description">
-          <p class="t--large">This package includes our filtration book to be sent to ten (10) families in need. And receive a personal thank you from us.</p>
+          <p class="t--large">This package includes our filtration book to be sent to ten (10) families in need. And
+            receive a personal thank you from us.</p>
         </div>
 
         <span class="fuel-lightbox__delivery">
@@ -366,15 +378,15 @@
   <div class="fuel-lightbox-container">
     <legend class="form-heading heading">Add Reward</legend>
     <span class="fuel-lightbox__heading">Add new reward base</span>
-    <%= form_for :project_reward, url: createProjectReward_path ,method: :post do |f| %>
+    <%= form_for :project_reward, url: createProjectReward_path, method: :post do |f| %>
 
-        <%= f.hidden_field :project_id, :value =>  @project.id %>
+        <%= f.hidden_field :project_id, :value => @project.id %>
 
         <% if @new_reward.errors.any? %>
             <div class="alert alert-danger" role="alert">
               <b><u>Errors:</u></b>
               <ul>
-                <%  @new_reward.errors.full_messages.each do |message| %>
+                <% @new_reward.errors.full_messages.each do |message| %>
                     <li><%= message %></li>
                 <% end %>
               </ul>
@@ -392,7 +404,7 @@
         </div>
 
         <div class="form-field">
-          <%= f.text_field :description, class: "form-input", placeholder: "Description"  %>
+          <%= f.text_field :description, class: "form-input", placeholder: "Description" %>
           <label class="form-label" for="description">Description</label>
         </div>
 
@@ -402,12 +414,12 @@
         </div>
 
         <div class="form-field">
-          <%= f.text_field :no_of_rewards, class: "form-input", placeholder: "Number of Rewards"  %>
+          <%= f.text_field :no_of_rewards, class: "form-input", placeholder: "Number of Rewards" %>
           <label class="form-label" for="no_of_rewards">Number of Rewards</label>
         </div>
 
         <div class="form-field">
-          <%= f.file_field :img_url, class: "form-input", placeholder: "Image URL"  %>
+          <%= f.file_field :img_url, class: "form-input", placeholder: "Image URL" %>
           <label class="form-label" for="img_url">Image URL</label>
         </div>
 

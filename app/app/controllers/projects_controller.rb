@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-
+before_filter :logged_in,:authorize_user
   def index
     @Projects = Project.all
   end
@@ -28,7 +28,9 @@ class ProjectsController < ApplicationController
     #@project_milestones_start = ProjectMilestone.find_by_project_id(params[:id]).first
     #@project_milestones_end = ProjectMilestone.find_by_project_id(params[:id]).last
 
+
     @new_reward = ProjectReward.new
+
   end
 
   def new

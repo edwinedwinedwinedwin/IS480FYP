@@ -51,7 +51,7 @@
               <a href="#"><%= image_tag(current_user.profile_pic, :class=>"img-circular-avatar") %></a>
           <% else %>
               <!--<%= link_to image_tag("defaultprofile.png", :class=> "img-circular-avatar")%>-->
-              <a href="#" class="img-circular-avatar"><%= image_tag("defaultprofile.png") %></a>
+              <a href="#"><%= image_tag("defaultprofile.png", :class=>"img-circular-avatar") %></a>
               </div>
           <% end %>
           </div>
@@ -65,7 +65,7 @@
 
     <nav class="site-menu-block-user site-navigation">
       <div class="site-navigation-list__item">
-        <%= link_to "My Projects",  manageProject_path(:id => @current_user.id), method: "post" %>
+        <%= link_to "My Projects", manageProject_path(:id => current_user.id)%>
       </div>
       <ul class="site-navigation-list">
         <li class="site-navigation-list__item-project">
@@ -119,9 +119,7 @@
         <!--li class="site-navigation-list__item">
             <%= link_to "Create a Project", controller: "project_proposals", action: "new" %>
      </li>
-     <li class="site-navigation-list__item">
-            <%= link_to "Manage Project",  manageProject_path(:email => @current_user.email), method: "post" %>
-     </li-->
+     -->
         <li class="site-navigation-list__item">
 
           <%= link_to "Explore"%>
@@ -194,7 +192,6 @@
     <legend class="form-heading heading"> Edit Profile </legend>
     <span class="fuel-lightbox__heading">Upload your profile picture</span>
 
-
     <%= form_for :user, url:  updateProfilePic_path(session[:user_id]) ,method: :post do |f| %>
 
         <div class="form-field">
@@ -220,7 +217,7 @@
         </div>
         <% current_user=User.find(session[:user_id]) %>
         <% if current_user.profile_pic.present? %> <!-- check if profile pic exists -->
-            <% url = current_user.profile_pic%> <!-- get entire url-->
+    <% url = current_user.profile_pic%> <!-- get entire url-->
             <% index=url.to_s.rindex('/') %> <!-- get last index of '/'-->
             <!--
         <div align=center> <%= url.to_s[index+1..url.to_s.length] %> </div>
@@ -235,4 +232,3 @@
   </div>
 </div>
 <%= yield %>
-

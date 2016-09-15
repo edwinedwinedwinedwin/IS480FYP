@@ -3640,7 +3640,9 @@ strong,
     width: 100%; }
 
 .site-menu.enabled {
-  left: 0; }
+  left: 0;
+      transition: all 0.3s ease; 
+       }
 
 
 .site-menu-logo {
@@ -3794,6 +3796,13 @@ strong,
 
 .bottom-push{
   margin-bottom:1rem;
+}
+
+.page-main.enabled{
+  margin-left:18.75rem;
+      transition: all 0.3s ease; 
+     width: 100vw !important;
+     left: 100vw !important;
 }
 
 .site-navigation-list--sub{
