@@ -2,10 +2,16 @@
 <%= stylesheet_link_tag "style" %>
 <%= stylesheet_link_tag "component" %>
 <%= stylesheet_link_tag "flickity/flickity.css" %>
+<%= stylesheet_link_tag "responsive.dataTables.min.css" %>
+<%= stylesheet_link_tag "jquery.dataTables.min.css" %>
 <%= javascript_include_tag "application"%>
 
 <%= render "layouts/headerAdmin" %>
 <%= yield %>
+
+<script>
+
+</script>
 
 <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
 
@@ -31,7 +37,7 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                <div class="admin-dashboard-content">
+                <div class="admin-dashboard-summary-content">
                     <div class="display">
                         <div class="float-left">
                             <div class="admin-dashboard-header-value-profit">787,976</div>
@@ -52,11 +58,11 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                <div class="admin-dashboard-content">
+                <div class="admin-dashboard-summary-content">
                     <div class="display">
                         <div class="float-left">
                             <div class="admin-dashboard-header-value-projects">101</div>
-                            <div class="admin-dashboard-header">TOTAL PROJECTS</div>
+                            <div class="admin-dashboard-header">SUBMITTED PROJECT PROPOSALS</div>
                         </div>
                         <div class="float-right">
                             <span class="glyphicon glyphicon-blackboard" aria-hidden="true"></span>
@@ -73,11 +79,11 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                <div class="admin-dashboard-content">
+                <div class="admin-dashboard-summary-content">
                     <div class="display">
                         <div class="float-left">
                             <div class="admin-dashboard-header-value-completed">15</div>
-                            <div class="admin-dashboard-header">TOTAL COMPLETED PROJECTS</div> 
+                            <div class="admin-dashboard-header">COMPLETED PROJECTS</div> 
                         </div>
                         <div class="float-right">
                             <span class="glyphicon glyphicon-education" aria-hidden="true"></span>
@@ -94,11 +100,11 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                <div class="admin-dashboard-content">
+                <div class="admin-dashboard-summary-content">
                     <div class="display">
                         <div class="float-left">
                             <div class="admin-dashboard-header-value-users">1749</div>
-                            <div class="admin-dashboard-header">TOTAL NUMBER OF USERS</div>
+                            <div class="admin-dashboard-header">NEW USERS</div>
                         </div>
                         <div class="float-right">
                             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
@@ -116,5 +122,98 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
+                <div class="admin-dashboard-content">   
+                    <div class="admin-dashboard-content-header">
+                        Project Proposals <small>recently submitted</small>
+                    </div>
+                    <div class="admin">
+                        <div class="table-responsive">
+                            <table id="admin-project-proposal-table" class="table table-hover admin-tables dt-responsive dataTable no-footer dtr-inline display nowrap" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Submitted On</th>
+                                        <th data-priority="1">Project Title</th>
+                                        <th>Category</th>
+                                        <th data-priority="2">Status</th>
+                                        <th>Project Description</th>
+                                        <th data-priority="5">Images</th>
+                                        <th data-priority="4">Creator's contact details</th>
+                                        <th data-priority="3">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% @ProjectProposals.each do |p| %>  
+                                    <% if p.project_status_id == 2 %>
+                                    <tr>
+                                        <td></td>
+                                        <td><%= p.created_at %></td>
+                                        <td><%= p.title %></td>
+                                        <td><%= p.project_category.try(:category)%></td>
+                                        <td>
+                                            <% if p.project_status.try(:status) == "Pending" %>
+                                            <span class="label label-warning">Pending</span>
+                                            <% elsif p.project_status.try(:status) == "Rejected"%>
+                                            <span class="label label-danger">Rejected</span>
+                                            <% else %>
+                                            <span class="label label-success">Accepted</span>
+                                            <% end %>
+                                        
+                                        
+                                        </td>
+                                        <td><%= p.description %></td>
+                                        <td>
+                                            
+                                            <% @ProjectProposalImgs = p.project_proposal_imgs %> 
+                                            <% @ProjectProposalImgs.each do | pImg | %> 
+                                                <%= image_tag(pImg.img_url,:class=>"img-circular-project") %>
+                                            <% end %>
 
-</div>   
+                                        </td>
+                                        <td><%= p.first_name+" "+p.last_name %><br/>
+                                            <%= p.email %><br/>
+                                            <%= p.contact_number %>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Actions <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li>
+                                                        <%= link_to approveProposal_path(:id => p.id) do %>
+                                                        Accept
+                                                        <% end %>
+                                                    </li>
+                                                    <li>
+                                                        <%= link_to rejectProposal_path(:id => p.id) do %>
+                                                        Reject
+                                                        <% end %>
+                                                    </li>
+                                                    <li role="separator" class="divider"></li>
+                                                    <li><a href="">Email Creator</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <% end %>
+                                    <% end %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>        
+            <div class="col-lg-6 col-xs-12 col-sm-12">
+                <div class="admin-dashboard-content">   
+                    <div class="admin-dashboard-content-header">
+                        Recent Projects <small>just went live</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

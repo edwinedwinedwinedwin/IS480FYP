@@ -10,6 +10,8 @@ function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
     document.getElementById("main").style.marginLeft = "0";
 }
+
+
 </script>
 
 <style>
@@ -134,6 +136,55 @@ function closeNav() {
     margin-bottom: 10px;
     line-height: 0px;
 }
+
+input[type=search] {
+    background-color: white;
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+    border-radius: 3px;
+    color: #555;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    padding: 5px 10px;
+    height: 80%;
+}
+
+div#example_length {
+    margin-top: 5px;
+    vertical-align: middle;
+}
+
+div#example_wrapper label {
+    font-size: 1.1em;
+}
+
+.dropdown-menu>li>a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+    font-size: 1em;
+}
+
+.dropdown-menu {
+    min-width: 100%;
+    right: 0;
+    left: auto;
+}
+
+#btn_actions {
+    font-size: 1em;
+}
+
+table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, 
+table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
+    top: 2.6em;
+    left: 1.5em;
+}
+
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}

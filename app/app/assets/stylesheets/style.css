@@ -4679,6 +4679,7 @@ Sidebar
   margin-top:20px;
 }
 
+
 @media (min-width: 1200px) {
   .container {
     width: 1170px;
@@ -4692,12 +4693,21 @@ Sidebar
   margin-left: auto;
 }
 
-.admin-dashboard-content {
+
+.admin-dashboard-summary-content {
   background-color: #e9ecf3;
   text-align: left;
   padding: 1.2rem 1rem;
   margin: 0.5rem;
   height: 9rem;
+}
+
+.admin-dashboard-content {
+  background-color: #e9ecf3;
+  text-align: left;
+  padding: 1.2rem 1rem;
+  margin: 0.5rem;
+  height: auto;
 }
 
 .display {
@@ -4815,4 +4825,21 @@ Sidebar
 .breadcrumb>li+li:before {
   color: rgba(204, 204, 204, 1); 
   content: "\276F\00a0";
+}
+
+.admin-dashboard-content-header {
+  font-size: 2em;
+  line-height: 0px;
+  border-bottom: 1px solid #aab5bc;
+  padding-bottom: 0.5rem; 
+}
+
+.admin-tables {
+  background-color: white;
+  margin-top: 2rem;
+}
+
+.admin-tables > thead > tr > th {
+  font: "Proxima Nova", sans-serif;
+  font-weight: bold; 
 }

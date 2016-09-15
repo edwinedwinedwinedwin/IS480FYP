@@ -237,6 +237,22 @@ $(function() {
 			topSpacing: 0
 		});
 	});
+
+	$('#admin-project-proposal-table').dataTable( {
+        responsive: {
+            details: {
+                type: 'column'
+            }
+        },
+        columnDefs: [ {
+            className: 'control',
+            orderable: false,
+            targets:   0
+        } ],
+        order: [ 1, 'asc' ]
+    } );
+
+    $(".dropdown-toggle").dropdown();
 });
 /* for bxslider
 $(document).ready(function(){

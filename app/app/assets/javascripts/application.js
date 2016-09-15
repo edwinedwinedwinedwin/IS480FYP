@@ -18,6 +18,8 @@
 //= require jquery.localScroll/jquery.localScroll.js
 //= require jquery.sticky/jquery.sticky.js
 //= require waypoints
+//= require datatables.min.js
+//= require dataTables.responsive.min.js
 //= require jquery.ui.widget
 //= require z.jquery.fileupload
 //= require main.js
