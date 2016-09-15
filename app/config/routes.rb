@@ -50,35 +50,39 @@ Rails.application.routes.draw do
   resources :project_inspirations
   resources :projects
   resources :project_proposals
+  resources :project_proposal_imgs
 
-
-  get 'signup' => 'users#new' # display create user page
-  post'users' => 'users#create' # process creation of user  
-  get 'pages/comrules' => 'pages#comrules' # display com rules
-  get 'pages/term' => 'pages#term' # display terms
+  get 'signup' => 'users#new', as: :signup #display create user page
+  post 'users' => 'users#create' # process creation of user
+  get 'pages/comrules' => 'pages#comrules', as: :communityRule # display com rules
+  get 'pages/term' => 'pages#term', as: :termNCondition # display terms
   get 'login' => 'sessions#new' , as: :login # show login form
-  get 'editprofile' => 'users#edit#:id'
-  get 'manageaddress' => 'user_shipping_addresses#index#:user_id' # edit user shipping address
-  get 'newaddress' => 'user_shipping_addresses#new' # new user shipping address
-  get 'admins/editprofile' => 'users#edit#:id'
+  get 'editprofile' => 'users#edit#:id', as: :editUserProfile
+  get 'admins/editprofile' => 'users#edit#:id',as: :editAdminProfile
+
   post 'sessions/create' => 'sessions#create' # process login
   get 'logout' => 'sessions#destroy', as: :logout # log out and invalidate session
   get 'dashboard/index' => 'dashboards#index', as: :dashboardIndex # Display page upon successful login
 
-  post 'users/updateProfilePic/(:id)' => 'users#updateProfilePic', as: :updateProfilePic
-  get 'admins/index' => 'admins#index'
-  get 'changepass' => 'users#changepass#:id'
-  get 'admins/changepass' => 'users#changepass#:id'
-  get 'admins/index' => "admins#index"
-  post 'sessions/resetpass' => 'users#resetpass'
+  get 'manageaddress' => 'user_shipping_addresses#index#:user_id' # edit user shipping address
+  get 'newaddress' => 'user_shipping_addresses#new' # new user shipping address
 
-  get 'GetStarted' => 'project_proposals#new' # display create proposal page
-  post 'project_proposals' => 'project_proposals#create' # process creation of proposal
+  post 'users/updateProfilePic/(:id)' => 'users#updateProfilePic', as: :updateProfilePic
+  get 'admins/index' => 'admins#index', as: :adminDashboard
+  get 'changepass' => 'users#changepass#:id', as: :userChangePassword
+  get 'admins/changepass' => 'users#changepass#:id', as: :adminChangePassword
+  post 'sessions/resetpass' => 'users#resetpass', as: :userResetPassword
+
+  get 'GetStarted' => 'project_proposals#new', as: :newProposal # display create proposal page
+  post 'project_proposals' => 'project_proposals#create', as: :createProposal # process creation of proposal
   post 'project_proposals/accept/(:id)' => 'project_proposals#accept', as: :approveProposal
   post 'project_proposals/reject/(:id)' => 'project_proposals#reject', as: :rejectProposal
-  get 'project_proposals/success' => 'project_proposals#success' #success page after getstarted
+  get 'project_proposals/success' => 'project_proposals#success', as: :successProposalSubmission #success page after getstarted
   post 'project_proposals/manage' => 'project_proposals#manage', as: :checkProposalStatus # display create proposal page
 
+  get 'UploadImg' => 'project_proposal_imgs#new', as: :newCoverImgs
+  post 'project_proposal_imgs/create' => 'project_proposal_imgs#create', as: :addCoverImgs # display create proposal page
+  post 'project_proposal_imgs/destroy/(:id)'=> 'project_proposal_imgs#destroy', as: :deleteCoverImgs # display create proposal page
 
   get 'users/manage/(:id)' => 'users#manage', as: :manageProject # display create proposal page
   post 'projects/updateCategory/(:id)' => 'projects#updateCategory', as: :updateCategory
@@ -87,7 +91,7 @@ Rails.application.routes.draw do
   post 'projects/updateTitle/(:id)' => 'projects#updateTitle', as: :updateTitle
 
   # user expertises routes
-  get 'user_expertises/index' => 'user_expertises#index'
+  get 'user_expertises/index' => 'user_expertises#index', as: :allExpertise
   get 'user_expertises/new' => 'user_expertises#new', as: :newExpertise
   post 'user_expertises/create' => 'user_expertises#create', as: :createExpertise
 

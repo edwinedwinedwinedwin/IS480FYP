@@ -17,18 +17,18 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<%= render "layouts/headerUser", :projects=>@projects, :images =>  @project_coverImgs%>
+<%= render "layouts/headerUser", :projects => @projects, :images => @project_coverImgs %>
 
 <main class="page-main" id="page-main">
   <section class="project-hero" id="overview">
     <%= render "projects/overview", :project_id => @project.id, :project_proposal => @project_proposal, :project_categories => @project_categories %>
-    <%= render "projects/coverpage", :project_proposal => @project_proposal, :project_proposal_imgs => @project_proposal_imgs %>
+    <%= render "projects/coverpage", :project_id => @project.id, :project_proposal => @project_proposal, :project_proposal_imgs => @project_proposal_imgs %>
 
     <div class="project-fuel">
       <div class="project-fuel-bar js-project-fuel-bar" data-fuel="50%">
         <div class="project-fuel-bar__text">
           50% fueled
-        </div >
+        </div>
       </div>
     </div>
   </section>
@@ -102,21 +102,24 @@
               </div>
 
 
-              <div class="project-description" id="project-description">
+              <div class="project-description">
                 <%= form_for :project_proposal, url: updateDescription_path(:id => @project_proposal.id) do |f| %>
-                    <%= f.text_area :description, :class => "project-description wordwrapper" do %>
-                       <p class="t--large wordwrapper"><%= @project_proposal.description %></p>
-                       <p class="wordwrapper"></p>
+
+                    <%= f.text_area :description, :class => "form-input t--large wordwrapper", id: "project-description" do %>
+
+                        <<p class="t--large wordwrapper"><%= @project_proposal.description %></p>
+                        <!--<p class="wordwrapper"></p>-->
                     <% end %>
                </div>
-           </div>
+
+                    </div>
                     <%= f.button :submit do %>
                      <span class="edit-save-button js-edit-save-button" id="project-description-save">
                        Done
 					           </span>
                     <% end %>
                 <% end %>
-           </div>
+                </div>
 
 
           <div class="grid-25 push-10">
@@ -194,8 +197,7 @@
 
     <section class="project-content-section" id="updates">
       <div class="wrap" style="position: relative;">
-        <h2 class="section-heading heading--small">Updates<span class="notification-bubble">3</span> <br/>
-
+        <h2 class="section-heading heading--small">Updates<span class="notification-bubble">3</span>
         </h2>
         <div class="js-lightbox-open" data-content-container="#fuel-lightbox-content-addupdate">
           <%= image_tag("defaultprofile.png", :class => "img-circular-avatar") %>
@@ -278,10 +280,10 @@
 
                 <% bio = User.find(pm.user_id).bio_url %>
                 <% if !(bio.nil? || bio.empty?) %>
-                <%= link_to bio, :target => "_blank" do %>
-                    <i class="icon icon--visit"></i>
-                    <%= bio %>
-                <% end %>
+                    <%= link_to bio, :target => "_blank" do %>
+                        <i class="icon icon--visit"></i>
+                        <%= bio %>
+                    <% end %>
                 <% end %>
               </li>
             </ul>
@@ -346,7 +348,7 @@
             <%= link_to newExpertise_path(:user_id => pm.user_id, :project_id => @project.id) do %>
                 Endorse an Expertise +
             <% end %>
-           </li>
+          </li>
         </ul>
       </div>
     </div>
@@ -375,7 +377,6 @@
     </div>
 
 <% end %>
-
 
 <div class="l--hidden" id="fuel-lightbox-content-add"
 >
@@ -458,9 +459,11 @@
         </div>
 
         <div class="form-field">
-          <%= f.text_area :description, rows: "8", class: "form-input form-textarea", :id=>"update-description", :maxlength=>"1000" %>
+          <%= f.text_area :description, rows: "8", class: "form-input form-textarea", :id => "update-description", :maxlength => "1000" %>
           <label class="form-label" for="description">Description</label>
-          <div class="textarea-character-limit js-textarea-limit" data-for="update-description" data-limit="1000"><span class="textarea-character-limit__count">1000</span> characters left</div>
+          <div class="textarea-character-limit js-textarea-limit" data-for="update-description" data-limit="1000">
+            <span class="textarea-character-limit__count">1000</span> characters left
+          </div>
         </div>
 
 
@@ -471,6 +474,36 @@
 
         <div class="form-actions">
           <td align=right><%= f.submit "Create Update", class: "button--stroke--long" %></td>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="l--hidden" id="fuel-lightbox-content-addupdate">
+  <div class="fuel-lightbox-container">
+    <legend class="form-heading heading">Add Update</legend>
+    <span class="fuel-lightbox__heading">Add new update </span>
+    <%= form_for :project_proposal, url: addCoverImgs_path(:project_id => @project.id), method: :post do |f| %>
+
+        <%= f.hidden_field :project_proposal_id, :value => @project_proposal.id %>
+        <% if @add_coverImg.errors.any? %>
+            <div class="alert alert-danger" role="alert">
+              <b><u>Errors:</u></b>
+              <ul>
+                <% @add_coverImg.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <div class="form-field">
+          <%= f.file_field :img_url, class: "form-input", placeholder: "Image URL" %>
+          <label class="form-label" for="img_url">Image URL</label>
+        </div>
+
+        <div class="form-actions">
+          <td align=right><%= f.submit "Add Image", class: "button--stroke--long" %></td>
         </div>
     <% end %>
   </div>

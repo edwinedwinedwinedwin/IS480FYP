@@ -41,17 +41,21 @@
 
         <div class="gallery-thumbnail-actions">
           <i class="icon icon--reorder-horizontal js-reorder"></i>
-          <i class="icon icon--trash-can js-delete"></i>
+          <%= link_to deleteCoverImgs_path(:id=> imgs.id, :project_id => project_id) do %>
+              <i class="icon icon--trash-can js-delete"></i>
+            <% end %>
         </div>
       </div>
     </li>
     <% end %>
 
+    <%= link_to newCoverImgs_path(:project_id => project_id, :project_proposal_id => project_proposal.id) do %>
     <li class="gallery-thumbnail js-ignore">
       <div class="gallery-thumbnail-card">
         <span class="gallery-thumbnail__add">Add Image<br>or<br>Video</span>
       </div>
     </li>
+    <% end %>
   </ul>
 
   <span class="edit-save-button js-edit-save-button" id="project-gallery-management-save">
@@ -59,9 +63,11 @@
   </span>
 </div>
 
+<% if i-1 != 0 %>
 <div class="project-gallery-counter">
   <span class="project-gallery-counter__current" id="project-gallery-counter__current">1</span>/<span class="project-gallery-counter__max"><%= i-1 %></span>
 </div>
+<% end %>
 
 <div class="project-gallery-play">
   <i class="icon icon--project-slider-play"></i>

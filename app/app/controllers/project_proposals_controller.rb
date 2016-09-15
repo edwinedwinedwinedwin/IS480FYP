@@ -30,7 +30,7 @@ class ProjectProposalsController < ApplicationController
         end
       end
       SysMailer.new_proposal_email(@ProjectProposal).deliver
-      redirect_to :controller=>'ProjectProposals', :action=>'success' and return
+      redirect_to successProposalSubmission_path and return
     else
       render 'new' and return
     end
@@ -96,7 +96,6 @@ class ProjectProposalsController < ApplicationController
     redirect_to :controller => 'ProjectProposals', :action => 'index'      
   end
 
-
   private
   def params_pp
     params.require(:project_proposal).permit(:title, :description, :project_category_id,:first_name,:last_name, :email, :contact_number)
@@ -105,7 +104,4 @@ class ProjectProposalsController < ApplicationController
   def params_pp_img
     params.permit(:project_proposal_img).permit(:img_url)
   end
-
-
-
 end

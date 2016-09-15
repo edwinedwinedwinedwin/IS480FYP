@@ -1,0 +1,42 @@
+<%= stylesheet_link_tag "style" %>
+<%= stylesheet_link_tag "component" %>
+<%= stylesheet_link_tag "flickity/flickity.css" %>
+<%= javascript_include_tag "application"%>
+
+<div class="page-main">
+  <div class="page-section">
+    <legend class="form-heading heading">Add Images & Videos</legend>
+    <%= form_for :project_proposal_img, url: addCoverImgs_path(:project_id => @project_id)  do |f| %>
+        <%= f.hidden_field :project_proposal_id, :value => @project_proposal_id %>
+
+        <% if @projectProposalImg.errors.any? %>
+            <div class="alert alert-danger" role="alert">
+              <b><u>Errors:</u></b>
+              <ul>
+                <% @projectProposalImg.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <div class="form-field">
+          <div class="form-file-dropper-getstarted js-file-dropper">
+            <i class="icon icon--paperclip"></i>
+            To add feature image(s),<br> click on the 'Choose Files' button <!--/video files, drag & drop here or   -->
+            <div class="form-field-getstarted">
+              <%= f.file_field :img_url, class: "form-input" %>
+              <label class="form-label" for="bio_url">(Image File Size: < 2MB)</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <td align=right><%= f.submit "Submit", class: "button--stroke--long" %></td>
+        </div>
+
+    <% end %>
+    <br>
+
+  </div>
+</div>
