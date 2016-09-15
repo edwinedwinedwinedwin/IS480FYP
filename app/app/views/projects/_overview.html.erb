@@ -36,15 +36,17 @@
 				</span>
   </ul>
 
+
   <div class="project-title">
+
     <h1 class="heading--large" id="project-title">
       <%= form_for :project_proposal, url: updateTitle_path(:id => project_proposal.id) do |f| %>
-          <%= f.text_field :title, :value => project_proposal.title, :class => "heading--large" %>
-     </h1>
-      <%= f.button :submit do %>
+      <%= f.text_field :title , :value => project_proposal.title, :class => "heading--large" %>
+    </h1>
+
+    <%= f.button:submit do %>
     <span class="edit-save-button js-edit-save-button" id="project-title-save">
       Done
-
           </span>
       <% end %>
       <% end %>
@@ -52,7 +54,7 @@
      <i class="icon icon--edit"></i>
      Edit
     </span>
-    </div>
+  </div>
 
   <div class="profile-tag">
     <%= image_tag(User.find(Project.find(project_id).user_id).profile_pic, :class=>"img-circular-project-avatar") %>
