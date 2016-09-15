@@ -62,7 +62,7 @@ Rails.application.routes.draw do
   get 'newaddress' => 'user_shipping_addresses#new' # new user shipping address
   get 'admins/editprofile' => 'users#edit#:id'
   post 'sessions/create' => 'sessions#create' # process login
-  get 'sessions/destroy' => 'sessions#destroy', as: :logout # log out and invalidate session
+  get 'logout' => 'sessions#destroy', as: :logout # log out and invalidate session
   get 'dashboard/index' => 'dashboards#index', as: :dashboardIndex # Display page upon successful login
 
   post 'users/updateProfilePic/(:id)' => 'users#updateProfilePic', as: :updateProfilePic
