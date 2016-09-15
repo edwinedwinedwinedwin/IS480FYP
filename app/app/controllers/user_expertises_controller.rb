@@ -7,7 +7,6 @@ class UserExpertisesController < ApplicationController
   	@user_expertise =UserExpertise.new
     @project_id = params[:project_id]
     @user_id = params[:user_id]
-
   end
 
   def show
@@ -15,8 +14,14 @@ class UserExpertisesController < ApplicationController
   end
 
   def create
-  	@user_expertise=UserExpertise.new(user_expertises_params)
-  	@user_expertise.save
+  	@currentExpertise = UserExpertise.find_by(:user_id => params[:user_expertise][:user_id],:expertise_name => params[:user_expertise][:expertise_name])
+    if @currentExpertise.nil?
+      @user_expertise=UserExpertise.new(user_expertises_params)
+      @user_expertise.save
+    else
+      flash[:errors] = "Expertise have added"
+    end
+
     redirect_to showProject_path(:id => params[:project_id]) and return
   end
 

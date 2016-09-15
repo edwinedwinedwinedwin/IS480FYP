@@ -458,9 +458,11 @@
         </div>
 
         <div class="form-field">
-          <%= f.text_field :description, class: "form-input", placeholder: "Description" %>
+          <%= f.text_area :description, rows: "8", class: "form-input form-textarea", :id=>"update-description", :maxlength=>"1000" %>
           <label class="form-label" for="description">Description</label>
+          <div class="textarea-character-limit js-textarea-limit" data-for="update-description" data-limit="1000"><span class="textarea-character-limit__count">1000</span> characters left</div>
         </div>
+
 
         <div class="form-field">
           <%= f.file_field :img_url, class: "form-input", placeholder: "Image URL" %>
