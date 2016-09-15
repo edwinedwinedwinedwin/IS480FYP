@@ -3,10 +3,16 @@
       <li class="fuel-reward js-lightbox-open" data-content-container="#fuel-lightbox-content">
 
         <header class="fuel-reward-header">
-          <span class="fuel-reward__price"><%= pr.min_amount %></span>
-          <span class="fuel-reward__backers"><%= pr.no_of_rewards %> Backers</span>
+          <span class="fuel-reward__price">$<%= pr.min_amount %></span>
 
-          <span class="fuel-reward__remaining">(295 left of <%= pr.no_of_rewards %>)</span>
+          <%
+              noOfBacker = ProjectRewardBacker.where(:project_reward_id => pr.id).count('project_reward_id', )
+
+              remainReward = pr.no_of_rewards - noOfBacker.to_i
+          %>
+          <span class="fuel-reward__backers"><%= noOfBacker.to_i%> Backers</span>
+
+          <span class="fuel-reward__remaining">(<%= remainReward.to_i%>  left of <%= pr.no_of_rewards %>)</span>
         </header>
 
         <div class="fuel-reward-description">
