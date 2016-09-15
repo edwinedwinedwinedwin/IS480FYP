@@ -20,22 +20,7 @@
                 </ul>
               </div>
           <% end %>
-  <hr>  <!-- https://github.com/hiiamrohit/Countries-States-Cities-database -->
-<select name="country" class="countries form-control" id="countryId">
-<option value="">Select Country</option>
-</select>
-<select name="state" class="states form-control" id="stateId">
-<option value="">Select State</option>
-</select>
-<select name="city" class="cities form-control" id="cityId">
-<option value="">Select City</option>
-</select>
-<script>  
-  var select = document.getElementByName("country");
-  var answer = select.options[select.selectedIndex].value;
-  <% @country %> = answer;    
-</script>
-  <hr>
+
           <div class="form-field">
             <%= f.text_field :address_line_1, class: "form-input", placeholder: "Address Line 1" %>
             <label class="form-label" for="address_line_1">Address Line 1</label>
@@ -47,9 +32,14 @@
           </div>
           
           <div class="form-field">
-            <%# f.text_field :country, class: "form-input", placeholder: "Country" %>
-            <%= f.select :country, [@country],class: "countries" %>
-            <%# f.select :country, ['hello','bye'], :class=>"form-input" %>            
+          <% 
+          url = 'http://iamrohit.in/lab/php_ajax_country_state_city_dropdown/api.php?type=getCountries'
+          response = RestClient.get(url)          
+          %>          
+          <% countryArray=JSON.parse(response)["result"] %>                                           
+            <% countries = options_for_select(countryArray.values) %>
+            <%= f.select :country, countries, :class=>"form-input" %>   
+            <%= countryArray.assoc(params[:country]) %>                            
             <label class="form-label" for="country">Country</label>
           </div>          
 
@@ -74,7 +64,7 @@
 
       <% end %>
       <br>
-  	  
+      
       <%= link_to 'Back', {:controller => "user_shipping_addresses", :action => "index" } %>
 
     </div>
