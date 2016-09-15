@@ -5,7 +5,8 @@
         <header class="fuel-reward-header">
           <span class="fuel-reward__price"><%= pr.min_amount %></span>
           <span class="fuel-reward__backers"><%= pr.no_of_rewards %> Backers</span>
-          <span class="fuel-reward__remaining">(295 left of 300)</span>
+
+          <span class="fuel-reward__remaining">(295 left of <%= pr.no_of_rewards %>)</span>
         </header>
 
         <div class="fuel-reward-description">

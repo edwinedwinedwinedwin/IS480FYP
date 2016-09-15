@@ -22,11 +22,9 @@ class ProjectRewardsController < ApplicationController
     @project_reward=ProjectReward.new(project_rewards_params)
 
     pID = @project_reward.project_id
-    if @project_reward.save
-      redirect_to showProject_path(:id => @project_reward.project_id) and return
-    else
-      render 'new' and return
-    end
+    @project_reward.save
+    redirect_to showProject_path(:id => @project_reward.project_id)
+
   end
 
   def update

@@ -30,12 +30,7 @@ Rails.application.routes.draw do
   post 'user_shipping_addresses' => 'user_shipping_addresses#create'
   post 'user_shipping_addresses/destroy/(:id)' => 'user_shipping_addresses#destroy'
 
-  # project rewards routes
-  get 'project_rewards/index' => 'project_rewards#index'
-  get 'project_rewards/edit' => 'project_rewards#edit'
-  get 'project_rewards/new' => 'project_rewards#new'
-  post 'project_rewards' => 'project_rewards#create'
-  post 'project_rewards/destroy/(:id)' => 'project_rewards#destroy'
+
 
   #get 'projects/new' => 'projects/new'
   get 'project_inspirations/new' => 'project_inspirations#new'
@@ -95,6 +90,13 @@ Rails.application.routes.draw do
   get 'user_expertises/index' => 'user_expertises#index'
   get 'user_expertises/new' => 'user_expertises#new', as: :newExpertise
   post 'user_expertises' => 'user_expertises#create'
+
+  # project rewards routes
+  get 'project_rewards/index' => 'project_rewards#index'
+  get 'project_rewards/edit' => 'project_rewards#edit'
+  get 'project_rewards/new' => 'project_rewards#new'
+  post 'project_rewards/create' => 'project_rewards#create', as: :createProjectReward
+  post 'project_rewards/destroy/(:id)' => 'project_rewards#destroy'
 
   match '/:controller/:action/(:id)', via: [:get, :post] # last route
 

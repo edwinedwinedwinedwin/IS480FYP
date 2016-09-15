@@ -65,7 +65,7 @@
 
     <nav class="site-menu-block-user site-navigation">
       <div class="site-navigation-list__item">
-        <%= link_to "My Projects",  manageProjectStatus_path(:email => @current_user.email), method: "post" %>
+        <%= link_to "My Projects",  manageProject_path(:id => @current_user.id), method: "post" %>
       </div>
       <ul class="site-navigation-list">
         <li class="site-navigation-list__item-project">
@@ -120,7 +120,7 @@
             <%= link_to "Create a Project", controller: "project_proposals", action: "new" %>
      </li>
      <li class="site-navigation-list__item">
-            <%= link_to "Manage Project",  manageProjectStatus_path(:email => @current_user.email), method: "post" %>
+            <%= link_to "Manage Project",  manageProject_path(:email => @current_user.email), method: "post" %>
      </li-->
         <li class="site-navigation-list__item">
 
@@ -193,21 +193,7 @@
 
     <legend class="form-heading heading"> Edit Profile </legend>
     <span class="fuel-lightbox__heading">Upload your profile picture</span>
-    <!--
-    <span class="fuel-lightbox__title">Gift of water to ten (10) families</span>
 
-    <p class="t--small">lorem<a href="#">Loremmasdas</a></p>
-
-    <div class="fuel-lightbox__description">
-     <p class="t--large">asdjasdkjd</p>
-    </div>
-
-    <span class="fuel-lightbox__delivery">
-     <span class="t--strong">HAHAHA</span> May 2015
-    </span>
-
-    <a href="#" class="button--fill">asdkjasd</a>
-    -->
 
     <%= form_for :user, url:  updateProfilePic_path(session[:user_id]) ,method: :post do |f| %>
 

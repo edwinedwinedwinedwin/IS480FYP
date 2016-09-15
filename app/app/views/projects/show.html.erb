@@ -217,7 +217,16 @@
 
   <section class="project-content-section" id="fuel">
     <div class="wrap">
-      <h2 class="section-heading heading--small">Fuel Us Up</h2>
+      <h2 class="section-heading heading--small">Fuel Us Up
+
+        <div class="js-lightbox-open" data-content-container="#fuel-lightbox-content-add">
+          <%= image_tag("defaultprofile.png", :class=> "img-circular-avatar")%>
+    </div>
+      </h2>
+
+
+    </div>
+
       <p>Select a reward level and support our project.</p>
     </div>
 
@@ -352,3 +361,59 @@
     </div>
 
 <% end %>
+
+<div class="l--hidden" id="fuel-lightbox-content-add">
+  <div class="fuel-lightbox-container">
+    <legend class="form-heading heading">Add Reward</legend>
+    <span class="fuel-lightbox__heading">Add new reward base</span>
+    <%= form_for :project_reward, url: createProjectReward_path ,method: :post do |f| %>
+
+        <%= f.hidden_field :project_id, :value =>  @project.id %>
+
+        <% if @new_reward.errors.any? %>
+            <div class="alert alert-danger" role="alert">
+              <b><u>Errors:</u></b>
+              <ul>
+                <%  @new_reward.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <div class="form-field">
+          <%= f.text_field :name, class: "form-input", placeholder: "Name" %>
+          <label class="form-label" for="name">Name</label>
+        </div>
+
+        <div class="form-field">
+          <%= f.text_field :min_amount, class: "form-input", placeholder: "Minimum Amount" %>
+          <label class="form-label" for="min_amount">Minimum Amount</label>
+        </div>
+
+        <div class="form-field">
+          <%= f.text_field :description, class: "form-input", placeholder: "Description"  %>
+          <label class="form-label" for="description">Description</label>
+        </div>
+
+        <div class="form-field">
+          <%= f.text_field :estimated_delivery, class: "form-input", placeholder: "Estimated Delivery" %>
+          <label class="form-label" for="estimated_delivery">Estimated Delivery</label>
+        </div>
+
+        <div class="form-field">
+          <%= f.text_field :no_of_rewards, class: "form-input", placeholder: "Number of Rewards"  %>
+          <label class="form-label" for="no_of_rewards">Number of Rewards</label>
+        </div>
+
+        <div class="form-field">
+          <%= f.file_field :img_url, class: "form-input", placeholder: "Image URL"  %>
+          <label class="form-label" for="img_url">Image URL</label>
+        </div>
+
+        <div class="form-actions">
+          <td align=right><%= f.submit "Create Reward", class: "button--stroke--long" %></td>
+        </div>
+    <% end %>
+  </div>
+</div>
