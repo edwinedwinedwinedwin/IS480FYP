@@ -3,22 +3,32 @@
 <head>
   <meta name="robots" content="noindex">
   <meta charset="UTF-8">
-  <title>YBCO</title>
+  <title><?php echo $page_title; ?></title>
+
+  <!-- bower:css -->
   <%= stylesheet_link_tag "style" %>
   <%= stylesheet_link_tag "component" %>
   <%= stylesheet_link_tag "flickity/flickity.css" %>
   <%= javascript_include_tag "application"%>
-
-  <!-- bower:css -->
   <link rel="stylesheet" href="/assets/unsemantic/assets/stylesheets/unsemantic-grid-responsive-no-ie7.css" >
   <link rel="stylesheet" href="/assets/unsemantic/assets/stylesheets/unsemantic-grid-responsive-tablet-no-ie7.css">
   <!-- endbower -->
+  <link rel="stylesheet" href="/assets/nlform/component.css">
+  <link rel="stylesheet" href="/assets/flickity/flickity.css">
+  <link rel="stylesheet" href="/assets/style.css">
+
   <link rel="icon" type="image/png" href="favicon.png">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
+<div class="banner-notice">
+  Don't let your work go to waste. <a href="signup.php" style="display:inline;padding: 0;"><span class="t--strong">Be a part</span></a> of YBCO and create projects you're passionate about.
+  <i class="icon icon--cross js-close"></i>
+</div>
+
+
 <header class="page-header">
   <span style="font-size:30px;cursor:pointer">
    <button class="site-menu-open js-site-menu-toggle">
@@ -59,7 +69,8 @@
         Hello, <%= @current_user.first_name.capitalize %>!
       </div>
       <div class="site-avatar-logout">
-        <%= link_to "LOGOUT", {:controller=> "sessions", :action=>"destroy"}%>
+        <%= link_to "LOGOUT", logout_path %>
+       a
       </div>
     </div>
 

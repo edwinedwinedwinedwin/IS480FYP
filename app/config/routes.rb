@@ -56,13 +56,13 @@ Rails.application.routes.draw do
   post'users' => 'users#create' # process creation of user  
   get 'pages/comrules' => 'pages#comrules' # display com rules
   get 'pages/term' => 'pages#term' # display terms
-  get 'login' => 'sessions#new'# show login form  
+  get 'login' => 'sessions#new' , as: :login # show login form
   get 'editprofile' => 'users#edit#:id'
   get 'manageaddress' => 'user_shipping_addresses#index#:user_id' # edit user shipping address
   get 'newaddress' => 'user_shipping_addresses#new' # new user shipping address
   get 'admins/editprofile' => 'users#edit#:id'
   post 'sessions/create' => 'sessions#create' # process login
-  get 'sessions/destroy' => 'sessions#destroy' # log out and invalidate session
+  get 'sessions/destroy' => 'sessions#destroy', as: :logout # log out and invalidate session
   get 'dashboard/index' => 'dashboards#index', as: :dashboardIndex # Display page upon successful login
 
   post 'users/updateProfilePic/(:id)' => 'users#updateProfilePic', as: :updateProfilePic
@@ -89,7 +89,7 @@ Rails.application.routes.draw do
   # user expertises routes
   get 'user_expertises/index' => 'user_expertises#index'
   get 'user_expertises/new' => 'user_expertises#new', as: :newExpertise
-  post 'user_expertises' => 'user_expertises#create'
+  post 'user_expertises/create' => 'user_expertises#create', as: :createExpertise
 
   # project rewards routes
   get 'project_rewards/index' => 'project_rewards#index'

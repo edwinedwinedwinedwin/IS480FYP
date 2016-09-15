@@ -19,14 +19,8 @@
 </head>
 
 
-<div class="banner-notice">
-  Don't let your work go to waste.
-  <a href="signup.php" style="display:inline;padding: 0;"><span class="t--strong">Be a part</span></a> of YBCO and
-  create projects you're passionate about.
-  <i class="icon icon--cross js-close"></i>
-</div>
-
 <%= render "layouts/headerUser", :projects=>@projects, :images =>  @project_coverImgs%>
+
 <main class="page-main" id="page-main">
   <section class="project-hero" id="overview">
     <%= render "projects/overview", :project_id => @project.id, :project_proposal => @project_proposal, :project_categories => @project_categories %>
@@ -281,10 +275,13 @@
 
             <ul class="meta-tags">
               <li class="meta-tag">
-                <% bio = pm.bio_url %>
+
+                <% bio = User.find(pm.user_id).bio_url %>
+                <% if !(bio.nil? || bio.empty?) %>
                 <%= link_to bio, :target => "_blank" do %>
                     <i class="icon icon--visit"></i>
                     <%= bio %>
+                <% end %>
                 <% end %>
               </li>
             </ul>
@@ -349,7 +346,7 @@
             <%= link_to newExpertise_path(:user_id => pm.user_id, :project_id => @project.id) do %>
                 Endorse an Expertise +
             <% end %>
-          </li>
+           </li>
         </ul>
       </div>
     </div>
@@ -378,6 +375,7 @@
     </div>
 
 <% end %>
+
 
 <div class="l--hidden" id="fuel-lightbox-content-add"
 >
