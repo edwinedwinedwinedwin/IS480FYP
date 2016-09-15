@@ -42,6 +42,8 @@
     <h1 class="heading--large" id="project-title">
       <%= form_for :project_proposal, url: updateTitle_path(:id => project_proposal.id) do |f| %>
       <%= f.text_field :title , :value => project_proposal.title, :class => "heading--large" %>
+      <!--
+      <#%= text_area_tag(:title, project_proposal.title, :class => "heading--large") %>-->
     </h1>
 
     <%= f.button:submit do %>
