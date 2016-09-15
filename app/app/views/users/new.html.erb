@@ -51,6 +51,21 @@
           <label class="form-label" for="password">Confirm Password</label>
         </div>
 
+        <div class="form-field">
+          <%= f.text_field :country, class: "form-input", placeholder: "Country" %>
+          <label class="form-label" for="email">Country</label>
+        </div>
+
+        <div class="form-field">
+          <%= f.text_field :city, class: "form-input", placeholder: "City" %>
+          <label class="form-label" for="email">City</label>
+        </div>
+
+        <div class="form-field">
+          <%= f.text_field :state, class: "form-input", placeholder: "State" %>
+          <label class="form-label" for="email">State</label>
+        </div>
+
         <div class="form-actions">
           <%= f.submit "Create Account", class: "button--stroke--long" %>
         </div>

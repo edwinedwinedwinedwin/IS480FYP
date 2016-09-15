@@ -94,7 +94,12 @@ class UsersController < ApplicationController
       @user.profile_pic = params[:user][:profile_pic]
       @user.save
     end
-    redirect_to :controller => 'dashboards', :action => 'index'
+    checkProjectExist=Project.find_by_user_id(@user.id)
+    if checkProjectExist.nil?
+      redirect_to :controller => 'dashboards', :action => 'index'
+    else      
+      redirect_to :controller => 'projects', :id => checkProjectExist.id, :action => 'show'
+    end
   end
 
   def ban
@@ -119,6 +124,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:password,:password_confirmation,:email,:first_name, :last_name,:profile_pic,:is_admin,:bio_url, :fb_url, :twitter_url, :instagram_url)
+    params.require(:user).permit(:password,:password_confirmation,:email,:first_name, :last_name,:profile_pic,:is_admin,:bio_url, :fb_url, :twitter_url, :instagram_url,:city,:state,:country)
   end
 end
