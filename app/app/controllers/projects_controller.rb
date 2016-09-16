@@ -96,6 +96,50 @@ before_filter :logged_in,:authorize_user
     redirect_to showProject_path(@project.id) and return
   end
 
+  def addMembers
+
+    email1 = params[:project_member][:email1]
+    email2 = params[:project_member][:email2]
+    email3 = params[:project_member][:email3]
+    iMessage =  params[:project_member][:inviteMessages]
+
+    @member1 = checkUserForAddMember(email1, iMessage, params[:project_id])
+    @member2 = checkUserForAddMember(email2, iMessage, params[:project_id])
+    @member3 = checkUserForAddMember(email3, iMessage, params[:project_id])
+
+    redirect_to showProject_path(params[:project_id]) and return
+  end
+
+  def checkUserForAddMember(email, messages, p_id)
+    @project_members = ProjectMember.new
+
+    if(!email.nil?)
+      user = User.find_by_email(email)
+      if(!user.nil?)
+        #user is existing
+        teamMember = ProjectMember.find_by(:user_id => user.id, :project_id => p_id)
+        if(teamMember.nil?)
+          #user is not inside this project(allow to add in)
+          @project_members.role = 'Team Member'
+          @project_members.email = user.email
+          @project_members.description = user.last_name + ' ' + user.first_name
+          @project_members.second_role = 'Crew'
+          @project_members.project_id =  p_id
+          @project_members.project_status_id = 2
+          @project_members.user_id = user.id
+          @project_members.save
+
+        else
+          #user is inside this project(not allow to add in)
+
+        end
+      else
+        #user is not existing
+
+      end
+    end
+  end
+
   private
   def projects_params
     params.require(:projects).permit(:start_date, :end_date, :country, :state, :city, :project_status_id, :project_proposal_id, :user_id)

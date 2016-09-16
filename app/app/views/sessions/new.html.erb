@@ -41,8 +41,8 @@
 
           <p>
             <div class="form-actions">
-              Need an account? <%= link_to "Sign Up", controller: "users", action: "new", class: "button--stroke--long" %><br>
-              Forget your password? <%= link_to "Reset Password", '/sessions/resetpass' %>
+              Need an account? <%= link_to "Sign Up", signup_path%><br>
+              Forget your password? <%= link_to "Reset Password", userResetPassword_path %>
             </div>
           </p>
       <% end %>
