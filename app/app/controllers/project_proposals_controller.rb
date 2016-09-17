@@ -30,15 +30,12 @@ class ProjectProposalsController < ApplicationController
         end
       end
       SysMailer.new_proposal_email(@ProjectProposal).deliver
-      redirect_to successProposalSubmission_path and return
+      render successProposalSubmission_path
     else
       render 'new' and return
     end
   end
 
-  def success
-    render 'success' and return
-  end
 
   def accept
     @ProjectProposal=ProjectProposal.find(params[:id])
