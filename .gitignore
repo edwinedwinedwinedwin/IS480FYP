@@ -58,3 +58,5 @@ app/config/initializers/s3.rb
 app/.idea/workspace.xml
 app/.idea/.rakeTasks
 *.log
+app/.idea/.rakeTasks
+app/log/development.log
