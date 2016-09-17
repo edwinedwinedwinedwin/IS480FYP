@@ -4832,6 +4832,7 @@ Sidebar
   line-height: 0px;
   border-bottom: 1px solid #aab5bc;
   padding-bottom: 0.5rem; 
+  min-height: 35px;
 }
 
 .admin-tables {

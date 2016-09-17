@@ -127,7 +127,13 @@
             <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
                 <div class="admin-dashboard-content">   
                     <div class="admin-dashboard-content-header">
-                        Project Proposals <small>recently submitted</small>
+                        <div id="projp-float-left">Project Proposals <small>recently submitted</small>
+                        </div>
+                        <div id="projp-float-right">
+                            <%= link_to controller: "project_proposals", action: "index" do %>
+                            <span class="glyphicon glyphicon-new-window" aria-hidden="true" title="View all project proposals"></span>
+                            <% end %>
+                        </div>
                     </div>
                     <div class="admin">
                         <div class="table-responsive">
@@ -135,13 +141,13 @@
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th>Submitted On</th>
-                                        <th data-priority="1">Project Title</th>
-                                        <th>Category</th>
-                                        <th data-priority="2">Status</th>
+                                        <th>Submitted On <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
+                                        <th data-priority="1">Project Title <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
+                                        <th data-priority="4">Category <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
+                                        <th data-priority="2">Status <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
                                         <th>Project Description</th>
-                                        <th data-priority="5">Images</th>
-                                        <th data-priority="4">Creator's contact details</th>
+                                        <th>Images</th>
+                                        <th data-priority="5">Creator's contact details</th>
                                         <th data-priority="3">Action</th>
                                     </tr>
                                 </thead>
