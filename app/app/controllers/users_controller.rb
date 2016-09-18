@@ -45,9 +45,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])    
     if @user.update(user_params)      
         if @user.is_admin
-          redirect_to :controller => 'admins', :action => 'index' and return
+          redirect_to adminDashboard_path and return
         else
-          redirect_to :controller => 'dashboards', :action => 'index' and return
+          redirect_to userIndex_path and return
         end      
     else      
         render Rails.application.routes.recognize_path(request.referer)[:action] #renders previous get request
@@ -57,7 +57,7 @@ class UsersController < ApplicationController
   def destroy
     @user=User.find(params[:id])
     @user.destroy
-    redirect_to :controller => 'users', :action => 'index' and return
+    redirect_to userIndex_path and return
   end
 
   def create
@@ -68,7 +68,7 @@ class UsersController < ApplicationController
     if @user.save
       #Check User is a Normal user or an Admin user
       if @user.is_admin
-        redirect_to :controller => 'admins', :action => 'manage' and return
+        redirect_to adminManage_path and return
       else
           #Send email to user who sign up
           SysMailer.welcome_email(@user).deliver                
@@ -96,9 +96,9 @@ class UsersController < ApplicationController
     end
     checkProjectExist=Project.find_by_user_id(@user.id)
     if checkProjectExist.nil?
-      redirect_to :controller => 'dashboards', :action => 'index'
+      redirect_to dashboardIndex_path and return
     else      
-      redirect_to :controller => 'projects', :id => checkProjectExist.id, :action => 'show'
+      redirect_to showProject_path(:id => checkProjectExist.id) and return
     end
   end
 
@@ -106,20 +106,20 @@ class UsersController < ApplicationController
     @user=User.find(params[:id])
     @user.is_banned=1
     @user.save
-    redirect_to :controller => 'users', :action => 'index'
+    redirect_to userIndex_path and return
   end
 
   def unban
     @user=User.find(params[:id])
     @user.is_banned=0
     @user.save
-    redirect_to :controller => 'users', :action => 'index'
+    redirect_to userIndex_path and return
   end
 
   def removeadmin
     @user=User.find(params[:id])
     @user.destroy
-    redirect_to :controller => 'admins', :action => 'manage'
+    redirect_to adminManage_path and return
   end
 
   private

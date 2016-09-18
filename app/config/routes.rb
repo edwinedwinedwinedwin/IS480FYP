@@ -60,6 +60,7 @@ Rails.application.routes.draw do
   get 'login' => 'sessions#new' , as: :login # show login form
   get 'editprofile' => 'users#edit#:id', as: :editUserProfile
   get 'admins/editprofile' => 'users#edit#:id',as: :editAdminProfile
+  get 'admins/manage' => 'admins#manage' , as: :adminManage
 
   post 'sessions/create' => 'sessions#create' # process login
   get 'logout' => 'sessions#destroy', as: :logout # log out and invalidate session
@@ -70,6 +71,7 @@ Rails.application.routes.draw do
 
   post 'users/updateProfilePic/(:id)' => 'users#updateProfilePic', as: :updateProfilePic
   get 'admins/index' => 'admins#index', as: :adminDashboard
+  get 'users' => 'users#index', as: :userIndex
   get 'changepass' => 'users#changepass#:id', as: :userChangePassword
   get 'admins/changepass' => 'users#changepass#:id', as: :adminChangePassword
   post 'sessions/resetpass' => 'users#resetpass', as: :userResetPassword
