@@ -81,7 +81,7 @@ class ProjectProposalsController < ApplicationController
     @ProjectMember.user_id = @user.id    
     @ProjectMember.save    
 
-    redirect_to :controller => 'ProjectProposals', :action => 'index'    
+    redirect_to adminDashboard_path and return
   end
 
   def reject
@@ -90,7 +90,7 @@ class ProjectProposalsController < ApplicationController
     @ProjectProposal.save
     #Send email to user who sign up
     SysMailer.reject_proposal_email(@ProjectProposal).deliver
-    redirect_to :controller => 'ProjectProposals', :action => 'index'      
+    redirect_to adminDashboard_path and return     
   end
 
   private
