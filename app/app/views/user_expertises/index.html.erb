@@ -3,8 +3,12 @@
   <%= stylesheet_link_tag "flickity/flickity.css" %>
   <%= javascript_include_tag "application"%>
 <p id="notice"><%= notice %></p>
+<br/>
 
 <legend class="form-heading heading"><h1>My Expertises</h1></legend>
+<br/>
+
+<%= link_to '< BACK', {:controller => "dashboards", :action => "index" }, class: "back--button" %>
 
 <table class="table-show">
   <thead>
@@ -30,10 +34,10 @@
     <% end %>
   </tbody>
 </table>
+<br/><br/>
 
-<%= link_to 'Add Expertise', {:controller => "user_expertises", :action => "new" } %><br>
-<!-- Link back to projects-->
-<%= link_to 'Back', {:controller => "dashboards", :action => "index" } %>
+<%= link_to 'Add Expertise', {:controller => "user_expertises", :action => "new" }, class: 
+"button--stroke--long--add" %><br/>
 <%# link_to 'Back', {:controller => "projects", :action => "show", :id=>session[:project_id]} %>
 <!-- :id will eventually be project_id instead of 1-->
 <%= session[:user_id] %>
