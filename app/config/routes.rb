@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   post 'project_reward_backers/destroy/(:id)' => 'project_reward_backers#destroy'
 
   # project members routes  
-  get 'project_members/index' => 'project_members#index'
+  get 'project_members/index' => 'project_members#index', as: :projectMembersIndex
   get 'project_members/new' => 'project_members#new'
   get 'project_members/edit/:id' => 'project_members#edit'  
   post 'project_members' => 'project_members#create'  
