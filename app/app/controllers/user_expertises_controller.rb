@@ -28,7 +28,8 @@ class UserExpertisesController < ApplicationController
   def destroy
   	@user_expertise=UserExpertise.find(params[:id])
   	@user_expertise.destroy
-  	redirect_to :controller => 'user_expertises', :action => 'index'
+  	#redirect_to :controller => 'user_expertises', :action => 'index'
+    redirect_to allIExpertise_path and return
   end
 
   private
