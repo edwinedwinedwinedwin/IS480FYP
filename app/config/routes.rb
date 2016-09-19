@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'pages#home' # root page
 
   # project reward backers routes
-  get 'project_reward_backers/index' => 'project_reward_backers#index'
+  get 'project_reward_backers/index' => 'project_reward_backers#index',  as: :projectRewardBackersIndex
   get 'project_reward_backers/new' => 'project_reward_backers#new'
   get 'project_reward_backers/edit' => 'project_reward_backers#edit'
   post 'project_reward_backers' => 'project_reward_backers#create'
@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   post 'project_milestones/destroy/(:id)' => 'project_milestones#destroy' 
 
   # user shipping addresses routes
-  get 'user_shipping_addresses/index' => 'user_shipping_addresses#index'
+  get 'user_shipping_addresses/index' => 'user_shipping_addresses#index', as: :userShippingAddressesIndex
   get 'user_shipping_addresses/edit' => 'user_shipping_addresses#edit'
   get 'user_shipping_addresses/new' => 'user_shipping_addresses#new'
   post 'user_shipping_addresses' => 'user_shipping_addresses#create'
@@ -92,6 +92,7 @@ Rails.application.routes.draw do
   get 'users/manage/(:id)' => 'users#manage', as: :manageProject # display create proposal page
   post 'projects/updateCategory/(:id)' => 'projects#updateCategory', as: :updateCategory
   get 'projects/show/:id' => 'projects#show', as: :showProject
+  get 'projects/index' => 'projects#index', as: :projectsIndex
   post 'projects/updateDescription/(:id)' => 'projects#updateDescription', as: :updateDescription
   post 'projects/updateTitle/(:id)' => 'projects#updateTitle', as: :updateTitle
   post 'projects/addMembers' => 'projects#addMembers', as: :addMembers
@@ -102,7 +103,7 @@ Rails.application.routes.draw do
   post 'user_expertises/create' => 'user_expertises#create', as: :createExpertise
 
   # project rewards routes
-  get 'project_rewards/index' => 'project_rewards#index'
+  get 'project_rewards/index' => 'project_rewards#index', as: :projectRewardsIndex
   get 'project_rewards/edit' => 'project_rewards#edit'
   get 'project_rewards/new' => 'project_rewards#new'
   post 'project_rewards/create' => 'project_rewards#create', as: :createProjectReward

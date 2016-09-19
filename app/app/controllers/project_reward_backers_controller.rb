@@ -20,7 +20,8 @@ class ProjectRewardBackersController < ApplicationController
   def create
     @project_reward_backer=ProjectRewardBacker.new(project_reward_backers_params)
     if @project_reward_backer.save
-      redirect_to :controller => 'project_reward_backers', :action => 'index' and return
+      #redirect_to :controller => 'project_reward_backers', :action => 'index' and return
+      redirect_to projectRewardBackersIndex_path and return
       #redirect_to :controller => 'project_reward_backers', :action => 'index',:id=session[:project_id] and return
     else
       render '/project_reward_backers/new' and return
@@ -30,7 +31,8 @@ class ProjectRewardBackersController < ApplicationController
   def update
     @project_reward_backer=ProjectRewardBacker.find(params[:id])
     if @project_reward_backer.update_attributes(project_reward_backers_params)
-    	redirect_to :controller => 'project_reward_backers', :action => 'index' and return
+    	#redirect_to :controller => 'project_reward_backers', :action => 'index' and return
+      redirect_to projectRewardBackersIndex_path and return
       #redirect_to :controller => 'project_reward_backers', :action => 'index',:id=session[:project_id] and return
     else
       render 'edit'
@@ -40,7 +42,8 @@ class ProjectRewardBackersController < ApplicationController
   def destroy
     @project_reward_backer=ProjectRewardBacker.find(params[:id])
     @project_reward_backer.destroy   
-    redirect_to :controller => 'project_reward_backers', :action => 'index' and return
+    #redirect_to :controller => 'project_reward_backers', :action => 'index' and return
+    redirect_to projectRewardBackersIndex_path and return
     #redirect_to :controller => 'project_reward_backers', :action => 'index',:id=session[:project_id] and return
   end
 
