@@ -50,7 +50,8 @@ before_filter :logged_in,:authorize_user
   def create
     @Project = Project.new(projects_params)
     if @Project.save
-      redirect_to :controller => 'projects', :action => 'index' and return
+      #redirect_to :controller => 'projects', :action => 'index' and return
+      redirect_to projectsIndex_path and return
     else
       render 'new'
     end
@@ -63,7 +64,8 @@ before_filter :logged_in,:authorize_user
   def update
     @Project = Project.find(params[:id])
     if @Project.update(projects_params)
-      redirect_to :controller => 'projects', :action => 'index' and return
+      #redirect_to :controller => 'projects', :action => 'index' and return
+      redirect_to projectsIndex_path and return
     else
       render 'edit'
     end
