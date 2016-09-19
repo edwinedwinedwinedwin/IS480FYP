@@ -39,7 +39,8 @@ class ProjectRewardsController < ApplicationController
   def destroy
     @project_reward=ProjectReward.find(params[:id])
     @project_reward.destroy   
-    redirect_to :controller => 'project_rewards', :action => 'index' and return
+    #redirect_to :controller => 'project_rewards', :action => 'index' and return
+    redirect_to projectRewardsIndex_path and return
     #redirect_to :controller => 'project_rewards', :action => 'index',:id=session[:project_id] and return
   end
 
