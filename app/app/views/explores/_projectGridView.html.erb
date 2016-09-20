@@ -1,0 +1,42 @@
+<li class="explore-project explore-project--<%= girdStyle %>" style="background-image:url(<%=ProjectProposalImg.where(:project_proposal_id => p.project_proposal_id).first.img_url %>);">
+
+  <%= link_to viewProject_path(:id => p.id), :class => "explore-project-link" %>
+
+
+  <header class="explore-project-header">
+    <h3 class="explore-project__title"><%= ProjectProposal.find(p.project_proposal_id).title %></h3>
+  </header>
+
+  <div class="explore-project-description">
+    <div class="explore-project-description-content">
+						<span class="explore-project-description-header">
+							by <span class="explore-project__author">
+              <%= User.find(p.user_id).last_name %> <%= User.find(p.user_id).first_name %></span>
+						</span>
+
+      <div class="explore-project__excerpt">
+        <p>><%= ProjectProposal.find(p.project_proposal_id).description %></p>
+      </div>
+
+      <div class="explore-project__cta">
+        <a href="#" class="button--stroke">View Project</a>
+      </div>
+    </div>
+
+    <div class="explore-project-description__background"></div>
+  </div>
+
+  <footer class="explore-project-footer">
+    <ul class="meta-tags">
+      <li class="meta-tag">
+        <span class="meta-tag__data">50%</span>
+        Fueled
+      </li>
+
+      <li class="meta-tag">
+        <span class="meta-tag__data">12</span>
+        Days left
+      </li>
+    </ul>
+  </footer>
+</li>

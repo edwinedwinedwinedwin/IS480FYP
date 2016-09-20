@@ -114,6 +114,10 @@ Rails.application.routes.draw do
   post 'project_updates/create' => 'project_updates#create', as: :createProjectUpdate
   post 'project_updates/destroy/(:id)' => 'project_updates#destroy'
 
+  #Explore routes
+  get 'explores/index' => 'explores#index', as: :viewAllProject
+  get 'explores/show/(:id)' => 'explores#show', as: :viewProject
+
   match '/:controller/:action/(:id)', via: [:get, :post] # last route
   
   resources :user_shipping_addresses

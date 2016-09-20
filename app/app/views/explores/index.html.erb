@@ -60,6 +60,26 @@
 		</a>
 
 		<ul class="explore-projects-grid wrap">
+
+      <% @projects.each do |p| %>
+        <%
+
+          output =  Random.new.rand(1...4) / 4
+          if output == 0.25
+        %>
+            <%= render "explores/projectGridView", :p => p, :girdStyle => "square--large" %>
+          <% elsif output == 0.5 %>
+              <%= render "explores/projectGridView", :p => p, :girdStyle => "vectical" %>
+          <% elsif output == 0.75 %>
+              <%= render "explores/projectGridView", :p => p, :girdStyle => "horizontial" %>
+          <% else %>
+              <%= render "explores/projectGridView", :p => p, :girdStyle => "square"%>
+         <% end %>
+
+
+      <% end %>
+
+
 			<li class="explore-project explore-project--horizontal" style="background-image:url(/assets/explore-1-thumbnail.jpg);">
 				<a class="explore-project-link" href="#">
 				</a>
