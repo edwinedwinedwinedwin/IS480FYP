@@ -260,7 +260,14 @@
         <div class="grid-container">
           <div class="grid-30">
             <div class="team-lightbox-image lightbox-pic">
-              <%= image_tag(User.find(pm.user_id).profile_pic, :class => "lightbox-pic") %>
+
+              <% if User.find(pm.user_id).profile_pic.blank? %>
+                  <%= image_tag('defaultprofile.png', :class => "lightbox-pic") %>
+              <% else %>
+                  <%= image_tag(User.find(pm.user_id).profile_pic, :class => "lightbox-pic") %>
+              <% end %>
+
+
             </div>
           </div>
 
@@ -378,8 +385,7 @@
 
 <% end %>
 
-<div class="l--hidden" id="fuel-lightbox-content-add"
->
+<div class="l--hidden" id="fuel-lightbox-content-add">
   <div class="fuel-lightbox-container">
     <legend class="form-heading heading">Add Reward</legend>
     <span class="fuel-lightbox__heading">Add new reward base</span>

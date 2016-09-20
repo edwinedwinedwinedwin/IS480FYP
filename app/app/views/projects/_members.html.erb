@@ -16,10 +16,15 @@
         <li class="project-team-member">
           <!--
           <div class="project-team-member-thumbnail js-lightbox-open" data-content-container="#team-lightbox-content-<%= pm.pm_id %>">
-            <%= image_tag(User.find(pm.user_id).profile_pic) %>
+
           </div> -->
           <div class="project-team-member-thumbnail js-lightbox-open member-image" data-content-container="#team-lightbox-content-<%= pm.pm_id %>">
-              <%= image_tag(User.find(pm.user_id).profile_pic, :class=>"member-image") %>
+            <% if User.find(pm.user_id).profile_pic.blank? %>
+                <%= image_tag('defaultprofile.png', :class=>"member-image") %>
+            <% else %>
+                <%= image_tag(User.find(pm.user_id).profile_pic, :class=>"member-image") %>
+            <% end %>
+
             </div>
           <span class="project-team-member__name"><%= User.find(pm.user_id).last_name %> <%= User.find(pm.user_id).first_name %></span>
           <span class="project-team-member__position"><%= pm.role %></span>

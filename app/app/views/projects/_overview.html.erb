@@ -58,7 +58,14 @@
   </div>
 
   <div class="profile-tag">
-    <%= image_tag(User.find(Project.find(project_id).user_id).profile_pic, :class=>"img-circular-project-avatar") %>
+
+    <% if User.find(Project.find(project_id).user_id).profile_pic.blank? %>
+        <%= image_tag('defaultprofile.png', :class=>"img-circular-project-avatar") %>
+    <% else %>
+        <%= image_tag(User.find(Project.find(project_id).user_id).profile_pic, :class=>"img-circular-project-avatar") %>
+    <% end %>
+
+
     <% first_name = User.find(Project.find(project_id).user_id).first_name %>
     <% last_name = User.find(Project.find(project_id).user_id).last_name %>
     <% full_name = last_name + ' ' + first_name %>
