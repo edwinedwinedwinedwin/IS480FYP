@@ -66,10 +66,10 @@ Rails.application.routes.draw do
   get 'logout' => 'sessions#destroy', as: :logout # log out and invalidate session
   get 'dashboard/index' => 'dashboards#index', as: :dashboardIndex # Display page upon successful login
 
-  get 'manageShippingAddress' => 'user_shipping_addresses#index', as: :manageShippingAddress # get user shipping address
-  get 'addShippingAddress' => 'user_shipping_addresses#new', as: :addShippingAddress # new user shipping address
-  get 'updateShippingAddress' => 'user_shipping_addresses#edit', as: :updateShippingAddress # update user shipping address
-  get 'deleteShippingAddress' => 'user_shipping_addresses#destroy', as: :deleteShippingAddress # update user shipping address
+  get 'user_shipping_addresses/index' => 'user_shipping_addresses#index', as: :manageShippingAddress # get user shipping address
+  get 'user_shipping_addresses/new' => 'user_shipping_addresses#new', as: :addShippingAddress # new user shipping address
+  get 'user_shipping_addresses/edit/:id' => 'user_shipping_addresses#edit', as: :updateShippingAddress # update user shipping address
+  get 'user_shipping_addresses/destroy' => 'user_shipping_addresses#destroy', as: :deleteShippingAddress # update user shipping address
 
   post 'users/updateProfilePic/(:id)' => 'users#updateProfilePic', as: :updateProfilePic
   get 'admins/index' => 'admins#index', as: :adminDashboard
