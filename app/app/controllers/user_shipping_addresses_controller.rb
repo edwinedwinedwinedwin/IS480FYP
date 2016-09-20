@@ -1,7 +1,7 @@
 class UserShippingAddressesController < ApplicationController
   before_filter :logged_in,:authorize_user
   def index
-    @userShippingAddresses=UserShippingAddress.all   
+    @userShippingAddresses=UserShippingAddress.where("user_id=?",session[:user_id])   
     #@userShippingAddresses=UserShippingAddress.where("project_id =?",params[:project_id])    
   end
 

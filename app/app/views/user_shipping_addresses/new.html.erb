@@ -29,9 +29,9 @@
           <div class="form-field">
             <%= f.text_field :address_line_2, class: "form-input", placeholder: "Address Line 2" %>
             <label class="form-label" for="address_line_2">Address Line 2</label>
-          </div>
-          
-          <div class="form-field">
+          </div>  
+
+          <div class="form-field selectCountry">
           <% 
           url = 'http://iamrohit.in/lab/php_ajax_country_state_city_dropdown/api.php?type=getCountries'
           response = RestClient.get(url)          
@@ -41,15 +41,31 @@
             <%= f.select :country, countries, :class=>"form-input" %>   
             <%= countryArray.assoc(params[:country]) %>                            
             <label class="form-label" for="country">Country</label>
-          </div>          
+          </div>                  
 
-          <div class="form-field">
-            <%= f.text_field :city, class: "form-input", placeholder: "City" %>
+                      
+            <script>       
+               var loc = new locationInfo();
+               loc.getCountries();   
+               $(".selectCountry").change(function(ev) {                
+                      var selectedCountry = $("#selectCountry").val()
+                      //alert(selectedCountry);
+                      <% test=12 %>
+                      alert(test);
+                      // change value of city select
+                      $("#selectCity").val("Changed City").change();
+               });                           
+            </script>   
+
+
+
+          <div class="form-field selectCity">
+            <%= f.select :city, ['Select City'],class: "form-input", placeholder: "City" %>
             <label class="form-label" for="city">City</label>
           </div>
 
-          <div class="form-field">
-            <%= f.text_field :state, class: "form-input", placeholder: "State"  %> 
+          <div class="form-field selectState">
+            <%= f.select :state, ['Select State'],class: "form-input", placeholder: "State"  %> 
             <label class="form-label" for="state">State</label>       
           </div>
 

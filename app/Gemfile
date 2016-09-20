@@ -58,6 +58,8 @@ gem 'fog', require: 'fog/aws'
 # Country state selection for user_shipping_addresses
 #gem 'city-state'
 
+# rest client
+gem 'rest-client'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
