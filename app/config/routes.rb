@@ -23,15 +23,6 @@ Rails.application.routes.draw do
   get 'project_milestones/edit' => 'project_milestones#edit'    
   post 'project_milestones/destroy/(:id)' => 'project_milestones#destroy' 
 
-  # user shipping addresses routes
-  get 'user_shipping_addresses/index' => 'user_shipping_addresses#index', as: :userShippingAddressesIndex
-  get 'user_shipping_addresses/edit' => 'user_shipping_addresses#edit'
-  get 'user_shipping_addresses/new' => 'user_shipping_addresses#new'
-  post 'user_shipping_addresses' => 'user_shipping_addresses#create'
-  post 'user_shipping_addresses/destroy/(:id)' => 'user_shipping_addresses#destroy'
-
-
-
   #get 'projects/new' => 'projects/new'
   get 'project_inspirations/new' => 'project_inspirations#new'
   get 'project_inspirations/index' => 'project_inspirations#index'
@@ -51,6 +42,7 @@ Rails.application.routes.draw do
   resources :projects
   resources :project_proposals
   resources :project_proposal_imgs
+  
 
   get 'signup' => 'users#new', as: :signup #display create user page
   get 'addAdmin' => 'admins#new', as: :addAdmin #display create admin page
@@ -68,9 +60,11 @@ Rails.application.routes.draw do
   get 'logout' => 'sessions#destroy', as: :logout # log out and invalidate session
   get 'dashboard/index' => 'dashboards#index', as: :dashboardIndex # Display page upon successful login
 
+  # user_shipping_addresses routes
   get 'user_shipping_addresses/index' => 'user_shipping_addresses#index', as: :manageShippingAddress # get user shipping address
   get 'user_shipping_addresses/new' => 'user_shipping_addresses#new', as: :addShippingAddress # new user shipping address
-  get 'user_shipping_addresses/edit/:id' => 'user_shipping_addresses#edit', as: :updateShippingAddress # update user shipping address
+  get 'user_shipping_addresses/edit' => 'user_shipping_addresses#edit', as: :editShippingAddress # edit user shipping address
+  post 'user_shipping_addresses/update/(:id)' => 'user_shipping_addresses#update', as: :updateShippingAddress # update user shipping address
   get 'user_shipping_addresses/destroy' => 'user_shipping_addresses#destroy', as: :deleteShippingAddress # update user shipping address
 
   post 'users/updateProfilePic/(:id)' => 'users#updateProfilePic', as: :updateProfilePic
@@ -121,5 +115,7 @@ Rails.application.routes.draw do
   post 'project_updates/destroy/(:id)' => 'project_updates#destroy'
 
   match '/:controller/:action/(:id)', via: [:get, :post] # last route
+  
+  resources :user_shipping_addresses
 
 end

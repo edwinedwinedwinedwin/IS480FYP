@@ -1,73 +1,85 @@
 <div class="page-main">
   <%= stylesheet_link_tag "style" %>
   <%= stylesheet_link_tag "component" %>
+  <%= stylesheet_link_tag "flickity/flickity.css" %>
   <%= javascript_include_tag "application"%>
 
   <div class="page-section">
-     <legend class="form-heading heading"> Edit User Shipping Address</legend>
-    <%= form_for(@user_shipping_address) do |f| %>
-    <% if @user_shipping_address.errors.any? %>
-    <div id="error_explanation">
-      <ul>
-        <% @user_shipping_address.errors.full_messages.each do |msg| %>
-          <li><font color=red><%= msg %></font></li>
-        <% end %>
-      </ul>
+    <legend class="form-heading heading"> Edit User Shipping Address </legend>
+
+      <%= form_for @user_shipping_address,url: updateShippingAddress_path(:id => @user_shipping_address.id),method: :post do |f| %>                 
+          <% if @user_shipping_address.errors.any? %>
+              <div class="alert alert-danger" role="alert">
+                <b><u>Errors:</u></b>
+                <ul>
+                  <% @user_shipping_address.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+          <% end %>
+
+          <div class="form-field">
+            <%= f.text_field :address_line_1, class: "form-input", placeholder: "Address Line 1" %>
+            <label class="form-label" for="address_line_1">Address Line 1</label>
+          </div>
+
+          <div class="form-field">
+            <%= f.text_field :address_line_2, class: "form-input", placeholder: "Address Line 2" %>
+            <label class="form-label" for="address_line_2">Address Line 2</label>
+          </div>  
+
+          <div class="form-field selectCountry">
+          <% 
+          url = 'http://iamrohit.in/lab/php_ajax_country_state_city_dropdown/api.php?type=getCountries'
+          response = RestClient.get(url)          
+          %>          
+          <% countryArray=JSON.parse(response)["result"] %>                                           
+            <% countries = options_for_select(countryArray.values) %>
+            <%= f.select :country, countries, :class=>"form-input" %>   
+            <%= countryArray.assoc(params[:country]) %>                            
+            <label class="form-label" for="country">Country</label>
+          </div>                  
+
+                      
+            <script>       
+               var loc = new locationInfo();
+               loc.getCountries();   
+               $(".selectCountry").change(function(ev) {                
+                      var selectedCountry = $("#selectCountry").val()
+                      //alert(selectedCountry);
+                      <% test=12 %>
+                      alert(test);
+                      // change value of city select
+                      $("#selectCity").val("Changed City").change();
+               });                           
+            </script>   
+
+
+
+          <div class="form-field selectCity">
+            <%= f.select :city, ['Select City'],class: "form-input", placeholder: "City" %>
+            <label class="form-label" for="city">City</label>
+          </div>
+
+          <div class="form-field selectState">
+            <%= f.select :state, ['Select State'],class: "form-input", placeholder: "State"  %> 
+            <label class="form-label" for="state">State</label>       
+          </div>
+
+          <div class="form-field">
+            <%= f.text_field :postal_code, class: "form-input", placeholder: "Postal Code"  %> 
+            <label class="form-label" for="postal_code">Postal Code</label>       
+          </div>
+
+          <div class="form-actions">
+            <td align=right><%= f.submit "Update Address", class: "button--stroke--long" %></td>
+          </div>
+
+      <% end %>
+      <br>
+      
+      <%= link_to 'Back', manageShippingAddress_path %>
+
     </div>
-    <% end %>
-    <p>
-      <div class="form-field">
-        <%= f.text_field :address_line_1, class: "form-input"%>
-        <label class="form-label" for="address_line_1">Address Line 1</label>
-      </div>
-    </p>
-    
-    <p>
-     <div class="form-field">
-      <%= f.text_field :address_line_2, class: "form-input" %>
-      <label class="form-label" for="address_line_2">Address Line 2</label>
-      </div>
-    </p>
-
-    <p>
-     <div class="form-field">
-      <%= f.text_field :country, class: "form-input" %>
-      <label class="form-label" for="country">Country</label>
-      </div>
-    </p>
-    
-    <p>
-     <div class="form-field">
-      <%= f.text_field :city, class: "form-input" %>
-      <label class="form-label" for="city">City</label>
-      </div>
-    </p>
-
-    <p>
-     <div class="form-field">
-      <%= f.text_field :state, class: "form-input" %>
-      <label class="form-label" for="state">State</label>
-      </div>
-    </p>
-
-    <p>
-     <div class="form-field">
-      <%= f.text_field :postal_code, class: "form-input" %>
-      <label class="form-label" for="postal_code">Postal Code</label>
-      </div>
-    </p>
-    
-    <p>
-    <div class="form-actions">
-      <%= f.submit "SUBMIT", class: "button--stroke--long" %>
-      </div>
-    </p>
-    <% end %>
-
-    <p>
-    <div class="form-actions">
-    <%= link_to 'BACK', "user_shipping_addresses/index" %>
-    </div>
-    </p>
   </div>
-</div>
