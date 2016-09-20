@@ -55,6 +55,8 @@ Rails.application.routes.draw do
   get 'signup' => 'users#new', as: :signup #display create user page
   get 'addAdmin' => 'admins#new', as: :addAdmin #display create admin page
   post 'users' => 'users#create' # process creation of user
+  post 'users/destroy/(:id)' => 'users#destroy', as: :deleteAdmin
+
   get 'pages/comrules' => 'pages#comrules', as: :communityRule # display com rules
   get 'pages/term' => 'pages#term', as: :termNCondition # display terms
   get 'login' => 'sessions#new' , as: :login # show login form
