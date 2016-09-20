@@ -479,3 +479,50 @@
     <% end %>
   </div>
 </div>
+
+<!--LIGHTBOX -->
+<div class="l--hidden" id="fuel-lightbox-content">
+  <div class="fuel-lightbox-container">
+
+    <legend class="form-heading heading"> Edit Profile </legend>
+    <span class="fuel-lightbox__heading">Upload your profile picture</span>
+
+    <%= form_for :user, url:  updateProfilePic_path(session[:user_id]) ,method: :post do |f| %>
+
+        <div class="form-field">
+
+          <% if @user.errors.any? %>
+              <div class="panel panel-danger">
+                <div class="panel-heading"><h2><strong>Your inputs do not meet the requirements:</strong></h2></div>
+                <div class="panel-body alert-design">
+                  <ul style="list-style-type:circle">
+                    <% @user.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              </div>
+          <% end %>
+        </div>
+
+
+        <div class="form-field">
+          <%= f.file_field :profile_pic, class: "form-input" %>
+          <label class="form-label" for="profile_pic">Profile Picture (File Size: < 2MB)</label>
+        </div>
+        <% current_user=User.find(session[:user_id]) %>
+        <% if current_user.profile_pic.present? %> <!-- check if profile pic exists -->
+    <% url = current_user.profile_pic%> <!-- get entire url-->
+            <% index=url.to_s.rindex('/') %> <!-- get last index of '/'-->
+            <!--
+        <div align=center> <%= url.to_s[index+1..url.to_s.length] %> </div>
+        <div align=center><%= image_tag(current_user.profile_pic,:class=> "img-circular") %></div> -->
+        <% end %>
+
+        <div class="form-actions">
+          <%= f.submit "Submit", class: "button--stroke--long" %>
+        </div>
+
+    <% end %>
+  </div>
+</div>
