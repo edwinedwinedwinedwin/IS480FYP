@@ -8,7 +8,7 @@
               <header class="card-header">
                 <div class="card-meta">
                   <span class="card-meta__new">New</span>
-                  <span class="card-meta__date"><%= u.created_on%></span>
+                  <span class="card-meta__date"><%= u.created_on.strftime("%e %B %Y %H:%M")%></span>
                 </div>
 
                 <h3 class="card-header__title">
@@ -27,7 +27,7 @@
               <header class="card-header">
                 <div class="card-meta">
                   <span class="card-meta__new">New</span>
-                  <span class="card-meta__date"><%= u.created_on%></span>
+                  <span class="card-meta__date"><%= u.created_on.strftime("%e %B %Y %H:%M")%></span>
                 </div>
 
                 <h3 class="card-header__title">

@@ -446,7 +446,7 @@
   <div class="fuel-lightbox-container">
     <legend class="form-heading heading">Add Update</legend>
     <span class="fuel-lightbox__heading">Add new update </span>
-    <%= form_for :project_update, url: createProjectUpdate_path, method: :post, remote: true do |f| %>
+    <%= form_for :project_update, url: createProjectUpdate_path, method: :post do |f| %>
 
         <%= f.hidden_field :project_id, :value => @project.id %>
 
