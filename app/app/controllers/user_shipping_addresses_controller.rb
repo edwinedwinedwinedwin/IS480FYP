@@ -20,17 +20,17 @@ class UserShippingAddressesController < ApplicationController
   def create
     @user_shipping_address=UserShippingAddress.new(user_shipping_address_params)
     if @user_shipping_address.save
-      redirect_to :controller => 'user_shipping_addresses', :action => 'index' and return
+      redirect_to 'manageShippingAddress' and return
       #redirect_to :controller => 'user_shipping_address', :action => 'index',:id=session[:project_id] and return
     else
-      render '/user_shipping_address/new' and return
+      render 'addShippingAddress' and return
     end
   end
 
   def update
     @user_shipping_address=UserShippingAddress.find(params[:id])
     if @user_shipping_address.update_attributes(user_shipping_address_params)
-    	redirect_to :controller => 'user_shipping_addresses', :action => 'index' and return
+    	redirect_to 'manageShippingAddress' and return
       #redirect_to :controller => 'user_shipping_address', :action => 'index',:id=session[:project_id] and return
     else
       render 'edit'
@@ -40,7 +40,7 @@ class UserShippingAddressesController < ApplicationController
   def destroy
     @user_shipping_address=UserShippingAddress.find(params[:id])
     @user_shipping_address.destroy   
-    redirect_to :controller => 'user_shipping_addresses', :action => 'index' and return
+    redirect_to 'manageShippingAddress' and return
     #redirect_to :controller => 'user_shipping_address', :action => 'index',:id=session[:project_id] and return
   end
 

@@ -9,7 +9,7 @@
 
       <%= form_for(@user_shipping_address) do |f| %>              
           <%= f.hidden_field :project_id, :value => 1 %> <!-- :value will eventually be project_id instead of 1-->
-
+          <%= f.hidden_field :user_id, :value => session[:user_id] %>
           <% if @user_shipping_address.errors.any? %>
               <div class="alert alert-danger" role="alert">
                 <b><u>Errors:</u></b>
@@ -81,7 +81,7 @@
       <% end %>
       <br>
       
-      <%= link_to 'Back', {:controller => "user_shipping_addresses", :action => "index" } %>
+      <%= link_to 'Back', "manageShippingAddress" %>
 
     </div>
   </div>
