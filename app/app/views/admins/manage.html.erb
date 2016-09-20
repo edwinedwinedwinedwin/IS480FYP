@@ -29,7 +29,7 @@
         <td class="td-row">
           <% adminsCount=User.where('is_admin = true').count %>
           <% if adminsCount!=1 && user.id!=session[:user_id] %>
-            <b><%= link_to 'Remove Admin', {:controller => "users", :action => "removeadmin", :id => user.id } %></b><br></td>
+            <b><%= link_to 'Remove Admin', deleteAdmin_path(:id => user.id) %></b><br></td>
             <% else %>
               <a href="#" class="btn btn-large btn-warning disabled">Me</a>
           <% end %>

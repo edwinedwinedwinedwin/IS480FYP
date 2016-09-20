@@ -10,7 +10,8 @@
     <%= form_for(@user) do |f| %>
         <%= f.hidden_field :is_admin, :value => true %>
         <%= f.hidden_field :is_banned, :value => false %>
-<div class="form-field">
+
+  <div class="form-field">
 
           <% if @user.errors.any? %>
               <div class="panel panel-danger">
@@ -58,8 +59,7 @@
     <% end %>
     <br>
 
-    <%= link_to 'Back', {:controller => "admins", :action => "manage" } %>
+    <%= link_to 'Back', adminManage_path %>
 
   </div>
 </div>
-      

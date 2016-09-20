@@ -13,13 +13,13 @@ class UsersController < ApplicationController
     @user = User.find_by_email(params[:email])
     if @user.nil?
       flash[:alert]='You have entered an invalid email.'
-      redirect_to '/sessions/resetpass'
+      redirect_to userResetPassword_path
     else
       new_password=Array.new(8){[*'0'..'9', *'a'..'z', *'A'..'Z'].sample}.join # generate random password
       new_password_digest=BCrypt::Password.create(new_password, :cost => 11) # generate password digest
       User.update(@user.id,:password_digest=>new_password_digest)
       SysMailer.reset_password_email(@user,new_password).deliver            
-      redirect_to '/sessions/new'
+      redirect_to login_path
     end    
   end
 
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
   def edit
     current_user_id=session[:user_id]      
     @user=User.find(current_user_id) # only able to edit current logged in user
-    #@user=User.find(params[:id])    
+
   end
 
   def new
@@ -56,8 +56,14 @@ class UsersController < ApplicationController
 
   def destroy
     @user=User.find(params[:id])
-    @user.destroy
-    redirect_to userIndex_path and return
+    if @user.is_admin
+      @user.destroy
+      redirect_to  adminManage_path and return
+    else
+      @user.destroy
+      redirect_to  userIndex_path and return
+    end
+
   end
 
   def create
@@ -72,13 +78,13 @@ class UsersController < ApplicationController
       else
           #Send email to user who sign up
           SysMailer.welcome_email(@user).deliver                
-          redirect_to "/login"
+          redirect_to login_path
       end
     else
       if @user.is_admin
         render '/admins/new' and return
       else
-        render 'new' and return      
+        render 'new' and return
       end
     end
   end
@@ -116,11 +122,6 @@ class UsersController < ApplicationController
     redirect_to userIndex_path and return
   end
 
-  def removeadmin
-    @user=User.find(params[:id])
-    @user.destroy
-    redirect_to adminManage_path and return
-  end
 
   private
   def user_params
