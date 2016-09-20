@@ -420,7 +420,8 @@
         </div>
 
         <div class="form-field">
-          <%= f.text_field :estimated_delivery, class: "form-input", placeholder: "Estimated Delivery" %>
+            <%= f.date_select :estimated_delivery, { start_year:Date.today.year, order: [:month, :year] , :discard_day => true}, :class => "btn btn-default dropdown-toggle"%>
+
           <label class="form-label" for="estimated_delivery">Estimated Delivery</label>
         </div>
 

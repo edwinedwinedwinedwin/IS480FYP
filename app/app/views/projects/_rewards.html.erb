@@ -21,7 +21,7 @@
 
         <div class="fuel-reward-delivery">
           <span class="fuel-reward-delivery__heading">ESTIMATED DELIVERY:</span>
-          <p><%= pr.estimated_delivery %></p>
+          <p><%= pr.estimated_delivery.strftime("%B, %Y") %></p>
         </div>
 
         <figure class="fuel-reward-thumbnail">
