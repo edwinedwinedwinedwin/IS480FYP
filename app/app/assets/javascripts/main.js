@@ -101,6 +101,7 @@ $(function() {
 
 				$siteMenu.removeClass('enabled');
 				$pageButton.removeClass('enabled');
+				$main.removeClass('enabled');
 
 				$projectNavigationLinks
 					.parents('li')
@@ -232,7 +233,7 @@ $(function() {
 	// Banner notice
 	$('.banner-notice .js-close').on('click', function() {
 		$(this).parents('.banner-notice').hide();
-		$('.page-header').css('top', '2rem');
+		$('.page-header').css('top', '1rem');
 		$projectNavigation.css('top', '0').sticky({
 			topSpacing: 0
 		});
@@ -252,14 +253,6 @@ $(function() {
         order: [ 1, 'asc' ]
     } );
 
-    $(".dropdown-toggle").dropdown();
-    $(window).scroll(function(){
-        if ($(this).scrollTop()>0){
-        	$('#banner').fadeOut();
-     	}else{
-      		$('#banner').fadeIn();
-     	}
-    });
 });
 
 

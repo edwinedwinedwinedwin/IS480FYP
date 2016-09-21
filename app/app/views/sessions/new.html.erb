@@ -1,24 +1,25 @@
+<%= render "layouts/header" %>
+<%= yield %>
+
 <div class="page-main">
-  <%= stylesheet_link_tag "style" %>
-  <%= stylesheet_link_tag "component" %>
-  <%= javascript_include_tag "application"%>
-
-  <%= render "layouts/header" %>
-  <%= yield %>
-
   <div class="page-section">
     <legend class="form-heading heading--login"> Log In </legend>
             <br>
             <strong>TIP: </strong>Login with your registered email and password.      
       <%= form_tag('/sessions/create') do |f| %>    
+      <div class="form-field">
           <% if flash[:alert] %>
-              <div class="alert alert-danger" role="alert">
-                <b><u>Errors:</u></b>
-                <ul>
-                  <li><%= flash[:alert] %></li>
-                </ul>
+              <div class="panel panel-danger">
+              <div class="panel-heading"><h2><strong>Your inputs do not meet the requirements:</strong></h2></div>
+                <div class="panel-body alert-design">
+                  <ul style="list-style-type:circle">
+                        <li><%= flash[:alert] %></li>
+                  </ul>
+                </div>
               </div>
           <% end %>
+          </div>
+
           <p>
           <div class="form-field">
             <%= text_field_tag :email, nil,class: "form-input" %>
