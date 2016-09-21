@@ -140,13 +140,6 @@ function closeNav() {
     opacity: 0.3;
 }   
 
-.custom-page-header {
-    font-size: 2.8em;
-    margin-left: 15px;
-    margin-right: 15px;
-    margin-bottom: 10px;
-    line-height: 0px;
-}
 
 input[type=search] {
     background-color: white;
@@ -192,8 +185,8 @@ div#example_wrapper label {
 
 table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, 
 table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
-    top: 1.5em;
-    left: 1.5em;
+    top: 1rem;
+    left: 0.8rem;
 }
 
 tr.child .glyphicon-sort {
@@ -214,6 +207,19 @@ div.dataTables_length select {
     height: 80%;
 }
 
+.custom-page-header {
+    font-size: 2.8em;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 10px;
+    margin-top: 3rem;
+    line-height: 0px;
+}
+
+.container-fluid {
+    margin-top: 2%;
+}
+
 #projp-float-left {
     margin-right: 0;
     float: left;
@@ -231,7 +237,7 @@ div.dataTables_length select {
 
 table.dataTable>tbody>tr.child span.dtr-title,
 table.dataTable>tbody>tr.child span.dtr-data  {
-    display: block;
+    display: table;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
