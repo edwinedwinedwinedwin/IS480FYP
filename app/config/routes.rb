@@ -70,6 +70,8 @@ Rails.application.routes.draw do
   post 'users/updateProfilePic/(:id)' => 'users#updateProfilePic', as: :updateProfilePic
   get 'admins/index' => 'admins#index', as: :adminDashboard
   get 'users' => 'users#index', as: :userIndex
+  post 'users/ban/(:id)' => 'users#ban', as: :banUsers
+  post 'users/unban/(:id)' => 'users#unban', as: :unbanUsers
   get 'changepass' => 'users#changepass#:id', as: :userChangePassword
   get 'admins/changepass' => 'users#changepass#:id', as: :adminChangePassword
   post 'sessions/resetpass' => 'users#resetpass', as: :userResetPassword
