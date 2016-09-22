@@ -264,6 +264,15 @@ $(function() {
         order: [ 1, 'asc' ]
     } );
 
+    $(".dropdown-toggle").dropdown();
+    $(window).scroll(function(){
+        if ($(this).scrollTop()>0){
+        	$('#banner').fadeOut();
+     	}else{
+      		$('#banner').fadeIn();
+     	}
+    });
+
 });
 
 
