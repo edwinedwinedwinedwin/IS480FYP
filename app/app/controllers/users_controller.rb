@@ -10,16 +10,22 @@ class UsersController < ApplicationController
   end
 
   def resetpass    
+    @first_name=User.find_by_first_name(params[:first_name])
+    @last_name=User.find_by_last_name(params[:last_name])
     @user = User.find_by_email(params[:email])
     if @user.nil?
       flash[:alert]='You have entered an invalid email.'
-      redirect_to userResetPassword_path
+      redirect_to userResetPassword_path and return
     else
+      if @first_name.nil? || @last_name.nil?
+        flash[:alert]='You have entered an invalid input.'        
+        redirect_to userResetPassword_path and return
+      end
       new_password=Array.new(8){[*'0'..'9', *'a'..'z', *'A'..'Z'].sample}.join # generate random password
       new_password_digest=BCrypt::Password.create(new_password, :cost => 11) # generate password digest
       User.update(@user.id,:password_digest=>new_password_digest)
       SysMailer.reset_password_email(@user,new_password).deliver            
-      redirect_to login_path
+      redirect_to login_path and return
     end    
   end
 

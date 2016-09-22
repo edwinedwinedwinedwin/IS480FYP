@@ -27,6 +27,20 @@
           </p>         
 
           <p>
+          <div class="form-field">
+            <%= text_field_tag :first_name, nil,class: "form-input" %>
+            <label class="form-label" for="email">First Name</label>
+          </div>
+          </p>         
+
+          <p>
+          <div class="form-field">
+            <%= text_field_tag :last_name, nil,class: "form-input" %>
+            <label class="form-label" for="email">Last Name</label>
+          </div>
+          </p>         
+
+          <p>
           <div class="form-actions">
             <%= submit_tag "RESET", class: "button--stroke--long" %>
           </div>
@@ -34,6 +48,7 @@
 
           <p>
             <div class="form-actions">
+              Have an account? <%= link_to "Log In", login_path%><br>
               <%= link_to "Back", controller: "sessions", action: "new", class: "button--stroke--long" %><br>              
             </div>
           </p>
