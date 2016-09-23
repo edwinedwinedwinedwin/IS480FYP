@@ -52,13 +52,18 @@ Rails.application.routes.draw do
   get 'pages/comrules' => 'pages#comrules', as: :communityRule # display com rules
   get 'pages/term' => 'pages#term', as: :termNCondition # display terms
   get 'login' => 'sessions#new' , as: :login # show login form
+  post 'sessions/create' => 'sessions#create' # process login
+  get 'logout' => 'sessions#destroy', as: :logout # log out and invalidate session
+
   get 'editprofile' => 'users#edit#:id', as: :editUserProfile
   get 'admins/editprofile' => 'users#edit#:id',as: :editAdminProfile
   get 'admins/manage' => 'admins#manage' , as: :adminManage
 
-  post 'sessions/create' => 'sessions#create' # process login
-  get 'logout' => 'sessions#destroy', as: :logout # log out and invalidate session
+
+
   get 'dashboard/index' => 'dashboards#index', as: :dashboardIndex # Display page upon successful login
+  get 'admins/index' => 'admins#index', as: :adminDashboard
+  get 'users/index' => 'users#index', as: :userIndex
 
   # user_shipping_addresses routes
   get 'user_shipping_addresses/index' => 'user_shipping_addresses#index', as: :manageShippingAddress # get user shipping address
@@ -68,8 +73,7 @@ Rails.application.routes.draw do
   get 'user_shipping_addresses/destroy' => 'user_shipping_addresses#destroy', as: :deleteShippingAddress # update user shipping address
 
   post 'users/updateProfilePic/(:id)' => 'users#updateProfilePic', as: :updateProfilePic
-  get 'admins/index' => 'admins#index', as: :adminDashboard
-  get 'users' => 'users#index', as: :userIndex
+
   post 'users/ban/(:id)' => 'users#ban', as: :banUsers
   post 'users/unban/(:id)' => 'users#unban', as: :unbanUsers
   get 'changepass' => 'users#changepass#:id', as: :userChangePassword
