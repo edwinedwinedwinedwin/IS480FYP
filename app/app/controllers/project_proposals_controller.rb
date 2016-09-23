@@ -30,7 +30,7 @@ class ProjectProposalsController < ApplicationController
         end
       end
       SysMailer.new_proposal_email(@ProjectProposal).deliver
-      render successProposalSubmission_path
+      redirect_to successProposalSubmission_url
     else
       render 'new' and return
     end
