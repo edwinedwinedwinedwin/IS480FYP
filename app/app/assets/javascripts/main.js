@@ -92,17 +92,6 @@ $(function() {
 			$(window).scrollTo(target, 400);
 		});
 
-	$(".dropdown-toggle").dropdown();
-    $(window).scroll(function(){
-        if ($(this).scrollTop()>0){
-        	$('.banner-notice').fadeOut();
-        	$('.page-header').css('top', '1rem');
-			$projectNavigation.css('top', '0').sticky({
-				topSpacing: 0
-			});
-     	}
-    });
-
 	// Waypoints
 		var waypoint = new Waypoint({
 			element: document.getElementById(target.substring(1)),
@@ -253,11 +242,15 @@ $(function() {
 	
 
     $(".dropdown-toggle").dropdown();
+
     $(window).scroll(function(){
         if ($(this).scrollTop()>0){
         	$('#banner').fadeOut();
-     	}else{
-      		$('#banner').fadeIn();
+        	$('.banner-notice').fadeOut();
+            	$('.page-header').css('top', '1rem');
+    			$projectNavigation.css('top', '0').sticky({
+    				topSpacing: 0
+				});
      	}
     });
 

@@ -41,7 +41,6 @@
 
   <!-- Sidebar -->
   <section class="site-menu" id="site-menu">
-
     <div class="site-user">
       <div class="site-avatar">
         <div class="js-lightbox-open" data-content-container="#fuel-lightbox-content">
@@ -52,6 +51,7 @@
               <!--
           <%= link_to image_tag(current_user.profile_pic, :class=> "img-circular-avatar")%> -->
               <a href="#"><%= image_tag(current_user.profile_pic, :class=>"img-circular-avatar") %></a>
+              </div>
           <% else %>
               <!--<%= link_to image_tag("defaultprofile.png", :class=> "img-circular-avatar")%>-->
               <a href="#"><%= image_tag("defaultprofile.png", :class=>"img-circular-avatar") %></a>
@@ -68,12 +68,26 @@
 
     <nav class="site-menu-block-user site-navigation">
       <div class="site-navigation-list__item">
-        <%= link_to "My Projects", manageProject_path(:id => current_user.id)%>
+        My Profile
+      </div>
+      <ul class="site-navigation-list--sub">
+        <li class="site-navigation-list--project-details">
+         <%= link_to "Edit Profile", :controller=>"users", :action=>"edit", :id=>session[:user_id]%>
+        </li>
+        <li class="site-navigation-list--project-details">
+          <%= link_to "Change Password", controller: "users", action: "changepass", id: session[:user_id] %>
+        </li>
+      </ul>
+
+
+      <div class="site-navigation-list__item">
+        My Projects
       </div>
       <ul class="site-navigation-list">
         <li class="site-navigation-list__item-project">
           <ul class="site-navigation-list--project">
             <% pp_id = 0 %>
+            <li>
             <% images.each do |p| %>
                 <% if pp_id != p.pp_id %>
                     <% pp_id = p.pp_id %>
@@ -103,7 +117,7 @@
                 <% end %>
 
             <% end %>
-
+            </li>
           </ul>
 
         </li>
