@@ -250,19 +250,7 @@ $(function() {
 		});
 	});
 
-	$('#admin-project-proposal-table').dataTable( {
-        responsive: {
-            details: {
-                type: 'column'
-            }
-        },
-        columnDefs: [ {
-            className: 'control',
-            orderable: false,
-            targets:   0
-        } ],
-        order: [ 1, 'asc' ]
-    } );
+	
 
     $(".dropdown-toggle").dropdown();
     $(window).scroll(function(){
@@ -273,6 +261,10 @@ $(function() {
      	}
     });
 
+});
+
+$(document).ready(function(){
+    $('#admin-project-proposal-table').DataTable();
 });
 
 
