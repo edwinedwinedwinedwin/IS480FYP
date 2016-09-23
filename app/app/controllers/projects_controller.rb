@@ -22,7 +22,7 @@ before_filter :logged_in,:authorize_user
                         project_members.project_status_id as member_status,
                         project_members.description as description').where(:project_members => {:project_id => params[:id]})
 
-    @project_updates = ProjectUpdate.where(:project_id => params[:id])
+    @project_updates = ProjectUpdate.order('id DESC').where(:project_id => params[:id])
     @project_rewards = ProjectReward.where(:project_id => params[:id])
     @project_milestones = ProjectMilestone.where(:project_id => params[:id])
     #@project_milestones_start = ProjectMilestone.find_by_project_id(params[:id]).first

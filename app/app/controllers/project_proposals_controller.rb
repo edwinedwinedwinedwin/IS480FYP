@@ -35,8 +35,6 @@ class ProjectProposalsController < ApplicationController
       render 'new' and return
     end
   end
-
-
   def accept
     @ProjectProposal=ProjectProposal.find(params[:id])
     @ProjectProposal.project_status_id = 3

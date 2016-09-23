@@ -9,7 +9,8 @@
 					<span id="project-category__text"><%= project_proposal.project_category.try(:category) %></span>
 
 					<div class="project-category-selector" id="project-category-selector">
-						<ul class="project-category-list" id="project-category-list">
+<ul class="project-category-list" id="project-category-list">
+
 
              <% ProjectCategory.all.to_a.each do |pc| %>
                 <% if pc.category.eql?(project_proposal.project_category.try(:category)) %>
@@ -24,9 +25,11 @@
               <% end %>
 						</ul>
 
-						<span class="edit-save-button js-edit-save-button" id="project-category-save">
-							Done
-						</span></div>
+						    <span class="edit-save-button js-edit-save-button" id="project-category-save">
+							    Done
+						    </span>
+
+          </div>
 
 
 					<span class="edit-button js-edit-button" id="project-category-edit" data-container="project-header">
