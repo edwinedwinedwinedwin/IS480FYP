@@ -1,12 +1,19 @@
+<html lang="en">
+
 <head>
-  <!-- bower:css -->
+  <meta name="robots" content="noindex">
+  <meta charset="UTF-8">
+  <title>YBCO</title>
   <%= stylesheet_link_tag "style" %>
   <%= stylesheet_link_tag "component" %>
   <%= stylesheet_link_tag "flickity/flickity.css" %>
   <%= javascript_include_tag "application"%>
+
+  <!-- bower:css -->
   <link rel="stylesheet" href="/assets/unsemantic/assets/stylesheets/unsemantic-grid-responsive-no-ie7.css" >
   <link rel="stylesheet" href="/assets/unsemantic/assets/stylesheets/unsemantic-grid-responsive-tablet-no-ie7.css">
   <!-- endbower -->
+
   <link rel="stylesheet" href="/assets/nlform/component.css">
   <link rel="stylesheet" href="/assets/flickity/flickity.css">
   <link rel="stylesheet" href="/assets/style.css">
@@ -15,12 +22,11 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-
-<div class="banner-notice" id="banner">
-  Don't let your work go to waste. <a href="signup.php" style="display:inline;padding: 0;"><span class="t--strong">Be a part</span></a> of YBCO and create projects you're passionate about.
-  <i class="icon icon--cross js-close"></i>
-</div>
-
+<body>
+  <div class="banner-notice">
+    Don't let your work go to waste. <a href="signup.php" style="display:inline;padding: 0;"><span class="t--strong">Be a part</span></a> of YBCO and create projects you're passionate about.
+    <i class="icon icon--cross js-close"></i>
+  </div>
 
 <header class="page-header">
   <span style="font-size:30px;cursor:pointer">
@@ -192,4 +198,5 @@
     </ul>
   </section>
 </header>
+</body>
 <%= yield %>

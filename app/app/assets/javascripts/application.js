@@ -9,8 +9,6 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-// require bxslider.js 
-// require jquery.bxslider.min.js
 //
 //= require jquery/dist/jquery.js
 //= require jquery.easing
@@ -21,7 +19,10 @@
 //= require datatables.min.js
 //= require dataTables.responsive.min.js
 //= require jquery.ui.widget
+//= require sortable/Sortable.js
+//= require vminpoly/vminpoly.js
 //= require z.jquery.fileupload
+//= require edit-project.js
 //= require main.js
 //= require nlform/nlform.js
 //= require flickity/flickity.pkgd.js
