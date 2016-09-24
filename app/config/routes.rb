@@ -81,11 +81,12 @@ Rails.application.routes.draw do
   post 'sessions/resetpass' => 'users#resetpass', as: :userResetPassword
 
   get 'GetStarted' => 'project_proposals#new', as: :newProposal # display create proposal page
-  get 'project_proposals' => 'project_proposals#index', as: :indexProposaladmin #view index of proposal of projects
-  post 'project_proposals' => 'project_proposals#create', as: :createProposal # process creation of proposal
+  get 'project_proposals/index' => 'project_proposals#index', as: :indexProposaladmin #view index of proposal of projects
+  post 'project_proposals/create' => 'project_proposals#create', as: :createProposal # process creation of proposal
   post 'project_proposals/accept/(:id)' => 'project_proposals#accept', as: :approveProposal
   post 'project_proposals/reject/(:id)' => 'project_proposals#reject', as: :rejectProposal
-  post  'project_proposals/success' => 'project_proposals#success', as: :successProposalSubmission #success page after getstarted
+  get  'project_proposals/show/:id' => 'project_proposals#show', as: :showProjectProposal
+  get 'project_proposals/success' => 'project_proposals#success', as: :successProposalSubmission #success page after getstarted
 
   post 'project_proposals/manage' => 'project_proposals#manage', as: :checkProposalStatus # display create proposal page
 
