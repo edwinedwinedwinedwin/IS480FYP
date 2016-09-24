@@ -1,10 +1,6 @@
-
+  <%= javascript_include_tag "edit-project.js"%>
 <%= render "layouts/headerUser", :projects => @projects, :images => @project_coverImgs %>
 <%= yield %>
-  <%= stylesheet_link_tag "style" %>
-  <%= stylesheet_link_tag "component" %>
-  <%= stylesheet_link_tag "flickity/flickity.css" %>
-  <%= javascript_include_tag "application"%>
 
 <main class="page-main" id="page-main">
   <section class="project-hero" id="overview">
@@ -31,7 +27,6 @@
         <li class="list-item"><a href="#team">Team</a></li>
         <li class="list-item"><a href="#fuel">Fuel</a></li>
         <li class="list-item"><a href="#timeline">Timeline</a></li>
-        <li class="list-item"><a href="#discuss">Discuss</a></li>
       </ul>
     </nav>
     </div>
@@ -237,9 +232,15 @@
 
       </div>
     </section>
+    <section class="project-content-section" id="discuss">
+      <a href="#" class="project-content__load-more">Load More</a>
+    </section>
   </article>
 </main>
 
+
+
+<!-- ALL THE FUCKING LIGHTBOX STARTS HERE -->
 <div class="lightbox js-lightbox">
   <div class="js-lightbox-close lightbox-close icon icon--lightbox-close"></div>
 

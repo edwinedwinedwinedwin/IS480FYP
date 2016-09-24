@@ -1,27 +1,24 @@
 <html lang="en">
 
 <head>
-	<meta name="robots" content="noindex">
-	<meta charset="UTF-8">
-	<title>YBCO</title>
-	<%= stylesheet_link_tag "style" %>
-	<%= stylesheet_link_tag "component" %>
-	<%= stylesheet_link_tag "flickity/flickity.css" %>
-	<%= javascript_include_tag "application"%>
+  <meta name="robots" content="noindex">
+  <meta charset="UTF-8">
+  <title>Ybco</title>
 
-	<!-- bower:css -->
-	<link rel="stylesheet" href="/assets/unsemantic/assets/stylesheets/unsemantic-grid-responsive-no-ie7.css" >
-	<link rel="stylesheet" href="/assets/unsemantic/assets/stylesheets/unsemantic-grid-responsive-tablet-no-ie7.css">
-	<!-- endbower -->
+  <!-- bower:css -->
+    <%= stylesheet_link_tag "style" %>
+  <%= stylesheet_link_tag "component" %>
+  <%= stylesheet_link_tag "flickity/flickity.css" %>
+  <%= javascript_include_tag "application"%>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 
-	<link rel="stylesheet" href="/assets/nlform/component.css">
-	<link rel="stylesheet" href="/assets/flickity/flickity.css">
-	<link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="/assets/unsemantic/assets/stylesheets/unsemantic-grid-responsive-no-ie7.css" >
+  <link rel="stylesheet" href="/assets/unsemantic/assets/stylesheets/unsemantic-grid-responsive-tablet-no-ie7.css">
+  <!-- endbower -->
+  <link rel="icon" type="image/png" href="favicon.png">
 
-	<link rel="icon" type="image/png" href="favicon.png">
-
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">  
+</head> 
 
 	<header class="page-header">
 		<span style="font-size:30px;cursor:pointer" onclick="openNav()">

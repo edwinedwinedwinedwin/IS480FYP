@@ -102,6 +102,8 @@ $(function() {
 				$siteMenu.removeClass('enabled');
 				$pageButton.removeClass('enabled');
 				$main.removeClass('enabled');
+				$ybcologo.removeClass('enabled');
+				$cross.removeClass('enabled');
 
 				$projectNavigationLinks
 					.parents('li')
@@ -233,7 +235,7 @@ $(function() {
 	// Banner notice
 	$('.banner-notice .js-close').on('click', function() {
 		$(this).parents('.banner-notice').hide();
-		$('.page-header').css('top', '2rem');
+		$('.page-header').css('top', '1rem');
 		$projectNavigation.css('top', '0').sticky({
 			topSpacing: 0
 		});
@@ -242,12 +244,14 @@ $(function() {
 	
 
     $(".dropdown-toggle").dropdown();
+    $('#admin-project-proposal-table').DataTable();
+
 
     $(window).scroll(function(){
         if ($(this).scrollTop()>0){
-        	$('#banner-notice').fadeOut();
+        	$('#banner').fadeOut();
         	$('.banner-notice').fadeOut();
-            	$('.page-header').css('top', '2rem');
+            	$('.page-header').css('top', '1rem');
     			$projectNavigation.css('top', '0').sticky({
     				topSpacing: 0
 				});
@@ -255,11 +259,6 @@ $(function() {
     });
 
 });
-
-$(document).ready(function(){
-    $('#admin-project-proposal-table').DataTable();
-});
-
 
 /* for bxslider
 $(document).ready(function(){

@@ -9,23 +9,25 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
+// require bxslider.js 
+// require jquery.bxslider.min.js
 //
 //= require jquery/dist/jquery.js
+//= require vminpoly/vminpoly.js
 //= require jquery.easing
 //= require jquery.scrollTo/jquery.scrollTo.js
 //= require jquery.localScroll/jquery.localScroll.js
 //= require jquery.sticky/jquery.sticky.js
 //= require waypoints
+//= require flickity/flickity.pkgd.js
+//= require nlform/nlform.js
+//= require sortable/Sortable.js
+//= require main.js
+//= require edit-project.js
 //= require datatables.min.js
 //= require dataTables.responsive.min.js
 //= require jquery.ui.widget
-//= require sortable/Sortable.js
-//= require vminpoly/vminpoly.js
 //= require z.jquery.fileupload
-//= require edit-project.js
-//= require main.js
-//= require nlform/nlform.js
-//= require flickity/flickity.pkgd.js
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require_tree .
