@@ -67,7 +67,7 @@
           <% end %>
           </div>
       <div class="site-avatar-name">
-        Hello, <%= @current_user.first_name.capitalize %>!
+        Hello, <%= current_user.first_name.capitalize %>!
       </div>
       <div class="site-avatar-logout">
         <%= link_to "LOGOUT", logout_path %>
@@ -80,10 +80,10 @@
       </div>
       <ul class="site-navigation-list--sub">
         <li class="site-navigation-list--project-details">
-         <%= link_to "Edit Profile", :controller=>"users", :action=>"edit", :id=>session[:user_id]%>
+         <%= link_to "Edit Profile", :controller=>"users", :action=>"edit", :id=>current_user.id%>
         </li>
         <li class="site-navigation-list--project-details">
-          <%= link_to "Change Password", controller: "users", action: "changepass", id: session[:user_id] %>
+          <%= link_to "Change Password", controller: "users", action: "changepass", :id=>current_user.id %>
         </li>
       </ul>
 

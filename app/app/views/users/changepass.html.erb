@@ -1,11 +1,7 @@
-<%= render "layouts/header" %>
+<%= render "layouts/headerUser", :projects=>@projects, :images =>  @project_coverImgs%>
 <%= yield %>
 
 <div class="page-main">
-  <%= stylesheet_link_tag "style" %>
-  <%= stylesheet_link_tag "component" %>
-  <%= javascript_include_tag "application"%>
-
   <div class="page-section">
      <legend class="form-heading heading"> Change Password </legend>
 <%= form_for :user,url: user_path(@user),method: :patch do |f| %>    

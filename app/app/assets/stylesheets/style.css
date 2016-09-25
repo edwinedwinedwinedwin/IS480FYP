@@ -575,7 +575,7 @@ strong,
   background-position: center bottom;
   background-blend-mode: overlay;
   width:100%;
-  top:280px;
+  padding:2rem;
    }
 
 .l--padded--large {
