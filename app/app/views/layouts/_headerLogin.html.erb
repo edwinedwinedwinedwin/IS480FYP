@@ -39,7 +39,7 @@
 				<i class="site-menu-logo icon icon--ybco-lockup"></i>
 				<i class="icon icon--large-cross"></i>
 			</button>
-		   <%= link_to "GetStarted", class: "button button--fill", rel: "internal" do%>
+		   <%= link_to newProposal_path, class: "button button--fill", rel: "internal" do%>
 		   		Get Started
 				<i class="icon icon--chevron-right"></i>
 			<% end %>
@@ -53,16 +53,16 @@
             <%= link_to 'Tour', "#", rel: "internal" %>
           </li>
 					<li class="site-navigation-list__item">
-            <%= link_to 'Explore', "/explores/index", rel: "internal" %>
+            <%= link_to 'Explore', viewAllProject_path, rel: "internal" %>
 					</li>
 					<li class="site-navigation-list__item">
             <%= link_to 'Pricing', "#", rel: "internal" %>
 					</li>
 					<li class="site-navigation-list__item">
-            <%= link_to 'Log In', "/login", rel: "internal" %>
+            <%= link_to 'Log In', login_path, rel: "internal" %>
 					</li>
 					<li class="site-navigation-list__item">
-            <%= link_to 'Sign Up', "/signup", rel: "internal" %>
+            <%= link_to 'Sign Up', signup_path, rel: "internal" %>
 					</li>
 				</ul>
 
@@ -95,7 +95,7 @@
 		<section class="site-utilities">
 			<ul class="site-utilities-links">
 				<li>
-          <%= link_to 'Log In', "login", class: "site-utilities-link", rel: "internal" %>
+          <%= link_to 'Log In', login_path, class: "site-utilities-link", rel: "internal" %>
 					
 				</li>
 			</ul>

@@ -17,13 +17,11 @@
   <%= javascript_include_tag "application"%>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 
-  
-  <!-- endbower -->
+    <!-- endbower -->
   <link rel="icon" type="image/png" href="favicon.png">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">  
 </head> 
-
 
   <div class="banner-notice">
     Don't let your work go to waste. <a href="signup.php" style="display:inline;padding: 0;"><span class="t--strong">Be a part</span></a> of YBCO and create projects you're passionate about.
@@ -36,15 +34,11 @@
     <span class="l--hidden">Open Site Menu</span>
     <i class="icon icon--menu" id="page-button"></i>
     <i class="icon icon--medium-cross l--hidden" id="cross"></i>
-
    </button>
-    <!--a type="button" class="btn" style="width:100%;" href="#responsive" data-toggle="modal">Add Image</a-->
-
-
   </span>
 
   <h1 class="site-logo logo">
-    <%= link_to '', root_path , class: "icon icon--ybco-logomark",  id: "ybcologo" %>
+    <%= link_to '', dashboardIndex_path , class: "icon icon--ybco-logomark",  id: "ybcologo" %>
   </h1>
 
   <!-- Sidebar -->
@@ -80,10 +74,10 @@
       </div>
       <ul class="site-navigation-list--sub">
         <li class="site-navigation-list--project-details">
-         <%= link_to "Edit Profile", :controller=>"users", :action=>"edit", :id=>current_user.id%>
+         <%= link_to "Edit Profile", editUserProfile_path(:id =>current_user.id)%>
         </li>
         <li class="site-navigation-list--project-details">
-          <%= link_to "Change Password", controller: "users", action: "changepass", :id=>current_user.id %>
+          <%= link_to "Change Password", userChangePassword_path(:id=>current_user.id) %>
         </li>
       </ul>
 
@@ -147,7 +141,7 @@
      -->
         <li class="site-navigation-list__item">
 
-          <%= link_to "Explore"%>
+          <%= link_to "Explore", viewAllProject_path%>
         </li>
         <ul class="site-navigation-list--sub">
           <li class="site-navigation-list--sub__item">
@@ -202,3 +196,4 @@
 </header>
 </body>
 <%= yield %>
+</html>
