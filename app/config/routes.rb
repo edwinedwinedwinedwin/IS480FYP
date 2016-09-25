@@ -1,34 +1,6 @@
 Rails.application.routes.draw do  
   root 'pages#home' # root page
 
-  # project reward backers routes
-  get 'project_reward_backers/index' => 'project_reward_backers#index',  as: :projectRewardBackersIndex
-  get 'project_reward_backers/new' => 'project_reward_backers#new'
-  get 'project_reward_backers/edit' => 'project_reward_backers#edit'
-  post 'project_reward_backers' => 'project_reward_backers#create'
-  post 'project_reward_backers/destroy/(:id)' => 'project_reward_backers#destroy'
-
-  # project members routes  
-  get 'project_members/index' => 'project_members#index', as: :projectMembersIndex
-  get 'project_members/new' => 'project_members#new'
-  get 'project_members/edit/:id' => 'project_members#edit'  
-  post 'project_members' => 'project_members#create'  
-  post 'project_members/destroy/(:id)' => 'project_members#destroy'
-
-
-  get 'project_milestones/new' => 'project_milestones#new'
-  get 'project_milestones/index' => 'project_milestones#index'
-  post 'project_milestones' => 'project_milestones#create'
-  get 'project_milestones/edit' => 'project_milestones#edit'    
-  post 'project_milestones/destroy/(:id)' => 'project_milestones#destroy' 
-
-  #get 'projects/new' => 'projects/new'
-  get 'project_inspirations/new' => 'project_inspirations#new'
-  get 'project_inspirations/index' => 'project_inspirations#index'
-  get 'project_inspirations/edit' => 'project_inspirations#edit'
-  post 'project_inspirations' => 'project_inspirations#create'
-  post 'project_inspirations/destroy/(:id)' => 'project_inspirations#destroy'
-
   resources :project_reward_backers
   resources :sessions, only: [:new, :create, :destroy] # only allow new,create,destroy action for sessions
   resources :users   
@@ -41,28 +13,34 @@ Rails.application.routes.draw do
   resources :projects
   resources :project_proposals
   resources :project_proposal_imgs
-  
+  resources :user_shipping_addresses
 
-  get 'signup' => 'users#new', as: :signup #display create user page
-  get 'addAdmin' => 'admins#new', as: :addAdmin #display create admin page
-  post 'users' => 'users#create' # process creation of user
-  post 'users/destroy/(:id)' => 'users#destroy', as: :deleteAdmin
-
+  #Other Routes
   get 'pages/comrules' => 'pages#comrules', as: :communityRule # display com rules
   get 'pages/term' => 'pages#term', as: :termNCondition # display terms
+
+  #Normal User
+  get 'signup' => 'users#new', as: :signup #display create user page
+  post 'users' => 'users#create' # process creation of user
   get 'login' => 'sessions#new' , as: :login # show login form
   post 'sessions/create' => 'sessions#create' # process login
   get 'logout' => 'sessions#destroy', as: :logout # log out and invalidate session
-
   get 'editprofile' => 'users#edit#:id', as: :editUserProfile
+  get 'dashboard/index' => 'dashboards#index', as: :dashboardIndex # Display page upon successful login
+  post 'users/updateProfilePic/(:id)' => 'users#updateProfilePic', as: :updateProfilePic
+  get 'changepass' => 'users#changepass#:id', as: :userChangePassword
+  post 'sessions/resetpass' => 'users#resetpass', as: :userResetPassword
+
+  #Admin
+  get 'addAdmin' => 'admins#new', as: :addAdmin #display create admin pageget 'addAdmin' => 'admins#new', as: :addAdmin #display create admin page
+  post 'users/destroy/(:id)' => 'users#destroy', as: :deleteAdmin
   get 'admins/editprofile' => 'users#edit#:id',as: :editAdminProfile
   get 'admins/manage' => 'admins#manage' , as: :adminManage
-
-
-
-  get 'dashboard/index' => 'dashboards#index', as: :dashboardIndex # Display page upon successful login
   get 'admins/index' => 'admins#index', as: :adminDashboard
   get 'users/index' => 'users#index', as: :userIndex
+  post 'users/ban/(:id)' => 'users#ban', as: :banUsers
+  post 'users/unban/(:id)' => 'users#unban', as: :unbanUsers
+  get 'admins/changepass' => 'users#changepass#:id', as: :adminChangePassword
 
   # user_shipping_addresses routes
   get 'user_shipping_addresses/index' => 'user_shipping_addresses#index', as: :manageShippingAddress # get user shipping address
@@ -71,29 +49,26 @@ Rails.application.routes.draw do
   post 'user_shipping_addresses/update/(:id)' => 'user_shipping_addresses#update', as: :updateShippingAddress # update user shipping address
   get 'user_shipping_addresses/destroy' => 'user_shipping_addresses#destroy', as: :deleteShippingAddress # update user shipping address
 
-  post 'users/updateProfilePic/(:id)' => 'users#updateProfilePic', as: :updateProfilePic
-
-  post 'users/ban/(:id)' => 'users#ban', as: :banUsers
-  post 'users/unban/(:id)' => 'users#unban', as: :unbanUsers
-  get 'changepass' => 'users#changepass#:id', as: :userChangePassword
-  get 'admins/changepass' => 'users#changepass#:id', as: :adminChangePassword
-  post 'sessions/resetpass' => 'users#resetpass', as: :userResetPassword
-
+  #Project Proposal
   get 'GetStarted' => 'project_proposals#new', as: :newProposal # display create proposal page
   get 'project_proposals/index' => 'project_proposals#index', as: :indexProposaladmin #view index of proposal of projects
   post 'project_proposals/create' => 'project_proposals#create', as: :createProposal # process creation of proposal
   post 'project_proposals/accept/(:id)' => 'project_proposals#accept', as: :approveProposal
   post 'project_proposals/reject/(:id)' => 'project_proposals#reject', as: :rejectProposal
   get  'project_proposals/show/:id' => 'project_proposals#show', as: :showProjectProposal
-  post 'project_proposals/successProposal/:id' => 'project_proposals#successProposal', as: :successProposalSubmission #success page after getstarted
-
+  get 'project_proposals/successProposal/:id' => 'project_proposals#successProposal', as: :successProposalSubmission #success page after getstarted
   post 'project_proposals/manage' => 'project_proposals#manage', as: :checkProposalStatus # display create proposal page
+  get 'users/manage/(:id)' => 'users#manage', as: :manageProject # display create proposal page
 
+
+  #Project Pro
   get 'UploadImg' => 'project_proposal_imgs#new', as: :newCoverImgs
   post 'project_proposal_imgs/create' => 'project_proposal_imgs#create', as: :addCoverImgs # display create proposal page
   post 'project_proposal_imgs/destroy/(:id)'=> 'project_proposal_imgs#destroy', as: :deleteCoverImgs # display create proposal page
 
-  get 'users/manage/(:id)' => 'users#manage', as: :manageProject # display create proposal page
+
+
+  #Projects Routes
   post 'projects/updateCategory/(:id)' => 'projects#updateCategory', as: :updateCategory
   get 'projects/show/:id' => 'projects#show', as: :showProject
   get 'projects/index' => 'projects#index', as: :projectsIndex
@@ -124,8 +99,37 @@ Rails.application.routes.draw do
   get 'explores/index' => 'explores#index', as: :viewAllProject
   get 'explores/show/(:id)' => 'explores#show', as: :viewProject
 
+  # project reward backers routes
+  get 'project_reward_backers/index' => 'project_reward_backers#index',  as: :projectRewardBackersIndex
+  get 'project_reward_backers/new' => 'project_reward_backers#new'
+  get 'project_reward_backers/edit' => 'project_reward_backers#edit'
+  post 'project_reward_backers' => 'project_reward_backers#create'
+  post 'project_reward_backers/destroy/(:id)' => 'project_reward_backers#destroy'
+
+  # project members routes
+  get 'project_members/index' => 'project_members#index', as: :projectMembersIndex
+  get 'project_members/new' => 'project_members#new'
+  get 'project_members/edit/:id' => 'project_members#edit'
+  post 'project_members' => 'project_members#create'
+  post 'project_members/destroy/(:id)' => 'project_members#destroy'
+
+  #project milstone
+  get 'project_milestones/new' => 'project_milestones#new'
+  get 'project_milestones/index' => 'project_milestones#index'
+  post 'project_milestones' => 'project_milestones#create'
+  get 'project_milestones/edit' => 'project_milestones#edit'
+  post 'project_milestones/destroy/(:id)' => 'project_milestones#destroy'
+
+  #project inspiration
+  get 'project_inspirations/new' => 'project_inspirations#new'
+  get 'project_inspirations/index' => 'project_inspirations#index'
+  get 'project_inspirations/edit' => 'project_inspirations#edit'
+  post 'project_inspirations' => 'project_inspirations#create'
+  post 'project_inspirations/destroy/(:id)' => 'project_inspirations#destroy'
+
+
   match '/:controller/:action/(:id)', via: [:get, :post] # last route
   
-  resources :user_shipping_addresses
+
 
 end

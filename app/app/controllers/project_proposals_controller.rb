@@ -46,7 +46,7 @@ class ProjectProposalsController < ApplicationController
       SysMailer.new_proposal_email(@ProjectProposal).deliver
       redirect_to successProposalSubmission_path(:id => @ProjectProposal.id)
     else
-      render 'new' and return
+      render 'new'
     end
   end
 
