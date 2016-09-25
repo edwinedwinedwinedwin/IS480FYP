@@ -2,6 +2,11 @@
 <%= stylesheet_link_tag "component" %>
 <%= stylesheet_link_tag "flickity/flickity.css" %>
 <%= javascript_include_tag "application"%>
+
+<%= render "layouts/headerLogin" %>
+<%= yield %>
+
+
 <link rel="stylesheet" href="/assets/unsemantic/assets/stylesheets/unsemantic-grid-responsive-no-ie7.css" >
 <link rel="stylesheet" href="/assets/unsemantic/assets/stylesheets/unsemantic-grid-responsive-tablet-no-ie7.css">
 
@@ -21,7 +26,7 @@
 	</div>
 
 	<section class="explore-projects">
-		<a href="project.php">
+		<% link_to "explores/show/1" %>
 			<article class="explore-project--featured" style="background-image:url(/assets/explore-featured-header.jpg);">
 				<div class="wrap">
 					<header class="explore-project-header">
@@ -63,14 +68,13 @@
 
       <% @projects.each do |p| %>
         <%
-
-          output =  Random.new.rand(1...4) / 4
-          if output == 0.25
+          output =  Random.new.rand(1...4)
+          if output == 1
         %>
             <%= render "explores/projectGridView", :p => p, :girdStyle => "square--large" %>
-          <% elsif output == 0.5 %>
+          <% elsif output == 2 %>
               <%= render "explores/projectGridView", :p => p, :girdStyle => "vectical" %>
-          <% elsif output == 0.75 %>
+          <% elsif output == 3 %>
               <%= render "explores/projectGridView", :p => p, :girdStyle => "horizontial" %>
           <% else %>
               <%= render "explores/projectGridView", :p => p, :girdStyle => "square"%>
@@ -99,7 +103,7 @@
 						</div>
 
 						<div class="explore-project__cta">
-							<a href="#" class="button--stroke">View Project</a>
+							<%= link_to 'VIEW PROJECT', viewProject_path(:id => 1), :class => "button--stroke"%>
 						</div>
 					</div>
 
@@ -140,7 +144,7 @@
 						</div>
 
 						<div class="explore-project__cta">
-							<a href="#" class="button--stroke">View Project</a>
+							<%= link_to 'VIEW PROJECT', viewProject_path(:id => 2), :class => "button--stroke"%>
 						</div>
 					</div>
 
@@ -181,7 +185,7 @@
 						</div>
 
 						<div class="explore-project__cta">
-							<a href="#" class="button--stroke">View Project</a>
+							<%= link_to 'VIEW PROJECT', viewProject_path(:id => 1), :class => "button--stroke"%>
 						</div>
 					</div>
 

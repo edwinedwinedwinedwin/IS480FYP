@@ -5,6 +5,8 @@ before_filter :logged_in,:authorize_user
   end
 
   def show
+
+    
     @project = Project.find(params[:id])
 
     session[:project_id] = @project.id
@@ -30,18 +32,19 @@ before_filter :logged_in,:authorize_user
     #@project_milestones_start = ProjectMilestone.find_by_project_id(params[:id]).first
     #@project_milestones_end = ProjectMilestone.find_by_project_id(params[:id]).last
 
+    if !session[:user_id].nil?
+      @new_reward = ProjectReward.new
+      @new_update = ProjectUpdate.new
+      @session=session[:user_id]
 
-    @new_reward = ProjectReward.new
-    @new_update = ProjectUpdate.new
-    @session=session[:user_id]
-
-    @projects=ProjectProposal.select("*").joins(:project).where(:projects => {:user_id=>@session})
-    @project_coverImgs = ProjectProposalImg.select('
-                project_proposal_imgs.project_proposal_id as pp_id,
-                project_proposal_imgs.id as ppi_id,
-                project_proposals.title as title,
-                projects.id as p_id
-                ').joins(project_proposal: :project).where(:projects => {:user_id => @session})
+      @projects=ProjectProposal.select("*").joins(:project).where(:projects => {:user_id=>@session})
+      @project_coverImgs = ProjectProposalImg.select('
+                  project_proposal_imgs.project_proposal_id as pp_id,
+                  project_proposal_imgs.id as ppi_id,
+                  project_proposals.title as title,
+                  projects.id as p_id
+                  ').joins(project_proposal: :project).where(:projects => {:user_id => @session})
+    end
 
   end
 

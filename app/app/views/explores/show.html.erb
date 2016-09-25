@@ -1,1 +1,993 @@
-SUCCESS
+<%= render "layouts/headerLogin", :projects => @projects, :images => @project_coverImgs %>
+<%= yield %>
+
+<%= stylesheet_link_tag "style" %>
+<%= stylesheet_link_tag "component" %>
+<%= stylesheet_link_tag "flickity/flickity.css" %>
+<%= javascript_include_tag "application"%>
+
+<main class="page-main" id="">
+	<section class="project-hero" id="overview">
+
+		<header class="project-header" id="project-header">
+			<ul class="meta-tags">
+				<span class="meta-tag">
+					<i class="icon icon--thumbs-up"></i>
+					27 Ups
+				</span>
+
+				<span class="meta-tag" id="project-category">
+					<i class="icon icon--leaf"></i>
+					<span id="project-category__text">Environment</span>
+
+					<div class="project-category-selector" id="project-category-selector">
+						<ul class="project-category-list" id="project-category-list">
+							<li class="selected">Environment</li>
+					</div>
+
+				</span>
+			</ul>
+
+			<div class="project-title">
+				<h1 class="heading--large" id="project-title">
+					The Drinkable book
+				</h1>
+
+			</div>
+
+			<div class="profile-tag">
+				<img class="profile-tag-image" src="/assets/temp-1.png" alt="">
+				<span class="profile-tag-text">by <span class="profile-tag__user">Waterislife</span></span>
+			</div>
+		</header>
+
+		<div class="project-gallery" id="project-gallery">
+			<div class="project-gallery-item" style="background-image:url(/assets/project-hero-1.jpg);"></div>
+			<div class="project-gallery-item" style="background-image:url(/assets/project-hero-2.jpg);"></div>
+			<div class="project-gallery-item" style="background-image:url(/assets/project-hero-3.jpg);"></div>
+			<div class="project-gallery-item" style="background-image:url(/assets/project-hero-4.jpg);"></div>
+		</div>
+
+		<div class="project-gallery-overlay" id="project-gallery-overlay"></div>
+
+		<div class="project-gallery-management" id="project-gallery-management">
+
+			<ul class="gallery-thumbnails" id="gallery-thumbnails">
+				<li class="gallery-thumbnail js-draggable js-delete-container">
+					<div class="gallery-thumbnail-card">
+						<span class="gallery-thumbnail__index">1</span>
+
+						<img src="/assets/pt1.jpg" alt="">
+
+						<div class="gallery-thumbnail-actions">
+							<i class="icon icon--reorder-horizontal js-reorder"></i>
+							<i class="icon icon--trash-can js-delete"></i>
+						</div>
+					</div>
+				</li>
+
+				<li class="gallery-thumbnail js-draggable js-delete-container">
+					<div class="gallery-thumbnail-card">
+						<span class="gallery-thumbnail__index">2</span>
+						<span class="gallery-thumbnail__type">
+							<i class="icon icon--image-file"></i>
+							Image
+						</span>
+
+						<img src="/assets/pt2.jpg" alt="">
+
+						<div class="gallery-thumbnail-actions">
+							<i class="icon icon--reorder-horizontal js-reorder"></i>
+							<i class="icon icon--trash-can js-delete"></i>
+						</div>
+					</div>
+				</li>
+
+				<li class="gallery-thumbnail js-draggable js-delete-container">
+					<div class="gallery-thumbnail-card">
+						<span class="gallery-thumbnail__index">3</span>
+						<span class="gallery-thumbnail__type">
+							<i class="icon icon--image-file"></i>
+							Image
+						</span>
+
+						<img src="/assets/pt3.jpg" alt="">
+
+						<div class="gallery-thumbnail-actions">
+							<i class="icon icon--reorder-horizontal js-reorder"></i>
+							<i class="icon icon--trash-can js-delete"></i>
+						</div>
+					</div>
+				</li>
+
+				<li class="gallery-thumbnail js-draggable js-delete-container">
+					<div class="gallery-thumbnail-card">
+						<span class="gallery-thumbnail__index">4</span>
+						<span class="gallery-thumbnail__type">
+							<i class="icon icon--image-file"></i>
+							Image
+						</span>
+
+						<img src="/assets/pt4.jpg" alt="">
+
+						<div class="gallery-thumbnail-actions">
+							<i class="icon icon--reorder-horizontal js-reorder"></i>
+							<i class="icon icon--trash-can js-delete"></i>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		<div class="project-gallery-counter">
+			<span class="project-gallery-counter__current" id="project-gallery-counter__current">1</span>/<span class="project-gallery-counter__max">4</span>
+		</div>
+
+
+		<div class="project-fuel">
+			<div class="project-fuel-bar js-project-fuel-bar" data-fuel="50%">
+				<div class="project-fuel-bar__text">
+					50% funded
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<article class="project-content">
+		<nav class="project-navigation list-horizontal-scroller" id="project-navigation">
+			<ul class="list--horizontal">
+				<li class="list-item current"><a href="#overview">Overview</a></li>
+				<li class="list-item"><a href="#about">About</a></li>
+				<li class="list-item"><a href="#details">Details</a></li>
+				<li class="list-item"><a href="#updates">Updates</a></li>
+				<li class="list-item"><a href="#team">Team</a></li>
+				<li class="list-item"><a href="#fuel">Fuel</a></li>
+				<li class="list-item"><a href="#timeline">Timeline</a></li>
+			</ul>
+		</nav>
+
+		<section class="project-content-section" id="about">
+			<div class="wrap">
+				<div class="grid-container">
+					<div class="grid-65">
+						<div class="project-stats grid-container">
+							<div class="project-funding-goal">
+								<span id="project-funding-goal" contenteditable>$10,000</span>
+
+							</div>
+
+							<div class="project-funding-goal-overlay" id="project-funding-goal-overlay"></div>
+
+							<div class="grid-30">
+								<div class="project-stat">
+									<span class="project-stat__data">20</span>
+									<span class="project-stat__description">Days remaining</span>
+								</div>
+							</div>
+							<div class="grid-30 push-5">
+								<div class="project-stat">
+									<span class="project-stat__data">50%</span>
+									<span class="project-stat__description">Fueled</span>
+								</div>
+							</div>
+							<div class="grid-30 push-10">
+								<div class="project-stat" id="project-funding">
+									<span class="project-stat__data">$5,000</span>
+									<span class="project-stat__description">of <span id="project-funding-value">$10,000</span> fueled</span>
+
+								</div>
+							</div>
+						</div>
+
+						<div id="project-about">
+							<div class="project-about-title" id="project-about-title">
+								<h2 class="heading--small">
+									About the Project
+								</h2>
+							</div>
+
+							<div class="project-description" id="project-description">
+								<p class="t--large">One of the biggest problems in the developing world is access to safe, reliable drinking water. The charity organisation Water is Life dedicates its energies to providing this most basic of necessities. Its latest project -- developed in concert with creative agency DDB North America - seeks to combine education with actual resources.</p>
+								<p>Called The Drinkable Book, it combines a variety of technologies to achieve this goal. On each of its tear-out pages, water safety tips are written in various languages -- the first print run, intended for Kenya, is printed in English and Swahili -- in food-grade ink, providing much-needed information to people in areas where access to education about such matters may be low.
+								Each book comes packaged in a 3D printed box, which converts into a filtration tray. When you tear out one of the pages and slip it into the tray, you can use it to filter water.</p>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="grid-25 push-10">
+						<ul class="list">
+							<li class="list-item fuel-button-container">
+								<a href="#fuel" class="fuel-button js-scrollto-button" data-scroll-target="#fuel">
+									<span class="fuel-button__content">
+										<span class="fuel-button__cta">Fuel</span>
+										<span class="fuel-button__text">This Project</p>
+										<i class="icon icon--chevron-down"></i>
+									</span>
+								</a>
+							</li>
+
+							<li class="list-item">
+								<ul class="list--narrow">
+									<li class="list-item">
+										<a href="#" class="button--stroke--full">
+											<i class="icon icon--thumbs-up"></i>
+											<span>Up</span>
+										</a>
+									</li>
+
+									<li class="list-item">
+										<a href="#" class="button--stroke--full">
+											<span>Discuss</span>
+										</a>
+									</li>
+
+									<li class="list-item">
+										<a href="#" class="project-location">
+											<i class="icon icon--location-pin"></i>
+											Singapore, Singapore, Singapore
+										</a>
+									</li>
+
+									<li class="list-item">
+										<span class="project-meta-text">Share</span>
+										<ul class="project-share-buttons">
+											<li class="project-share-button">
+												<a href="#">
+													<i class="icon icon--facebook"></i>
+												</a>
+											</li>
+
+											<li class="project-share-button">
+												<a href="#">
+													<i class="icon icon--twitter"></i>
+												</a>
+											</li>
+
+											<li class="project-share-button">
+												<a href="#">
+													<i class="icon icon--youtube"></i>
+												</a>
+											</li>
+
+											<li class="project-share-button">
+												<a href="#">
+													<i class="icon icon--pinterest"></i>
+												</a>
+											</li>
+
+											<li class="project-share-button">
+												<a href="#">
+													<i class="icon icon--google-plus"></i>
+												</a>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="project-content-section" id="details">
+			<div class="wrap">
+				<h2 class="heading--small" id="project-inspiration-heading" style="position: relative; display: table; width: auto; margin-left: auto; margin-right: auto;">
+					Our Inspiration
+
+				</h2>
+
+				<div class="grid-container t--left" style="position: relative;" id="project-inspiration-view">
+					<div class="grid-50">
+						<img src="/assets/project-detail-1.jpg" alt="" style="width:100%;">
+						<p class="t--small caption">It's not a perfect solution but it's a lot better than many people have access to.</p>
+					</div>
+
+					<div class="grid-45 push-5">
+						<p class="t--large">As the water runs through, the bacteria absorb the silver ions, which kill the bacteria. The paper kills over 99.9 percent of harmful bacteria, which puts the resulting water on a par with tap water in the US. It has proven effective at destroying bacteria that cause diseases such as cholera, E.coli and typhoid.</p>
+					</div>
+
+					<i class="temp-slider-arrow-left"></i>
+					<i class="temp-slider-arrow-right"></i>
+				</div>
+
+				<div class="grid-container t--left" id="project-inspiration-management">
+					<ul class="progress-steps" id="inspiration-progress">
+						<li class="progress-step current">Select Layout</li>
+						<li class="progress-step">Add Content</li>
+						<li class="progress-step">Preview + Complete</li>
+					</ul>
+
+					<section class="js-inspiration-step" id="inspiration-1">
+						<ul class="list--horizontal">
+							<li class="list-item">
+								<input class="l--hidden" type="radio" id="image-text" name="inspiration-radio">
+								<label class="radio-image" for="image-text">
+									<i class="icon icon--inspiration-image-text"></i>
+									Image + Text
+								</label>
+							</li>
+
+							<li class="list-item">
+								<input class="l--hidden" type="radio" id="image-only" name="inspiration-radio">
+								<label class="radio-image" for="image-only">
+									<i class="icon icon--inspiration-image-only"></i>
+									Image Only
+								</label>
+							</li>
+
+							<li class="list-item">
+								<input class="l--hidden" type="radio" id="text-only" name="inspiration-radio">
+								<label class="radio-image" for="text-only">
+									<i class="icon icon--inspiration-text-only"></i>
+									Text Only
+								</label>
+							</li>
+						</ul>
+
+						<a href="#" class="button--inspiration js-inspiration-next">
+							Next
+							<i class="icon icon--button-arrow-right"></i>
+						</a>
+					</section>
+
+					<section class="js-inspiration-step" id="inspiration-2">
+						<div class="accordion-manager">
+							<ul class="accordion-list" id="accordion-list">
+								<li class="accordion-item js-delete-container js-draggable">
+									<div class="accordion-item-number">
+										1
+									</div>
+
+									<div class="accordion-item-preview">
+										<div class="accordion-item-preview__content">
+											<img src="/assets/inspiration-accordion-1.jpg" alt="">
+											<p>The water in your village may contain deadly...</p>
+										</div>
+
+										<ul class="accordion-item-preview__actions">
+											<li class="accordion-item-action">
+												<i class="icon icon--reorder-vertical js-reorder-handle"></i>
+												<i class="icon icon--trash-can js-delete"></i>
+											</li>
+										</ul>
+									</div>
+
+									<div class="accordion-item-content">
+										<button class="accordion-close js-accordion-close">-</button>
+										<div class="grid-container">
+											<div class="grid-25">
+												<label class="accordion-label">Image</label>
+												<img src="/assets/inspiration-accordion-2-large.jpg" alt="">
+											</div>
+
+											<div class="grid-70 push-5">
+												<div>
+													<label class="accordion-label">Body Copy</label>
+													<textarea rows="7" class="accordion-textarea">As the water runs through, the bacteria absorb the silver ions, which kill the bacteria. The paper kills over 99.9 percent of harmful bacteria, which puts the resulting water on a par with tap water in the US. It has proven effective at destroying bacteria that cause diseases such as cholera, E.coli and typhoid.</textarea>
+												</div>
+
+												<div class="l--plunge">
+													<label class="accordion-label">Caption</label>
+													<textarea rows="7" class="accordion-textarea">It's not a perfect solution but it's a lot better than many people have access to.</textarea>
+												</div>
+											</div>
+										</div>
+									</div>
+								</li>
+
+								<li class="accordion-item js-delete-container js-draggable">
+									<div class="accordion-item-number">
+										2
+									</div>
+
+									<div class="accordion-item-preview">
+										<div class="accordion-item-preview__content">
+											<img src="/assets/inspiration-accordion-2.jpg" alt="">
+											<p>As the water runs through, the bacteria absorb...</p>
+										</div>
+
+										<ul class="accordion-item-preview__actions">
+											<li class="accordion-item-action">
+												<i class="icon icon--reorder-vertical js-reorder-handle"></i>
+												<i class="icon icon--trash-can js-delete"></i>
+											</li>
+										</ul>
+									</div>
+
+									<div class="accordion-item-content">
+										<button class="accordion-close js-accordion-close">-</button>
+										<div class="grid-container">
+											<div class="grid-25">
+												<label class="accordion-label">Image</label>
+												<img src="/assets/inspiration-accordion-2-large.jpg" alt="">
+											</div>
+
+											<div class="grid-70 push-5">
+												<div>
+													<label class="accordion-label">Body Copy</label>
+													<textarea rows="7" class="accordion-textarea">As the water runs through, the bacteria absorb the silver ions, which kill the bacteria. The paper kills over 99.9 percent of harmful bacteria, which puts the resulting water on a par with tap water in the US. It has proven effective at destroying bacteria that cause diseases such as cholera, E.coli and typhoid.</textarea>
+												</div>
+
+												<div class="l--plunge">
+													<label class="accordion-label">Caption</label>
+													<textarea rows="7" class="accordion-textarea">It's not a perfect solution but it's a lot better than many people have access to.</textarea>
+												</div>
+											</div>
+										</div>
+									</div>
+								</li>
+
+								<li class="accordion-item js-delete-container js-draggable">
+									<div class="accordion-item-number">
+										3
+									</div>
+
+									<div class="accordion-item-preview">
+										<div class="accordion-item-preview__content">
+											<img src="/assets/inspiration-accordion-3.jpg" alt="">
+											<p>It has proven effective at destroying bacteria...</p>
+										</div>
+
+										<ul class="accordion-item-preview__actions">
+											<li class="accordion-item-action">
+												<i class="icon icon--reorder-vertical js-reorder-handle"></i>
+												<i class="icon icon--trash-can js-delete"></i>
+											</li>
+										</ul>
+									</div>
+
+									<div class="accordion-item-content">
+										<button class="accordion-close js-accordion-close">-</button>
+										<div class="grid-container">
+											<div class="grid-25">
+												<label class="accordion-label">Image</label>
+												<img src="/assets/inspiration-accordion-2-large.jpg" alt="">
+											</div>
+
+											<div class="grid-70 push-5">
+												<div>
+													<label class="accordion-label">Body Copy</label>
+													<textarea rows="7" class="accordion-textarea">As the water runs through, the bacteria absorb the silver ions, which kill the bacteria. The paper kills over 99.9 percent of harmful bacteria, which puts the resulting water on a par with tap water in the US. It has proven effective at destroying bacteria that cause diseases such as cholera, E.coli and typhoid.</textarea>
+												</div>
+
+												<div class="l--plunge">
+													<label class="accordion-label">Caption</label>
+													<textarea rows="7" class="accordion-textarea">It's not a perfect solution but it's a lot better than many people have access to.</textarea>
+												</div>
+											</div>
+										</div>
+									</div>
+								</li>
+							</ul>
+
+							<a href="#" class="accordion-add">Add Slide</a>
+						</div>
+
+						<a href="#" class="button--inspiration js-inspiration-next">
+							Next
+							<i class="icon icon--button-arrow-right"></i>
+						</a>
+					</section>
+
+					<section class="js-inspiration-step" id="inspiration-3">
+						<div class="grid-container" style="position: relative;">
+							<div class="grid-50">
+								<img src="/assets/project-detail-1.jpg" alt="" style="width:100%;">
+								<p class="t--small caption">It's not a perfect solution but it's a lot better than many people have access to.</p>
+							</div>
+
+							<div class="grid-45 push-5">
+								<p class="t--large">As the water runs through, the bacteria absorb the silver ions, which kill the bacteria. The paper kills over 99.9 percent of harmful bacteria, which puts the resulting water on a par with tap water in the US. It has proven effective at destroying bacteria that cause diseases such as cholera, E.coli and typhoid.</p>
+							</div>
+
+							<i class="temp-slider-arrow-left"></i>
+							<i class="temp-slider-arrow-right"></i>
+						</div>
+
+						<a href="#" class="button--inspiration js-inspiration-next">
+							Finish
+							<i class="icon icon--button-arrow-right"></i>
+						</a>
+					</section>
+				</div>
+			</div>
+		</section>
+
+		<section class="project-content-section" id="updates">
+			<div class="wrap" style="position: relative;">
+				<h2 class="section-heading heading--small">Updates<span class="notification-bubble">3</span></h2>
+
+				<ul class="update-icons">
+					<li class="selected">
+						<i class="icon icon--updates-grid"></i>
+					</li>
+
+					<li>
+						<i class="icon icon--updates-list"></i>
+					</li>
+				</ul>
+			</div>
+
+			<div class="cards grid-container">
+				<div class="grid-50">
+					<section href="" class="card">
+						<header class="card-header">
+							<div class="card-meta">
+								<span class="card-meta__new">New</span>
+								<span class="card-meta__date">Today 3:32</span>
+							</div>
+
+							<h3 class="card-header__title">
+								5 Organizations to Support on World Water Day
+							</h3>
+						</header>
+
+						<div class="card-content">
+							<p>In honor of this year’s World Water Day, a number of organizations are working on forward-looking clean-water initiatives. These initiatives are helping protect...</p>
+						</div>
+					</section>
+
+					<section class="card--fueled">
+						<header class="card-header">
+							<div class="card-meta">
+								<span class="card-meta__date">Today 2:51</span>
+							</div>
+
+							<h3 class="card-header__title">
+								50% Fueled
+							</h3>
+						</header>
+
+						<div class="card-content">
+							<p>$5,000 of $10,000 fueled</p>
+							<i class="card-fueled-icon"></i>
+						</div>
+					</section>
+
+					<div class="grid-container">
+						<div class="grid-50">
+							<section class="card--background card--long" style="background-image:url(/assets/update-blog-2.jpg)">
+								<header class="card-header">
+									<div class="card-meta">
+										<span class="card-meta__date">Today 3:32</span>
+									</div>
+
+									<h3 class="card-header__title">
+										More Time Around the Kiln
+									</h3>
+								</header>
+							</section>
+						</div>
+
+						<div class="grid-50">
+							<section class="card--background card--long" style="background-image:url(/assets/update-blog-1.jpg)">
+								<header class="card-header">
+									<div class="card-meta">
+										<span class="card-meta__date">Today 3:32</span>
+									</div>
+
+									<h3 class="card-header__title">
+										A Difference You Can See
+									</h3>
+								</header>
+							</section>
+						</div>
+					</div>
+				</div>
+
+				<div class="grid-50">
+					<div class="grid-container">
+						<div class="grid-50">
+							<section class="card card--long">
+								<header class="card-header">
+									<div class="card-meta">
+										<span class="card-meta__new">New</span>
+										<span class="card-meta__date">Today 3:32</span>
+									</div>
+
+									<h3 class="card-header__title">
+										Can a Piece of Paper Change Everything?
+									</h3>
+								</header>
+
+								<div class="card-content">
+									<p>A lot of water issues aren't just because people don't have the right technology, but also because they aren't informed why they need to treat water.</p>
+								</div>
+							</section>
+						</div>
+
+						<div class="grid-50">
+							<section class="card--background card--long" style="background-image:url(/assets/update-blog-3.jpg)">
+								<header class="card-header">
+									<div class="card-meta">
+										<span class="card-meta__date">Today 3:32</span>
+									</div>
+
+									<h3 class="card-header__title">
+										Production will begin in 2015
+									</h3>
+								</header>
+							</section>
+						</div>
+					</div>
+
+					<div class="grid-container">
+						<section class="card--background card--square" style="background-image:url(/assets/update-blog-4.jpg)">>
+							<header class="card-header">
+								<div class="card-meta">
+									<span class="card-meta__date">Today 3:32</span>
+								</div>
+
+								<h3 class="card-header__title">
+									Can a Piece of Paper Change Everything?
+								</h3>
+							</header>
+						</section>
+
+						<section href="" class="card">
+							<header class="card-header">
+								<div class="card-meta">
+									<span class="card-meta__date">Today 3:32</span>
+								</div>
+
+								<h3 class="card-header__title">
+									Purify Contaminated Drinking Water for an Entire Year
+								</h3>
+							</header>
+
+							<div class="card-content">
+								<p>780 million people around the world lack access to clean drinking water and 3.4 million people die every year from diseases related to contaminated water.</p>
+							</div>
+						</section>
+					</div>
+				</div>
+			</div>
+
+			<a href="#" class="project-content__load-more">Load More</a>
+		</section>
+
+		<section class="project-content-section" id="team">
+			<div class="wrap" style="position: relative;">
+				<h2 class="heading--small" id="project-team-heading" style="position: relative; display: table; width: auto; margin-left: auto; margin-right: auto;">
+					Our Team
+
+				</h2>
+
+				<ul class="project-team-members" style="position: relative;" id="project-team-members">
+					<li class="project-team-member">
+						<div class="project-team-member-thumbnail js-lightbox-open" data-content-container="#team-lightbox-content">
+							<img src="/assets/project-team-1.jpg" alt="">
+						</div>
+						<span class="project-team-member__name">Jerry Glen</span>
+						<span class="project-team-member__position">Co-Founder</span>
+					</li>
+
+					<li class="project-team-member">
+						<div class="project-team-member-thumbnail js-lightbox-open" data-content-container="#team-lightbox-content">
+							<img src="/assets/project-team-2.jpg" alt="">
+						</div>
+						<span class="project-team-member__name">Bob Glass</span>
+						<span class="project-team-member__position">Engineer</span>
+					</li>
+
+					<li class="project-team-member">
+						<div class="project-team-member-thumbnail js-lightbox-open" data-content-container="#team-lightbox-content">
+							<img src="/assets/project-team-3.jpg" alt="">
+						</div>
+						<span class="project-team-member__name">Michael Johns</span>
+						<span class="project-team-member__position">Engineer</span>
+					</li>
+
+					<li class="project-team-member">
+						<div class="project-team-member-thumbnail js-lightbox-open" data-content-container="#team-lightbox-content">
+							<img src="/assets/project-team-4.jpg" alt="">
+						</div>
+						<span class="project-team-member__name">Parker Call</span>
+						<span class="project-team-member__position">Chemist</span>
+					</li>
+
+					<i class="temp-slider-arrow-left" style="margin-top: -75px;"></i>
+					<i class="temp-slider-arrow-right" style="margin-top: -75px;"></i>
+				</ul>
+
+				<section class="project-team-management" style="display:none;" id="project-team-management">
+					<div class="grid-container">
+						<div class="grid-35 push-5">
+							<div style="background-image:url(/assets/temp-team-left.png);background-repeat: no-repeat;background-position:center center;max-width: 334px;margin:auto;padding-bottom: 138.6227%;"></div>
+						</div>
+
+						<div class="grid-50 push-10 t--left">
+							<p class="t--large">Type the email(s) of the people you wish to invite:</p>
+
+							<ul class="invite-list">
+								<li class="invite-list-item">
+									<input type="email" class="invite-list-input" value="michael.johnson@gmail.com" required>
+									<i class="icon icon--cross-with-circle js-invite-list-delete"></i>
+								</li>
+
+								<li class="invite-list-item">
+									<input type="email" class="invite-list-input" value="piot.dan@gmail.com" required>
+									<i class="icon icon--cross-with-circle js-invite-list-delete"></i>
+								</li>
+
+								<li class="invite-list-item">
+									<input type="email" class="invite-list-input" value="" required>
+									<i class="icon icon--cross-with-circle js-invite-list-delete"></i>
+								</li>
+							</ul>
+
+							<label for="team-invite-textarea" class="team-invite-label">Welcome Message</label>
+							<textarea class="team-invite-textarea" id="team-invite-textarea" rows="6">Hey There! Welcome to the team! Let's get started!</textarea>
+
+							<a href="#" class="button--fill js-invite-send">
+							<i class="icon icon--send-invitation"></i>
+							Send Invitation
+							</a>
+						</div>
+					</div>
+				</section>
+			</div>
+		</section>
+
+		<section class="project-content-section" id="fuel">
+			<div class="wrap">
+				<h2 class="section-heading heading--small">Fuel Us Up</h2>
+				<p>Select a reward level and support our project.</p>
+			</div>
+
+			<ul class="fuel-rewards">
+				<li class="fuel-reward js-lightbox-open" data-content-container="#fuel-lightbox-content">
+					<header class="fuel-reward-header">
+						<span class="fuel-reward__price">$1</span>
+						<span class="fuel-reward__backers">20 Backers</span>
+						<span class="fuel-reward__remaining">(295 left of 300)</span>
+					</header>
+
+					<div class="fuel-reward-description">
+						<p>Every dollar makes a big impact. The WATERisLIFE team will send you a personal thank you e-mail so you can feel the love and stay connected. Thank you!</p>
+					</div>
+
+					<div class="fuel-reward-delivery">
+						<span class="fuel-reward-delivery__heading">ESTIMATED DELIVERY:</span>
+						<p>Feb 2015</p>
+					</div>
+
+					<figure class="fuel-reward-thumbnail">
+						<img src="/assets/fuel-reward-1.jpg" alt="">
+					</figure>
+
+					<div class="fuel-reward-select">
+						<a href="#" class="button--stroke">Select</a>
+					</div>
+				</li>
+
+				<li class="fuel-reward js-lightbox-open" data-content-container="#fuel-lightbox-content">
+					<header class="fuel-reward-header">
+						<span class="fuel-reward__price">$20</span>
+						<span class="fuel-reward__backers">20 Backers</span>
+						<span class="fuel-reward__remaining">(200 left of 300)</span>
+					</header>
+
+					<div class="fuel-reward-description">
+						<p>Give the gift of water to ten (10) families. This   package includes our signature filtration book to be sent to ten (10) needy families. And receive a personal thank you from us ...</p>
+					</div>
+
+					<div class="fuel-reward-delivery">
+						<span class="fuel-reward-delivery__heading">ESTIMATED DELIVERY:</span>
+						<p>May 2015</p>
+					</div>
+
+					<figure class="fuel-reward-thumbnail">
+						<img src="/assets/fuel-reward-2.jpg" alt="">
+					</figure>
+
+					<div class="fuel-reward-select">
+						<a href="#" class="button--stroke">Select</a>
+					</div>
+				</li>
+
+				<li class="fuel-reward js-lightbox-open" data-content-container="#fuel-lightbox-content">
+					<header class="fuel-reward-header">
+						<span class="fuel-reward__price">$50</span>
+						<span class="fuel-reward__backers">20 Backers</span>
+						<span class="fuel-reward__remaining">(100 left of 100)</span>
+					</header>
+
+					<div class="fuel-reward-description">
+						<p>Give the gift of water to ten (10) familes and receive a sample sheet from the book. And receive a personal thank you from us.</p>
+					</div>
+
+					<div class="fuel-reward-delivery">
+						<span class="fuel-reward-delivery__heading">ESTIMATED DELIVERY:</span>
+						<p>May 2015</p>
+					</div>
+
+					<figure class="fuel-reward-thumbnail">
+						<img src="/assets/fuel-reward-3.jpg" alt="">
+					</figure>
+
+					<div class="fuel-reward-select">
+						<a href="#" class="button--stroke">Select</a>
+					</div>
+				</li>
+
+				<li class="fuel-reward js-lightbox-open" data-content-container="#fuel-lightbox-content">
+					<header class="fuel-reward-header">
+						<span class="fuel-reward__price">$75</span>
+						<span class="fuel-reward__backers">20 Backers</span>
+						<span class="fuel-reward__remaining">(20 left of 25)</span>
+					</header>
+
+					<div class="fuel-reward-description">
+						<p>Give the gift of water to twenty (20) familes and receive a sample sheet from the book. And receive a personal thank you from us.</p>
+					</div>
+
+					<div class="fuel-reward-delivery">
+						<span class="fuel-reward-delivery__heading">ESTIMATED DELIVERY:</span>
+						<p>May 2015</p>
+					</div>
+
+					<figure class="fuel-reward-thumbnail">
+						<img src="/assets/fuel-reward-4.jpg" alt="">
+					</figure>
+
+					<div class="fuel-reward-select">
+						<a href="#" class="button--stroke">Select</a>
+					</div>
+				</li>
+
+				<li class="fuel-reward js-lightbox-open" data-content-container="#fuel-lightbox-content">
+					<header class="fuel-reward-header">
+						<span class="fuel-reward__price">$100</span>
+						<span class="fuel-reward__backers">20 Backers</span>
+						<span class="fuel-reward__remaining">(5 left of 5)</span>
+					</header>
+
+					<div class="fuel-reward-description">
+						<p>Receive a personal thank you from us + give the gift of water to forty (40) familes and receive a complete copy of the filtration book.</p>
+					</div>
+
+					<div class="fuel-reward-delivery">
+						<span class="fuel-reward-delivery__heading">ESTIMATED DELIVERY:</span>
+						<p>June 2015</p>
+					</div>
+
+					<figure class="fuel-reward-thumbnail">
+						<img src="/assets/fuel-reward-5.jpg" alt="">
+					</figure>
+
+					<div class="fuel-reward-select">
+						<a href="#" class="button--stroke">Select</a>
+					</div>
+				</li>
+			</ul>
+
+			<a href="#" class="fuel-pledge-another">Pledge Another Amount <i class="icon icon--chevron-right"></i></a>
+		</section>
+
+		<section class="project-content-section" id="timeline">
+			<h2 class="heading--small section-heading">Timeline</h2>
+
+			<div class="wrap">
+				<div class="TEMP" style="display: block;margin-top: 3.25rem;margin-bottom: 2rem;padding-bottom: 55.851%;background:url(/assets/project-timeline.png);background-size: cover;">
+			</div>
+
+			</div>
+		</section>
+
+		
+
+
+	</article>
+</main>
+
+<div class="lightbox js-lightbox">
+	<div class="js-lightbox-close lightbox-close icon icon--lightbox-close"></div>
+
+	<div class="js-lightbox-content">
+
+	</div>
+</div>
+<div class="lightbox-overlay js-lightbox-overlay js-lightbox-close"></div>
+
+<div class="l--hidden" id="team-lightbox-content">
+	<div class="team-lightbox-top">
+		<div class="grid-container">
+			<div class="grid-30">
+				<div class="team-lightbox-image">
+					<img src="/assets/project-team-1.jpg" alt="">
+				</div>
+			</div>
+
+			<div class="grid-60 push-5">
+				<span class="team-lightbox__name">Jerry Glen</span>
+				<span class="team-lightbox__position">Co-Founder</span>
+
+				<ul class="meta-tags">
+					<li class="meta-tag">
+						<i class="icon icon--location-pin"></i>
+						Singapore, Republic of Singapore
+					</li>
+
+					<li class="meta-tag">
+						<i class="icon icon--thumbs-up"></i>
+						27 Ups
+					</li>
+				</ul>
+
+				<ul class="meta-tags">
+					<li class="meta-tag">
+						<i class="icon icon--visit"></i>
+						jerryglen.com
+					</li>
+				</ul>
+
+				<div class="team-lightbox-social-links">
+					<i class="icon icon--twitter-with-circle"></i>
+					<i class="icon icon--instagram-with-circle"></i>
+				</div>
+			</div>
+		</div>
+
+		<div class="grid-container">
+			<div class="grid-30">
+				<ul class="team-lightbox-actions">
+					<li>
+						<a href="#" class="button--stroke--full">Follow</a>
+					</li>
+
+					<li>
+						<a href="#" class="button--stroke--full">Message</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="grid-60 push-5">
+				<div class="team-lightbox-description">
+					<p class="t--large">Jerry is a co-founder of Mixd and a creative at heart who has become more technical over the years.</p>
+					<p>He’s a graphic design graduate who felt the lure of digital early on. An expert in web accessibility and standards-based web design, Jerry oversees all the technical aspects of our projects. You could describe Jerry as a mountain biker, road cyclist, outdoor pursuits instructor and owner of a dog called Surprise.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="team-lightbox-expertise">
+		<span class="team-lightbox-expertise__heading">Expertise</span>
+		<ul class="meta-tags">
+			<li class="meta-tag">Environment</li>
+			<li class="meta-tag">Entrepreneurship</li>
+			<li class="meta-tag">Journalism</li>
+			<li class="meta-tag">Photography</li>
+			<li class="meta-tag">Illustration</li>
+			<li class="meta-tag endorse">Endorse an Expertise +</li>
+		</ul>
+	</div>
+</div>
+
+<div class="l--hidden" id="fuel-lightbox-content">
+	<div class="fuel-lightbox-container">
+		<span class="fuel-lightbox__heading">You selected:</span>
+		<span class="fuel-lightbox__value">$20</span>
+		<span class="fuel-lightbox__title">Gift of water to ten (10) families</span>
+
+		<p class="t--small">Feeling generous? Fuel Up! <a href="#">Increase your support.</a></p>
+
+		<div class="fuel-lightbox__description">
+			<p class="t--large">This package includes our filtration book to be sent to ten (10) families in need. And receive a personal thank you from us.</p>
+		</div>
+
+		<span class="fuel-lightbox__delivery">
+			<span class="t--strong">Estimated delivery:</span> May 2015
+		</span>
+
+		<a href="#" class="button--fill">Continue</a>
+	</div>
+</div>
+
+<%= render "layouts/try" %>
+<%= yield %>
+
+<%= render "layouts/footer" %>
+<%= yield %>
