@@ -86,16 +86,18 @@ $(function() {
 	$projectNavigationLinks.each(function() {
 		var $this = $(this),
 			target = $this.attr('href');
+			//alert(target);
+			//alert(target.substring(1));
 
 		$this.on('click', function(event) {
 			event.preventDefault();
-			$(window).scrollTo(target, 400);
+			$(window).scrollTo(target, 300);
 		});
 
 	// Waypoints
 		var waypoint = new Waypoint({
 			element: document.getElementById(target.substring(1)),
-			offset: 67,
+			offset: 70,
 			handler: function(direction) {
 				var _filter = '[href=' + target + ']';
 
