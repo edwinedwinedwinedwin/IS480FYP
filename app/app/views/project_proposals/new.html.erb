@@ -13,7 +13,7 @@
 
 
 <main class="page-main">
-  <%= form_for @ProjectProposal, :html => { :multipart => true } do |f| %>
+  <%= form_for :project_proposal, url: createProposal_path,:html => { :multipart => true } do |f| %>
   <div class="form-field">
           <% if @ProjectProposal.errors.any? %>
               <div class="panel panel-danger">
