@@ -44,18 +44,18 @@ class ProjectProposalsController < ApplicationController
         end
       end
       SysMailer.new_proposal_email(@ProjectProposal).deliver
-      redirect_to successProposalSubmission_url
+      redirect_to successProposalSubmission_path(:id => @ProjectProposal.id)
     else
       render 'new' and return
     end
   end
 
   def show
-
+    @ProjectProposal = ProjectProposal.find(params[:id])
   end
 
-  def success
-
+  def successProposal
+    @ProjectProposal = ProjectProposal.find(params[:id])
   end
 
   def accept
