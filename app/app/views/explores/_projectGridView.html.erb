@@ -1,7 +1,11 @@
-<li class="explore-project explore-project--<%= girdStyle %>" style="background-image:url(<%=ProjectProposalImg.where(:project_proposal_id => p.project_proposal_id).first.img_url %>);">
-
+<% if ProjectProposalImg.find_by(:project_proposal_id => p.project_proposal_id).nil? %>
+    <li class="explore-project explore-project--<%= girdStyle %>" style="background-color: black">
+<% else %>
+    <li class="explore-project explore-project--<%= girdStyle %>" style="background-image:url(<%=ProjectProposalImg.where(:project_proposal_id => p.project_proposal_id).first.img_url %>);">
+<% end %>
+<!--
   <%= link_to viewProject_path(:id => p.id), :class => "explore-project-link" %>
-
+-->
 
   <header class="explore-project-header">
     <h3 class="explore-project__title"><%= ProjectProposal.find(p.project_proposal_id).title %></h3>
@@ -19,7 +23,7 @@
       </div>
 
       <div class="explore-project__cta">
-        <a href="#" class="button--stroke">View Project</a>
+        <%= link_to 'VIEW PROJECT', viewProject_path(:id => p.id), :class => "button--stroke"%>
       </div>
     </div>
 
