@@ -7,6 +7,8 @@ before_filter :logged_in,:authorize_user
   def show
     @project = Project.find(params[:id])
 
+    session[:project_id] = @project.id
+
     @project_proposal = ProjectProposal.find(@project.project_proposal_id)
     @user = User.find(@project.user_id)
     @project_proposal_imgs = ProjectProposalImg.where(:project_proposal_id => @project_proposal.id)

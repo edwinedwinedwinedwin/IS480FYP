@@ -13,10 +13,9 @@ Rails.application.routes.draw do
   get 'project_members/new' => 'project_members#new'
   get 'project_members/edit/:id' => 'project_members#edit'  
   post 'project_members' => 'project_members#create'  
-  #get 'project_members/edit' => => 'project_members#index'
-  post 'project_members/destroy/(:id)' => 'project_members#destroy' 
+  post 'project_members/destroy/(:id)' => 'project_members#destroy'
 
-	
+
   get 'project_milestones/new' => 'project_milestones#new'
   get 'project_milestones/index' => 'project_milestones#index'
   post 'project_milestones' => 'project_milestones#create'

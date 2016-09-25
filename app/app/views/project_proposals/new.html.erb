@@ -3,8 +3,14 @@
 <%= stylesheet_link_tag "flickity/flickity.css" %>
 <%= javascript_include_tag "application"%>
 
+<% if @session.nil? %>
 <%= render "layouts/headerLogin" %>
-<%= yield %>
+    <%= yield %>
+<% else %>
+    <%= render "layouts/headerUser", :projects=>@projects, :images =>  @project_coverImgs%>
+<% end %>
+
+
 
 <main class="page-main">
   <%= form_for @ProjectProposal, :html => { :multipart => true } do |f| %>

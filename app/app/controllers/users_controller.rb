@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def changepass
     current_user_id=session[:user_id]      
     @user=User.find(current_user_id)
-    # only able to change own account password        
+    # only able to change own account password
   end
 
   def resetpass    
@@ -15,17 +15,17 @@ class UsersController < ApplicationController
     @user = User.find_by_email(params[:email])
     if @user.nil?
       flash[:alert]='You have entered an invalid email.'
-      redirect_to userResetPassword_path and return
+      redirect_to userResetPassword_path
     else
       if @first_name.nil? || @last_name.nil?
         flash[:alert]='You have entered an invalid input.'        
-        redirect_to userResetPassword_path and return
+        redirect_to userResetPassword_path
       end
       new_password=Array.new(8){[*'0'..'9', *'a'..'z', *'A'..'Z'].sample}.join # generate random password
       new_password_digest=BCrypt::Password.create(new_password, :cost => 11) # generate password digest
       User.update(@user.id,:password_digest=>new_password_digest)
       SysMailer.reset_password_email(@user,new_password).deliver            
-      redirect_to login_path and return
+      redirect_to login_path
     end    
   end
 
@@ -38,7 +38,8 @@ class UsersController < ApplicationController
   end
 
   def edit
-    current_user_id=session[:user_id]      
+    current_user_id=session[:user_id]
+    session[:project_id] = nil
     @user=User.find(current_user_id) # only able to edit current logged in user
 
   end
@@ -53,9 +54,14 @@ class UsersController < ApplicationController
         if @user.is_admin
           redirect_to adminDashboard_path and return
         else
-          redirect_to userIndex_path and return
-        end      
-    else      
+          @projectSession = session[:project_id]
+          if @projectSession.nil?
+            redirect_to dashboardIndex_path and return
+          else
+            redirect_to showProject_path(:id => @projectSession)
+          end
+        end
+    else
         render Rails.application.routes.recognize_path(request.referer)[:action] #renders previous get request
     end
   end
@@ -64,10 +70,10 @@ class UsersController < ApplicationController
     @user=User.find(params[:id])
     if @user.is_admin
       @user.destroy
-      redirect_to  adminManage_path and return
+      redirect_to  adminManage_path
     else
       @user.destroy
-      redirect_to  userIndex_path and return
+      redirect_to  userIndex_path
     end
 
   end
@@ -108,9 +114,9 @@ class UsersController < ApplicationController
     end
     checkProjectExist=Project.find_by_user_id(@user.id)
     if checkProjectExist.nil?
-      redirect_to dashboardIndex_path and return
+      redirect_to dashboardIndex_path
     else      
-      redirect_to showProject_path(:id => checkProjectExist.id) and return
+      redirect_to showProject_path(:id => checkProjectExist.id)
     end
   end
 
@@ -118,14 +124,15 @@ class UsersController < ApplicationController
     @user=User.find(params[:id])
     @user.is_banned=1
     @user.save
-    redirect_to userIndex_path and return
+    redirect_to userIndex_path
   end
 
   def unban
     @user=User.find(params[:id])
     @user.is_banned=0
     @user.save
-    redirect_to userIndex_path and return
+    redirect_to userIndex_path
+
   end
 
 
