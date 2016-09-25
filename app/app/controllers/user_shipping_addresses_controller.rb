@@ -21,6 +21,9 @@ class UserShippingAddressesController < ApplicationController
 
   def create    
     @user_shipping_address=UserShippingAddress.new(user_shipping_address_params)
+    @user_shipping_address.country=params[:country]
+    @user_shipping_address.city=params[:city]
+    @user_shipping_address.state=params[:state]
     if @user_shipping_address.save
       redirect_to manageShippingAddress_path and return
       #redirect_to :controller => 'user_shipping_address', :action => 'index',:id=session[:project_id] and return

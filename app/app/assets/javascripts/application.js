@@ -30,4 +30,6 @@
 //= require z.jquery.fileupload
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require jquery.min.js
+//= require countryselect.js
 //= require_tree .

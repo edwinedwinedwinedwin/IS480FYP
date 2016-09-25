@@ -29,50 +29,27 @@
             <%= f.text_field :address_line_2, class: "form-input", placeholder: "Address Line 2" %>
             <label class="form-label" for="address_line_2">Address Line 2</label>
           </div>  
-
-          <div class="form-field selectCountry">
-          <% 
-          url = 'http://iamrohit.in/lab/php_ajax_country_state_city_dropdown/api.php?type=getCountries'
-          response = RestClient.get(url)          
-          %>          
-          <% countryArray=JSON.parse(response)["result"] %>                                           
-            <% countries = options_for_select(countryArray.values,countryArray.keys) %>
-            <%= f.select :country, countries, :class=>"form-input" %>   
-            <%= countryArray.assoc(params[:country]) %>                            
+                  
+          <div class="form-field">
+            <select name="country" class="countries" id="countryId">
+              <option value="">Select Country</option>
+            </select>                       
             <label class="form-label" for="country">Country</label>
-          </div>                  
-
-                      
-            <script>       
-               var loc = new locationInfo();
-               loc.getCountries();   
-               $(".selectCountry").change(function(ev) {                
-                      var country = $('.selectCountry :selected').val();                      
-                      //var e = document.getElementById("selectCountry").value;
-                      //var strUser = e.options[e.selectedIndex].value;
-                      //$('#selectCountry').text(selectedCountry);
-                      //alert(selectedCountry);                      
-                      alert("You selected "+country);
-                      var state = loc.getStates(country.id);
-                      alert("IM HERE");
-                      for(i=0;i<states.length;i++){
-                        
-                        alert(states[i]);
-                      }
-                      // change value of city select
-                      //$("#selectCity").val("Changed City").change();
-               });                           
-            </script>             
-
-          <div class="form-field selectCity">
-            <%= f.select :city, ['Select City'],class: "form-input", placeholder: "City" %>
-            <label class="form-label" for="city">City</label>
-          </div>
-
-          <div class="form-field selectState">
-            <%= f.select :state, ['Select State'],class: "form-input", placeholder: "State"  %> 
+          </div>                         
+          
+          <div class="form-field">
+            <select name="state" class="states" id="stateId">
+              <option value="">Select State</option>
+            </select>
             <label class="form-label" for="state">State</label>       
           </div>
+
+          <div class="form-field">
+            <select name="city" class="cities" id="cityId">
+              <option value="">Select City</option>
+            </select>
+            <label class="form-label" for="city">City</label>
+          </div>                  
 
           <div class="form-field">
             <%= f.text_field :postal_code, class: "form-input", placeholder: "Postal Code"  %> 

@@ -108,7 +108,7 @@ loc.getCountries();
         if(countryId == ''){
             $(".states option:gt(0)").remove();
         }
-        else{            
+        else{                        
             loc.getStates(countryId);
         }
     });
@@ -117,7 +117,7 @@ loc.getCountries();
         if(stateId == ''){
             $(".cities option:gt(0)").remove();
         }
-        else{            
+        else{                        
             loc.getCities(stateId);
         }
     });
