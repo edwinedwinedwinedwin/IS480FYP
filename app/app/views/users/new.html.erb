@@ -48,10 +48,7 @@
         </div>
 
         <div class="form-field">
-            <select name="country" class="countries" id="countryId">
-              <option value="">Select Country</option>
-            </select>                       
-            <label class="form-label" for="country">Country</label>
+            <%= f.country_select :country, selected: 'SG' %>
           </div>                         
 
         <div class="form-actions">

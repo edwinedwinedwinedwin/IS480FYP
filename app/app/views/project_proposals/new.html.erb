@@ -1,5 +1,3 @@
-
-
 <% if @session.nil? %>
 <%= render "layouts/headerLogin" %>
     <%= yield %>
@@ -89,14 +87,10 @@
         <%= f.text_field(:first_name, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"First Name") %>
         <%= f.text_field(:last_name, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"Last Name") %>
         <%= f.text_field(:email, rows: "1", :class=>"form-input form-textarea",:placeholder=>"Email") %>
-        <%= f.text_field(:contact_number,rows: "1", :class=>"form-input form-textarea",:placeholder=>"Contact Number") %>
-        <!-- User Shipping Address -->
+        <%= f.text_field(:contact_number,rows: "1", :class=>"form-input form-textarea",:placeholder=>"Contact Number") %>    
+        <br/>    
       <!-- select country -->
-            <select name="country" class="countries dropdown_address" id="countryId">
-              <option value=""></option>
-            </select>                       
-            <label class="form-label" for="country">Country</label>
-
+        <%= f.country_select :country, selected: 'SG' %>
       </div>
 
       <div class="form-progress">

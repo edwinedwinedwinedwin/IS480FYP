@@ -55,8 +55,8 @@ gem 'carrierwave', '0.10.0'
 gem "mini_magick"
 gem 'fog', require: 'fog/aws' 
 
-# Country state selection for user_shipping_addresses
-#gem 'city-state'
+# Country state selection for signup(users/new) and getstarted(project_proposals/new)
+gem 'country_select', github: 'stefanpenner/country_select'
 
 # rest client
 gem 'rest-client'
