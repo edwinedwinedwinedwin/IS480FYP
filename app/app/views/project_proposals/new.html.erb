@@ -1,3 +1,5 @@
+
+
 <% if @session.nil? %>
 <%= render "layouts/headerLogin" %>
     <%= yield %>
@@ -23,7 +25,7 @@
               </div>
           <% end %>
         </div>        
-    <!-- Project title & Category Section -->
+    <!--Project title & Category Section-->
   <section class="page-section--small">
     <div class="form--large nl-form" id="nl-form">
       <fieldset>
@@ -91,7 +93,7 @@
         <%= f.text_field(:last_name, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"Last Name") %>
         <%= f.text_field(:email, rows: "1", :class=>"form-input form-textarea",:placeholder=>"Email") %>
         <%= f.text_field(:contact_number,rows: "1", :class=>"form-input form-textarea",:placeholder=>"Contact Number") %>
-        <!-- User Shipping Address -->  
+        <!-- User Shipping Address -->
       <!-- select country -->
             <select name="country" class="countries dropdown_address" id="countryId">
               <option value=""></option>

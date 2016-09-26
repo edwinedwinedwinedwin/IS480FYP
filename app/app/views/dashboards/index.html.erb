@@ -1,76 +1,102 @@
-<%= stylesheet_link_tag "style" %>
-<%= stylesheet_link_tag "component" %>
-<%= stylesheet_link_tag "flickity/flickity.css" %>
-<%= javascript_include_tag "application"%>
-
 <%= render "layouts/headerUser", :projects=>@projects, :images =>  @project_coverImgs%>
 
-<main class="page-main" id="page-main">  
+<main class="page-main">  
  <section class="page-section--hero page-section--sky-blue l--full-height" style="background-image: url('/assets/home-hero-1.jpg');"> 
 
   <div class="l--vertical-center l--half-width--right">
    <header>
-    <h2 class="section-heading heading--large">
-    <span class="subheading l--block">Work on</span> ideas that<br> matter
-    </h2>
+    <h2 class="section-heading heading--large"><span class="subheading l--block">Work on</span> ideas that<br> matter</h2>
    </header>
 
-   <%= link_to 'Get Started', newProposal_path, class: "button--link", rel: "internal" %>
+   <%= link_to 'Get Started', newProposal_path ,class: "button--link", rel: "internal" %>
   </div>
  </section>
- </main>
-<div class="lightbox js-lightbox">
-  <div class="js-lightbox-close lightbox-close icon icon--lightbox-close"></div>
 
-  <div class="js-lightbox-content">
+ <section class="page-section--hero--contain--bottom l--full-height" style="background-image: url('/assets/home-hero-2.jpg');">
+  <header>
+   <div class="wrap--small">
+    <h2 class="heading">Taking the first step has never been easiesr</h2>
+    <p>Create a smartwatch, produce a feature film, or set up an orphanage. No matter what you want to do, Y&B’s StartupKit will guide you from the incubation of your idea until its execution.</p>
+   </div>
+  </header>
 
+  <div class="l--padded">
+  <a href="#" class="button--scroll-down js-scrollto-button" data-scroll-target="#js-scrollto-crowdfund">
+   Discover
+   <i class="icon icon--chevron-thin-down"></i>
+  </a>
   </div>
-</div>
-<div class="lightbox-overlay js-lightbox-overlay js-lightbox-close"></div>
+ </section>
 
+ <section class="page-section--hero page-section--ocean-blue" id="js-scrollto-crowdfund" style="background-image: url('/assets/home-hero-3.jpg');">
+  <header>
+    <div class="l--vertical-center l--half-width--right">
+    <div class="grid-container">
+     <div class="grid push">
+      <h2 class="section-heading heading heading--icon">
+       <i class="icon icon--coin"></i>
+       Crowdfund for free
+      </h2>
+     
+      <p>Unlike existing crowdfunding models, Y&B does not take a cut from your target amount, only a percentage of the excess raised.</p>
+     </div>
+    </div>
+   </div>
+  </header>
+ </section>
 
-<div class="l--hidden" id="fuel-lightbox-content">
-  <div class="fuel-lightbox-container">
+ <section class="page-section--hero page-section--lime-green l--unpad--bottom">
+  <header>
+   <div class="wrap--small">
+    <h2 class="section-heading heading heading--icon">
+     <i class="icon icon--map"></i>
+     Create with no boundaries
+    </h2>
+    <p>At Y&B, crowdsourcing brings together creatives, innovators and funders to spark new projects. It has never been easier to create, innovate, and change the world - across different time zones, one idea at a time.</p>
+   </div>
+  </header>
 
-    <legend class="form-heading heading"> Edit Profile </legend>
-    <span class="fuel-lightbox__heading">Upload your profile picture</span>
-
-    <%= form_for :user, url:  updateProfilePic_path(session[:user_id]) ,method: :post do |f| %>
-
-        <div class="form-field">
-
-          <% if @user.errors.any? %>
-              <div class="panel panel-danger">
-                <div class="panel-heading"><h2><strong>Your inputs do not meet the requirements:</strong></h2></div>
-                <div class="panel-body alert-design">
-                  <ul style="list-style-type:circle">
-                    <% @user.errors.full_messages.each do |message| %>
-                        <li><%= message %></li>
-                    <% end %>
-                  </ul>
-                </div>
-              </div>
-          <% end %>
-        </div>
-
-
-        <div class="form-field">
-          <%= f.file_field :profile_pic, class: "form-input" %>
-          <label class="form-label" for="profile_pic">Profile Picture (File Size: < 2MB)</label>
-        </div>
-        <% current_user=User.find(session[:user_id]) %>
-        <% if current_user.profile_pic.present? %> <!-- check if profile pic exists -->
-    <% url = current_user.profile_pic%> <!-- get entire url-->
-            <% index=url.to_s.rindex('/') %> <!-- get last index of '/'-->
-            <!--
-        <div align=center> <%= url.to_s[index+1..url.to_s.length] %> </div>
-        <div align=center><%= image_tag(current_user.profile_pic,:class=> "img-circular") %></div> -->
-        <% end %>
-
-        <div class="form-actions">
-          <%= f.submit "Submit", class: "button--stroke--long" %>
-        </div>
-
-    <% end %>
+  <div class="wrap--large">
+   <div class="TEMP" style="background-image:url(/assets/home-hero-4.jpg);background-size: cover;background-repeat: no-repeat;background-position:center center;padding-bottom:78.125%;">
+   </div>
   </div>
-</div>
+ </section>
+
+ <section class="page-section page-section--pine-green t--left">
+  <header>
+   <div class="wrap">
+    <div class="grid-container">
+     <div class="grid-45">
+      <h2 class="section-heading heading heading--icon--left">
+       <i class="icon icon--origami"></i>
+       Reinventing<br>your<br>office
+      </h2>
+     </div>
+     <section class="t--left">
+     <div class="grid-45 push-10">
+      <p>Stay on top of your projects using threads. Start an international conference call from your living room. Share and edit files on-the-go. With our Digital Workstation, you can bring your ideas to life anywhere, any time.</p>
+     </div>
+     </section>
+    </div>
+   </div>
+  </header>
+ </section>
+
+ <section class="page-section--hero page-section--white l--full-height" style="background-image: url(/assets/home-hero-5.jpg);">
+  <header>
+   <div class="wrap--xsmall l--absolute-center">
+    <h2 class="section-heading heading heading--icon">
+     <i class="icon icon--venn"></i>
+     Discover new ideas to love
+    </h2>
+    <p>When you discover a project, you discover new possibilities. At Y&B, we curate projects just for you. With just a click, you can explore and be a part of amazing ideas and movements from around the world.</p>
+   </div>
+  </header>
+ </section>
+</main>
+
+<%= render "layouts/try" %>
+<%= yield %>
+
+<%= render "layouts/footer" %>
+<%= yield %>
