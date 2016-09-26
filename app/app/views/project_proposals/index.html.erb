@@ -9,7 +9,7 @@
 <br>
 <legend class="form-heading--tables heading"><h1>Manage Project Proposals</h1></legend><br>
 
-<%= link_to '< BACK', {:controller => "admins", :action => "index" }, class: "back--button" %><br>
+<%= link_to '< BACK', adminDashboard_path, class: "back--button" %><br>
 <br>
 <!-- new tables -->
 <div class="row">
@@ -34,7 +34,7 @@
                   <% @ProjectProposals.each do |p| %>
                   <tr>
                       <td></td>
-                      <td><%= p.created_at %></td>
+       b              <td><%= p.created_at.strftime("%d %b %Y %H:%M") %></td>
                       <td><%= p.title %></td>
                       <td><%= p.project_category.try(:category)%></td>
                       <td>
