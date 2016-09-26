@@ -12,7 +12,7 @@
 // require bxslider.js 
 // require jquery.bxslider.min.js
 //
-//= require jquery/dist/jquery.js
+//= require jquery.min.js
 //= require vminpoly/vminpoly.js
 //= require jquery.easing
 //= require jquery.scrollTo/jquery.scrollTo.js
@@ -30,6 +30,5 @@
 //= require z.jquery.fileupload
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require jquery.min.js
 //= require countryselect.js
-//= require_tree .
+//= require_tree
