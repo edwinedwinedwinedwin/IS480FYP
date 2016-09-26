@@ -211,7 +211,7 @@
     <section class="project-content-section" id="fuel">
       <div class="wrap">
         <h2 class="section-heading heading--small">Fund Us Up
-          <div class="js-lightbox-open" data-content-container="#fuel-lightbox-content-add">
+          <div class="js-lightbox-open" data-content-container="#fuel-lightbox-content-addreward">
             <%= image_tag("defaultprofile.png", :class => "img-circular-avatar") %>
           </div>
         </h2>
@@ -239,8 +239,6 @@
   </article>
 </main>
 
-
-
 <!-- ALL THE FUCKING LIGHTBOX STARTS HERE -->
 <div class="lightbox js-lightbox">
   <div class="js-lightbox-close lightbox-close icon icon--lightbox-close"></div>
@@ -255,6 +253,7 @@
     <div class="l--hidden" id="team-lightbox-content-<%= pm.pm_id %>">
       <div class="team-lightbox-top">
         <div class="grid-container">
+
           <div class="grid-30">
             <div class="team-lightbox-image lightbox-pic">
 
@@ -264,10 +263,12 @@
                   <%= image_tag(User.find(pm.user_id).profile_pic, :class => "lightbox-pic") %>
               <% end %>
 
-
             </div>
           </div>
 
+          <% form_for :project_members, url: updateMemberDetails_path(:id => pm.id) do %>
+
+          <% end %>
           <div class="grid-60 push-5">
             <span class="team-lightbox__name"><%= User.find(pm.user_id).last_name %> <%= User.find(pm.user_id).first_name %></span>
             <span class="team-lightbox__position"><%= pm.role %></span>
@@ -275,7 +276,7 @@
             <ul class="meta-tags">
               <li class="meta-tag">
                 <i class="icon icon--location-pin"></i>
-                Singapore, Republic of Singapore
+                <%= User.find(pm.user_id).country %>,  <%= User.find(pm.user_id).state %>
               </li>
             </ul>
 
@@ -326,14 +327,8 @@
 
           <div class="grid-60 push-5">
             <div class="team-lightbox-description">
-              <% %>
-
-              <p class="t--large">Jerry is a co-founder of Mixd and a creative at heart who has become more technical
-                over the years.</p>
-              <p>He’s a graphic design graduate who felt the lure of digital early on. An expert in web accessibility
-                and standards-based web design, Jerry oversees all the technical aspects of our projects. You could
-                describe Jerry as a mountain biker, road cyclist, outdoor pursuits instructor and owner of a dog called
-                Surprise.</p>
+              <p class="t--large"><%= pm.description %></p>
+              <p><%= pm.sub_description %><</p>
             </div>
           </div>
         </div>
@@ -382,7 +377,7 @@
 
 <% end %>
 
-<div class="l--hidden" id="fuel-lightbox-content-add">
+<div class="l--hidden" id="fuel-lightbox-content-addreward">
   <div class="fuel-lightbox-container">
     <legend class="form-heading heading">Add Reward</legend>
     <span class="fuel-lightbox__heading">Add new reward base</span>

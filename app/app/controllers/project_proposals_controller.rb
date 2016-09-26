@@ -88,6 +88,9 @@ class ProjectProposalsController < ApplicationController
     @project = Project.new
     @project.project_status_id = 1
     @project.project_proposal_id = @ProjectProposal.id
+    @project.country = @user.country
+    @project.state = @user.state
+    @project.city = @user.city
     @project.user_id = @user.id
     @project.save
 
@@ -95,7 +98,8 @@ class ProjectProposalsController < ApplicationController
     @ProjectMember = ProjectMember.new
     @ProjectMember.role = 'Founder'
     @ProjectMember.email = @user.email
-    @ProjectMember.description = @user.last_name + ' ' + @user.first_name
+    @ProjectMember.description = 'Description'
+    @ProjectMember.sub_description ='Sub Description'
     @ProjectMember.second_role = 'Creator'
     @ProjectMember.project_id = @project.id
     @ProjectMember.project_status_id = 3
