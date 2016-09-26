@@ -24,6 +24,7 @@ before_filter :logged_in,:authorize_user
                         users.fb_url as facebook_url,
                         project_members.role as role,
                         project_members.project_status_id as member_status,
+                        project_members.sub_description as sub_description,
                         project_members.description as description').where(:project_members => {:project_id => params[:id]})
 
     @project_updates = ProjectUpdate.order('id DESC').where(:project_id => params[:id])
@@ -129,7 +130,8 @@ before_filter :logged_in,:authorize_user
           #user is not inside this project(allow to add in)
           @project_members.role = 'Team Member'
           @project_members.email = user.email
-          @project_members.description = user.last_name + ' ' + user.first_name
+          @project_members.description = 'Description'
+          @project_members.sub_description = 'Sub Description'
           @project_members.second_role = 'Crew'
           @project_members.project_id =  p_id
           @project_members.project_status_id = 2
@@ -147,6 +149,18 @@ before_filter :logged_in,:authorize_user
     end
   end
 
+  def updateMemberDetails
+    @memberDetails = ProjectMember.find(params[:project_member][:id])
+    @memberDetails.role = params[:project_member][:role]
+    @memberDetails.description = params[:project_member][:description]
+    @memberDetails.sub_description = params[:project_member][:sub_description]
+
+    @memberDetails.save
+    redirect_to showProject_path(params[:project_member][:project_id]) and return
+
+
+
+  end
   private
   def projects_params
     params.require(:projects).permit(:start_date, :end_date, :country, :state, :city, :project_status_id, :project_proposal_id, :user_id)

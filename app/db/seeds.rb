@@ -40,8 +40,3 @@ statusList.each do |s|
   ProjectStatus.create!( {:status => s})
 end
 
-#List of Project Types
-typeList = ["Fundraise for an idea", "Crowdsource my ideas for feedback"]
-typeList.each do |t|
-  ProjectType.create!( {:types => t})
-end
