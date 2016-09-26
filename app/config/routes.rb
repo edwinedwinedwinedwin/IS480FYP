@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :projects
   resources :project_proposals
   resources :project_proposal_imgs
-  resources :user_shipping_addresses
+  
 
   #Other Routes
   get 'pages/comrules' => 'pages#comrules', as: :communityRule # display com rules
@@ -130,7 +130,7 @@ Rails.application.routes.draw do
 
 
   match '/:controller/:action/(:id)', via: [:get, :post] # last route
-  
+  resources :user_shipping_addresses
 
 
 end
