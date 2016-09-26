@@ -1,0 +1,36 @@
+
+<div class="project-hero-overlay" id="project-hero-overlay"></div>
+
+
+<header class="project-header" id="project-header">
+  <ul class="meta-tags">
+        <span class="meta-tag" id="project-category">
+					<i class="icon icon--leaf"></i>
+					<span id="project-category__text"><%= project_proposal.project_category.try(:category) %></span>
+
+				</span>
+  </ul>
+
+
+  <div class="project-title">
+    <h1 class="heading--large" id="project-title" style="margin-top:0em;">
+     <%= project_proposal.title %>
+    </h1>
+
+  </div>
+
+  <div class="profile-tag">
+
+    <% if User.find(Project.find(project_id).user_id).profile_pic.blank? %>
+        <%= image_tag('defaultprofile.png', :class=>"img-circular-project-avatar") %>
+    <% else %>
+        <%= image_tag(User.find(Project.find(project_id).user_id).profile_pic, :class=>"img-circular-project-avatar") %>
+    <% end %>
+
+
+    <% first_name = User.find(Project.find(project_id).user_id).first_name %>
+    <% last_name = User.find(Project.find(project_id).user_id).last_name %>
+    <% full_name = last_name + ' ' + first_name %>
+    <span class="profile-tag-text">by <span class="profile-tag__user"><%= full_name%></span></span>
+  </div>
+</header>

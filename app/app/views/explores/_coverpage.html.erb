@@ -1,0 +1,11 @@
+<div class="project-gallery" id="project-gallery">
+  <% project_proposal_imgs.each do |imgs| %>
+      <div class="project-gallery-item" style="background-image:url(<%= imgs.img_url %>);"></div>
+  <% end %>
+</div>
+
+<% if project_proposal_imgs.size != 0 %>
+<div class="project-gallery-counter">
+  <span class="project-gallery-counter__current" id="project-gallery-counter__current">1</span>/<span class="project-gallery-counter__max"><%= project_proposal_imgs.size %> </span>
+</div>
+<% end %>

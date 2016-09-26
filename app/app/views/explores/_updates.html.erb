@@ -1,0 +1,47 @@
+<div class="cards grid-container">
+  <% i = 1 %>
+<% project_updates.each do |u| %>
+
+  <% if i % 2 == 0 %>
+          <div class="grid-50">
+            <section href="" class="card">
+              <header class="card-header">
+                <div class="card-meta">
+                  <span class="card-meta__new">New</span>
+                  <span class="card-meta__date"><%= u.created_on.strftime("%e %B %Y %H:%M")%></span>
+                </div>
+
+                <h3 class="card-header__title">
+                  <%= u.title %>
+                </h3>
+              </header>
+
+              <div class="card-content">
+                <p><%= u.description %></p>
+              </div>
+            </section>
+          </div>
+  <% else %>
+          <div class="grid-50">
+            <section href="" class="card">
+              <header class="card-header">
+                <div class="card-meta">
+                  <span class="card-meta__new">New</span>
+                  <span class="card-meta__date"><%= u.created_on.strftime("%e %B %Y %H:%M")%></span>
+                </div>
+
+                <h3 class="card-header__title">
+                  <%= u.title %>
+                </h3>
+              </header>
+
+              <div class="card-content">
+                <p><%= u.description %></p>
+              </div>
+            </section>
+          </div>
+
+  <% end %>
+    <% i += 1 %>
+<% end %>
+</div>

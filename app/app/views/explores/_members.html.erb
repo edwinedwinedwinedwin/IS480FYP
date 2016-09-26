@@ -1,24 +1,13 @@
 <div class="wrap" style="position: relative;">
   <h2 class="heading--small" id="project-team-heading" style="position: relative; display: table; width: auto; margin-left: auto; margin-right: auto;">
     Our Team
-
-    <span class="edit-button js-edit-button" id="project-team-edit" data-container="project-team-heading">
-		<i class="icon icon--edit"></i>
-			Edit
-    </span>
-
-    <span class="edit-save-button" id="project-team-save">Done</span>
   </h2>
 
   <ul class="project-team-members" style="position: relative;" id="project-team-members">
     <% project_members.each do |pm| %>
         <% if pm.member_status == 3 || pm.member_status == 2 %>
         <li class="project-team-member">
-          <!--
-          <div class="project-team-member-thumbnail js-lightbox-open" data-content-container="#team-lightbox-content-<%= pm.pm_id %>">
 
-
-          </div> -->
           <div class="project-team-member-thumbnail js-lightbox-open member-image" data-content-container="#team-lightbox-content-<%= pm.pm_id %>">
             <% if User.find(pm.user_id).profile_pic.blank? %>
                 <%= image_tag('defaultprofile.png', :class=>"member-image") %>
@@ -33,51 +22,7 @@
        <% end %>
     <% end %>
 
-
     <i class="temp-slider-arrow-left" style="margin-top: -75px;"></i>
     <i class="temp-slider-arrow-right" style="margin-top: -75px;"></i>
   </ul>
-
-  <section class="project-team-management" style="display:none;" id="project-team-management">
-    <div class="grid-container">
-      <div class="grid-35 push-5">
-        <div style="background-repeat: no-repeat;background-position:center center;max-width: 334px;margin:auto;padding-bottom: 138.6227%;">
-
-
-        </div>
-
-      </div>
-
-      <div class="grid-50 push-10 t--left">
-        <p class="t--large">Type the email(s) of the people you wish to invite:</p>
-        <ul class="invite-list">
-        <%= form_for :project_member, url: addMembers_path(:project_id => project_id), method: :post do |m| %>
-
-              <li class="invite-list-item">
-                <%= m.text_field :email1, class: "invite-list-input", placeholder: "Email 1" %>
-                <i class="icon icon--cross-with-circle js-invite-list-delete"></i>
-              </li>
-
-              <li class="invite-list-item">
-                <%= m.text_field :email2, class: "invite-list-input", placeholder: "Email 2" %>
-                <i class="icon icon--cross-with-circle js-invite-list-delete"></i>
-              </li>
-
-              <li class="invite-list-item">
-                <%= m.text_field :email3, class: "invite-list-input", placeholder: "Email 3" %>
-                <i class="icon icon--cross-with-circle js-invite-list-delete"></i>
-              </li>
-        </ul>
-
-          <label for="team-invite-textarea" class="team-invite-label">Welcome Message</label>
-         <%= m.text_area :inviteMessages, class: "team-invite-textarea", id: "team-invite-textarea", rows: "6", value: "Hey There! Welcome to the team! Let's get started!" %>
-
-          <%= m.button :submit , class:"button--fill js-invite-send"  do %>
-            <i class="icon icon--send-invitation"></i>
-            Send Invitation
-          <% end %>
-          <% end %>
-      </div>
-    </div>
-  </section>
 </div>

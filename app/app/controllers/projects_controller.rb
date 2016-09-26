@@ -5,9 +5,7 @@ before_filter :logged_in,:authorize_user
   end
 
   def show
-
-    
-    @project = Project.find(params[:id])
+@project = Project.find(params[:id])
 
     session[:project_id] = @project.id
 

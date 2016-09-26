@@ -1,0 +1,36 @@
+<ul class="fuel-rewards">
+  <% project_rewards.each do |pr| %>
+      <li class="fuel-reward js-lightbox-open" data-content-container="#fuel-lightbox-content">
+
+        <header class="fuel-reward-header">
+          <span class="fuel-reward__price">$<%= pr.min_amount %></span>
+
+          <%
+              noOfBacker = ProjectRewardBacker.where(:project_reward_id => pr.id).count('project_reward_id', )
+
+              remainReward = pr.no_of_rewards - noOfBacker.to_i
+          %>
+          <span class="fuel-reward__backers"><%= noOfBacker.to_i%> Backers</span>
+
+          <span class="fuel-reward__remaining">(<%= remainReward.to_i%>  left of <%= pr.no_of_rewards %>)</span>
+        </header>
+
+        <div class="fuel-reward-description">
+          <p><%=pr.description %></p>
+        </div>
+
+        <div class="fuel-reward-delivery">
+          <span class="fuel-reward-delivery__heading">ESTIMATED DELIVERY:</span>
+          <p><%= pr.estimated_delivery.strftime("%B %Y") %></p>
+        </div>
+
+        <figure class="fuel-reward-thumbnail">
+          <%= image_tag(ProjectReward.find(pr.id).img_url) %>
+        </figure>
+
+        <div class="fuel-reward-select">
+          <a href="#" class="button--stroke">Select</a>
+        </div>
+      </li>
+  <%end %>
+</ul>

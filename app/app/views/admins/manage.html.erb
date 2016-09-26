@@ -9,7 +9,7 @@
 <br>
 <legend class="form-heading--tables heading"><h1>Manage Admins</h1></legend><br>
 
-<%= link_to '< BACK', {:controller => "admins", :action => "index" }, class: "back--button"  %><br>
+<%= link_to '< BACK', adminDashboard_path, class: "back--button"  %><br>
 
 <table class="table-show">
   <thead>
@@ -40,6 +40,5 @@
     <% end %>
   </tbody>
 </table>
-<br>
 
-<%= link_to 'Add New Admin', addAdmin_path, class: "button--stroke--long--add" %><br>
+<%= link_to 'Add New Admin', addAdmin_path, class: "button--stroke--long--add" %>
