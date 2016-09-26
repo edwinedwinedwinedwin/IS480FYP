@@ -4849,3 +4849,6 @@ Sidebar
 .fullwidth{
   width:1100px;
 }
+select.dropdown_address{
+  width:100%;
+}
