@@ -146,6 +146,18 @@ before_filter :logged_in,:authorize_user
     end
   end
 
+  def updateMemberDetails
+    @memberDetails = ProjectMember.find(params[:project_member][:id])
+    @memberDetails.role = params[:project_member][:role]
+    @memberDetails.description = params[:project_member][:description]
+    @memberDetails.sub_description = params[:project_member][:sub_description]
+
+    @memberDetails.save
+    redirect_to showProject_path(params[:project_member][:project_id]) and return
+
+
+
+  end
   private
   def projects_params
     params.require(:projects).permit(:start_date, :end_date, :country, :state, :city, :project_status_id, :project_proposal_id, :user_id)

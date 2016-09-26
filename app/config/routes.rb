@@ -74,7 +74,7 @@ Rails.application.routes.draw do
   get 'projects/index' => 'projects#index', as: :projectsIndex
   post 'projects/updateDescription/(:id)' => 'projects#updateDescription', as: :updateDescription
   post 'projects/updateTitle/(:id)' => 'projects#updateTitle', as: :updateTitle
-  post 'projects/updateMember/(:id)' => 'projects#updateMember', as: :updateMemberDetails
+  post 'projects/updateMember/(:id)' => 'projects#updateMemberDetails', as: :updateMemberDetails
   post 'projects/addMembers' => 'projects#addMembers', as: :addMembers
 
   # user expertises routes
