@@ -25,12 +25,13 @@
                     <th data-priority="1"></th>
                     <th data-priority="2">Name</th>
                     <th data-priority="3">Email</th>
+                    <th data-priority="4">Country</th>
                     <th>Personal Website</th>
                     <th>Facebook</th>
                     <th>Instagram</th>
                     <th>Twitter</th>
-                    <th data-priority="5">Status</th>
-                    <th data-priority="4">Action</th>
+                    <th data-priority="6">Status</th>
+                    <th data-priority="5">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -40,6 +41,7 @@
                     <td></td>
                     <td><%= user.first_name %> <strong><%= user.last_name %></strong></td>
                     <td><%= user.email %></td>
+                    <td><%= user.country %></td>
                     <td>
                       <%= link_to user.bio_url, :target => "_blank" do %>
                         <i class="icon icon--cross" style="font-size: 3em"></i>

@@ -33,8 +33,6 @@ class ProjectProposalsController < ApplicationController
     @ProjectProposal = ProjectProposal.new(params_pp)
     @ProjectProposal.project_status_id = 2
     @ProjectProposal.country=params[:country]
-    @ProjectProposal.state=params[:state]
-    @ProjectProposal.city=params[:city]
     img_url = params[:project_proposal][:img_url]    
     if @ProjectProposal.save
       # upload project proposal images
@@ -84,8 +82,6 @@ class ProjectProposalsController < ApplicationController
       @user.is_banned = 0
       @user.is_admin = 0
       @user.country=@ProjectProposal.country
-      @user.state=@ProjectProposal.state
-      @user.city=@ProjectProposal.city
       @user.save
       #Send acceptance email to user who sign up containing new account password
       SysMailer.accept_new_proposal_email(@new_password,@ProjectProposal).deliver  
@@ -95,8 +91,6 @@ class ProjectProposalsController < ApplicationController
     @project.project_status_id = 1
     @project.project_proposal_id = @ProjectProposal.id
     @project.country = @user.country
-    @project.state = @user.state
-    @project.city = @user.city
     @project.user_id = @user.id
     @project.save
  # Project Founder will be assigned to person who submitted project proposal

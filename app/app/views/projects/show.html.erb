@@ -225,11 +225,17 @@
       <a href="#" class="fuel-pledge-another">Pledge Another Amount <i class="icon icon--chevron-right"></i></a>
     </section>
     <section class="project-content-section" id="timeline">
-      <h2 class="heading--small section-heading">Timeline</h2>
+      <h2 class="heading--small section-heading">
+       </h2>
 
       <div class="wrap">
-        <div class="TEMP" style="display: block;margin-top: 3.25rem;margin-bottom: 2rem;padding-bottom: 55.851%;background:url(/assets/project-timeline.png);background-size: cover;">
-        </div>
+
+
+        <h2 class="section-header heading--small">
+          <div class="js-lightbox-open" data-content-container="#fuel-lightbox-content-addmilestone">
+            <%= image_tag("newMileStoneBtn.png") %>
+          </div>
+        </h2>
 
       </div>
     </section>
@@ -361,18 +367,18 @@
     <div class="l--hidden" id="fuel-lightbox-content-<%= pr.id %>">
       <div class="fuel-lightbox-container">
         <span class="fuel-lightbox__heading">You selected:</span>
-        <span class="fuel-lightbox__value"><%= pr.min_amount %></span>
-        <span class="fuel-lightbox__title"><%= pr.name %> </span>
+        <span class="fuel-lightbox__value">$<%= pr.min_amount %></span>
+        <span class="fuel-lightbox__title"><%= pr.name %></span>
 
         <p class="t--small">Feeling generous? Fuel Up! <a href="#">Increase your support.</a></p>
 
         <div class="fuel-lightbox__description">
-          <p class="t--large">This package includes our filtration book to be sent to ten (10) families in need. And
+          <p class="t--large">This package includes our <%= pr.name %> to be sent to (<%= pr.no_of_rewards %>) families in need. And
             receive a personal thank you from us.</p>
         </div>
 
         <span class="fuel-lightbox__delivery">
-    <span class="t--strong">Estimated delivery:</span> <%= pr.estimated_delivery %>
+    <span class="t--strong">Estimated delivery:</span> <%= pr.estimated_delivery.strftime("%B %Y") %>
 		</span>
 
         <a href="#" class="button--fill">Continue</a>

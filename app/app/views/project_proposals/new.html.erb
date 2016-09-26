@@ -64,8 +64,8 @@
             <i class="icon icon--paperclip"></i>
             To add feature image(s),<br> click on the 'Choose Files' button <!--/ video files -->
             <div class="form-field-getstarted">
-                <%= f.file_field :img_url,:multiple=>true,:class=>"form-input--getstarted"  %>
-                <label class="form-label" for="bio_url":angry:Image File Size: < 2MB)</label>                      
+                <%= f.file_field :img_url,:multiple=>true, :class=>"form-input--getstarted"  %>
+                <label class="form-label" for="img_url">(Image File Size: < 2MB)</label>
             </div>
           </div>
          </div>
@@ -83,13 +83,10 @@
 
       <!-- Personal contact information -->
       <br/>
-
-      
-
       <fieldset>
       <p>We'll contact you soon :)</p>
         <div class="form-field">
- <%= f.text_field(:first_name, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"First Name") %>
+        <%= f.text_field(:first_name, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"First Name") %>
         <%= f.text_field(:last_name, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"Last Name") %>
         <%= f.text_field(:email, rows: "1", :class=>"form-input form-textarea",:placeholder=>"Email") %>
         <%= f.text_field(:contact_number,rows: "1", :class=>"form-input form-textarea",:placeholder=>"Contact Number") %>
@@ -99,20 +96,9 @@
               <option value=""></option>
             </select>                       
             <label class="form-label" for="country">Country</label>
-            <!-- select state -->
-            <select name="state" class="states dropdown_address" id="stateId">
-              <option value=""></option>
-            </select>
-            <label class="form-label" for="state">State</label>      
-            <!-- select city -->
-            <select name="city" class="cities dropdown_address" id="cityId">
-              <option value=""></option>
-            </select>
-            <label class="form-label" for="city">City</label>
+
       </div>
 
-              
-        
       <div class="form-progress">
         <div class="grid-container wrap">
           <div class="grid-65 form-progress-information">
@@ -126,7 +112,7 @@
       <div class="form-actions">
         <%= f.submit "Submit Project Proposal", class: "button--fill--black button--full" %>
       </div>
-
+      </fieldset>
     </div>
   </section>
         <% end %>
