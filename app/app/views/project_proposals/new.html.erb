@@ -1,8 +1,3 @@
-<%= stylesheet_link_tag "style" %>
-<%= stylesheet_link_tag "component" %>
-<%= stylesheet_link_tag "flickity/flickity.css" %>
-<%= javascript_include_tag "application"%>
-
 <% if @session.nil? %>
 <%= render "layouts/headerLogin" %>
     <%= yield %>
