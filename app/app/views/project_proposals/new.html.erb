@@ -90,8 +90,20 @@
         <%= f.text_field(:contact_number,rows: "1", :class=>"form-input form-textarea",:placeholder=>"Contact Number") %>    
         <br/>    
       <!-- select country -->
-        <%= f.country_select :country, selected: 'SG' %>
+      <!--
+        <%= f.country_select(:country, selected: 'SG') %>-->
+      <p>Location:</p>
+<i class="icon icon--location-pin"></i>
+        <%= f.country_select :country, ['SG'], options = {}, html_options = {:class => "form-input", :id => "resizing_select"} %>
+        <select id="width_tmp_select">
+          <option id="width_tmp_option"></option>
+        </select>
+
       </div>
+
+        
+
+
 
       <div class="form-progress">
         <div class="grid-container wrap">

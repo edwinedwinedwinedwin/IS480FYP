@@ -1,6 +1,10 @@
 <%= render "layouts/headerLogin" %>
 <%= yield %>
 
+<!-- include bootstrap-->
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+
+
 <div class="page-main">
   <div class="page-section">
     <legend class="form-heading heading--login"> Log In </legend>

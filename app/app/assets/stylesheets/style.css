@@ -4852,3 +4852,12 @@ Sidebar
 select.dropdown_address{
   width:100%;
 }
+
+#resizing_select {
+  width: 1em;
+  min-width:4.5em;
+} 
+ 
+#width_tmp_select{
+  display : none;
+} 
