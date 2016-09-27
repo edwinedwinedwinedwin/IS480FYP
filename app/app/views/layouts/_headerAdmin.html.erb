@@ -1,4 +1,3 @@
-<%= stylesheet_link_tag "userpage" %>
 <%= stylesheet_link_tag "style" %>
 <%= stylesheet_link_tag "component" %>
 <%= stylesheet_link_tag "flickity/flickity.css" %>
@@ -270,8 +269,9 @@ table.dataTable>tbody>tr.child span.dtr-data  {
 
         <nav class="site-menu-block site-navigation">
             <ul class="site-navigation-list">
+            <!--
                 <li><%= link_to "Edit Profile", 'editprofile' %></li>
-                <li><%= link_to "Change Password", 'changepass' %></li>
+                <li><%= link_to "Change Password", 'changepass' %></li> -->
                 <li><%= link_to "Manage Admins", controller: "admins", action: "manage" %></li>
                 <li><%= link_to "Manage Users", controller: "users", action: "index" %></li>
                 <li><%= link_to "Manage Project Proposals", controller: "project_proposals", action: "index" %></li>

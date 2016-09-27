@@ -267,20 +267,26 @@
           <div class="diamond section-header">
             <div class="diamond-inner">
               <span class="flag"></span>
-              <p class="wordwrapper"><%=@project_proposal.title %></p>
+              <!--<p class="t--large wordwrapper"><%=@project_proposal.title.split.map(&:capitalize).join(' ') %>asdasdas</p>-->
               <% no_Of_Days = @current_milestone.end_date.to_date - Date.today.to_date %>
-              <p class="wordwrapper">$<%=@total_target_amount %></p>
-              <p class="wordwrapper"><%= no_Of_Days.to_i %> DAYS LEFT</p>
+              <p class="wordwrapper diamondtime">$<%=@total_target_amount %></p>
+              <p class="wordwrapper diamondtitle"><%=@project_proposal.title.split.map(&:capitalize).join(' ') %></p>
+              <p class="wordwrapper diamonddays"><%= no_Of_Days.to_i %> DAYS LEFT</p>
             </div>
           </div>
         <% end %>
 
           <div class="grid-container">
+          <%= render "projects/milestones", :project_id => @project.id, :project_milestones => @project_milestones %>
+
+
+            </div>
             <div class="grid-25">
             </div>
 
             <div class="grid-50">
-              <%= render "projects/milestones", :project_id => @project.id, :project_milestones => @project_milestones %>
+
+              
 
             </div>
 

@@ -1,35 +1,71 @@
-<div class="grid-container">
-    <% i = 0 %>
-  <% project_milestones.each do |ms|
-      if( i % 2 == 0)
-  %>
-          <div class="grid-50"></div>
-          <div class="grid-50">
-            <span class="card-meta__date">$<%= ms.target_amount %></span>
-            <span class="card-meta__date"><%= ms.name %></span>
-            <% if ms.project_status_id == 5%>
-                <span class="card-meta__date"><%= ms.project_status.try(:status)%></span>
-                <% else %>
-            <span class="card-meta__date"><%= ms.end_date.strftime("%B %Y")%></span>
+<div class="Timeline" id="Timeline">
+  <div class="Timeline-line">
+    <div class="Timeline-line-menu">
+    </div>
+  </div>
 
-                <% end %>
-          </div>
-      <% else %>
-          <div class="grid-50">
-            <span class="card-meta__date">$<%= ms.target_amount %></span>
-            <span class="card-meta__date"><%= ms.name %></span>
+  <% i = 0 %>
+  <% project_milestones.each do |ms|
+      if( i % 2 == 0) %>
+
+  <div class="Timeline-item">
+    <div class="Timeline-item-inner">
+      <div class="Timeline-item-top">
+        <div class="Timeline-item-top-type milestone-title">
+          <%= ms.name %>
+        </div>
+      </div>
+      <div class="Timeline-item-content">
+        <div class="Timeline-item-content-body">
+        
+          <strong>Target Amount:</strong> $<%= ms.target_amount %>
+          <p>
             <% if ms.project_status_id == 5%>
-                <span class="card-meta__date"><%= ms.project_status.try(:status)%></span>
+            <%= ms.project_status.try(:status)%>
             <% else %>
-                <span class="card-meta__date"><%= ms.end_date.strftime("%B %Y")%></span>
+            <strong>Start Date:</strong> <%= ms.start_date.strftime("%B %Y")%>
+            <br/>
+            <strong>End Date:</strong> <%= ms.end_date.strftime("%B %Y")%>
 
             <% end %>
+          </p>
           </div>
-          <div class="grid-50">
+        </div>
+      </div>
+    </div>
+          
+      <% else %>
+          
 
+  <div class="Timeline-item">
+    <div class="Timeline-item-inner">
+      <div class="Timeline-item-top">
+        <div class="Timeline-item-top-type milestone-title">
+          <%= ms.name %>
+        </div>
+      </div>
+      <div class="Timeline-item-content">
+        <div class="Timeline-item-content-body">        
+          <strong>Target Amount:</strong> $<%= ms.target_amount %>
+          <p>
+          <% if ms.project_status_id == 5%>
+          <%= ms.project_status.try(:status)%>
+          <% else %>
+          <strong>Start Date: </strong><%= ms.end_date.strftime("%B %Y")%>
+          <br/>
+          <strong>End Date: </strong><%= ms.end_date.strftime("%B %Y")%>
+          <% end %>
+          </p>
+        </div>
+      </div>
+    </div>
 
-          </div>
-     <% end %>
+  </div>  
+
+ <% end %>
   <% i=i+1
     end %>
 </div>
+      
+              
+

@@ -260,10 +260,62 @@ $(function() {
      	}
     });
 
+
+    //THIS IS for the get started page to select the location
     $('#resizing_select').change(function(){
       $("#width_tmp_option").html($('#resizing_select option:selected').text()); 
       $(this).width($("#width_tmp_select").width());  
     });
+
+    //THIS IS for the sortable function for the milestones
+    var $component = 'Timeline';
+
+	function sort() {
+		var $itemIndex = 0;
+
+		console.log('reorder');
+		
+		$('.' + $component).find('.' + $component + '-item').each(function(index) {
+
+			index++;
+			$itemIndex = (index < 10) ? '0' + index : index;
+			
+			$(this).find('.' + $component + '-item-index').text($itemIndex);
+
+			if (index % 2 === 0) {
+        $(this).addClass('is-right');
+      }
+      else {
+        $(this).removeClass('is-right');
+      }
+
+		});
+	}
+
+	sort();
+
+ 	var el = document.getElementById($component);
+  	var sortable = Sortable.create(el, {
+    draggable: '.' + $component + "-item", 
+    handle: '.' + $component + "-item-top",
+    animation: 250,
+    scroll: true, // or HTMLElement
+    scrollSensitivity: 60, // px, how near the mouse must be to an edge to start scrolling.
+    scrollSpeed: 10, // px
+    ghostClass: "is-dropping",
+
+    onStart: function (event) {
+      $('.' + $component).toggleClass('is-dragging');
+      console.log('onStart')
+    },
+
+    onEnd: function (event) {
+      $('.' + $component).toggleClass('is-dragging');
+      sort();
+    },
+
+  });
+
 
 });
 
@@ -271,4 +323,3 @@ $(function() {
 $(document).ready(function(){
   $('.bxslider').bxSlider();
 });*/
-
