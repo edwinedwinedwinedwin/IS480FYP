@@ -8,11 +8,11 @@
 -->
 
   <header class="explore-project-header">
-    <h3 class="explore-project__title"><%= ProjectProposal.find(p.project_proposal_id).title %></h3>
+    <h3 class="explore-project__title whitebackground"><%= ProjectProposal.find(p.project_proposal_id).title %></h3>
   </header>
 
   <div class="explore-project-description">
-    <div class="explore-project-description-content">
+    <div class="explore-project-description-content whitecontent">
 						<span class="explore-project-description-header">
 							by <span class="explore-project__author">
               <%= User.find(p.user_id).last_name %> <%= User.find(p.user_id).first_name %></span>
@@ -29,16 +29,16 @@
 
     <div class="explore-project-description__background"></div>
   </div>
-
-  <footer class="explore-project-footer">
+  <% ran = rand(50...75)%>
+  <footer class="explore-project-footer whitecontent">
     <ul class="meta-tags">
-      <li class="meta-tag">
-        <span class="meta-tag__data">50%</span>
-        Fueled
+      <li class="meta-tag ">
+        <span class="meta-tag__data ">0%</span>
+        Funded
       </li>
 
       <li class="meta-tag">
-        <span class="meta-tag__data">12</span>
+        <span class="meta-tag__data"><%= rand(1..50) %></span>
         Days left
       </li>
     </ul>
