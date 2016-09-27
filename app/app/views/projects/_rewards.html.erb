@@ -1,6 +1,6 @@
 <ul class="fuel-rewards">
   <% project_rewards.each do |pr| %>
-      <li class="fuel-reward js-lightbox-open" data-content-container="#fuel-lightbox-content-<%=  pr.id %>">
+      <li class="fuel-reward" >
 
         <header class="fuel-reward-header">
           <span class="fuel-reward__price">$<%= pr.min_amount %></span>
@@ -28,9 +28,7 @@
           <%= image_tag(ProjectReward.find(pr.id).img_url) %>
         </figure>
 
-        <div class="fuel-reward-select">
-          <a href="#" class="button--stroke">Select</a>
-        </div>
+
       </li>
   <%end %>
 </ul>
