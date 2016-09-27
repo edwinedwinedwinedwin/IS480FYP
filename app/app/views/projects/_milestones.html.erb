@@ -7,13 +7,23 @@
           <div class="grid-50">
             <span class="card-meta__date">$<%= ms.target_amount %></span>
             <span class="card-meta__date"><%= ms.name %></span>
+            <% if ms.project_status_id == 5%>
+                <span class="card-meta__date"><%= ms.project_status.try(:status)%></span>
+                <% else %>
             <span class="card-meta__date"><%= ms.end_date.strftime("%B %Y")%></span>
+
+                <% end %>
           </div>
       <% else %>
           <div class="grid-50">
             <span class="card-meta__date">$<%= ms.target_amount %></span>
             <span class="card-meta__date"><%= ms.name %></span>
-            <span class="card-meta__date"><%= ms.end_date.strftime("%B %Y")%></span>
+            <% if ms.project_status_id == 5%>
+                <span class="card-meta__date"><%= ms.project_status.try(:status)%></span>
+            <% else %>
+                <span class="card-meta__date"><%= ms.end_date.strftime("%B %Y")%></span>
+
+            <% end %>
           </div>
           <div class="grid-50">
 

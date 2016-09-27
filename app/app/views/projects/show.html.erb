@@ -233,15 +233,17 @@
 
       <div class="wrap">
 
+        <%  if !@current_milestone.nil? %>
           <div class="diamond section-header">
             <div class="diamond-inner">
               <span class="flag"></span>
               <p class="wordwrapper"><%=@project_proposal.title %></p>
+              <% no_Of_Days = @current_milestone.end_date.to_date - Date.today.to_date %>
               <p class="wordwrapper">$<%=@total_target_amount %></p>
-              <p class="wordwrapper"><%= @project_proposal.title %> Days</p>
+              <p class="wordwrapper"><%= no_Of_Days.to_i %> DAYS LEFT</p>
             </div>
-
           </div>
+        <% end %>
 
           <div class="grid-container">
             <div class="grid-25">

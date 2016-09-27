@@ -18,31 +18,41 @@ class ProjectMilestonesController < ApplicationController
 		@project_milestone = ProjectMilestone.new(project_milestones_params)
     @projectMilestones = ProjectMilestone.order('start_date ASC').where(:project_id => @project_milestone.project_id)
 
-    i = 0
+    startA = @project_milestone.start_date
+    endA = @project_milestone.end_date
 
-    @projectMilestones.each do |all|
-      #before
-      if @project_milestone.start_date < all.start_date && @project_milestone.end_date <= all.start_date
+
+    i = 0
+    if @projectMilestones.nil?
+      if startA > Date.today && endA > Date.today
 
       else
-        #after
-        if @project_milestone.end_date <= all.start_date
+        i = 1 + i
+      end
+    else
+    # Convent to last day
 
-        else
-            i = i + 1
+
+    @projectMilestones.each do |all|
+      startB = all.start_date
+      endB = all.end_date
+
+      #before
+        if (startA < endB)  &&  (endA > startB)
+            i = 1+i
         end
       end
     end
 
     if i == 0 #outside the time frame
       if @project_milestone.save
-        redirect_to showProject_path(:id => @project_milestone.project_id)
+        redirect_to showProject_path(:id => @project_milestone.project_id) and return
       else
-        redirect_to showProject_path(:id => @project_milestone.project_id)
+        redirect_to showProject_path(:id => @project_milestone.project_id) and return
       end
     else #overlapping
       #error
-      redirect_to showProject_path(:id => @project_milestone.project_id)
+      redirect_to showProject_path(:id => @project_milestone.project_id) and return
     end
 
 	end
