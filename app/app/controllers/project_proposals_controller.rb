@@ -60,8 +60,6 @@ class ProjectProposalsController < ApplicationController
     @ProjectProposal = ProjectProposal.find(params[:id])
 
     if !session[:user_id].nil?
-      @session=session[:user_id]
-
       @projects=ProjectProposal.select("*").joins(:project).where(:projects => {:user_id=>@session})
       @project_coverImgs = ProjectProposalImg.select('
                   project_proposal_imgs.project_proposal_id as pp_id,
