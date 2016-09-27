@@ -9,8 +9,8 @@
 
 <main class="page-main" id="page-main">
   <section class="project-hero" id="overview">
-    <%= render "projects/overview", :project_id => @project.id, :project_proposal => @project_proposal, :project_categories => @project_categories %>
-    <%= render "projects/coverpage", :project_id => @project.id, :project_proposal => @project_proposal, :project_proposal_imgs => @project_proposal_imgs %>
+    <%= render "explores/overview", :project_id => @project.id, :project_proposal => @project_proposal, :project_categories => @project_categories %>
+    <%= render "explores/coverpage", :project_id => @project.id, :project_proposal => @project_proposal, :project_proposal_imgs => @project_proposal_imgs %>
 
     <div class="project-fuel">
       <div class="project-fuel-bar js-project-fuel-bar" data-fuel="50%">
@@ -180,13 +180,13 @@
         </ul>
       </div>
 
-      <%= render "projects/updates", :project_id => @project.id, :project_updates => @project_updates %>
+      <%= render "explores/updates", :project_id => @project.id, :project_updates => @project_updates %>
 
       <a href="#" class="project-content__load-more">Load More</a>
     </section>
 
     <section class="project-content-section" id="team">
-      <%= render "projects/members", :project_id => @project.id, :project_members => @project_members %>
+      <%= render "explores/members", :project_id => @project.id, :project_members => @project_members %>
     </section>
 
     <section class="project-content-section" id="fuel">
@@ -199,7 +199,7 @@
       <p>Select a reward level and support our project.</p>
       </div>
 
-      <%= render "projects/rewards", :project_id => @project.id, :project_rewards => @project_rewards %>
+      <%= render "explores/rewards", :project_id => @project.id, :project_rewards => @project_rewards %>
 
       <a href="#" class="fuel-pledge-another">Pledge Another Amount <i class="icon icon--chevron-right"></i></a>
     </section>
@@ -229,7 +229,7 @@
             </div>
 
             <div class="grid-50">
-              <%= render "projects/milestones", :project_id => @project.id, :project_milestones => @project_milestones %>
+              <%= render "explores/milestones", :project_id => @project.id, :project_milestones => @project_milestones %>
 
             </div>
 
