@@ -1,5 +1,5 @@
   <%= javascript_include_tag "edit-project.js"%>
-  <% if @current_User.nil? %>
+  <% if @session.nil? %>
       <%= render "layouts/headerLogin" %>
   <% else %>
       <%= render "layouts/headerUser", :projects => @projects, :images => @project_coverImgs %>
