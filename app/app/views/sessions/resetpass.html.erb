@@ -1,4 +1,4 @@
-<%= render "layouts/headerUser" %>
+<%= render "layouts/headerLogin" %>
 <%= yield %>
 
 <!-- include bootstrap-->
@@ -50,7 +50,7 @@
           <p>
             <div class="form-actions">
               Have an account? <%= link_to "Log In", login_path%><br>
-              <%= link_to "Back", controller: "sessions", action: "new", class: "button--stroke--long" %><br>              
+              <%= link_to "Back", login_path, class: "button--stroke--long" %><br>              
             </div>
           </p>
       <% end %>
