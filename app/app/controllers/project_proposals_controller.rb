@@ -32,7 +32,7 @@ class ProjectProposalsController < ApplicationController
   def create
     @ProjectProposal = ProjectProposal.new(params_pp)
     @ProjectProposal.project_status_id = 2
-    @ProjectProposal.country=params[:country]
+    @ProjectProposal.country=params[:project_proposal][:country]
     img_url = params[:project_proposal][:img_url]    
     if @ProjectProposal.save
       # upload project proposal images
@@ -119,7 +119,7 @@ class ProjectProposalsController < ApplicationController
 
   private
   def params_pp
-    params.require(:project_proposal).permit(:title, :description, :project_category_id,:first_name,:last_name, :email, :contact_number,:country,:city,:state)
+    params.require(:project_proposal).permit(:title, :description, :project_category_id,:first_name,:last_name, :email, :contact_number,:country)
   end
 
   def params_pp_img

@@ -101,7 +101,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.is_banned = 0
-    @user.country=params[:country]
+    @user.country=params[:user][:country]
 
     #User Save to Database
     if @user.save
@@ -158,6 +158,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:password,:password_confirmation,:email,:first_name, :last_name,:profile_pic,:is_admin,:bio_url, :fb_url, :twitter_url, :instagram_url,:country)
+    params.require(:user).permit(:password,:password_confirmation,:email,:first_name, :last_name,:profile_pic,:is_admin,:bio_url, :fb_url, :twitter_url, :instagram_url)
   end
 end

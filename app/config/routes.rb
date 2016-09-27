@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   #Normal User
   get 'signup' => 'users#new', as: :signup #display create user page
-  post 'users' => 'users#create' # process creation of user
+  post 'users/create' => 'users#create', as: :createUser # process creation of user 
   get 'login' => 'sessions#new' , as: :login # show login form
   post 'sessions/create' => 'sessions#create' # process login
   get 'logout' => 'sessions#destroy', as: :logout # log out and invalidate session
@@ -52,7 +52,7 @@ Rails.application.routes.draw do
 
   #Project Proposal
   get 'GetStarted' => 'project_proposals#new', as: :newProposal # display create proposal page
-  get 'project_proposals/index' => 'project_proposals#index', as: :indexProposaladmin #view index of proposal of projects
+  get 'project_proposals/index' => 'project_proposals#index', as: :indexProposaladmin #view index of proposal of projects  
   post 'project_proposals/create' => 'project_proposals#create', as: :createProposal # process creation of proposal
   post 'project_proposals/accept/(:id)' => 'project_proposals#accept', as: :approveProposal
   post 'project_proposals/reject/(:id)' => 'project_proposals#reject', as: :rejectProposal
