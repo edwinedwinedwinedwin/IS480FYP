@@ -9,6 +9,7 @@ class ProjectProposalsController < ApplicationController
   def new
     @session =session[:user_id]
     @ProjectProposal = ProjectProposal.new
+
     if !@session.nil?
       @projects=ProjectProposal.select("*").joins(:project).where(:projects => {:user_id=>@session})
       @project_coverImgs = ProjectProposalImg.select('
@@ -47,6 +48,19 @@ class ProjectProposalsController < ApplicationController
       SysMailer.new_proposal_email(@ProjectProposal).deliver
       redirect_to successProposalSubmission_path(:id => @ProjectProposal.id)
     else
+      @session =session[:user_id]
+      if !@session.nil?
+        @projects=ProjectProposal.select("*").joins(:project).where(:projects => {:user_id=>@session})
+        @project_coverImgs = ProjectProposalImg.select('
+                project_proposal_imgs.project_proposal_id as pp_id,
+                project_proposal_imgs.id as ppi_id,
+                project_proposals.title as title,
+                projects.id as p_id
+                ').joins(project_proposal: :project).where(:projects => {:user_id => @session})
+        #@project_coverImgs = ProjectProposalImg.select("*").joins(:project_proposal).where(:project_proposal_imgs => {:project_proposal_id => @project.project_proposal_id} )
+
+        @user=User.find(@session) # only able to edit current logged in user
+      end
       render 'new'
     end
   end
