@@ -130,7 +130,7 @@
                   <li class="list-item">
                     <a href="#" class="project-location">
                       <i class="icon icon--location-pin"></i>
-                      <%= @project.state %> , <%= @project.city %> , <%= @project.country %>
+                       <%= @project.country %>
                     </a>
                   </li>
 
@@ -182,7 +182,7 @@
 
     <section class="project-content-section" id="updates">
       <div class="wrap" style="position: relative;">
-        <h2 class="section-heading heading--small">Updates<span class="notification-bubble">3</span>
+        <h2 class="section-heading heading--small">Updates
         </h2>
         <div class="js-lightbox-open" data-content-container="#fuel-lightbox-content-addupdate">
           <%= image_tag("defaultprofile.png", :class => "img-circular-avatar") %>
@@ -226,16 +226,27 @@
     </section>
     <section class="project-content-section" id="timeline">
       <h2 class="heading--small section-heading">
-       </h2>
+        Timeline
+
+      </h2>
+
 
       <div class="wrap">
 
+          <div class="diamond section-header">
+            <div class="diamond-inner">
+              <p>Ther</p>
+            </div>
 
-        <h2 class="section-header heading--small">
+          </div>
+
+          <div class="grid-container">
+
+          </div>
+
           <div class="js-lightbox-open" data-content-container="#fuel-lightbox-content-addmilestone">
             <%= image_tag("newMileStoneBtn.png") %>
           </div>
-        </h2>
 
       </div>
     </section>
@@ -278,7 +289,7 @@
             <ul class="meta-tags">
               <li class="meta-tag">
                 <i class="icon icon--location-pin"></i>
-                <%= User.find(pm.user_id).country %>,  <%= User.find(pm.user_id).state %>
+                <%= User.find(pm.user_id).country %>
               </li>
             </ul>
             <ul class="meta-tags">
@@ -469,7 +480,7 @@
         </div>
 
         <div class="form-field">
-          <%= f.text_area :description, rows: "8", class: "form-input form-textarea", :id => "update-description", :maxlength => "1000" %>
+          <%= f.text_area :description, rows: "5", class: "form-input form-textarea", :id => "update-description", :maxlength => "1000" %>
           <label class="form-label" for="description">Description</label>
           <div class="textarea-character-limit js-textarea-limit" data-for="update-description" data-limit="1000">
             <span class="textarea-character-limit__count">1000</span> characters left

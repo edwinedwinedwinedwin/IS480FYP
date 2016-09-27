@@ -4860,4 +4860,32 @@ select.dropdown_address{
  
 #width_tmp_select{
   display : none;
-} 
+}
+
+.diamond {
+    width: 150px;
+    height: 150px;
+    background: #1eff00;
+    /* Rotate */
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    /* Rotate Origin */
+    -webkit-transform-origin: 0 100%;
+    -moz-transform-origin: 0 100%;
+    -ms-transform-origin: 0 100%;
+    -o-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+    margin: 60px 0 10px 410px;
+}
+
+.diamond-inner {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    margin-top: 25px;
+    display: inline-block;
+    transform: rotate(45deg);
+}
