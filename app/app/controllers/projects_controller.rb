@@ -165,10 +165,15 @@ before_filter :logged_in,:authorize_user
 
     @memberDetails.save
     redirect_to showProject_path(params[:project_member][:project_id]) and return
-
-
-
   end
+
+  def liveProjectRequests
+    @project = Project.find(params[:id])
+    @project.project_status_id = 6
+    @project.save
+    redirect_to showProject_path(params[:id]) and return
+  end
+
   private
   def projects_params
     params.require(:projects).permit(:start_date, :end_date, :country,:project_status_id, :project_proposal_id, :user_id)

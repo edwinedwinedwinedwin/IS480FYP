@@ -77,7 +77,7 @@ Rails.application.routes.draw do
   post 'projects/updateTitle/(:id)' => 'projects#updateTitle', as: :updateTitle
   post 'projects/updateMember/(:id)' => 'projects#updateMemberDetails', as: :updateMemberDetails
   post 'projects/addMembers' => 'projects#addMembers', as: :addMembers
-
+  post 'projects/liveProjectRequests/(:id)' => 'projects#liveProjectRequest', as: :liveProjectRequest
   # user expertises routes
   get 'user_expertises/index' => 'user_expertises#index', as: :allExpertise
   get 'user_expertises/new' => 'user_expertises#new', as: :newExpertise

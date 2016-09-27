@@ -9,9 +9,9 @@
     <%= render "projects/coverpage", :project_id => @project.id, :project_proposal => @project_proposal, :project_proposal_imgs => @project_proposal_imgs %>
 
     <div class="project-fuel">
-      <div class="project-fuel-bar js-project-fuel-bar" data-fuel="50%">
+      <div class="project-fuel-bar js-project-fuel-bar" data-fuel="0%">
         <div class="project-fuel-bar__text">
-          50% funded
+          0% funded
         </div>
       </div>
     </div>
@@ -23,7 +23,7 @@
       <ul class="list--horizontal">
         <li class="list-item current"><a href="#overview">Overview</a></li>
         <li class="list-item"><a href="#about">About</a></li>
-        <li class="list-item"><a href="#details">Details</a></li>
+        <!--<li class="list-item"><a href="#details">Details</a></li> -->
         <li class="list-item"><a href="#updates">Updates</a></li>
         <li class="list-item"><a href="#team">Team</a></li>
         <li class="list-item"><a href="#fuel">Fund</a></li>
@@ -39,36 +39,45 @@
           <div class="grid-65">
             <div class="project-stats grid-container">
               <div class="project-funding-goal">
-                <span id="project-funding-goal" contenteditable>$10,000</span>
+                <!-- <span id="project-funding-goal" contenteditable>$10,000</span>
 
                 <span class="edit-save-button js-edit-save-button" id="project-funding-goal-save">
 									Done
-								</span>
+								</span>-->
               </div>
 
-              <div class="project-funding-goal-overlay" id="project-funding-goal-overlay"></div>
+              <!-- <div class="project-funding-goal-overlay" id="project-funding-goal-overlay"></div> -->
 
               <div class="grid-30">
                 <div class="project-stat">
-                  <span class="project-stat__data">20</span>
-                  <span class="project-stat__description">Days remaining</span>
+                  <%  if !@current_milestone.nil? %>
+                      <% no_Of_Days = @current_milestone.end_date.to_date - Date.today.to_date %>
+
+                      <span class="project-stat__data"><%= no_Of_Days.to_i %></span>
+                      <span class="project-stat__description">Days remaining</span>
+                  <% end %>
                 </div>
               </div>
               <div class="grid-30 push-5">
                 <div class="project-stat">
-                  <span class="project-stat__data">50%</span>
+                  <span class="project-stat__data">0%</span>
                   <span class="project-stat__description">Funded</span>
                 </div>
               </div>
               <div class="grid-30 push-10">
                 <div class="project-stat" id="project-funding">
-                  <span class="project-stat__data">$5,000</span>
-                  <span class="project-stat__description">of <span id="project-funding-value">$</span> funded</span>
+                  <span class="project-stat__data">$0</span>
+                  <span class="project-stat__description">of
+                    <%  if !@current_milestone.nil? %>
+                      <span id="project-funding-value">$<%= @current_milestone.target_amount %> </span> funded</span>
+                    <% end %>
 
-                  <span class="edit-button js-edit-button" id="project-funding-goal-edit" data-container="project-funding">
+
+                 <!-- <span class="edit-button js-edit-button" id="project-funding-goal-edit" data-container="project-funding">
 										<i class="icon icon--edit"></i>
 										Edit
 									</span>
+									-->
                 </div>
               </div>
             </div>
@@ -105,7 +114,6 @@
                     <% end %>
                 <% end %>
                 </div>
-
 
           <div class="grid-25 push-10">
             <ul class="list">
@@ -176,9 +184,7 @@
       </div>
     </section>
 
-    <section class="project-content-section" id="details">
-      <%= render "projects/inspirations", :project_id => @project.id, :project_inspiration => @project_inspirations %>
-    </section>
+
 
     <section class="project-content-section" id="updates">
       <div class="wrap" style="position: relative;">
