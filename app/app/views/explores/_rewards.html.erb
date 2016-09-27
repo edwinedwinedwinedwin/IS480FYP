@@ -1,6 +1,6 @@
 <ul class="fuel-rewards">
   <% project_rewards.each do |pr| %>
-      <li class="fuel-reward js-lightbox-open" data-content-container="#fuel-lightbox-content">
+      <li class="fuel-reward js-lightbox-open" data-content-container="#fuel-lightbox-content-<%=  pr.id %>">
 
         <header class="fuel-reward-header">
           <span class="fuel-reward__price">$<%= pr.min_amount %></span>
