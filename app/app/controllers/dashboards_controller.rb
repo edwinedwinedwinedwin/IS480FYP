@@ -9,7 +9,6 @@ class DashboardsController < ApplicationController
   							project_proposals.title as title,
   							projects.id as p_id
   							').joins(project_proposal: :project).where(:projects => {:user_id => @session})
-  	#@project_coverImgs = ProjectProposalImg.select("*").joins(:project_proposal).where(:project_proposal_imgs => {:project_proposal_id => @project.project_proposal_id} )
 
   	@user=User.find(@session) # only able to edit current logged in user
   end

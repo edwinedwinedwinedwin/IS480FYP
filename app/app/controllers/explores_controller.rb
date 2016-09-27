@@ -11,6 +11,7 @@ class ExploresController < ApplicationController
     if !checkCreator.nil?
       redirect_to showProject_path(:id => @project.id)
     end
+
     @project_proposal = ProjectProposal.find(@project.project_proposal_id)
     @user = User.find(@project.user_id)
     @project_proposal_imgs = ProjectProposalImg.where(:project_proposal_id => @project_proposal.id)
@@ -30,14 +31,10 @@ class ExploresController < ApplicationController
     @project_updates = ProjectUpdate.order('id DESC').where(:project_id => params[:id])
     @project_rewards = ProjectReward.where(:project_id => params[:id])
     @project_milestones = ProjectMilestone.where(:project_id => params[:id])
-    #@project_milestones_start = ProjectMilestone.find_by_project_id(params[:id]).first
-    #@project_milestones_end = ProjectMilestone.find_by_project_id(params[:id]).last
 
     if !session[:user_id].nil?
-      @new_reward = ProjectReward.new
-      @new_update = ProjectUpdate.new
 
-      @projects=ProjectProposal.select("*").joins(:project).where(:projects => {:user_id=>@session})
+     @projects=ProjectProposal.select("*").joins(:project).where(:projects => {:user_id=>@session})
       @project_coverImgs = ProjectProposalImg.select('
                   project_proposal_imgs.project_proposal_id as pp_id,
                   project_proposal_imgs.id as ppi_id,

@@ -26,7 +26,7 @@
         <li class="list-item"><a href="#details">Details</a></li>
         <li class="list-item"><a href="#updates">Updates</a></li>
         <li class="list-item"><a href="#team">Team</a></li>
-        <li class="list-item"><a href="#fuel">Fuel</a></li>
+        <li class="list-item"><a href="#fuel">Fund</a></li>
         <li class="list-item"><a href="#timeline">Timeline</a></li>
       </ul>
     </nav>
@@ -63,7 +63,7 @@
               <div class="grid-30 push-10">
                 <div class="project-stat" id="project-funding">
                   <span class="project-stat__data">$5,000</span>
-                  <span class="project-stat__description">of <span id="project-funding-value">$10,000</span> funded</span>
+                  <span class="project-stat__description">of <span id="project-funding-value">$</span> funded</span>
 
                   <span class="edit-button js-edit-button" id="project-funding-goal-edit" data-container="project-funding">
 										<i class="icon icon--edit"></i>
@@ -563,52 +563,6 @@
     </div>
   </div>
 
-  <!--LIGHTBOX -->
-<div class="l--hidden" id="fuel-lightbox-content">
-  <div class="fuel-lightbox-container">
-
-    <legend class="form-heading heading"> Edit Profile </legend>
-    <span class="fuel-lightbox__heading">Upload your profile picture</span>
-
-    <%= form_for :user, url:  updateProfilePic_path(session[:user_id]) ,method: :post do |f| %>
-
-        <div class="form-field">
-
-          <% if @user.errors.any? %>
-              <div class="panel panel-danger">
-                <div class="panel-heading"><h2><strong>Your inputs do not meet the requirements:</strong></h2></div>
-                <div class="panel-body alert-design">
-                  <ul style="list-style-type:circle">
-                    <% @user.errors.full_messages.each do |message| %>
-                        <li><%= message %></li>
-                    <% end %>
-                  </ul>
-                </div>
-              </div>
-          <% end %>
-        </div>
-
-
-        <div class="form-field">
-          <%= f.file_field :profile_pic, class: "form-input" %>
-          <label class="form-label" for="profile_pic">Profile Picture (File Size: < 2MB)</label>
-        </div>
-        <% current_user=User.find(session[:user_id]) %>
-        <% if current_user.profile_pic.present? %> <!-- check if profile pic exists -->
-    <% url = current_user.profile_pic%> <!-- get entire url-->
-            <% index=url.to_s.rindex('/') %> <!-- get last index of '/'-->
-            <!--
-        <div align=center> <%= url.to_s[index+1..url.to_s.length] %> </div>
-        <div align=center><%= image_tag(current_user.profile_pic,:class=> "img-circular") %></div> -->
-        <% end %>
-
-        <div class="form-actions">
-          <%= f.submit "Submit", class: "button--stroke--long" %>
-        </div>
-
-    <% end %>
-  </div>
-</div>
 
 <%= render "layouts/try" %>
 <%= yield %>
