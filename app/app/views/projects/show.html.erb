@@ -9,7 +9,7 @@
     <%= render "projects/coverpage", :project_id => @project.id, :project_proposal => @project_proposal, :project_proposal_imgs => @project_proposal_imgs %>
 
     <div class="project-fuel">
-      <div class="project-fuel-bar js-project-fuel-bar" data-fuel="0%">
+      <div class="project-fuel-bar js-project-fuel-bar" data-fuel="50%">
         <div class="project-fuel-bar__text">
           0% funded
         </div>
@@ -54,6 +54,9 @@
                       <% no_Of_Days = @current_milestone.end_date.to_date - Date.today.to_date %>
 
                       <span class="project-stat__data"><%= no_Of_Days.to_i %></span>
+                      <span class="project-stat__description">Days remaining</span>
+                  <% else %>
+                      <span class="project-stat__data">0</span>
                       <span class="project-stat__description">Days remaining</span>
                   <% end %>
                 </div>
@@ -118,23 +121,44 @@
           <div class="grid-25 push-10">
             <ul class="list">
               <li class="list-item fuel-button-container">
-                <a href="#fuel" class="fuel-button js-scrollto-button" data-scroll-target="#fuel">
+                <% if @project.project_status_id == 1 %>
+                <%= link_to liveProjectRequest_path(:id => @project.id), :class =>"fuel-button " do %>
+                <!--<a href="#fuel" class="fuel-button js-scrollto-button" data-scroll-target="#fuel">-->
 									<span class="fuel-button__content">
-										<span class="fuel-button__cta">Fund</span>
+										<span class="fuel-button__cta">Live</span>
 										<span class="fuel-button__text">This Project</span>
                       <i class="icon icon--chevron-down"></i>
 									</span>
-                </a>
+                <!--</a>-->
+                  <% end %>
+                <% elsif  @project.project_status_id == 6 %>
+                    <%= link_to '#', :class =>"fuel-button " do %>
+                        <!--<a href="#fuel" class="fuel-button js-scrollto-button" data-scroll-target="#fuel">-->
+                        <span class="fuel-button__content">
+										<span class="fuel-button__cta">Live</span>
+										<span class="fuel-button__text">In Pending</span>
+                      <i class="icon icon--chevron-down"></i>
+									</span>
+                        <!--</a>-->
+                    <% end %>
+
+                <% elsif  @project.project_status_id == 7 %>
+                    <%= link_to '#', :class =>"fuel-button" do %>
+                        <!--<a href="#fuel" class="fuel-button js-scrollto-button" data-scroll-target="#fuel">-->
+                        <span class="fuel-button__content">
+
+                          <span class="fuel-button__text">IS</span>
+										<span class="fuel-button__cta">Live</span>
+
+                      <i class="icon icon--chevron-down"></i>
+									</span>
+                        <!--</a>-->
+                    <% end %>
+                <% end %>
               </li>
 
               <li class="list-item">
                 <ul class="list--narrow">
-                  <li class="list-item">
-                    <a href="#" class="button--stroke--full">
-                      <span>Discuss</span>
-                    </a>
-                  </li>
-
                   <li class="list-item">
                     <a href="#" class="project-location">
                       <i class="icon icon--location-pin"></i>
