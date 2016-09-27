@@ -235,13 +235,26 @@
 
           <div class="diamond section-header">
             <div class="diamond-inner">
-              <p>Ther</p>
+              <span class="flag"></span>
+              <p class="wordwrapper"><%=@project_proposal.title %></p>
+              <p class="wordwrapper">$<%=@total_target_amount %></p>
+              <p class="wordwrapper"><%= @project_proposal.title %> Days</p>
             </div>
 
           </div>
 
           <div class="grid-container">
+            <div class="grid-25">
+            </div>
 
+            <div class="grid-50">
+              <%= render "projects/milestones", :project_id => @project.id, :project_milestones => @project_milestones %>
+
+            </div>
+
+            <div class="grid-25">
+
+            </div>
           </div>
 
           <div class="js-lightbox-open" data-content-container="#fuel-lightbox-content-addmilestone">
@@ -264,6 +277,7 @@
 
   </div>
 </div>
+
 <div class="lightbox-overlay js-lightbox-overlay js-lightbox-close"></div>
 
 <% @project_members.each do |pm| %>
@@ -500,7 +514,54 @@
   </div>
 </div>
 
-<!--LIGHTBOX -->
+<div class="l--hidden" id="fuel-lightbox-content-addmilestone">
+    <div class="fuel-lightbox-container">
+      <legend class="form-heading heading">Add Milestone</legend>
+      <span class="fuel-lightbox__heading">Add new milestone </span>
+      <%= form_for :project_milestone, url: createProjectMilestone_path, method: :post do |f| %>
+
+          <%= f.hidden_field :project_id, :value => @project.id %>
+          <%= f.hidden_field :project_status_id, :value => 2 %>
+
+          <% if @new_milestone.errors.any? %>
+              <div class="alert alert-danger" role="alert">
+                <b><u>Errors:</u></b>
+                <ul>
+                  <% @new_milestone.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+          <% end %>
+
+          <div class="form-field">
+            <%= f.text_field :name, class: "form-input", placeholder: "Name of milestone" %>
+            <label class="form-label" for="name">Milestone name</label>
+          </div>
+
+          <div class="form-field">
+            <%= f.date_select :start_date, { start_year:Date.today.year, order: [:month, :year] , :discard_day => true}, :class => "btn btn-default dropdown-toggle"%>
+            <label class="form-label" for="start_date">Start Date</label>
+          </div>
+
+          <div class="form-field">
+            <%= f.date_select :end_date, { start_year:Date.today.year, order: [:month, :year] , :discard_day => true}, :class => "btn btn-default dropdown-toggle"%>
+            <label class="form-label" for="end_date">End Date</label>
+          </div>
+
+          <div class="form-field">
+            <%= f.text_field :target_amount, class: "form-input", placeholder: "Target Amount" %>
+            <label class="form-label" for="name">Target Amount</label>
+          </div>
+
+          <div class="form-actions">
+            <td align=right><%= f.submit "Add Milestone", class: "button--stroke--long" %></td>
+          </div>
+      <% end %>
+    </div>
+  </div>
+
+  <!--LIGHTBOX -->
 <div class="l--hidden" id="fuel-lightbox-content">
   <div class="fuel-lightbox-container">
 

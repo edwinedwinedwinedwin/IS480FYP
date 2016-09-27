@@ -117,7 +117,7 @@ Rails.application.routes.draw do
   #project milstone
   get 'project_milestones/new' => 'project_milestones#new'
   get 'project_milestones/index' => 'project_milestones#index'
-  post 'project_milestones' => 'project_milestones#create'
+  post 'project_milestones' => 'project_milestones#create', as: :createProjectMilestone
   get 'project_milestones/edit' => 'project_milestones#edit'
   post 'project_milestones/destroy/(:id)' => 'project_milestones#destroy'
 
