@@ -1,17 +1,13 @@
 class ExploresController < ApplicationController
   def index
     @projects = Project.all
-
-    current_User = session[:user_id]
-
+    @session = session[:user_id]
   end
 
   def show
     @project = Project.find_by(:id => params[:id])
-   
-   @current_User = session[:user_id]
-
-   	checkCreator = ProjectMember.find_by(:user_id => @current_User, :project_id => @project.id)
+    @session = session[:user_id]
+   	checkCreator = ProjectMember.find_by(:user_id => @session, :project_id => @project.id)
     if !checkCreator.nil?
       redirect_to showProject_path(:id => @project.id)
     end
