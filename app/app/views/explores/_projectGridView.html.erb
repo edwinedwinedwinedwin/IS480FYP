@@ -22,7 +22,7 @@
 
       <% textOut = ProjectProposal.find(p.project_proposal_id).description %>
       <div class="explore-project__excerpt">
-        <p class="wordwrapper" maxlength="40"><%= textOut[0..90].gsub(/\s\w+\s*$/, '...') %></p>
+        <p class="wordwrapper"><%= textOut[0..90].gsub(/\s\w+\s*$/, '...') %></p>
       </div>
 
       <div class="explore-project__cta">
