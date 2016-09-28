@@ -54,7 +54,7 @@ before_filter :logged_in,:authorize_user
                   projects.id as p_id
                   ').joins(project_proposal: :project).where(:projects => {:user_id => @session})
 
-      @user = User.find(@current_User)
+      @user = User.find(@user.id)
     end
 
   end
