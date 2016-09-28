@@ -20,8 +20,9 @@
               <%= User.find(p.user_id).last_name %> <%= User.find(p.user_id).first_name %></span>
 						</span>
 
+      <% textOut = ProjectProposal.find(p.project_proposal_id).description %>
       <div class="explore-project__excerpt">
-        <p class="wordwrapper" ><%= ProjectProposal.find(p.project_proposal_id).description %></p>
+        <p class="wordwrapper" maxlength="40"><%= textOut[0..90].gsub(/\s\w+\s*$/, '...') %></p>
       </div>
 
       <div class="explore-project__cta">
