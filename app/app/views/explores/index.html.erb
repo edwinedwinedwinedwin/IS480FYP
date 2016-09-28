@@ -78,7 +78,7 @@
 			gridsChosen = ["horizontal", "square", "square", "vertical", "square--large","square", "square", "square", "square", "horizontal", "horizontal", "horizontal", "square--large", "square", "square-fresh", "square", "square"]
 
 		%>
-      	<% @projects.each do |p| %>
+      	<% @allProjects.each do |p| %>
             <%= render "explores/projectGridView", :p => p, :girdStyle => "square explore-project--dark" %>
 
       <% end %>

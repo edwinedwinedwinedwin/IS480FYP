@@ -5,9 +5,6 @@
 <% end %>
 <% @current_milestone = ProjectMilestone.order('start_date ASC').where(:project_id => params[:id]).where.not(:project_status_id => 5).first %>
 
-<!--
-  <%= link_to viewProject_path(:id => p.id), :class => "explore-project-link" %>
--->
 
   <header class="explore-project-header">
     <h3 class="explore-project__title whitebackground"><%= ProjectProposal.find(p.project_proposal_id).title %></h3>

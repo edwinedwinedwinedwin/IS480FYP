@@ -20,7 +20,11 @@
 </head>
 
   <div class="banner-notice">
-    Don't let your work go to waste. <a href="signup.php" style="display:inline;padding: 0;"><span class="t--strong">Be a part</span></a> of YBCO and create projects you're passionate about.
+    Don't let your work go to waste. 
+    <%= link_to newProposal_path, :style=>"display:inline;padding: 0;" do %>
+    <span class="t--strong">Be a part</span> 
+
+    <% end%>of YBCO and create projects you're passionate about.
     <i class="icon icon--cross js-close"></i>
   </div>
 
