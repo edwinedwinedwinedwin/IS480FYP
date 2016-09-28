@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authorize_admin, only: [:index,:show]
-  before_action only: [:show, :edit, :update,:destroy]
+  before_action only: [:show, :edit, :update,:destroy, :ban, :unban]
   skip_before_action :authorize, only: [:new, :create, :index]
 
   def changepass
@@ -145,14 +145,14 @@ class UsersController < ApplicationController
     @user=User.find(params[:id])
     @user.is_banned=1
     @user.save
-    redirect_to userIndex_path
+    redirect_to users_path and return
   end
 
   def unban
     @user=User.find(params[:id])
     @user.is_banned=0
     @user.save
-    redirect_to userIndex_path
+    redirect_to users_path and return
 
   end
 

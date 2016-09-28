@@ -33,15 +33,15 @@ Rails.application.routes.draw do
   post 'sessions/resetpass' => 'users#resetpass', as: :userResetPassword
 
   #Admin
+  get 'users/index' => 'users#index', as: :userIndex
   get 'addAdmin' => 'admins#new', as: :addAdmin #display create admin pageget 'addAdmin' => 'admins#new', as: :addAdmin #display create admin page
-  post 'users/destroy/(:id)' => 'users#destroy', as: :deleteAdmin
   get 'admins/editprofile' => 'users#edit#:id',as: :editAdminProfile
   get 'admins/manage' => 'admins#manage' , as: :adminManage
   get 'admins/index' => 'admins#index', as: :adminDashboard
-  get 'users/index' => 'users#index', as: :userIndex
-  post 'users/ban/(:id)' => 'users#ban', as: :banUsers
-  post 'users/unban/(:id)' => 'users#unban', as: :unbanUsers
+  post 'users/ban/:id' => 'users#ban', as: :banUsers
+  post 'users/unban/:id' => 'users#unban', as: :unbanUsers
   get 'admins/changepass' => 'users#changepass#:id', as: :adminChangePassword
+  post 'users/destroy/(:id)' => 'users#destroy', as: :deleteAdmin
 
   # user_shipping_addresses routes
   get 'user_shipping_addresses/index' => 'user_shipping_addresses#index', as: :manageShippingAddress # get user shipping address
