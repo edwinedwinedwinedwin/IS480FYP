@@ -42,21 +42,28 @@ class ExploresController < ApplicationController
 
     @project_updates = ProjectUpdate.order('id DESC').where(:project_id => params[:id])
     @project_rewards = ProjectReward.where(:project_id => params[:id])
-    @project_milestones = ProjectMilestone.where(:project_id => params[:id])
-    #@project_milestones_start = ProjectMilestone.find_by_project_id(params[:id]).first
-    #@project_milestones_end = ProjectMilestone.find_by_project_id(params[:id]).last
+    @project_milestones = ProjectMilestone.order('start_date ASC').where(:project_id => params[:id])
+
+    #update the status of milestone
+    @project_milestones.each do |pm|
+      if pm.end_date < Date.today
+        @project_milestones.project_status_id = 5
+        @project_milestones.save
+      end
+    end
+
+    @current_milestone = ProjectMilestone.order('start_date ASC').where(:project_id => params[:id]).where.not(:project_status_id => 5).first
+    @total_target_amount = ProjectMilestone.where(:project_id => params[:id]).sum(:target_amount)
 
     if !session[:user_id].nil?
-      @new_reward = ProjectReward.new
-      @new_update = ProjectUpdate.new
 
-      @projects=ProjectProposal.select("*").joins(:project).where(:projects => {:user_id=>@session})
+      @projects=ProjectProposal.select("*").joins(:project).where(:projects => {:user_id=>@current_User})
       @project_coverImgs = ProjectProposalImg.select('
                   project_proposal_imgs.project_proposal_id as pp_id,
                   project_proposal_imgs.id as ppi_id,
                   project_proposals.title as title,
                   projects.id as p_id
-                  ').joins(project_proposal: :project).where(:projects => {:user_id => @session})
+                  ').joins(project_proposal: :project).where(:projects => {:user_id => @current_User})
     end
   end
 end
