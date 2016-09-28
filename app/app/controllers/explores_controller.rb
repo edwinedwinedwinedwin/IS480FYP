@@ -1,19 +1,17 @@
 class ExploresController < ApplicationController
   def index
-    @projects = Project.all
+    @Projects = Project.all
 
-    current_User = session[:user_id]
+    @current_User = session[:user_id]
     if !session[:user_id].nil?
-      @new_reward = ProjectReward.new
-      @new_update = ProjectUpdate.new
 
-      @projects=ProjectProposal.select("*").joins(:project).where(:projects => {:user_id=>@session})
+      @projects =ProjectProposal.select("*").joins(:project).where(:projects => {:user_id=>@current_User})
       @project_coverImgs = ProjectProposalImg.select('
                   project_proposal_imgs.project_proposal_id as pp_id,
                   project_proposal_imgs.id as ppi_id,
                   project_proposals.title as title,
                   projects.id as p_id
-                  ').joins(project_proposal: :project).where(:projects => {:user_id => @session})
+                  ').joins(project_proposal: :project).where(:projects => {:user_id => @current_User})
     end
   end
 
