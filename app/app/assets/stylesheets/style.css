@@ -4896,23 +4896,27 @@ select.dropdown_address{
     background-image: url("flag_Milestone.png");
 }
 
-.diamondtime{
+.diamondamount{
   color: #ffffff;
   font-size: 1.3em;
   font-weight: bold;
   margin-top:0em;
+  height:30px;
 }
 .diamonddays{
   color: #006400;
   font-size: 0.9em;
   font-weight: bold;
   margin-top:0em;
+  height:30px;
 }
 .diamondtitle{
   margin-top:0em;
   color: #ffffff;
   font-size: 1.3em;
   font-weight: bold;
+  word-wrap:break-word;
+  line-height:1.2em;
 }
 
 .whitebackground {
