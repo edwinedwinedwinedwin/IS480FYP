@@ -26,12 +26,15 @@ class ExploresController < ApplicationController
     if !checkCreator.nil?
       redirect_to showProject_path(:id => params[:id])
     else
-      @project_proposal = ProjectProposal.find(@project.project_proposal_id)
-      @user = User.find(@project.user_id)
-      @project_proposal_imgs = ProjectProposalImg.where(:project_proposal_id => @project_proposal.id)
-      @project_inspirations = ProjectInspiration.where(:project_id => params[:id])
 
-      @project_members = ProjectMember.joins(:user).select('project_members.id as pm_id,
+    end
+
+    @project_proposal = ProjectProposal.find(@project.project_proposal_id)
+    @user = User.find(@project.user_id)
+    @project_proposal_imgs = ProjectProposalImg.where(:project_proposal_id => @project_proposal.id)
+    @project_inspirations = ProjectInspiration.where(:project_id => params[:id])
+
+    @project_members = ProjectMember.joins(:user).select('project_members.id as pm_id,
                         users.id as user_id,
                         users.bio_url as bio_url,
                         users.instagram_url as instagram_url,
@@ -42,21 +45,20 @@ class ExploresController < ApplicationController
                         project_members.sub_description as sub_description,
                         project_members.description as description').where(:project_members => {:project_id => params[:id]})
 
-      @project_updates = ProjectUpdate.order('id DESC').where(:project_id => params[:id])
-      @project_rewards = ProjectReward.where(:project_id => params[:id])
-      @project_milestones = ProjectMilestone.order('start_date ASC').where(:project_id => params[:id])
+    @project_updates = ProjectUpdate.order('id DESC').where(:project_id => params[:id])
+    @project_rewards = ProjectReward.where(:project_id => params[:id])
+    @project_milestones = ProjectMilestone.order('start_date ASC').where(:project_id => params[:id])
 
-      #update the status of milestone
-      @project_milestones.each do |pm|
-        if pm.end_date < Date.today
-          @project_milestones.project_status_id = 5
-          @project_milestones.save
-        end
+    #update the status of milestone
+    @project_milestones.each do |pm|
+      if pm.end_date < Date.today
+        @project_milestones.project_status_id = 5
+        @project_milestones.save
       end
-
-      @current_milestone = ProjectMilestone.order('start_date ASC').where(:project_id => params[:id]).where.not(:project_status_id => 5).first
-      @total_target_amount = ProjectMilestone.where(:project_id => params[:id]).sum(:target_amount)
     end
+
+    @current_milestone = ProjectMilestone.order('start_date ASC').where(:project_id => params[:id]).where.not(:project_status_id => 5).first
+    @total_target_amount = ProjectMilestone.where(:project_id => params[:id]).sum(:target_amount)
 
     if !session[:user_id].nil?
 
@@ -68,6 +70,7 @@ class ExploresController < ApplicationController
                   projects.id as p_id
                   ').joins(project_proposal: :project).where(:projects => {:user_id => @current_User})
       @user = User.find(@current_User)
+      @session = @user.id
     end
   end
 end
