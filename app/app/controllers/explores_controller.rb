@@ -1,6 +1,6 @@
 class ExploresController < ApplicationController
   def index
-    @Projects = Project.all
+    @allProjects = Project.all
 
     @current_User = session[:user_id]
     if !session[:user_id].nil?
@@ -12,6 +12,8 @@ class ExploresController < ApplicationController
                   project_proposals.title as title,
                   projects.id as p_id
                   ').joins(project_proposal: :project).where(:projects => {:user_id => @current_User})
+
+      @user = User.find(@current_User)
     end
   end
 
@@ -64,6 +66,7 @@ class ExploresController < ApplicationController
                   project_proposals.title as title,
                   projects.id as p_id
                   ').joins(project_proposal: :project).where(:projects => {:user_id => @current_User})
+      @user = User.find(@current_User)
     end
   end
 end
