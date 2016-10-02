@@ -13,11 +13,11 @@ class SessionsController < ApplicationController
         else
         session[:user_id] = user.id        
         if user.is_admin
-          redirect_to :controller => 'admins', :action => 'index' and return
+          redirect_to adminDashboard_path and return
         else
           @checkProject = Project.where(:user_id => user.id).first
           if @checkProject.nil?
-            redirect_to dashboardIndex_path()
+            redirect_to dashboardIndex_path
           else
             redirect_to showProject_path(:id => @checkProject.id)
           end
@@ -26,7 +26,6 @@ class SessionsController < ApplicationController
     else                
         flash[:alert]="Invalid username/password."
         redirect_to login_path and return
-
     end
   end
 

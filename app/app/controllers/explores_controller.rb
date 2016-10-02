@@ -2,35 +2,31 @@ class ExploresController < ApplicationController
   def index
     @allProjects = Project.all
 
-    @current_User = session[:user_id]
-    if !session[:user_id].nil?
 
-      @projects =ProjectProposal.select("*").joins(:project).where(:projects => {:user_id=>@current_User})
+    if !session[:user_id].nil?
+      @current_User = User.find(session[:user_id])
+      @projects =ProjectProposal.select("*").joins(:project).where(:projects => {:user_id=>@current_User.id})
       @project_coverImgs = ProjectProposalImg.select('
                   project_proposal_imgs.project_proposal_id as pp_id,
                   project_proposal_imgs.id as ppi_id,
                   project_proposals.title as title,
                   projects.id as p_id
-                  ').joins(project_proposal: :project).where(:projects => {:user_id => @current_User})
-
-      @user = User.find(@current_User)
+                  ').joins(project_proposal: :project).where(:projects => {:user_id => @current_User.id})
     end
   end
 
   def show
     @project = Project.find_by(:id => params[:id])
 
-   @current_User = session[:user_id]
+   @current_User = User.find(session[:user_id])
 
-    checkCreator = ProjectMember.find_by(:user_id => @current_User, :project_id => @project.id)
+    checkCreator = ProjectMember.find_by(:user_id => @current_User.id, :project_id => @project.id)
     if !checkCreator.nil?
       redirect_to showProject_path(:id => params[:id])
-    else
-
     end
 
     @project_proposal = ProjectProposal.find(@project.project_proposal_id)
-    @user = User.find(@project.user_id)
+    @project_creator = User.find(@project.user_id)
     @project_proposal_imgs = ProjectProposalImg.where(:project_proposal_id => @project_proposal.id)
     @project_inspirations = ProjectInspiration.where(:project_id => params[:id])
 
@@ -60,7 +56,7 @@ class ExploresController < ApplicationController
     @current_milestone = ProjectMilestone.order('start_date ASC').where(:project_id => params[:id]).where.not(:project_status_id => 5).first
     @total_target_amount = ProjectMilestone.where(:project_id => params[:id]).sum(:target_amount)
 
-    if !session[:user_id].nil?
+    if !@current_User.nil?
 
       @projects=ProjectProposal.select("*").joins(:project).where(:projects => {:user_id=>@current_User})
       @project_coverImgs = ProjectProposalImg.select('

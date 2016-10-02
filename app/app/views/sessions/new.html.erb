@@ -7,10 +7,10 @@
 
 <div class="page-main">
   <div class="page-section">
-    <legend class="form-heading heading--login"> Log In </legend>
-            <br>
-            <strong>TIP: </strong>Login with your registered email and password.      
-      <%= form_tag('/sessions/create') do |f| %>    
+    <legend class="form-heading heading--login">Log In</legend>
+         <br>
+            <strong>TIP: </strong>Login with your registered email and password.
+      <%= form_tag(loginProcess_path) do |f| %>
       <div class="form-field">
           <% if flash[:alert] %>
               <div class="panel panel-danger">
@@ -24,32 +24,24 @@
           <% end %>
           </div>
 
-          <p>
           <div class="form-field">
             <%= text_field_tag :email, nil,class: "form-input" %>
             <label class="form-label" for="email">Email</label>
           </div>
-          </p>
 
-          <p>
           <div class="form-field">
             <%= password_field_tag :password,nil, class: "form-input" %>
             <label class="form-label" for="password">Password</label>
           </div>
-          </p>
 
-          <p>
           <div class="form-actions">
             <%= submit_tag "LOGIN", class: "button--stroke--long" %>
           </div>
-          </p>
 
-          <p>
             <div class="form-actions">
               Need an account? <%= link_to "Sign Up", signup_path%><br>
               Forget your password? <%= link_to "Reset Password", userResetPassword_path %>
             </div>
-          </p>
       <% end %>
 
 </p>

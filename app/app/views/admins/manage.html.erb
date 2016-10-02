@@ -1,44 +1,52 @@
-<%= stylesheet_link_tag "style" %>
-<%= stylesheet_link_tag "component" %>
-  <%= stylesheet_link_tag "flickity/flickity.css" %>
-  <%= javascript_include_tag "application"%>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+<%= render "layouts/headerAdmin" %>
+<%= yield %>
 
+<div class="container-fluid">
+  <div class="row">
+        <span class="nav--open" onclick="openNav()"><i class="icon icon--menu"></i>
+          <%= link_to '', adminDashboard_path , class: "icon icon--color icon--ybco-logomark" %></span>
+  </div>
 
-<p id="notice"><%= notice %></p>
-<br>
-<legend class="form-heading--tables heading"><h1>Manage Admins</h1></legend><br>
+  <div class="row">
+    <p id="notice"><%= notice %></p>
+  </div>
 
-<%= link_to '< BACK', adminDashboard_path, class: "back--button"  %><br>
+  <div class="row">
+    <legend class="form-heading--tables heading">Manage Admins</legend>
+    <%= link_to '< BACK', adminDashboard_path, class: "back--button"  %>
+  </div>
 
-<table class="table-show">
-  <thead>
-    <tr class="tr-row">      
-      <th class="th-row"><strong>Email</strong></th>      
-      <th class="th-row"><strong>First name</strong></th>
-      <th class="th-row"><strong>Last name</strong></th>    
-      <th class="th-row" colspan="3"></th>
-    </tr>
-  </thead>
+  <div class="row">
+    <table class="table-show">
+      <tr class="tr-row">
+          <th class="th-row"><strong>Email</strong></th>
+          <th class="th-row"><strong>First name</strong></th>
+          <th class="th-row"><strong>Last name</strong></th>
+          <th class="th-row" colspan="3"><strong>Action</strong></th>
+      </tr>
 
-  <tbody>
-    <% User.all.each do |user| %>      
-      <% if user.is_admin %>
-      <tr class="tr-row">        
-        <td class="td-row"><%= user.email %></td>        
-        <td class="td-row"><%= user.first_name %></td>
-        <td class="td-row"><%= user.last_name %></td>                                
-        <td class="td-row">
-          <% adminsCount=User.where('is_admin = true').count %>
-          <% if adminsCount!=1 && user.id!=session[:user_id] %>
-            <b><%= link_to 'Remove Admin', deleteAdmin_path(:id => user.id) %></b><br></td>
+      <% User.all.each do |user| %>
+       <% if user.is_admin %>
+         <tr class="tr-row">
+           <td class="td-row"><%= user.email %></td>
+           <td class="td-row"><%= user.first_name %></td>
+           <td class="td-row"><%= user.last_name %></td>
+           <td class="td-row">
+            <% adminsCount=User.where('is_admin = true').count %>
+             <% #Session User ID is used here to verify who is the current admin login) %>
+            <% if adminsCount!=1 && user.id!= session[:user_id] %>
+              <b><%= link_to 'Remove Admin', deleteAdmin_path(:id => user.id) %></b>
             <% else %>
               <a href="#" class="btn btn-large btn-warning disabled">Me</a>
-          <% end %>
-      </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
+           <% end %>
+           </td>
+        </tr>
+        <% end %>
+       <% end %>
+    </table>
+  </div>
 
-<%= link_to 'Add New Admin', addAdmin_path, class: "button--stroke--long--add" %>
+  <div class="row">
+    <%= link_to 'Add New Admin', addAdmin_path, class: "button--stroke--long--add" %>
+  </div>
+</div>

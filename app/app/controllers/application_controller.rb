@@ -9,7 +9,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def logged_in
-    redirect_to :controller => 'sessions', :action => 'new' unless current_user
+    redirect_to login_path unless current_user
+
   end
 
   def after_logged_in
@@ -20,20 +21,20 @@ class ApplicationController < ActionController::Base
 
   def authorize_admin
     if current_user==nil   
-      redirect_to :controller => 'sessions', :action => 'new'
+      redirect_to login_path
     else
       if !current_user.is_admin
-       redirect_to dashboardIndex_path()
+       redirect_to dashboardIndex_path and return
       end
     end      
   end
 
   def authorize_user
     if current_user==nil   
-      redirect_to :controller => 'sessions', :action => 'new'
+      redirect_to login_path
     else
       if current_user.is_admin
-        redirect_to :controller => 'admins', :action => 'index' and return      
+        redirect_to adminDashboard_path and return
       end
     end      
   end

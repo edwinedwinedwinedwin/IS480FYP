@@ -1,14 +1,10 @@
   <%= javascript_include_tag "edit-project.js"%>
-  <% if @current_User.nil? %>
+  <% if session[:user_id].nil? %>
       <%= render "layouts/headerLogin" %>
   <% else %>
-      <%= render "layouts/headerUser", :projects => @projects, :images => @project_coverImgs %>
+      <%= render "layouts/headerUser", :projects => @projects, :images => @project_coverImgs, :current_user => @current_User %>
       <%= yield %>
   <% end %>
-
-
-<link rel="stylesheet" href="/assets/unsemantic/assets/stylesheets/unsemantic-grid-responsive-no-ie7.css" >
-<link rel="stylesheet" href="/assets/unsemantic/assets/stylesheets/unsemantic-grid-responsive-tablet-no-ie7.css">
 
 <main class="page-main">
 	<header class="explore-header" style="background-image:url(/assets/explore-header.jpg);">
@@ -66,34 +62,14 @@
 		</a>
 
 		<ul class="explore-projects-grid wrap">
-
-			<li class="explore-project explore-project--square explore-project--list explore-project--arrow-right">
-				<header class="explore-project-header">
-					<h3 class="explore-project__title">Fresh</h3>
-					<p>From the oven</p>
-				</header>
-			</li>
-
 		<% 
 			gridsChosen = ["horizontal", "square", "square", "vertical", "square--large","square", "square", "square", "square", "horizontal", "horizontal", "horizontal", "square--large", "square", "square-fresh", "square", "square"]
-
 		%>
       	<% @allProjects.each do |p| %>
             <%= render "explores/projectGridView", :p => p, :girdStyle => "square explore-project--dark" %>
-
       <% end %>
-
-      		<li class="explore-project explore-project--square explore-project--list explore-project--arrow-down">
-				<header class="explore-project-header">
-					<h3 class="explore-project__title">Curated</h3>
-					<p>Projects selected just for you</p>
-				</header>
-			</li>
-
 		</ul>
-
-		<a href="#" class="project-explore__load-more">Load More</a>
-
+		  <a href="#" class="project-explore__load-more">Load More</a>
 	</section>
 </main>
 

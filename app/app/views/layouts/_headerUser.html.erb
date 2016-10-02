@@ -1,5 +1,4 @@
 <html lang="en">
-
 <head>
   <meta name="robots" content="noindex">
   <meta charset="UTF-8">
@@ -11,11 +10,10 @@
 
   <%= stylesheet_link_tag "component" %>
   <%= stylesheet_link_tag "flickity/flickity.css" %>
-    <%= stylesheet_link_tag "style" %>
+  <%= stylesheet_link_tag "style" %>
   <%= javascript_include_tag "application"%>
     <!-- endbower -->
   <link rel="icon" type="image/png" href="favicon.png">
-
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
@@ -24,7 +22,7 @@
     <%= link_to newProposal_path, :style=>"display:inline;padding: 0;" do %>
     <span class="t--strong">Be a part</span> 
 
-    <% end%>of YBCO and create projects you're passionate about.
+    <% end %>of YBCO and create projects you're passionate about.
     <i class="icon icon--cross js-close"></i>
   </div>
 
@@ -46,10 +44,7 @@
     <div class="site-user">
       <div class="site-avatar">
         <div class="js-lightbox-open" data-content-container="#fuel-lightbox-content-addprofilepic">
-          <% current_user = User.find(session[:user_id]) %>
           <% if current_user.profile_pic.present? %> <!-- check if profile pic exists -->
-              <% url = current_user.profile_pic%> <!-- get entire url-->
-              <% index =url.to_s.rindex('/') %> <!-- get last index of '/'-->
                <%=image_tag(current_user.profile_pic, :class=> "img-circular-avatar")%>
               </div>
           <% else %>
@@ -85,21 +80,19 @@
       <ul class="site-navigation-list">
         <li class="site-navigation-list__item-project">
           <ul class="site-navigation-list--project">
-            <% pp_id = 0 %>
             <li>
-            <% images.each do |p| %>
-                <% if pp_id != p.pp_id %>
-                    <% pp_id = p.pp_id %>
-
-                    <%= image_tag(ProjectProposalImg.find(p.ppi_id).img_url, :class=> "img-circular-project") %>
-
+              <% if !projects.nil? %>
+                <% projects.each do |p| %>
+                    <%= image_tag(ProjectProposalImg.find(p.project_proposal_id).img_url, :class=> "img-circular-project") %>
 
                     <li class="site-navigation-list--project__item-title">
-                      <%= link_to showProject_path(:id => p.p_id) do %><%= p.title.capitalize%><% end %>
+                      <%= link_to showProject_path(:id => p.id) do %>
+                          <%= p.title.capitalize%>
+                      <% end %>
                     </li>
 
                     <li class="site-navigation-list--project-percentage">
-                      40% complete
+                      0% complete
                     </li>
                     <li class="site-navigation-list--project-details">
                       <%= link_to "Metrics"%>
@@ -113,44 +106,18 @@
                     <li class="site-navigation-list--project-details bottom-push">
                       <%= link_to "Help"%>
                     </li>
-                <% end %>
-
             <% end %>
+                <% end %>
             </li>
           </ul>
 
         </li>
-        <!--li class="site-navigation-list__item">
-               Profile
-        </li>
-        <ul class="site-navigation-list--sub">
-        <li class="site-navigation-list--sub__item">
-         <%= link_to "Edit Profile", :controller=>"users", :action=>"edit", :id=>session[:user_id]%>
-     </li>
-     <li class="site-navigation-list--sub__item">
-            <%= link_to "Change Password", controller: "users", action: "changepass", id: session[:user_id] %>
-     </li>
-     </ul-->
 
-        <!--li class="site-navigation-list__item">
-            <%= link_to "Create a Project", controller: "project_proposals", action: "new" %>
-     </li>
-     -->
         <li class="site-navigation-list__item">
 
           <%= link_to "Explore", viewAllProject_path%>
         </li>
-        <ul class="site-navigation-list--sub">
-          <li class="site-navigation-list--sub__item">
-            <%= link_to "Trending"%>
-          </li>
-          <li class="site-navigation-list--sub__item">
-            <%= link_to "Curated"%>
-          </li>
-          <li class="site-navigation-list--sub__item">
-            <%= link_to "Fresh"%>
-          </li>
-        </ul>
+
         <li class="site-navigation-list__item">
           <%= link_to "Funded"%>
         </li>
@@ -185,19 +152,14 @@
     <ul class="site-utilities-links">
       <li>
         <%= link_to "Logout",  logout_path, :class=>"site-utilities-link"%>
-
       </li>
-
     </ul>
   </section>
 </header>
 
 <div class="lightbox js-lightbox">
   <div class="js-lightbox-close lightbox-close icon icon--lightbox-close"></div>
-
-  <div class="js-lightbox-content">
-
-  </div>
+  <div class="js-lightbox-content"></div>
 </div>
 
 <div class="lightbox-overlay js-lightbox-overlay js-lightbox-close"></div>
@@ -206,19 +168,19 @@
 <div class="l--hidden" id="fuel-lightbox-content-addprofilepic">
   <div class="fuel-lightbox-container">
 
-    <legend class="form-heading heading"> Edit Profile </legend>
+    <legend class="form-heading heading">Edit Profile</legend>
     <span class="fuel-lightbox__heading">Upload your profile picture</span>
 
-    <%= form_for :user, url:  updateProfilePic_path(:id => session[:user_id]) ,method: :post do |f| %>
+    <%= form_for :user, url:  updateProfilePic_path(:id => current_user.id) ,method: :post do |f| %>
 
         <div class="form-field">
 
-          <% if @user.errors.any? %>
+          <% if current_user.errors.any? %>
               <div class="panel panel-danger">
                 <div class="panel-heading"><h2><strong>Your inputs do not meet the requirements:</strong></h2></div>
                 <div class="panel-body alert-design">
                   <ul style="list-style-type:circle">
-                    <% @user.errors.full_messages.each do |message| %>
+                    <% current_user.errors.full_messages.each do |message| %>
                         <li><%= message %></li>
                     <% end %>
                   </ul>
@@ -227,19 +189,10 @@
           <% end %>
         </div>
 
-
         <div class="form-field">
           <%= f.file_field :profile_pic, class: "form-input" %>
           <label class="form-label" for="profile_pic">Profile Picture (File Size: < 2MB)</label>
         </div>
-        <% current_user=User.find(session[:user_id]) %>
-        <% if current_user.profile_pic.present? %> <!-- check if profile pic exists -->
-            <% url = current_user.profile_pic%> <!-- get entire url-->
-            <% index=url.to_s.rindex('/') %> <!-- get last index of '/'-->
-            <!--
-        <div align=center> <%= url.to_s[index+1..url.to_s.length] %> </div>
-        <div align=center><%= image_tag(current_user.profile_pic,:class=> "img-circular") %></div> -->
-        <% end %>
 
         <div class="form-actions">
           <%= f.submit "Submit", class: "button--stroke--long" %>
@@ -248,7 +201,6 @@
     <% end %>
   </div>
 </div>
-
 </body>
-<%= yield %>
+
 </html>
