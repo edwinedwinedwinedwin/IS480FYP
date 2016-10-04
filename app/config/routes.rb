@@ -100,6 +100,8 @@ Rails.application.routes.draw do
   #Explore routes
   get 'explores/index' => 'explores#index', as: :viewAllProject
   get 'explores/show/(:id)' => 'explores#show', as: :viewProject
+  get 'explores/message/(:id)' => 'explores#message', as: :messageMember
+
 
   # project reward backers routes
   get 'project_reward_backers/index' => 'project_reward_backers#index',  as: :projectRewardBackersIndex

@@ -1,0 +1,26 @@
+  <% if @session.nil? %>
+      <%= render "layouts/headerLogin" %>
+  <% else %>
+      <%= render "layouts/headerUser", :projects => @projects, :images => @project_coverImgs %>
+      <%= yield %>
+  <% end %>
+  
+<div class="page-main">
+  <%= stylesheet_link_tag "style" %>
+  <%= stylesheet_link_tag "component" %>
+  <%= stylesheet_link_tag "flickity/flickity.css" %>
+  <%= javascript_include_tag "application"%>
+
+  <div class="page-section">
+    <legend class="form-heading heading"> Send Message to <%=@user.last_name+' '+@user.first_name%> </legend>
+
+    <%= form_tag "/explores/message" do %>
+  	<%= text_field_tag "Message", "Type a message" %>
+	<%= submit_tag "Send" %>
+	<% end %>
+      <br>
+      
+      <%# link_to 'Back', showProject_path(:id=>@project_id) %>
+
+    </div>
+  </div>

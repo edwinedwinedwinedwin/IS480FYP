@@ -284,7 +284,6 @@
             </ul>
             <ul class="meta-tags">
               <li class="meta-tag">
-
                 <% bio = User.find(pm.user_id).bio_url %>
                 <% if !(bio.nil? || bio.empty?) %>
                     <%= link_to bio, :target => "_blank" do %>
@@ -318,14 +317,16 @@
 
 
 
+
           </div>
         </div>
 
         <div class="grid-container">
           <div class="grid-30">
             <ul class="team-lightbox-actions">
-              <li>
-                <a href="#" class="button--stroke--full">Message</a>
+              <li>                
+                <%# link_to "Message",messageMember_path(id:pm.user_id,p_id:@project.id),:class=>"button--stroke--full" %>         
+                <%= link_to "Message",'mailto:'+User.find(pm.user_id).email,:class=>"button--stroke--full" %>         
               </li>
             </ul>
           </div>

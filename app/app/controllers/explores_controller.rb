@@ -70,4 +70,9 @@ class ExploresController < ApplicationController
       @session = @user.id
     end
   end
+
+  def message
+    @user = User.find_by(:id => params[:id])
+    @project_id = params[:p_id]
+  end
 end
