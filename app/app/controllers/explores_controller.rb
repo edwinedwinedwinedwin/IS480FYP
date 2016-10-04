@@ -17,14 +17,15 @@ class ExploresController < ApplicationController
 
   def show
     @project = Project.find_by(:id => params[:id])
-
-   @current_User = User.find(session[:user_id])
-
-    checkCreator = ProjectMember.find_by(:user_id => @current_User.id, :project_id => @project.id)
-    if !checkCreator.nil?
-      redirect_to showProject_path(:id => params[:id])
+    user_id=session[:user_id]
+    if !user_id.nil?
+      @current_User = User.find(user_id)
+      checkCreator = ProjectMember.find_by(:user_id => @current_User.id, :project_id => @project.id)
+      if !checkCreator.nil?
+        redirect_to showProject_path(:id => params[:id])
+      end
     end
-
+    
     @project_proposal = ProjectProposal.find(@project.project_proposal_id)
     @project_creator = User.find(@project.user_id)
     @project_proposal_imgs = ProjectProposalImg.where(:project_proposal_id => @project_proposal.id)
