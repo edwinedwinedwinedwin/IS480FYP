@@ -1,0 +1,98 @@
+<html lang="en">
+
+<head>
+  <meta name="robots" content="noindex">
+  <meta charset="UTF-8">
+  <title>Ybco</title>
+
+  <!-- bower:css -->
+  <link rel="stylesheet" href="/assets/unsemantic/assets/stylesheets/unsemantic-grid-responsive-no-ie7.css" >
+  <link rel="stylesheet" href="/assets/unsemantic/assets/stylesheets/unsemantic-grid-responsive-tablet-no-ie7.css">
+
+  <%= stylesheet_link_tag "component" %>
+  <%= stylesheet_link_tag "flickity/flickity.css" %>
+  <%= stylesheet_link_tag "style" %>
+  <%= javascript_include_tag "application"%>
+    <!-- endbower -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">  
+</head> 
+
+	<header class="page-header">
+		<span style="font-size:30px;cursor:pointer" onclick="openNav()">
+			<button class="site-menu-open js-site-menu-toggle">
+				<span class="l--hidden">Open Site Menu</span>
+				<i class="icon icon--menu"></i>
+			</button>
+		</span>
+
+		<h1 class="site-logo logo">
+      <%= link_to '', root_path , class: "icon icon--ybco-logomark" %>
+		</h1>
+
+		<!-- Sidebar -->
+		
+		<section class="site-menu" id="site-menu">
+			<button class="site-menu-close js-site-menu-toggle">
+				<i class="site-menu-logo icon icon--ybco-lockup"></i>
+				<i class="icon icon--large-cross"></i>
+			</button>
+
+			<nav class="site-menu-block site-navigation">
+				<ul class="site-navigation-list">
+					<li class="site-navigation-list__item">
+            <%= link_to '< Home', showProject_path(:id=>@project.id) ,rel: "internal" %>
+					</li>
+					<li class="site-navigation-list__item">
+            <%= link_to 'Funding Overview', showFundingOverview_path, rel: "internal" %>
+          </li>
+					<li class="site-navigation-list__item">
+            <%= link_to 'Rewards Selected', showRewardsSelected_path, rel: "internal" %>
+					</li>
+					<li class="site-navigation-list__item">
+            <%= link_to "Funders' Details", showFundersDetails_path , rel: "internal" %>
+					</li>
+					<li class="site-navigation-list__item">
+            <%= link_to 'Demographics', showDemographics_path, rel: "internal" %>
+					</li>
+					<li class="site-navigation-list__item">
+            <%= link_to 'Referrers', showReferrers_path, rel: "internal" %>
+					</li>
+				</ul>
+
+				<ul class="site-navigation-list--small">
+					<li class="site-navigation-list__item">
+						<a href="#" rel="internal">About Y&B</a>
+					</li>
+					<li class="site-navigation-list__item">
+						<a href="#" rel="internal">Support</a>
+					</li>
+					<li class="site-navigation-list__item">
+						<a href="#" rel="internal">Community Guidelines</a>
+					</li>
+				</ul>
+			</nav>
+
+			<ul class="site-menu-block social-links">
+				<li class="social-link"><a href="http://www.facebook.com/ybco.co" target="_blank">
+					<span class="l--hidden">Facebook</span>
+					<i class="icon icon--facebook-with-circle"></i>
+				</a></li>
+				<li class="social-link"><a href="http://www.twitter.com/youngboldco" target="_blank">
+					<span class="l--hidden">Twitter</span>
+					<i class="icon icon--twitter-with-circle"></i>
+				</a></li>
+			</ul>
+		</section>
+		
+
+		<section class="site-utilities">
+			<ul class="site-utilities-links">
+				<li>
+          <%= link_to 'Log In', login_path, class: "site-utilities-link", rel: "internal" %>
+					
+				</li>
+			</ul>
+		</section>
+	</header>

@@ -15,10 +15,11 @@
     <legend class="form-heading heading"> Send Message to <%=@user.last_name+' '+@user.first_name%> </legend>
 
     <%= form_tag "/explores/message" do %>
-  	<%= text_field_tag "Message", "Type a message" %>
+  	<%= text_field_tag "Message",'',:class=>"form-input form-textarea" %>
+    <label class="form-label" for="message">Message</label>
 	<%= submit_tag "Send" %>
 	<% end %>
-      <br>
+      <br>   
       
       <%# link_to 'Back', showProject_path(:id=>@project_id) %>
 

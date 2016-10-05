@@ -68,6 +68,12 @@ Rails.application.routes.draw do
   post 'project_proposal_imgs/destroy/(:id)'=> 'project_proposal_imgs#destroy', as: :deleteCoverImgs # display create proposal page
 
 
+  #Project Metrics routes  
+  get 'projects/funding_overview/:id' => 'projects#funding_overview', as: :showFundingOverview
+  get 'projects/rewards_selected/:id' => 'projects#rewards_selected', as: :showRewardsSelected
+  get 'projects/funders_details/:id' => 'projects#funders_details', as: :showFundersDetails
+  get 'projects/demographics/:id' => 'projects#demographics', as: :showDemographics
+  get 'projects/referrers/:id' => 'projects#referrers', as: :showReferrers
 
   #Projects Routes
   post 'projects/updateCategory/(:id)' => 'projects#updateCategory', as: :updateCategory
@@ -78,6 +84,7 @@ Rails.application.routes.draw do
   post 'projects/updateMember/(:id)' => 'projects#updateMemberDetails', as: :updateMemberDetails
   post 'projects/addMembers' => 'projects#addMembers', as: :addMembers
   post 'projects/liveProjectRequests/(:id)' => 'projects#liveProjectRequest', as: :liveProjectRequest
+
   # user expertises routes
   get 'user_expertises/index' => 'user_expertises#index', as: :allExpertise
   get 'user_expertises/new' => 'user_expertises#new', as: :newExpertise
