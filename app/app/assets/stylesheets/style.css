@@ -1474,6 +1474,10 @@ strong,
     transition: none;
     background: transparent; }
 
+.explore-project__cta{
+  padding-left:2em;
+}
+
 .explore-project--dark {
   color: #000000; }
   .explore-project--dark a {
@@ -1542,7 +1546,10 @@ strong,
 .explore-project-header {
   position: absolute;
   top: 1.75rem;
-  left: 1.75rem; }
+  right: 1.75rem; 
+  left:1.75rem;
+  text-align:center;
+  }
 
 .explore-project__title {
   font-family: "Alternate Gothic No1 D", serif;
@@ -1554,7 +1561,9 @@ strong,
 .explore-project-footer {
   position: absolute;
   bottom: 1.75rem;
-  left: 1.75rem; }
+  left: 1.75rem;
+  left:1.75rem;
+  text-align:center; }
 
 .project-explore__load-more {
   display: block;
@@ -4926,8 +4935,8 @@ select.dropdown_address{
 
 .whitecontent {
   background: #ffffff;
-  opacity: 0.9;
-  border-radius: 25px;
+  opacity: 0.8;
+  border-radius: 0.3em;
   padding:0.5em;
 }
 
