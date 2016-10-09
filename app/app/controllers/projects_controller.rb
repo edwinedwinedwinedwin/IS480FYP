@@ -182,6 +182,7 @@ before_filter :logged_in,:authorize_user
 
   def rewards_selected
     @project = Project.find(params[:id])
+    @rewards =ProjectReward.where(:project_id => params[:id])
   end
 
   def funders_details
