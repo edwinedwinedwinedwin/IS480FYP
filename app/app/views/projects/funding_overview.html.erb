@@ -1,3 +1,74 @@
-<%= render "layouts/headerMetrics", :projects => @projects %>
-<%= yield %>
-funding_overview.html.erb
+<%= stylesheet_link_tag "style" %>
+<%= stylesheet_link_tag "component" %>
+<%= stylesheet_link_tag "flickity/flickity.css" %>
+<%= javascript_include_tag "application"%>
+
+<style>
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 12em; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    left: 0;
+    background-color: white;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+}
+
+/* The navigation menu links */
+.sidenav a, h1 {
+    padding: 0.25em 0.25em 0.25em 1.3em;
+    text-decoration: none;
+    color: #000000;
+    margin-bottom:0.00rem;
+    display:inline-block;
+    font:inherit;
+    text-align: center;
+    right:1.00rem;
+    margin-left:1.7em;
+}
+
+.sidenav a {
+    font-size: 1.05em;
+}
+
+.sidenav h1 {
+    font-size: 1.25em;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover, .offcanvas a:focus{
+    color: #00beff;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+    padding: 2em;
+    margin-left: 18em;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+</style>
+
+<main class="page-main">
+    <div id="mySidenav" class="sidenav">
+        <!-- insert back button here -->
+        <h1> Metrics </h1>
+        <a href="#">Funding Overview</a>
+        <a href="#">Rewards Selected</a>
+        <a href="#">Funders' Details</a>
+        <a href="#">Demographics</a>
+        <a href="#">Referrers</a>
+    </div>
+
+    <div id="main">
+        FUNDING OVERVIEW <br>
+        TO BE DONE BY BRENDON <br>
+        LET ME KNOW WHEN ITS DONE <br>
+    </div>
+</main>
