@@ -69,11 +69,9 @@ Rails.application.routes.draw do
 
 
   #Project Metrics routes  
-  get 'projects/funding_overview/:id' => 'projects#funding_overview', as: :showFundingOverview
+  
   get 'projects/rewards_selected/:id' => 'projects#rewards_selected', as: :showRewardsSelected
-  get 'projects/funders_details/:id' => 'projects#funders_details', as: :showFundersDetails
-  get 'projects/demographics/:id' => 'projects#demographics', as: :showDemographics
-  get 'projects/referrers/:id' => 'projects#referrers', as: :showReferrers
+  get 'projects/funders_details/:id' => 'projects#funders_details', as: :showFundersDetails  
 
   #Projects Routes
   post 'projects/updateCategory/(:id)' => 'projects#updateCategory', as: :updateCategory

@@ -176,24 +176,13 @@ before_filter :logged_in,:authorize_user
     redirect_to showProject_path(params[:id]) and return
   end
 
-  def funding_overview
-     @project = Project.find(params[:id])
-  end
-
   def rewards_selected
     @project = Project.find(params[:id])
+    @rewards = ProjectReward.find_by_project_id(params[:id])
   end
 
   def funders_details
-    @project = Project.find(params[:id])
-  end
-
-  def demographics
-    @project = Project.find(params[:id])
-  end
-
-  def referrers
-    @project = Project.find(params[:id])
+    @project = Project.find(params[:id])    
   end
 
   private
