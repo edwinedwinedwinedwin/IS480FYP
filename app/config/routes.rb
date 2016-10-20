@@ -106,6 +106,7 @@ Rails.application.routes.draw do
 
   #Explore routes
   get 'explores/index' => 'explores#index', as: :viewAllProject
+  get 'explores/filterProjects' => 'explores#filterProjects', as: :viewFilterProject
   get 'explores/show/(:id)' => 'explores#show', as: :viewProject
   get 'explores/message/(:id)' => 'explores#message', as: :messageMember
 

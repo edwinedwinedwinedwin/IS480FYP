@@ -1,0 +1,80 @@
+  <%= javascript_include_tag "edit-project.js"%>
+  <% if session[:user_id].nil? %>
+      <%= render "layouts/headerLogin" %>
+  <% else %>
+      <%= render "layouts/headerUser", :projects => @projects, :images => @project_coverImgs, :current_user => @current_User %>
+      <%= yield %>
+  <% end %>
+
+<main class="page-main">
+	<header class="explore-header" style="background-image:url(/assets/explore-header.jpg);">
+		<h1 class="explore-header__title">Explore</h1>
+		<span class="explore-header__category">Crowdfunding Projects</span>
+		<a href="#" class="explore-header__location">
+			<i class="icon icon--location-pin"></i>
+			<span class="explore-header__location-text">Singapore</span>
+		</a>
+	</header>
+
+	<div class="explore-banner">
+		<h2 class="explore-banner__title">Trending</h2>
+		<p class="explore-banner__description">Projects people are raving about</p>
+	</div>		
+	
+	<section class="explore-projects">
+		<% link_to "explores/show/1" %>
+			<article class="explore-project--featured" style="background-image:url(/assets/explore-featured-header.jpg);">
+				<div class="wrap">
+					<header class="explore-project-header">
+						<ul class="meta-tags">
+							<li class="meta-tag--blue">Staff Pick</li>
+						</ul>
+
+						<h1 class="explore-project-title heading--large">
+							The Drinkable book
+						</h1>
+
+						<ul class="meta-tags">
+							<span class="meta-tag">
+								<i class="icon icon--location-pin"></i>
+								Singapore
+							</span>
+
+							<span class="meta-tag">
+								<i class="icon icon--leaf"></i>
+								Environment
+							</span>
+
+							<span class="meta-tag">
+								<i class="icon icon--fuel"></i>
+								$6,000 of $12,000 Fueled
+							</span>
+						</ul>
+
+						<div class="project-days">
+
+							<span class="project-days__days">34</span>
+							<span class="project-days__text">Days<br>left</span>
+						</div>
+					</header>
+				</div>
+			</article>
+		</a>
+
+		<ul class="explore-projects-grid wrap">
+		<% 
+			gridsChosen = ["horizontal", "square", "square", "vertical", "square--large","square", "square", "square", "square", "horizontal", "horizontal", "horizontal", "square--large", "square", "square-fresh", "square", "square"]
+		%>
+      	<% @filterProjects.each do |p| %>
+            <%= render "explores/projectGridView", :p => p, :girdStyle => "square explore-project--dark" %>
+      <% end %>
+		</ul>
+		  <a href="#" class="project-explore__load-more">Load More</a>
+	</section>
+</main>
+
+<%= render "layouts/try" %>
+<%= yield %>
+
+<%= render "layouts/footer" %>
+<%= yield %>

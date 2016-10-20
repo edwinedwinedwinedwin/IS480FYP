@@ -1,3 +1,41 @@
+<%= stylesheet_link_tag "style" %>
+<%= stylesheet_link_tag "component" %>
+<%= stylesheet_link_tag "flickity/flickity.css" %>
+
 <%= render "layouts/headerMetrics", :projects => @projects %>
 <%= yield %>
-referrers.html.erb
+
+<br/>
+<br/>
+<strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Referrers</strong> 
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to 'Hourly',''%>
+<%= link_to 'Daily',''%>
+<%= link_to 'Weekly',''%>
+<%= link_to 'Monthly',''%>
+<% count=1 %>
+
+<table class="table-show">
+  <thead>
+    <tr class="tr-row">      
+      <th class="th-row">Count</th>     
+      <th class="th-row">Source</th>      
+      <th class="th-row">Visits</th>
+      <th class="th-row">Pages/Visit</th>
+      <th class="th-row">Avg Visit Duration</th>
+      <th class="th-row">% New Visits</th>                
+    </tr>
+  </thead>
+  <tbody>
+  	<tr class="tr-row">
+  		<td><%=count%></td>
+	  	<td>ybco.co</td>
+	  	<td>70,001</td>
+	  	<td>3.05</td>
+	  	<td>00:01:58</td>
+	  	<td>67.45%</td>	  	
+  	</tr>
+  	<% count+=1 %>
+  </tbody>
+  
+  </table>  

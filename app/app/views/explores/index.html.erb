@@ -19,7 +19,15 @@
 	<div class="explore-banner">
 		<h2 class="explore-banner__title">Trending</h2>
 		<p class="explore-banner__description">Projects people are raving about</p>
-	</div>
+	</div>		
+	
+	<!-- Filter projects by category dropdown-->
+	<center><%= form_for :project, url: viewFilterProject_path do |c| %>
+	<% categories_array = ProjectCategory.all.map { |p| [p.category, p.id] } %>	
+	<%= c.select :category,options_for_select(categories_array) %>
+	<%= c.submit "Filter Projects" %></center>
+<%# select_tag(:category,options_for_select(categories_array),:onchange=>"filterProjects();") %>
+	<%end%>
 
 	<section class="explore-projects">
 		<% link_to "explores/show/1" %>

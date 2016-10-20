@@ -1,3 +1,35 @@
+<%= stylesheet_link_tag "style" %>
+<%= stylesheet_link_tag "component" %>
+<%= stylesheet_link_tag "flickity/flickity.css" %>
+
 <%= render "layouts/headerMetrics", :projects => @projects %>
 <%= yield %>
-rewards_selected.html.erb
+
+
+<br/>
+<br/>
+<strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rewards Selected</strong> 
+<br/>
+
+<table class="table-show">
+  <thead>
+    <tr class="tr-row">             
+      <th class="th-row">Categories</th>      
+      <th class="th-row">Description</th>
+      <th class="th-row">Number Selected</th>
+	  <th class="th-row" colspan="1"></th>  
+  </thead>
+  <tbody>
+  <% if !@rewards.nil? %>
+    <% @rewards.each do |reward| %>
+	  	<tr class="tr-row">
+	  		<td>$ <%=reward.min_amount %></td>
+		  	<td><%=reward.description %></td>
+		  	<td><%=reward.no_of_rewards%></td>
+		  	<td>of 300</td>	  	
+	  	</tr> 
+  	<% end %> 	
+  <% end %>
+  </tbody>
+  
+  </table>  
