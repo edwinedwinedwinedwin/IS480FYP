@@ -4,8 +4,7 @@
 <% else %>
     <%= render "layouts/headerUser", :projects=>@projects, :images =>  @project_coverImgs%>
 <% end %>
-
-
+<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
 
 <main class="page-main">
   <%= form_for :project_proposal, url: createProposal_path,:html => { :multipart => true } do |f| %>
@@ -85,7 +84,6 @@
       <p>We'll contact you soon :)</p>
         <div class="form-field">
           <% if @session.nil? %>
-
         <%= f.text_field(:first_name, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"First Name") %>
         <%= f.text_field(:last_name, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"Last Name") %>
         <%= f.text_field(:email, rows: "1", :class=>"form-input form-textarea",:placeholder=>"Email") %>

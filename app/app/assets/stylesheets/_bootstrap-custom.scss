@@ -9,7 +9,7 @@
 @import "bootstrap/mixins";
 
 // Reset and dependencies
-@import "bootstrap/normalize";
+//@import "bootstrap/normalize";
 @import "bootstrap/print";
 @import "bootstrap/glyphicons";
 
@@ -21,10 +21,12 @@
 
 
 @import "bootstrap/forms";
-*/ 
+
 @import "bootstrap/tables";
-@import "bootstrap/buttons";
+
 @import "bootstrap/grid";
+*/ 
+@import "bootstrap/buttons";
 
 // Components
 

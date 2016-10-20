@@ -166,6 +166,7 @@ $(function() {
 
 	$('#project-gallery').on('cellSelect', function() {
 		$('#project-gallery-counter__current').text(flkty.selectedIndex + 1);
+		console.log($('#project-gallery-counter__current'));
 	});
 
 	// Textarea limits

@@ -51,8 +51,12 @@
         </div>
 
         <div class="form-field">
-            <%= f.country_select :country, selected: 'Singapore' %>
-          </div>                         
+            <%= f.country_select :country, ['Singapore'], options = {}, html_options = {:class => "form-input"} %>
+            <select id="width_tmp_select">
+              <option id="width_tmp_option"></option>
+            </select>
+          <label class="form-label" for="password">Country of Origin</label>
+        </div>                         
 
         <div class="form-actions">
           <%= f.submit "Create Account", class: "button--stroke--long" %>
