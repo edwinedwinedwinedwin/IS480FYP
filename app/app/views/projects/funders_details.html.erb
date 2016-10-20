@@ -1,36 +1,3 @@
-<%= stylesheet_link_tag "style" %>
-<%= stylesheet_link_tag "component" %>
-<%= stylesheet_link_tag "flickity/flickity.css" %>
-
 <%= render "layouts/headerMetrics", :projects => @projects %>
 <%= yield %>
-<br/>
-<br/>
-<strong>Funders' Details</strong> <%= link_to 'Create Survey','',class: "button--stroke--long"  %><br/>
-<br/>
-<% count=1 %>
-
-<table class="table-show">
-  <thead>
-    <tr class="tr-row">      
-      <th class="th-row"></th>     
-      <th class="th-row">First Name</th>      
-      <th class="th-row">Last Name</th>
-      <th class="th-row">Funded Amt</th>
-      <th class="th-row">Reward Chosen</th>
-      <th class="th-row">Comments</th>                
-    </tr>
-  </thead>
-  <tbody>
-  	<tr class="tr-row">
-  		<td><%=count%></td>
-	  	<td>Adelie</td>
-	  	<td>Jameson</td>
-	  	<td>$25</td>
-	  	<td>$25</td>
-	  	<td>International Shipping</td>	  	
-  	</tr>
-  	<% count+=1 %>
-  </tbody>
-  
-  </table>  
+funders_details.html.erb
