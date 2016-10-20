@@ -1,0 +1,54 @@
+<main class="page-main">
+  <%= form_for :project_proposal, url: step1_Proposal_path do |f| %>
+      <div class="form-field">
+        <% if @ProjectProposal.errors.any? %>
+            <div class="panel panel-danger">
+              <div class="panel-heading"><h2><strong>Your inputs do not meet the requirements:</strong></h2></div>
+              <div class="panel-body alert-design">
+                <ul style="list-style-type:circle">
+                  <% @ProjectProposal.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+        <% end %>
+      </div>
+      <!--Project title & Category Section-->
+      <section class="page-section--small">
+        <div class="form--large nl-form" id="nl-form">
+          <fieldset>
+            <div class="form-field">
+              <p>My project title is</p>
+              <%= f.text_field :title, class: "form-input" %>
+            </div>
+
+            <div class="form-field">
+              <p>It will impact the</p>
+              <% options = options_from_collection_for_select(ProjectCategory.all, 'id', 'category', '5') %>
+              <%= f.select :project_category_id, options, :class=>"form-input" %>
+              <span>category.</span>
+            </div>
+
+
+          </fieldset>
+
+          <div class="form-progress">
+            <div class="grid-container wrap">
+              <div class="grid-65 form-progress-information">
+                <span class="form-progress__title">Project Proposal</span>
+                <span class="form-progress__section">1 / 3</span>
+                <span class="form-progress__description">Basic Info</span>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <%= f.submit "Submit Project Proposal", class: "button--fill--black button--full" %>
+            </div>
+          </div>
+
+        </div>
+      </section>
+  <% end %>
+
+</main>

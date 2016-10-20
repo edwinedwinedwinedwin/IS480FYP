@@ -52,7 +52,14 @@ Rails.application.routes.draw do
 
   #Project Proposal
   get 'GetStarted' => 'project_proposals#new', as: :newProposal # display create proposal page
-  get 'project_proposals/index' => 'project_proposals#index', as: :indexProposaladmin #view index of proposal of projects  
+  get  'project_proposals/show/:id' => 'project_proposals#show', as: :showProjectProposal
+  get 'basicinfo' => 'project_proposals#basicinfo', as: :basicInfo_Proposal
+  post 'basicinfo' => 'project_proposals#step1', as: :step1_Proposal
+  get 'descriptions' => 'project_proposals#descriptions', as: :description_Proposal
+  post 'descriptions' => 'project_proposals#step2', as: :step2_Proposal
+
+
+  get 'project_proposals/index' => 'project_proposals#index', as: :indexProposaladmin #view index of proposal of projects
   post 'project_proposals/create' => 'project_proposals#create', as: :createProposal # process creation of proposal
   post 'project_proposals/accept/(:id)' => 'project_proposals#accept', as: :approveProposal
   post 'project_proposals/reject/(:id)' => 'project_proposals#reject', as: :rejectProposal
@@ -69,7 +76,6 @@ Rails.application.routes.draw do
 
 
   #Project Metrics routes  
-  
   get 'projects/rewards_selected/:id' => 'projects#rewards_selected', as: :showRewardsSelected
   get 'projects/funders_details/:id' => 'projects#funders_details', as: :showFundersDetails  
 

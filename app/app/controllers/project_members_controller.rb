@@ -57,9 +57,9 @@ class ProjectMembersController < ApplicationController
     #redirect_to :controller => 'project_members', :action => 'index'
     redirect_to projectMembersIndex_path and return
   end
-    private
-    def project_members_params
-      params.require(:project_member).permit(:email,:user_id, :second_role,:role,:description,:project_id,:project_status_id)      
-    end
-
+  private
+  def project_members_params
+    params.require(:project_member).permit(:email,:user_id, :second_role,:role,:description,:project_id,:project_status_id)
   end
+
+end

@@ -25,6 +25,37 @@ class ProjectProposalsController < ApplicationController
 
   end
 
+  def basicinfo
+    @ProjectProposal  = ProjectProposal.new
+  end
+
+  def step1
+    @ProjectProposal = ProjectProposal.new(params_pp_basic)
+    unless @ProjectProposal.valid?(:step1)
+      @ProjectProposal.errors.each {|k, v| puts "#{k.capitalize}: #{v}"}
+      render 'basicinfo'
+    else
+      redirect_to description_Proposal_path(:title => @ProjectProposal.title, :project_category_id => @ProjectProposal.project_category_id)
+    end
+  end
+
+  def descriptions
+    @ProjectProposal  = ProjectProposal.new(params_pp_basic)
+    #@ProjectProposal.title = params[:title]
+    #@ProjectProposal.project_category_id = params[:project_category_id]
+  end
+
+  def step2
+    @ProjectProposal = ProjectProposal.new(params_pp_description)
+    unless @ProjectProposal.valid?(:step2)
+
+      @ProjectProposal.errors.each {|k, v| puts "#{k.capitalize}: #{v}"}
+      render 'descriptions'
+    else
+      redirect_to description_Proposal_path(:title => @ProjectProposal.title, :project_category_id => @ProjectProposal.project_category_id)
+    end
+  end
+
   def manage
     emailStr = params[:email]
     @ProjectProposals = ProjectProposal.where(email: emailStr)
@@ -34,11 +65,11 @@ class ProjectProposalsController < ApplicationController
     @ProjectProposal = ProjectProposal.new(params_pp)
     @ProjectProposal.project_status_id = 2
     @ProjectProposal.country=params[:project_proposal][:country]
-    img_url = params[:project_proposal][:img_url]    
+    img_url = params[:project_proposal][:img_url]
     if @ProjectProposal.save
       # upload project proposal images
-        if img_url.present?
-          img_url.each do |a|
+      if img_url.present?
+        img_url.each do |a|
           @ProjectProposalImg = ProjectProposalImg.new(params_pp_img)
           @ProjectProposalImg.project_proposal_id=@ProjectProposal.id
           @ProjectProposalImg.img_url = a
@@ -95,22 +126,22 @@ class ProjectProposalsController < ApplicationController
     @new_password=Array.new(8){[*'0'..'9', *'a'..'z', *'A'..'Z'].sample}.join # generate random password
 
     # Automatically create account for user who submitted project proposal if user not registered
-    if !@user.blank?            
-      SysMailer.accept_proposal_email(@ProjectProposal).deliver    
-    else          
-      #@new_password_digest=BCrypt::Password.create(@new_password, :cost => 11) # generate password digest      
+    if !@user.blank?
+      SysMailer.accept_proposal_email(@ProjectProposal).deliver
+    else
+      #@new_password_digest=BCrypt::Password.create(@new_password, :cost => 11) # generate password digest
       @user=User.new
       @user.first_name=@ProjectProposal.first_name
       @user.last_name=@ProjectProposal.last_name
       @user.email=@ProjectProposal.email
-      @user.password=@new_password      
-      @user.password_confirmation=@new_password      
+      @user.password=@new_password
+      @user.password_confirmation=@new_password
       @user.is_banned = 0
       @user.is_admin = 0
       @user.country=@ProjectProposal.country
       @user.save
       #Send acceptance email to user who sign up containing new account password
-      SysMailer.accept_new_proposal_email(@new_password,@ProjectProposal).deliver  
+      SysMailer.accept_new_proposal_email(@new_password,@ProjectProposal).deliver
     end
 
     @project = Project.new
@@ -119,7 +150,7 @@ class ProjectProposalsController < ApplicationController
     @project.country = @user.country
     @project.user_id = @user.id
     @project.save
- # Project Founder will be assigned to person who submitted project proposal
+    # Project Founder will be assigned to person who submitted project proposal
     @ProjectMember = ProjectMember.new
     @ProjectMember.role = 'Founder'
     @ProjectMember.email = @user.email
@@ -128,8 +159,8 @@ class ProjectProposalsController < ApplicationController
     @ProjectMember.second_role = 'Creator'
     @ProjectMember.project_id = @project.id
     @ProjectMember.project_status_id = 3
-    @ProjectMember.user_id = @user.id    
-    @ProjectMember.save    
+    @ProjectMember.user_id = @user.id
+    @ProjectMember.save
 
     redirect_to adminDashboard_path and return
   end
@@ -140,15 +171,23 @@ class ProjectProposalsController < ApplicationController
     @ProjectProposal.save
     #Send email to user who sign up
     SysMailer.reject_proposal_email(@ProjectProposal).deliver
-    redirect_to adminDashboard_path and return     
+    redirect_to adminDashboard_path and return
   end
 
   private
   def params_pp
-    params.require(:project_proposal).permit(:title, :description, :project_category_id,:first_name,:last_name, :email, :contact_number,:country)
+    params.require(:project_proposal).permit(:title, :description, :project_category_id, :first_name, :last_name, :email, :contact_number, :country)
   end
 
   def params_pp_img
     params.permit(:project_proposal_img).permit(:img_url)
+  end
+
+  def params_pp_basic
+    params.require(:project_proposal).permit(:title, :project_category_id)
+  end
+
+  def params_pp_description
+    params.require(:project_proposal).permit(:title, :project_category_id, :description)
   end
 end

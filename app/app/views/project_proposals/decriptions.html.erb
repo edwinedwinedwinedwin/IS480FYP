@@ -1,0 +1,58 @@
+<main class="page-main">
+  <%= form_for :project_proposal, url: step2_Proposal_path,:html => { :multipart => true } do |f| %>
+      <div class="form-field">
+        <% if @ProjectProposal.errors.any? %>
+            <div class="panel panel-danger">
+              <div class="panel-heading"><h2><strong>Your inputs do not meet the requirements:</strong></h2></div>
+              <div class="panel-body alert-design">
+                <ul style="list-style-type:circle">
+                  <% @ProjectProposal.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+        <% end %>
+      </div>
+      <!--Project title & Category Section-->
+      <section class="page-section--small">
+        <div class="form--large nl-form" id="nl-form">
+          <%= f.hidden_field :title, :value => @ProjectProposal.title %>
+          <%= f.hidden_field :project_category_id, :value => @ProjectProposal.project_category_id %>
+
+          <fieldset>
+            <div class="form-field">
+              <p>Tell us about your project:</p>
+              <%= f.text_area(:description, rows: "8", :class=>"form-input form-textarea", :placeholder=>"Enter your description", :id=>"project-descriptions", :maxlength=>"1000") %>
+              <div class="textarea-character-limit js-textarea-limit" data-for="project-description" data-limit="1000"><span class="textarea-character-limit__count">1000</span> characters left</div>
+
+              <div class="form-file-dropper-getstarted js-file-dropper">
+                <i class="icon icon--paperclip"></i>
+                To add feature image(s),<br> click on the 'Choose Files' button <!--/ video files -->
+                <div class="form-field-getstarted">
+                  <%= f.file_field :img_url,:multiple=>true, :class=>"form-input--getstarted"  %>
+                  <label class="form-label" for="img_url">(Image File Size: < 2MB)</label>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="form-progress">
+            <div class="grid-container wrap">
+              <div class="grid-65 form-progress-information">
+                <span class="form-progress__title">Project Proposal</span>
+                <span class="form-progress__section">2 / 3</span>
+                <span class="form-progress__description">Project Description</span>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <%= f.submit "Submit Project Proposal", class: "button--fill--black button--full" %>
+            </div>
+          </div>
+
+        </div>
+      </section>
+  <% end %>
+
+</main>
