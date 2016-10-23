@@ -35,7 +35,7 @@
 		
 		<section class="site-menu" id="site-menu">
 			<button class="site-menu-close js-site-menu-toggle">
-				<i class="site-menu-logo icon icon--ybco-lockup"></i>
+				<i class="site-menu-logo icon icon--ybco-logomark"></i>
 				<i class="icon icon--large-cross"></i>
 			</button>
 		   <%= link_to newProposal_path, class: "button button--fill", rel: "internal" do%>
@@ -48,15 +48,18 @@
 					<li class="site-navigation-list__item">
             <%= link_to 'Home', root_path ,rel: "internal" %>
 					</li>
-					<li class="site-navigation-list__item">
+					<!--li class="site-navigation-list__item">
             <%= link_to 'Tour', "#", rel: "internal" %>
-          </li>
+          </li-->
+          			<li class="site-navigation-list__item">
+            			<%= link_to 'Usage', "#", rel: "internal" %>
+          			</li>
 					<li class="site-navigation-list__item">
             <%= link_to 'Explore', viewAllProject_path, rel: "internal" %>
 					</li>
-					<li class="site-navigation-list__item">
+					<!--li class="site-navigation-list__item">
             <%= link_to 'Pricing', "#", rel: "internal" %>
-					</li>
+					</li-->
 					<li class="site-navigation-list__item">
             <%= link_to 'Log In', login_path, rel: "internal" %>
 					</li>
