@@ -22,13 +22,8 @@
         </div>        
 
         <div class="form-field">
-          <%= f.text_field :first_name, class: "form-input",:readonly=>true%>
-          <label class="form-label" for="first-name">First Name</label>
-        </div>
-
-        <div class="form-field">
-          <%= f.text_field :last_name, class: "form-input",:readonly=>true %>
-          <label class="form-label" for="last-name">Last Name</label>
+          <%= f.text_field :name, class: "form-input",:readonly=>true%>
+          <label class="form-label" for="first-name">Name</label>
         </div>
 
         <div class="form-field" align="left">
@@ -56,6 +51,7 @@
         <div class="form-field">
           <%= f.text_field :fb_url, class: "form-input" %>
           <label class="form-label" for="fb_url">Facebook</label>
+          <small>e.g. 'brenkoh' (without quotes) for http://www.facebook.com/brenkoh</small>
         </div>
 
         <div class="form-field">
@@ -74,7 +70,7 @@
 
 
         <div class="form-actions">
-          <%= f.submit "SUBMIT", class: "button--stroke--long" %>
+          <%= f.submit "CONFIRM", class: "button--stroke--long" %>
         </div>
     <% end %>
 

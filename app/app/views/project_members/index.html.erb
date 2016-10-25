@@ -37,7 +37,7 @@
         <td class="td-row"><%= link_to 'Edit Member', {:controller => "project_members", :action => "edit", :id=>projectMember.id }%></td>
         <td class="td-row"><%= link_to 'Delete Member', {:controller => "project_members", :action => "destroy", :id => projectMember.id } %> </td>
         <% email=User.find_by_email(projectMember.email).email %>
-        <td class="td-row"><a href="mailto:<%=email%>">Message</a></td>
+        <td class="td-row"><a href=http://www.facebook.com/messages/<%@user.fb_url%>">Message</a></td>
       </tr>      
     <% end %>
   </tbody>

@@ -131,8 +131,7 @@ class ProjectProposalsController < ApplicationController
     else
       #@new_password_digest=BCrypt::Password.create(@new_password, :cost => 11) # generate password digest
       @user=User.new
-      @user.first_name=@ProjectProposal.first_name
-      @user.last_name=@ProjectProposal.last_name
+      @user.name=@ProjectProposal.name      
       @user.email=@ProjectProposal.email
       @user.password=@new_password
       @user.password_confirmation=@new_password
@@ -176,7 +175,7 @@ class ProjectProposalsController < ApplicationController
 
   private
   def params_pp
-    params.require(:project_proposal).permit(:title, :description, :project_category_id, :first_name, :last_name, :email, :contact_number, :country)
+    params.require(:project_proposal).permit(:title, :description, :project_category_id, :name, :email, :country)
   end
 
   def params_pp_img

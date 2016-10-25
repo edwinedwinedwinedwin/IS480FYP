@@ -10,7 +10,8 @@ class User < ActiveRecord::Base
   validates :password, :length => {:within => 8..40},:on => :create # presence is automatically validated here
   validates :password_confirmation, :presence => { :message => "cannot be blank" },:on => :create
   # password validation > alphanumeric and NO BLANKS
-  validates :first_name, :presence => true
+  validates :name, :presence => true
+  validates :fb_url, :presence => true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
   validates :email, :uniqueness => true # ensure email has not been registered before
 

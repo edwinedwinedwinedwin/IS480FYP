@@ -325,8 +325,8 @@
           <div class="grid-30">
             <ul class="team-lightbox-actions">
               <li>                
-                <%# link_to "Message",messageMember_path(id:pm.user_id,p_id:@project.id),:class=>"button--stroke--full" %>         
-                <%= link_to "Message",'mailto:'+User.find(pm.user_id).email,:class=>"button--stroke--full" %>         
+                <%# link_to "Message",messageMember_path(id:pm.user_id,p_id:@project.id),:class=>"button--stroke--full" %>                      
+                <%= link_to "Message","http://www.facebook.com/messages/"+User.find(pm.user_id).fb_url.to_s ,:class=>"button--stroke--full" %>         
               </li>
             </ul>
           </div>

@@ -26,10 +26,6 @@ class UsersController < ApplicationController
       flash[:alert]='You have entered an invalid email.'
       redirect_to userResetPassword_path and return
     else
-      if @user.first_name!=params[:first_name] || @user.last_name!=params[:last_name]
-        flash[:alert]='You have entered an invalid input.'        
-        redirect_to userResetPassword_path and return
-      end
       new_password=Array.new(8){[*'0'..'9', *'a'..'z', *'A'..'Z'].sample}.join # generate random password
       new_password_digest=BCrypt::Password.create(new_password, :cost => 11) # generate password digest
       User.update(@user.id,:password_digest=>new_password_digest)
@@ -158,6 +154,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:password,:password_confirmation,:email,:first_name, :last_name,:profile_pic,:is_admin,:bio_url, :fb_url, :twitter_url, :instagram_url)
+    params.require(:user).permit(:password,:password_confirmation,:email,:name,:profile_pic,:is_admin,:bio_url, :fb_url, :twitter_url, :instagram_url)
   end
 end

@@ -84,10 +84,8 @@
       <p>We'll contact you soon :)</p>
         <div class="form-field">
           <% if @session.nil? %>
-        <%= f.text_field(:first_name, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"First Name") %>
-        <%= f.text_field(:last_name, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"Last Name") %>
+        <%= f.text_field(:name, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"Name") %> 
         <%= f.text_field(:email, rows: "1", :class=>"form-input form-textarea",:placeholder=>"Email") %>
-        <%= f.text_field(:contact_number,rows: "1", :class=>"form-input form-textarea",:placeholder=>"Contact Number") %>    
         <br/>
 
         <p>Location:</p>
@@ -97,10 +95,8 @@
           <option id="width_tmp_option"></option>
         </select>
         <% else %>
-              <%= f.text_field(:first_name, rows: "1", columns: "1", :class=>"form-input form-textarea", :value => @user.first_name) %>
-              <%= f.text_field(:last_name, rows: "1", columns: "1", :class=>"form-input form-textarea",:value => @user.last_name) %>
+              <%= f.text_field(:name, rows: "1", columns: "1", :class=>"form-input form-textarea", :value => @user.name) %>              
               <%= f.text_field(:email, rows: "1", :class=>"form-input form-textarea",:value => @user.email) %>
-              <%= f.text_field(:contact_number,rows: "1", :class=>"form-input form-textarea")%>
               <br/>
 
               <p>Location:</p>
