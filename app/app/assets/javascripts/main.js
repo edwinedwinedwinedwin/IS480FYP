@@ -238,7 +238,7 @@ $(function() {
 	// Banner notice
 	$('.banner-notice .js-close').on('click', function() {
 		$(this).parents('.banner-notice').hide();
-		$('.page-header').css('top', '1rem');
+		$('.page-header').css('top', '2rem');
 		$projectNavigation.css('top', '0').sticky({
 			topSpacing: 0
 		});
