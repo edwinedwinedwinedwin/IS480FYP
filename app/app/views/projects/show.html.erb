@@ -102,7 +102,7 @@
               <div class="project-description">
                 <%= form_for :project_proposal, url: updateDescription_path(:id => @project_proposal.id), remote: true do |f| %>
 
-                    <%= f.text_area :description, :class => "form-input t--large wordwrapper", id: "project-description", rows: "15" do %>
+                    <%= f.text_area :description, :class => "form-input borderless-bottom t--large wordwrapper", id: "project-description", rows: "15" do %>
 
                         <p class="t--large wordwrapper"><%= @project_proposal.description %></p>
                         <!--<p class="wordwrapper"></p>-->
@@ -223,9 +223,9 @@
             <i class="icon icon--updates-grid"></i>
           </li>
 
-          <li>
+          <!--i>
             <i class="icon icon--updates-list"></i>
-          </li>
+          </li-->
         </ul>
       </div>
 

@@ -486,7 +486,7 @@ strong,
   margin-bottom: 1.25rem; }
 
 .heading--large {
-  font-size: 15vh;
+  font-size: 20vh;
   line-height: 0.76923;
   margin-bottom: 2.625rem; }
 
@@ -2283,7 +2283,7 @@ strong,
 .page-header {
   *zoom: 1;
   position: fixed;
-  top: 0rem;
+  top: 2rem;
   width: 100%;
   padding: 0 2.875rem;
   margin: 0.938em 0 1.250em;
@@ -3826,6 +3826,7 @@ strong,
     margin-top: -0.5625rem;
     font-size: 1.10rem;
     transition: -webkit-transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     -webkit-transform-origin: center center;
         -ms-transform-origin: center center;
@@ -5316,4 +5317,8 @@ select.dropdown_address{
 
 .select-style select:focus {
     outline: none;
+}
+
+.borderless-bottom {
+  border-bottom: 0rem;
 }
