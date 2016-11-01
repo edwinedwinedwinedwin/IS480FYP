@@ -16,7 +16,7 @@
             <% end %>
 
             </div>
-          <span class="project-team-member__name"><%= User.find(pm.user_id).last_name %> <%= User.find(pm.user_id).first_name %></span>
+          <span class="project-team-member__name"><%= User.find(pm.user_id).name %> </span>
           <span class="project-team-member__position"><%= pm.role %></span>
         </li>
        <% end %>

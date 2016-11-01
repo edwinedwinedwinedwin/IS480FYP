@@ -27,9 +27,7 @@
     <% end %>
 
 
-    <% first_name = User.find(Project.find(project_id).user_id).first_name %>
-    <% last_name = User.find(Project.find(project_id).user_id).last_name %>
-    <% full_name = last_name + ' ' + first_name %>
-    <span class="profile-tag-text">by <span class="profile-tag__user"><%= full_name%></span></span>
+    <% full_name = User.find(Project.find(project_id).user_id).name %>    
+    <span class="profile-tag-text">by <span class="profile-tag__user"><%= full_name %></span></span>
   </div>
 </header>

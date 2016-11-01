@@ -14,7 +14,7 @@
     <div class="explore-project-description-content whitecontent">
 						<span class="explore-project-description-header">
 							by <span class="explore-project__author">
-              <%= User.find(p.user_id).last_name %> <%= User.find(p.user_id).first_name %></span>
+              <%= User.find(p.user_id).name %></span>
 						</span>
 
       <% textOut = ProjectProposal.find(p.project_proposal_id).description %>
