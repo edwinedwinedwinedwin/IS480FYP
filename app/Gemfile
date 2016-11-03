@@ -56,7 +56,7 @@ gem "mini_magick"
 gem 'fog', require: 'fog/aws' 
 
 # Country state selection for signup(users/new) and getstarted(project_proposals/new)
-gem 'country_select', git: 'https://github.com/alibabajan/country_select.git'
+gem 'country_select'
 
 # rest client
 gem 'rest-client'

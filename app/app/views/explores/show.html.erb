@@ -378,7 +378,9 @@
     <span class="t--strong">Estimated delivery:</span> <%= pr.estimated_delivery.strftime("%B %Y") %>
 		</span>
 
-        <a href="#" class="button--fill">Continue</a>
+        
+        <!--<%# link_to "Continue",pr.paypal_url(project_rewards_path(pr)),:class=>"button--fill" %>-->
+        <%= link_to "Continue",'#',:class=>"button--fill" %>
       </div>
     </div>
 

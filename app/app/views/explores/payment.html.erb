@@ -9,10 +9,10 @@
 
   <div class="page-section">
     <legend class="form-heading heading--signup"> Sign Up</legend>
-    <p><b>Get ready to create, innovate, and change the world.</b></p>
+    <p><b>Payment for <%= @project_reward.name %></b></p>
     <br>
     <br>
-    <%= form_for :user, url: createUser_path(@user) do |f| %>
+    <%= form_for :payment, url: createUser_path(@user) do |f| %>
         <%= f.hidden_field :is_admin, :value => false %>
         <div class="form-field">
           <% if @user.errors.any? %>
@@ -50,7 +50,15 @@
           <%= f.text_field :fb_url, class: "form-input" %>
           <label class="form-label" for="fb_url">Facebook</label>
           <small>e.g. 'brenkoh' for http://www.facebook.com/brenkoh</small>
-        </div>                      
+        </div>
+
+        <div class="form-field">
+            <%= f.country_select :country, ['Singapore'], options = {}, html_options = {:class => "form-input select-style"} %>
+            <select id="width_tmp_select">
+              <option id="width_tmp_option"></option>
+            </select>
+          <label class="form-label" for="password">Country of Origin</label>
+        </div>                         
 
         <div class="form-actions">
           <%= f.submit "Create Account", class: "button--stroke--long" %>
