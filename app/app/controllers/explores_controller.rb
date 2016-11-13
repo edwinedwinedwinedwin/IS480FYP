@@ -85,6 +85,10 @@ class ExploresController < ApplicationController
     end
   end
 
+  def payment
+    @project_reward = ProjectReward.find(params[:id])
+  end
+
   def message
     @user = User.find_by(:id => params[:id])
     @project_id = params[:p_id]

@@ -8,70 +8,55 @@
 
 
   <div class="page-section">
-    <legend class="form-heading heading--signup"> Sign Up</legend>
-    <p><b>Payment for <%= @project_reward.name %></b></p>
+    <legend class="form-heading heading--signup"> Make Payment</legend>    
     <br>
     <br>
-    <%= form_for :payment, url: createUser_path(@user) do |f| %>
-        <%= f.hidden_field :is_admin, :value => false %>
+    <%= form_for :payment, url: makePayment_path(@user) do |f| %>        
         <div class="form-field">
-          <% if @user.errors.any? %>
+          <!--<%# if @payment.errors.any? %>
               <div class="panel panel-danger">
               <div class="panel-heading"><h2><strong>Your inputs do not meet the requirements:</strong></h2></div>
                 <div class="panel-body alert-design">
                   <ul style="list-style-type:circle">
-                    <% @user.errors.full_messages.each do |message| %>
-                        <li><%= message %></li>
-                    <% end %>
+                    <%# @payment.errors.full_messages.each do |message| %>
+                        <li><%#= message %></li>
+                    <%# end %>
                   </ul>
                 </div>
               </div>
-          <% end %>
-        </div>        
+          <%# end %> 
+        </div> -->        
+        
+        <figure class="fuel-reward-thumbnail">
+          <%= image_tag(@project_reward.img_url,:class=> "img-circular") %>
+        </figure>
+
         <div class="form-field">
-          <%= f.text_field :name, class: "form-input", placeholder: "First Name" %>
-          <label class="form-label" for="name">Name</label>
+          <%= f.text_field :description, :readonly=>true,:value=>@project_reward.name ,class: "form-input", placeholder: "Description" %>
+          <label class="form-label" for="name">Description</label>
         </div>
 
         <div class="form-field">
-          <%= f.text_field :email, class: "form-input", placeholder: "Email" %>
-          <label class="form-label" for="email">Email</label>
-        </div>
-        <div class="form-field">
-          <%= f.password_field :password, class: "form-input", placeholder: "Password" %>
-          <label class="form-label" for="password">Password</label>
-        </div>
-        <div class="form-field">
-          <%= f.password_field :password_confirmation, class: "form-input", placeholder: "Password Confirmation" %>
-          <label class="form-label" for="password">Confirm Password</label>
+          <%= f.text_field :price,:readonly=>true,:value=>@project_reward.min_amount, class: "form-input", placeholder: "Price" %>
+          <label class="form-label" for="email">Price ($)</label>          
         </div>
 
         <div class="form-field">
-          <%= f.text_field :fb_url, class: "form-input" %>
-          <label class="form-label" for="fb_url">Facebook</label>
-          <small>e.g. 'brenkoh' for http://www.facebook.com/brenkoh</small>
+          <%= f.text_field :quantity,class: "form-input", placeholder: "Quantity" %>
+          <label class="form-label" for="quantity">Quantity</label>
+          <div align=left>(Note: Maximum quantity must be less than <%=@project_reward.no_of_rewards%>).</div>
         </div>
 
         <div class="form-field">
-            <%= f.country_select :country, ['Singapore'], options = {}, html_options = {:class => "form-input select-style"} %>
-            <select id="width_tmp_select">
-              <option id="width_tmp_option"></option>
-            </select>
-          <label class="form-label" for="password">Country of Origin</label>
-        </div>                         
-
+          <%= f.text_field :estimated_delivery,:readonly=>true,:value=>@project_reward.estimated_delivery, class: "form-input", placeholder: "Estimated Delivery" %>
+          <label class="form-label" for="email">Estimated Delivery (YYYY/MM/DD)</label>
+        </div>
+        
         <div class="form-actions">
-          <%= f.submit "Create Account", class: "button--stroke--long" %>
+          <%= f.submit "Submit", class: "button--stroke--long" %>
         </div>
     <% end %>
-    <br>
-    <div class="form-footnote">
-      <p>By signing up, you agree to our <b><%= link_to 'Terms of Use, Privacy Policy', termNCondition_path %></b> and
-        <b><%= link_to 'Community Rules', communityRule_path %>.</b></p>
-    </div>
-    <br>
-    <p><b>Already have an account? <%= link_to 'Log in', login_path %>.</b></p>
-  </div>
+    <br>    
 </div>
 
 <%= render "layouts/footer" %>
