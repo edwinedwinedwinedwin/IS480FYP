@@ -13,6 +13,7 @@
 // require jquery.bxslider.min.js
 //
 //= require jquery.min.js
+//= require modernizr.js
 //= require hideShowPassword.min.js
 //= require modernizr.custom.js
 //= require countryselect.js
