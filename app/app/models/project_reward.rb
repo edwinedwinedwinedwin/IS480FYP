@@ -1,4 +1,6 @@
 class ProjectReward < ActiveRecord::Base
+  include ActiveModel::Validations
+
   belongs_to :project
 
   mount_uploader :img_url, ProjectRewardImgUploader

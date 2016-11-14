@@ -1,4 +1,6 @@
 class Project < ActiveRecord::Base
+  include ActiveModel::Validations
+
   belongs_to :project_type
   belongs_to :project_category
   belongs_to :user

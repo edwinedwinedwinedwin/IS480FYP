@@ -1,4 +1,6 @@
 class ProjectProposal < ActiveRecord::Base
+  include ActiveModel::Validations
+
   has_many :project_proposal_imgs
   belongs_to :project_category
   belongs_to :project_status
