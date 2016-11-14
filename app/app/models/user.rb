@@ -1,18 +1,28 @@
 class User < ActiveRecord::Base
+  include ActiveModel::Validations
+
   has_many :projects
   has_many :project_members
   has_many :user_expertises
 
-  mount_uploader :profile_pic, ProfilePicUploader
-  validates :profile_pic, file_size: { less_than: 2.megabytes }
-  
-  has_secure_password # use bcrypt methods to generate password digest = no password is stored in DB; only password digest stored.
-  validates :password, :length => {:within => 8..40},:on => :create # presence is automatically validated here
-  validates :password_confirmation, :presence => { :message => "cannot be blank" },:on => :create
-  # password validation > alphanumeric and NO BLANKS
-  validates :name, :presence => true
-  validates :fb_url, :presence => true
-  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
-  validates :email, :uniqueness => true # ensure email has not been registered before
+  attr_accessor :email
 
+  mount_uploader :profile_pic, ProfilePicUploader
+  validates_uniqueness_of :email, client_validations: { class: User}
+
+  #validates_email :email
+  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+  validates_presence_of :name, :fb_url, :email, :password, :password_confirmation
+  validates_length_of :password, minimum: 8, maximum: 40
+  validates_length_of :password_confirmation, minimum: 8, maximum: 40
+
+  validates_file_size :profile_pic, less_than: 5.megabytes
+  has_secure_password # use bcrypt methods to generate password digest = no password is stored in DB; only password digest stored.
+
+  def persisted?
+    false
+  end
+  def underscore
+    to_s.underscore
+  end
 end

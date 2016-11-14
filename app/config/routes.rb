@@ -21,9 +21,10 @@ Rails.application.routes.draw do
 
   #Normal User
   get 'signup' => 'users#new', as: :signup #display create user page
-  post 'users/create' => 'users#create', as: :createUser # process creation of user 
+  post 'signup' => 'users#create', as: :createUser # process creation of user
   get 'login' => 'sessions#new' , as: :login # show login form
-  post 'sessions/create' => 'sessions#create', as: :loginProcess # process login
+  post 'login' => 'sessions#create', as: :loginProcess # process login
+
   get 'logout' => 'sessions#destroy', as: :logout # log out and invalidate session
   get 'editprofile' => 'users#edit#:id', as: :editUserProfile
   get 'dashboard/index' => 'dashboards#index', as: :dashboardIndex # Display page upon successful login
