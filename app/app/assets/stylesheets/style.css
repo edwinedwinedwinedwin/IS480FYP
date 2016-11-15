@@ -1616,6 +1616,18 @@ strong,
   .form .button, .form--large .button, .form .button--center, .form--large .button--center, .form .button--link, .form--large .button--link, .form .button--fill, .form--large .button--fill, .form .button--fill--black, .form--large .button--fill--black, .form .button--scroll, .form--large .button--scroll, .form .button--scroll-down, .form--large .button--scroll-down, .form .button--scroll-up, .form--large .button--scroll-up, .form .button--stroke, .form--large .button--stroke, .form .button--stroke--long, .form--large .button--stroke--long, .form .button--stroke--full, .form--large .button--stroke--full, .form .project-content__load-more, .form--large .project-content__load-more, .form .project-explore__load-more, .form--large .project-explore__load-more, .form .footer-cta__button, .form--large .footer-cta__button, .form .edit-save-button, .form--large .edit-save-button, .form #project-title-save, .form--large #project-title-save, .form .button--inspiration, .form--large .button--inspiration {
     font-size: 1.25rem; }
 
+/*edwin edit*/
+.getstartedform{
+  margin-right:0px;
+  margin-left:0px;
+  max-width:2000px;
+}
+@media (max-width: 62.5em){
+  .getstartedform{
+    width:100%;
+  }
+}
+
 .form--large {
   font-size: 3.25rem;
   font-weight: 200;
@@ -1623,7 +1635,7 @@ strong,
   padding-bottom: 0; }
   .form--large .form-field {
     max-width: 100%;
-    margin-bottom: 10.5rem; }
+    margin-bottom: 11rem; }
   .form--large .form-input, .form--large .form-input--radio {
     display: inline-block;
     width: auto;
@@ -1671,7 +1683,9 @@ strong,
     margin-top: 4.5rem;
     border: 2px dashed #dbe0e4;
     font-size: 2.5rem;
-    padding: 1rem 2rem 4rem; }
+    /*padding: 1rem 2rem 4rem;*/ }
+  .bottomoffset {
+    padding: 1rem 2rem 2rem; }
    .form--large .form-file-dropper-getstarted {
     max-width: 735px;
     margin: auto;
@@ -1770,10 +1784,22 @@ strong,
   border-bottom: 0.25rem solid #f1f1f1;
   padding-left: 1rem;
   color: #000000;
-  font-size: 1.75rem;  /*1.25rem*/
+  font-size: 1.25rem;  /*1.75rem*/
   line-height: 1.25;
   border-radius: 0;
   transition: color, border 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+
+  /*newer version*/
+.form-input--fileupload {
+  display: inline-flex;
+  width:100%;
+  padding-left: 5rem;
+  color: #000000;
+  font-size: 1.25rem;  /*1.25rem*/
+  line-height: 1.25;
+  border-radius: 0;
+  transition: color, border 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+
 .form-input--radio {
   border: 2px solid #00beff;
   margin: 1.3125rem auto;
@@ -5433,43 +5459,7 @@ Main components
   position: relative;
   padding: 2em 0;
 }
-.cd-section:nth-of-type(odd) {
-  background-color: #3e3947;
-}
-.cd-section:nth-of-type(odd) p {
-  color: #898099;
-}
-.cd-section:nth-of-type(even) {
-  background-color: #745360;
-}
-.cd-section:nth-of-type(even) p {
-  color: #bda3ad;
-}
-.cd-section h1, .cd-section p {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  bottom: auto;
-  right: auto;
-  -webkit-transform: translateX(-50%) translateY(-50%);
-  -moz-transform: translateX(-50%) translateY(-50%);
-  -ms-transform: translateX(-50%) translateY(-50%);
-  -o-transform: translateX(-50%) translateY(-50%);
-  transform: translateX(-50%) translateY(-50%);
-  width: 90%;
-  max-width: 768px;
-  text-align: center;
-}
-.cd-section h1 {
-  color: #3333ff;
-  font-weight: 300;
-  text-transform: uppercase;
-  font-size: 20px;
-  font-size: 1.25rem;
-}
-.cd-section p {
-  line-height: 1.6;
-}
+
 @media only screen and (min-width: 768px) {
   .cd-section h1 {
     font-size: 30px;
@@ -5548,7 +5538,7 @@ Main components
   opacity: 1;
 }
 .no-touch #cd-vertical-nav a.is-selected .cd-dot {
-  background-color: #3333ff;
+  background-color: #00beff;
 }
 .no-touch #cd-vertical-nav .cd-dot {
   position: relative;
@@ -5559,7 +5549,6 @@ Main components
   border-radius: 50%;
   background-color: #ffffff;
   border:3px solid #000000;
-
   -webkit-transition: -webkit-transform 0.2s, background-color 0.5s;
   -moz-transition: -moz-transform 0.2s, background-color 0.5s;
   transition: transform 0.2s, background-color 0.5s;

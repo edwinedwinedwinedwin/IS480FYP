@@ -9,7 +9,7 @@
 @import "bootstrap/mixins";
 
 // Reset and dependencies
-//@import "bootstrap/normalize";
+@import "bootstrap/normalize";
 @import "bootstrap/print";
 @import "bootstrap/glyphicons";
 
@@ -18,15 +18,11 @@
 @import "bootstrap/scaffolding";
 @import "bootstrap/type";
 @import "bootstrap/code";
-
-
 @import "bootstrap/forms";
-
-@import "bootstrap/tables";
-
-@import "bootstrap/grid";
 */ 
+@import "bootstrap/tables";
 @import "bootstrap/buttons";
+@import "bootstrap/grid";
 
 // Components
 
@@ -64,5 +60,4 @@
 // Utility classes
 //@import "bootstrap/utilities";
 //@import "bootstrap/responsive-utilities";
-
 */
