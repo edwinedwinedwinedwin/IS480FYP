@@ -168,7 +168,21 @@
 
 <!--LIGHTBOX -->
 <div class="l--hidden" id="fuel-lightbox-content-addprofilepic">
-  <div class="fuel-lightbox-container">
+<!-- for the image to come out -->
+<script>
+var preview = $(".upload-preview2 img");
+    $(".profilepic").change(function(event){
+       var input = $(event.currentTarget);
+       var file = input[0].files[0];
+       var reader = new FileReader();
+       reader.onload = function(e){
+           image_base64 = e.target.result;
+           preview.attr("src", image_base64);
+       };
+       reader.readAsDataURL(file);
+    });
+</script>
+  <div class="fuel-lightbox-container" style="padding: 1% 1rem;">
 
     <legend class="form-heading heading">Edit Profile</legend>
     <span class="fuel-lightbox__heading">Upload your profile picture</span>
@@ -191,12 +205,12 @@
           <% end %>
         </div>
 
-        <div class="form-field">
-          <%= f.file_field :profile_pic, class: "form-input" %>
-          <label class="form-label" for="profile_pic">Profile Picture (File Size: < 2MB)</label>
+        <div class="form-field-getstarted">
+          <%= f.file_field :profile_pic, class: "form-input--fileupload profilepic" %>
+          <div class="upload-preview2"><img class="img-circular-avatarpreview" /></div>
         </div>
 
-        <div class="form-actions">
+        <div class="form-actions" style="margin-top:1rem;">
           <%= f.submit "Submit", class: "button--stroke--long" %>
         </div>
 

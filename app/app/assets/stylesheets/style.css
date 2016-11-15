@@ -3938,6 +3938,21 @@ strong,
  display:inline-block;
 }
 
+.img-circular-avatarpreview{
+  margin-top:10px;
+  margin-left:60px;
+  margin-right:60px;
+  height: 100px;
+  max-width:100px;
+  background-size: cover;
+  border-radius: 50px;
+ -webkit-border-radius: 50px;
+ -moz-border-radius: 50px;
+ align-content: center;
+ display:inline-block;
+
+}
+
 .img-circular-project-avatar{
   width: 3.7em; 
   height: 3.7em;

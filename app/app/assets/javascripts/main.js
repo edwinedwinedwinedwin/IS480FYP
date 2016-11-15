@@ -68,6 +68,8 @@ $(function() {
        };
        reader.readAsDataURL(file);
     });
+
+    
     /*preview pictures*/
 
 	// Site Menu
