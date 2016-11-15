@@ -55,6 +55,7 @@ $(function() {
 	}
 	/* get started nav*/
 
+	/*preview pictures*/
 	 var preview = $(".upload-preview img");
 
     $(".file").change(function(event){
@@ -67,6 +68,7 @@ $(function() {
        };
        reader.readAsDataURL(file);
     });
+    /*preview pictures*/
 
 	// Site Menu
 	var $siteMenu = $('#site-menu'),

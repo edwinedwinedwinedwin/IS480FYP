@@ -16,7 +16,7 @@
     <%= link_to '< BACK', adminDashboard_path, class: "back--button"  %>
   </div>
 
-  <div class="row">
+  <div class="row rowoffset">
     <table class="table-show">
       <tr class="tr-row">
           <th class="th-row"><strong>Email</strong></th>
@@ -29,8 +29,7 @@
        <% if user.is_admin %>
          <tr class="tr-row">
            <td class="td-row"><%= user.email %></td>
-           <td class="td-row"><%= user.first_name %></td>
-           <td class="td-row"><%= user.last_name %></td>
+           <td class="td-row"><%= user.name %></td>
            <td class="td-row">
             <% adminsCount=User.where('is_admin = true').count %>
              <% #Session User ID is used here to verify who is the current admin login) %>

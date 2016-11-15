@@ -78,32 +78,35 @@
       </fieldset>
       </section>
 
-      <section class="segment" id="section2">
+      
       <fieldset>
         <div class="form-field">
+        <section class="segment" id="section2">
           <p>Tell us about your project:</p>
 <%= f.text_area(:description, rows: "4", :class=>"form-input form-textarea",:placeholder=>"Enter your description", :id=>"project-description", :maxlength=>"300") %>
           <div class="textarea-character-limit js-textarea-limit" data-for="project-description" data-limit="300"><span class="textarea-character-limit__count">300</span> characters left</div>
 
-          <!--div class="form-file-dropper-getstarted js-file-dropper">
+          <div class="form-file-dropper-getstarted js-file-dropper bottomoffset">
             <i class="icon icon--paperclip"></i>
-            To add feature image(s),<br> click on the 'Choose Files' button
+            Click to add feature images!
             <div class="form-field-getstarted">
-                <%= f.file_field :img_url,:multiple=>true, :class=>"form-input--getstarted"  %>
-                <label class="form-label" for="img_url">(Image File Size: < 2MB)</label>
+                <%= f.file_field :img_url,:multiple=>true, :class=>"form-input--fileupload file" %>
+                <!--label class="form-label" for="img_url">(Image File Size: < 2MB)</label-->
+                <div class="upload-preview"><img /></div>
             </div>
-          </div-->
-          <div class="form-file-dropper js-file-dropper bottomoffset">
-            <i class="icon icon--paperclip"></i>
-            Click to add feature images <%= f.file_field :img_url,:multiple=>true, :class=>"form-input--fileupload"  %>
           </div>
-         </div>
-
-         <div class="upload-preview">
-             <img />
-         </div>
-         <input class="file" name="logo" type="file">  
+          <!-- current -->
+          <!--div class="form-file-dropper js-file-dropper bottomoffset">
+            <i class="icon icon--paperclip"></i>
+            Click to add feature images <%= f.file_field :img_url,:multiple=>true, :class=>"form-input--fileupload file", :name=>"logo", :type=>"file"  %>
+            <div class="upload-preview"><img /></div>
+          </div-->
+        </section>
+       </div>
+         <!-- js code -->
          
+         <!--input class="file" name="logo" type="file"-->  
+
       </fieldset>
 
       <div class="form-progress">
@@ -115,7 +118,7 @@
           </div>
         </div>
       </div>
-      </section>
+      
 
       <!-- Personal contact information -->
       <br/>
@@ -149,13 +152,13 @@
       </div>
      
       <div class="form-progress">
-        <div class="grid-container wrap">
-          <div class="grid-65 form-progress-information">
+        <div class="grid-container wrap" style="max-height:100px;">
+          <div class="grid-65 form-progress-information" style="margin-top:20px; height:40px;">
             <span class="form-progress__title">Create Project</span>
             <span class="form-progress__section">3 / 3</span>
             <span class="form-progress__description">Project Type</span>
           </div>
-
+          
           <div class="grid-30 push-5">
             <%= f.button "Submit Project Proposal", :class => "button--fill--black button--full" do %>
         Submit My Project

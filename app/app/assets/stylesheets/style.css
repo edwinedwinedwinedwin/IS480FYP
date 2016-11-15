@@ -1635,7 +1635,7 @@ strong,
   padding-bottom: 0; }
   .form--large .form-field {
     max-width: 100%;
-    margin-bottom: 8rem; }
+    margin-bottom: 6.1rem; }
   .form--large .form-input, .form--large .form-input--radio {
     display: inline-block;
     width: auto;
@@ -1689,7 +1689,7 @@ strong,
    .form--large .form-file-dropper-getstarted {
     max-width: 735px;
     margin: auto;
-    margin-top: 4.5rem;
+    margin-top: 3.2rem;
     border: 2px dashed #00beff;
     font-size: 2.5rem;
     padding: 2rem; }
@@ -1753,9 +1753,9 @@ strong,
 .form-field-getstarted {
   display: block;
   max-width: 26.25rem;/*26.25*/
-  /*margin: auto;*/
-  margin-top: 4rem;
-  margin-bottom:0.5rem; }
+  margin: auto;
+  margin-top: 0rem;
+  margin-bottom:0rem; }
 
 .form-actions {
   display: block;
@@ -5031,6 +5031,11 @@ Sidebar
 .admin-tables > thead > tr > th {
   font: "Proxima Nova", sans-serif;
   font-weight: bold; 
+}
+
+.rowoffset{
+  margin-left:0px;
+  margin-right:0px;
 }
 
 .fullwidth{
