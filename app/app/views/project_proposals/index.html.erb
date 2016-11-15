@@ -9,84 +9,91 @@
 <br>
 <!-- new tables -->
 <div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-12">
-    <div id="project-proposal-table">
-      <div class="table-responsive">
-          <table id="admin-project-proposal-table" class="table table-hover admin-tables dt-responsive dataTable no-footer dtr-inline display nowrap" cellspacing="0" width="100%">
-              <thead>
-                  <tr>
-                      <th data-priority="1"></th>
-                      <th>Submitted On <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
-                      <th data-priority="2">Project Title <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
-                      <th data-priority="5">Category <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
-                      <th data-priority="3">Status <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
-                      <th>Project Description</th>
-                      <th>Images</th>
-                      <th data-priority="6">Creator's contact details</th>
-                      <th data-priority="4">Action</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <% @ProjectProposals.each do |p| %>
-                  <tr>
-                      <td></td>
-                     <td><%= p.created_at.strftime("%d %b %Y %H:%M") %></td>
-                      <td><%= p.title %></td>
-                      <td><%= p.project_category.try(:category)%></td>
-                      <td>
-                          <% if p.project_status.try(:status) == "Pending" %>
-                          <span class="label label-warning">Pending</span>
-                          <% elsif p.project_status.try(:status) == "Rejected"%>
-                          <span class="label label-danger">Rejected</span>
-                          <% else %>
-                          <span class="label label-success">Accepted</span>
-                          <% end %>
-                      </td>
-                      <td><%= p.description %></td>
-                      <td><% @ProjectProposalImgs = p.project_proposal_imgs %> <!-- get project proposal images-->
-                          <% @ProjectProposalImgs.each do | pImg | %> <!-- loop through project proposal images -->
-                            <%= image_tag(pImg.img_url,:class=>"img-circular-project") %> <!-- display project proposal image-->
-                          <% end %>
-                      </td>
-                      <td><%= p.first_name+" "+p.last_name %><br/>
-                          <%= p.email %><br/>
-                          <%= p.contact_number %>
-                      </td>
-                      <td>
-                          <div class="btn-group">
-                              <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Actions <span class="caret"></span>
-                              </button>
-                              <ul class="dropdown-menu">
+ <div class="col-xs-12 col-sm-12 col-md-12">
+  <div id="project-proposal-table">
+   <div class="table-responsive">
+    <table id="admin-project-proposal-table" class="table table-hover admin-tables dt-responsive dataTable no-footer dtr-inline display nowrap" cellspacing="0" width="100%">
+     <thead>
+      <tr>
+       <th data-priority="1"></th>
+       <th>Submitted On <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
+       <th data-priority="2">Project Title <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
+       <th data-priority="5">Category <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
+       <th data-priority="3">Status <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
+       <th>Project Description</th>
+       <th>Images</th>
+       <th data-priority="6">Creator's contact details</th>
+       <th data-priority="4">Action</th>
+      </tr>
+     </thead>
 
-                                  <% if p.project_status_id != 3 %>
-                                    <% if p.project_status_id != 4 %> <!-- pending -->
-                                      <li>
-                                        <%= link_to approveProposal_path(:id => p.id) do %>
-                                          Accept
-                                        <% end %>
-                                      </li>
-                                    <% end %>
-                                  <% end %>
+      <tbody>
+      <% @projectProposals.each do |p| %>
+      <tr>
+       <td></td>
+       <td><%= p.created_at.strftime("%d %b %Y %H:%M") %></td>
+       <td><%= p.title %></td>
+       <td><%= p.project_category.try(:category)%></td>
+       <td>
+        <% if p.project_status.try(:status) == "Pending" %>
+         <span class="label label-warning">Pending</span>
+        <% elsif p.project_status.try(:status) == "Rejected"%>
+         <span class="label label-danger">Rejected</span>
+        <% else %>
+         <span class="label label-success">Accepted</span>
+        <% end %>
+       </td>
+       <td><%= p.description %></td>
+       <td>
+         <% @ProjectProposalImgs = p.project_proposal_imgs %>
+         <!-- get project proposal images-->
+          <% @ProjectProposalImgs.each do | pImg | %>
+          <!-- loop through project proposal images -->
+          <%= image_tag(pImg.img_url,:class=>"img-circular-project") %>
+           <!-- display project proposal image-->
+         <% end %>
+       </td>
 
-                                  <% if p.project_status_id != 4 %>
-                                    <li>
-                                      <%= link_to rejectProposal_path(:id => p.id) do %>
-                                        Reject
-                                      <% end %>
-                                    </li>
-                                    <li role="separator" class="divider"></li>
-                                  <% end %>  
+        <td>
+         <%= p.name %><br/>
+         <%= p.email %><br/>
+         <%= p.contact_number %>
+        </td>
 
-                                  <li><a href="mailto:<%= p.email %>?subject=<%= p.title %>">Email Creator</a></li>
-                              </ul>
-                          </div>
-                      </td>
-                  </tr>
-                  <% end %>
-              </tbody>
-          </table>
-      </div>
+        <td>
+         <div class="btn-group">
+           <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Actions <span class="caret"></span>
+           </button>
+           <ul class="dropdown-menu">
+            <% if p.project_status_id != 3 %>
+             <% if p.project_status_id != 4 %> <!-- pending -->
+              <li>
+               <%= link_to approveProposal_path(:id => p.id) do %>
+                Accept
+               <% end %>
+              </li>
+             <% end %>
+            <% end %>
+
+            <% if p.project_status_id != 4 %>
+             <li>
+              <%= link_to rejectProposal_path(:id => p.id) do %>
+               Reject
+              <% end %>
+             </li>
+             <li role="separator" class="divider"></li>
+            <% end %>
+
+             <li><a href="mailto:<%= p.email %>?subject=<%= p.title %>">Email Creator</a></li>
+         </ul>
+        </div>
+       </td>
+      </tr>
+     <% end %>
+    </tbody>
+   </table>
+   </div>
   </div>
-  </div>
+ </div>
 </div>

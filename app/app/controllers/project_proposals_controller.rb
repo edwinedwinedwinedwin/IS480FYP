@@ -3,12 +3,12 @@ class ProjectProposalsController < ApplicationController
   before_filter :logged_in,:authorize_admin, only: [:accept ,:reject, :index]
 
   def index
-    @ProjectProposals = ProjectProposal.all
+    @projectProposals = ProjectProposal.all
   end
 
   def new
     @session =session[:user_id]
-    @ProjectProposal = ProjectProposal.new
+    @projectProposal = ProjectProposal.new
 
     if !@session.nil?
       @projects=ProjectProposal.select("*").joins(:project).where(:projects => {:user_id=>@session})
@@ -58,26 +58,26 @@ class ProjectProposalsController < ApplicationController
 
   def manage
     emailStr = params[:email]
-    @ProjectProposals = ProjectProposal.where(email: emailStr)
+    @projectProposals = ProjectProposal.where(email: emailStr)
   end
 
   def create
-    @ProjectProposal = ProjectProposal.new(params_pp)
-    @ProjectProposal.project_status_id = 2
-    @ProjectProposal.country=params[:project_proposal][:country]
+    @projectProposal = ProjectProposal.new(params_pp)
+    @projectProposal.project_status_id = 2
+    @projectProposal.country=params[:project_proposal][:country]
     img_url = params[:project_proposal][:img_url]
-    if @ProjectProposal.save
+    if  @projectProposal.save
       # upload project proposal images
       if img_url.present?
         img_url.each do |a|
           @ProjectProposalImg = ProjectProposalImg.new(params_pp_img)
-          @ProjectProposalImg.project_proposal_id=@ProjectProposal.id
+          @ProjectProposalImg.project_proposal_id=@projectProposal.id
           @ProjectProposalImg.img_url = a
           @ProjectProposalImg.save
         end
       end
-      SysMailer.new_proposal_email(@ProjectProposal).deliver
-      redirect_to successProposalSubmission_path(:id => @ProjectProposal.id)
+      SysMailer.new_proposal_email(@projectProposal).deliver
+      redirect_to successProposalSubmission_path(:id =>  @projectProposal.id)
     else
       @session =session[:user_id]
       if !@session.nil?
@@ -92,17 +92,17 @@ class ProjectProposalsController < ApplicationController
 
         @user=User.find(@session) # only able to edit current logged in user
       end
-      render 'new'
+      render 'new' and return
     end
   end
 
   def show
-    @ProjectProposal = ProjectProposal.find(params[:id])
+    @projectProposal = ProjectProposal.find(params[:id])
   end
 
   def successProposal
     @session =session[:user_id]
-    @ProjectProposal = ProjectProposal.find(params[:id])
+    @projectProposal = ProjectProposal.find(params[:id])
 
     if !session[:user_id].nil?
       @projects=ProjectProposal.select("*").joins(:project).where(:projects => {:user_id=>@session})
@@ -117,36 +117,35 @@ class ProjectProposalsController < ApplicationController
   end
 
   def accept
-    @ProjectProposal=ProjectProposal.find(params[:id])
-    @ProjectProposal.project_status_id = 3
-    @ProjectProposal.save
+    @projectProposal=ProjectProposal.find(params[:id])
+    @projectProposal.project_status_id = 3
+    @projectProposal.save
 
     # Project Proposal will be added to Projects table
-    @user = User.find_by_email(@ProjectProposal.email)
+    @user = User.find_by_email(@projectProposal.email)
     @new_password=Array.new(8){[*'0'..'9', *'a'..'z', *'A'..'Z'].sample}.join # generate random password
 
     # Automatically create account for user who submitted project proposal if user not registered
     if !@user.blank?
-      SysMailer.accept_proposal_email(@ProjectProposal).deliver
+      SysMailer.accept_proposal_email(@projectProposal).deliver
     else
       #@new_password_digest=BCrypt::Password.create(@new_password, :cost => 11) # generate password digest
       @user=User.new
-      @user.name=@ProjectProposal.name      
-      @user.email=@ProjectProposal.email
+      @user.name=@projectProposal.name
+      @user.email=@projectProposal.email
       @user.password=@new_password
       @user.password_confirmation=@new_password
       @user.is_banned = 0
       @user.is_admin = 0
-      @user.country=@ProjectProposal.country
       @user.save
       #Send acceptance email to user who sign up containing new account password
-      SysMailer.accept_new_proposal_email(@new_password,@ProjectProposal).deliver
+      SysMailer.accept_new_proposal_email(@new_password,@projectProposal).deliver
     end
 
     @project = Project.new
     @project.project_status_id = 1
-    @project.project_proposal_id = @ProjectProposal.id
-    @project.country = @user.country
+    @project.project_proposal_id = @projectProposal.id
+    @project.country = @projectProposal.country
     @project.user_id = @user.id
     @project.save
     # Project Founder will be assigned to person who submitted project proposal
@@ -165,11 +164,11 @@ class ProjectProposalsController < ApplicationController
   end
 
   def reject
-    @ProjectProposal=ProjectProposal.find(params[:id])
-    @ProjectProposal.project_status_id = 4
-    @ProjectProposal.save
+    @projectProposal=ProjectProposal.find(params[:id])
+    @projectProposal.project_status_id = 4
+    @projectProposal.save
     #Send email to user who sign up
-    SysMailer.reject_proposal_email(@ProjectProposal).deliver
+    SysMailer.reject_proposal_email(@projectProposal).deliver
     redirect_to adminDashboard_path and return
   end
 

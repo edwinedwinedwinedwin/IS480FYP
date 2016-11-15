@@ -28,21 +28,23 @@
       </li>
     </ul>
   </nav>
-  <%= form_for :project_proposal, url: createProposal_path,:html => { :multipart => true } do |f| %>
+  <%= form_for :project_proposal, url: createProposal_path(@projectProposal), :html => { :multipart => true } do |f| %>
   <div class="form-field">
-          <% if @ProjectProposal.errors.any? %>
-              <div class="panel panel-danger">
-              <div class="panel-heading"><h2><strong>Your inputs do not meet the requirements:</strong></h2></div>
-                <div class="panel-body alert-design">
-                  <ul style="list-style-type:circle">
-                    <% @ProjectProposal.errors.full_messages.each do |message| %>
-                        <li><%= message %></li>
-                    <% end %>
-                  </ul>
-                </div>
-              </div>
+    <% if @projectProposal.errors.any? %>
+      <div class="panel panel-danger">
+       <div class="panel-heading"><h2><strong>Your inputs do not meet the requirements:</strong></h2></div>
+        <div class="panel-body alert-design">
+         <ul style="list-style-type:circle">
+          <% @projectProposal.errors.full_messages.each do |message| %>
+           <li><%= message %></li>
           <% end %>
-        </div>        
+         </ul>
+        </div>
+       </div>
+     <% end %>
+  </div>
+
+
     <!--Project title & Category Section-->
   <section class="page-section--small">
     <div class="form--large nl-form" id="nl-form">
@@ -60,7 +62,6 @@
           <span>category.</span>
         </div>
       </fieldset>
-
       <div class="form-progress">
         <div class="grid-container wrap">
           <div class="grid-65 form-progress-information">
@@ -70,13 +71,18 @@
           </div>
         </div>
       </div>
-      </section>
-      <section class="segment" id="section2">
+    </section>
+
+    <section class="segment" id="section2">
       <fieldset>
         <div class="form-field">
           <p>Tell us about your project:</p>
-<%= f.text_area(:description, rows: "8", :class=>"form-input form-textarea",:placeholder=>"Enter your description", :id=>"project-description", :maxlength=>"1000") %>
-          <div class="textarea-character-limit js-textarea-limit" data-for="project-description" data-limit="1000"><span class="textarea-character-limit__count">1000</span> characters left</div>
+          <%= f.text_area(:description, rows: "8", :class=>"form-input form-textarea",:placeholder=>"Enter your description", :id=>"project-description", :maxlength=>"1000") %>
+          <div class="textarea-character-limit js-textarea-limit" data-for="project-description" data-limit="1000">
+            <span class="textarea-character-limit__count">1000</span>
+            characters left
+          </div>
+
 
           <div class="form-file-dropper-getstarted js-file-dropper">
             <i class="icon icon--paperclip"></i>
@@ -98,17 +104,16 @@
           </div>
         </div>
       </div>
-      </section>
+    </section>
 
-      <!-- Personal contact information -->
-      <br/>
-      <section class="segment" id="section3">
+    <!-- Personal contact information -->
+    <section class="segment" id="section3">
       <fieldset>
-      <p>We'll contact you soon :)</p>
-        <div class="form-field">
-          <% if @session.nil? %>
+      <div class="form-field">
+        <p>We'll contact you soon :)</p>
         <%= f.text_field(:name, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"Name") %> 
         <%= f.text_field(:email, rows: "1", :class=>"form-input form-textarea",:placeholder=>"Email") %>
+
         <br/>
 
         <p>Location:</p>
@@ -117,21 +122,9 @@
         <select id="width_tmp_select">
           <option id="width_tmp_option"></option>
         </select>
-        <% else %>
-              <%= f.text_field(:name, rows: "1", columns: "1", :class=>"form-input form-textarea", :value => @user.name) %>              
-              <%= f.text_field(:email, rows: "1", :class=>"form-input form-textarea",:value => @user.email) %>
-              <br/>
+    </div>
 
-              <p>Location:</p>
-              <i class="icon icon--location-pin"></i>
-              <%= f.country_select :country, [@user.country], options = {}, html_options = {:class => "form-input", :id => "resizing_select"} %>
-              <select id="width_tmp_select">
-                <option id="width_tmp_option"></option>
-              </select>
-
-          <%end %>
-      </div>
-      <div class="form-progress">
+    <div class="form-progress">
         <div class="grid-container wrap">
           <div class="grid-65 form-progress-information">
             <span class="form-progress__title">Project Proposal</span>
@@ -140,19 +133,22 @@
           </div>
         </div>
       </div>
-      </section>
-
-      <div class="form-actions">
-        <%= f.submit "Submit Project Proposal", class: "button--fill--black button--full" %>
-      </div>
-      </fieldset>
-    </div>
+    </fieldset>
   </section>
-        <% end %>
+    <div class="form-actions">
+      <%= f.submit "Submit Project Proposal", class: "button--fill--black button--full" %>
+    </div>
+  </div>
+  </section>
+  <% end %>
+
+
+</main>
+<%= render "layouts/footer" %>
+<%= yield %>
 
 <script src="/assets/start/jquery-2.1.1.js">  </script>
 <script>
-
 
 jQuery(document).ready(function($){
   var contentSections = $('.segment'),
@@ -205,6 +201,4 @@ jQuery(document).ready(function($){
   });
 </script>
 
-</main>
-<%= render "layouts/footer" %>
-<%= yield %>
+

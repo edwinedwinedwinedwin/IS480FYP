@@ -5,10 +5,9 @@ class User < ActiveRecord::Base
   has_many :project_members
   has_many :user_expertises
 
-  attr_accessor :email
 
   mount_uploader :profile_pic, ProfilePicUploader
-  validates_uniqueness_of :email, client_validations: { class: User}
+  validates_uniqueness_of :email, client_validations: {class: User}
 
   #validates_email :email
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
