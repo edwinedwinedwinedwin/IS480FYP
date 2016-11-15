@@ -5,7 +5,69 @@ $(function() {
 			event.preventDefault();
 		}
 	});
+	/*get started nav */
+	var contentSections = $('.segment'),
+	  navigationItems = $('#cd-vertical-nav a');
+
+	updateNavigation();
+	$(window).on('scroll', function(){
+	  updateNavigation();
+	});
+
+	//smooth scroll to the section
+	navigationItems.on('click', function(event){
+	      event.preventDefault();
+	      smoothScroll($(this.hash));
+	  });
+	  //smooth scroll to second section
+	  $('.cd-scroll-down').on('click', function(event){
+	      event.preventDefault();
+	      smoothScroll($(this.hash));
+	  });
+
+	  //open-close navigation on touch devices
+	  $('.touch .cd-nav-trigger').on('click', function(){
+	    $('.touch #cd-vertical-nav').toggleClass('open');
 	
+	  });
+	  //close navigation on touch devices when selectin an elemnt from the list
+	  $('.touch #cd-vertical-nav a').on('click', function(){
+	    $('.touch #cd-vertical-nav').removeClass('open');
+	  });
+
+	function updateNavigation() {
+	  contentSections.each(function(){
+	    $this = $(this);
+	    var activeSection = $('#cd-vertical-nav a[href="#'+$this.attr('id')+'"]').data('number') - 1;
+	    if ( ( $this.offset().top - $(window).height()/2 < $(window).scrollTop() ) && ( $this.offset().top + $this.height() - $(window).height()/2 > $(window).scrollTop() ) ) {
+	      navigationItems.eq(activeSection).addClass('is-selected');
+	    }else {
+	      navigationItems.eq(activeSection).removeClass('is-selected');
+	    }
+	  });
+	}
+
+	function smoothScroll(target) {
+	      $('body,html').animate(
+	        {'scrollTop':target.offset().top},
+	        600
+	      );
+	}
+	/* get started nav*/
+
+	 var preview = $(".upload-preview img");
+
+    $(".file").change(function(event){
+       var input = $(event.currentTarget);
+       var file = input[0].files[0];
+       var reader = new FileReader();
+       reader.onload = function(e){
+           image_base64 = e.target.result;
+           preview.attr("src", image_base64);
+       };
+       reader.readAsDataURL(file);
+    });
+
 	// Site Menu
 	var $siteMenu = $('#site-menu'),
 	$pageButton = $('#page-button'),
@@ -274,50 +336,47 @@ $(function() {
 	function sort() {
 		var $itemIndex = 0;
 
-		console.log('reorder');
-		
-		$('.' + $component).find('.' + $component + '-item').each(function(index) {
+		console.log('reorder');		
+			$('.' + $component).find('.' + $component + '-item').each(function(index) {
 
-			index++;
-			$itemIndex = (index < 10) ? '0' + index : index;
-			
-			$(this).find('.' + $component + '-item-index').text($itemIndex);
+				index++;
+				$itemIndex = (index < 10) ? '0' + index : index;
+				
+				$(this).find('.' + $component + '-item-index').text($itemIndex);
 
-			if (index % 2 === 0) {
-        $(this).addClass('is-right');
-      }
-      else {
-        $(this).removeClass('is-right');
-      }
+				if (index % 2 === 0) {
+	        $(this).addClass('is-right');
+	      }
+	      else {
+	        $(this).removeClass('is-right');
+	      }
 
-		});
-	}
+			});
+		}
 
-	sort();
+		sort();
 
- 	var el = document.getElementById($component);
-  	var sortable = Sortable.create(el, {
-    draggable: '.' + $component + "-item", 
-    handle: '.' + $component + "-item-top",
-    animation: 250,
-    scroll: true, // or HTMLElement
-    scrollSensitivity: 60, // px, how near the mouse must be to an edge to start scrolling.
-    scrollSpeed: 10, // px
-    ghostClass: "is-dropping",
+	 	var el = document.getElementById($component);
+	  	var sortable = Sortable.create(el, {
+	    draggable: '.' + $component + "-item", 
+	    handle: '.' + $component + "-item-top",
+	    animation: 250,
+	    scroll: true, // or HTMLElement
+	    scrollSensitivity: 60, // px, how near the mouse must be to an edge to start scrolling.
+	    scrollSpeed: 10, // px
+	    ghostClass: "is-dropping",
 
-    onStart: function (event) {
-      $('.' + $component).toggleClass('is-dragging');
-      console.log('onStart')
-    },
+	    onStart: function (event) {
+	      $('.' + $component).toggleClass('is-dragging');
+	      console.log('onStart')
+	    },
 
-    onEnd: function (event) {
-      $('.' + $component).toggleClass('is-dragging');
-      sort();
-    },
+	    onEnd: function (event) {
+	      $('.' + $component).toggleClass('is-dragging');
+	      sort();
+	    },
 
-  });
-
-  	
+  	});
 
 
 });

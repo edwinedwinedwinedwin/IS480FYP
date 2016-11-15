@@ -57,7 +57,14 @@
             <%= f.select :project_category_id, options, :class=>"form-input" %>
           <span>category.</span>
         </div>
-      
+
+        <div class="form-field">
+        <i class="icon icon--location-pin"></i>
+        <%= f.country_select :country, ['Singapore'], options = {}, html_options = {:class => "form-input", :id => "resizing_select"} %>
+        <select id="width_tmp_select">
+          <option id="width_tmp_option"></option>
+        </select>
+        </div>
 
       <div class="form-progress">
         <div class="grid-container wrap">
@@ -91,6 +98,12 @@
             Click to add feature images <%= f.file_field :img_url,:multiple=>true, :class=>"form-input--fileupload"  %>
           </div>
          </div>
+
+         <div class="upload-preview">
+             <img />
+         </div>
+         <input class="file" name="logo" type="file">  
+         
       </fieldset>
 
       <div class="form-progress">
@@ -114,23 +127,23 @@
         <%= f.text_field(:name, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"Name") %> 
         <%= f.text_field(:email, rows: "1", :class=>"form-input form-textarea",:placeholder=>"Email") %>
         <br/>
-        <p>Location:</p>
+        <!--p>Location:</p>
         <i class="icon icon--location-pin"></i>
         <%= f.country_select :country, ['Singapore'], options = {}, html_options = {:class => "form-input", :id => "resizing_select"} %>
         <select id="width_tmp_select">
           <option id="width_tmp_option"></option>
-        </select>
+        </select-->
         <% else %>
               <%= f.text_field(:name, rows: "1", columns: "1", :class=>"form-input form-textarea", :value => @user.name) %>              
               <%= f.text_field(:email, rows: "1", :class=>"form-input form-textarea",:value => @user.email) %>
               <br/>
 
-              <p>Location:</p>
+              <!--p>Location:</p>
               <i class="icon icon--location-pin"></i>
               <%= f.country_select :country, [@user.country], options = {}, html_options = {:class => "form-input", :id => "resizing_select"} %>
               <select id="width_tmp_select">
                 <option id="width_tmp_option"></option>
-              </select>
+              </select-->
 
           <%end %>
       </div>
@@ -157,64 +170,6 @@
     </div>
   </section>
   <% end %>
-
-<script src="/assets/start/jquery-2.1.1.js"></script>
-
-<script>
-jQuery(document).ready(function($){
-  var contentSections = $('.segment'),
-    navigationItems = $('#cd-vertical-nav a');
-
-  updateNavigation();
-  $(window).on('scroll', function(){
-    updateNavigation();
-  });
-
-  //smooth scroll to the section
-  navigationItems.on('click', function(event){
-        event.preventDefault();
-        smoothScroll($(this.hash));
-    });
-    //smooth scroll to second section
-    $('.cd-scroll-down').on('click', function(event){
-        event.preventDefault();
-        smoothScroll($(this.hash));
-    });
-
-    //open-close navigation on touch devices
-    $('.touch .cd-nav-trigger').on('click', function(){
-      $('.touch #cd-vertical-nav').toggleClass('open');
-  
-    });
-    //close navigation on touch devices when selectin an elemnt from the list
-    $('.touch #cd-vertical-nav a').on('click', function(){
-      $('.touch #cd-vertical-nav').removeClass('open');
-    });
-
-  function updateNavigation() {
-    contentSections.each(function(){
-      $this = $(this);
-      var activeSection = $('#cd-vertical-nav a[href="#'+$this.attr('id')+'"]').data('number') - 1;
-      if ( ( $this.offset().top - $(window).height()/2 < $(window).scrollTop() ) && ( $this.offset().top + $this.height() - $(window).height()/2 > $(window).scrollTop() ) ) {
-        navigationItems.eq(activeSection).addClass('is-selected');
-      }else {
-        navigationItems.eq(activeSection).removeClass('is-selected');
-      }
-    });
-  }
-
-  function smoothScroll(target) {
-        $('body,html').animate(
-          {'scrollTop':target.offset().top},
-          600
-        );
-  }
-});
-
-
-
-
-</script>
 
 </main>
 <%= render "layouts/footer" %>
