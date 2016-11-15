@@ -34,5 +34,4 @@
 //= require z.jquery.fileupload
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require rails.validations
 //= require_tree
