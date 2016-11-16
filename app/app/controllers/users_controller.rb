@@ -97,7 +97,6 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.is_banned = 0
-    #@user.country=params[:user][:country]
 
     #User Save to Database
     if @user.save
@@ -117,8 +116,7 @@ class UsersController < ApplicationController
       end
     end
   end
-
-  def manage
+ def manage
       @user = User.find(params[:id])
       @projects = Project.joins(:project_proposal).where(:project_proposals => {:email=> @user.email, :project_status_id=>3})
   end
