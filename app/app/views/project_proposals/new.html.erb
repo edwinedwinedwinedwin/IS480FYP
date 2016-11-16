@@ -134,6 +134,19 @@
          <%= f.email_field(:email, rows: "1", :class=>"form-input form-textarea",:value => @user.email, :required => 'required') %>
          <br/>
        <%end %>
+              <%= f.text_field(:name, rows: "1", columns: "1", :class=>"form-input form-textarea", :value => @user.name) %>              
+              <%= f.text_field(:email, rows: "1", :class=>"form-input form-textarea",:value => @user.email) %>
+              <br/>
+
+              <!--p>Location:</p>
+              <i class="icon icon--location-pin"></i>
+              <#%= f.country_select :country, [@user.country], options = {}, html_options = {:class => "form-input", :id => "resizing_select"} %>
+              <select id="width_tmp_select">
+                <option id="width_tmp_option"></option>
+              </select-->
+
+          <%end %>
+
       </div>
      
       <div class="form-progress">
