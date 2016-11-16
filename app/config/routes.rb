@@ -29,9 +29,9 @@ Rails.application.routes.draw do
   get 'editprofile' => 'users#edit#:id', as: :editUserProfile
   get 'dashboard/index' => 'dashboards#index', as: :dashboardIndex # Display page upon successful login
   post 'users/updateProfilePic/(:id)' => 'users#updateProfilePic', as: :updateProfilePic
-  get 'changepass' => 'users#changepass#:id', as: :userChangePassword
-  get 'sessions/resetpass' => 'sessions#resetpass'
-  post 'sessions/resetpass' => 'users#resetpass', as: :userResetPassword
+  get 'changepassword' => 'users#changepass#:id', as: :userChangePassword
+  get 'resetpassword' => 'sessions#resetpass'
+  post 'resetpassword' => 'users#resetpass', as: :userResetPassword
 
   #Admin
   get 'users/index' => 'users#index', as: :userIndex
@@ -46,7 +46,7 @@ Rails.application.routes.draw do
 
   # user_shipping_addresses routes
   get 'user_shipping_addresses/index' => 'user_shipping_addresses#index', as: :manageShippingAddress # get user shipping address
-  get 'user_shipping_addresses/new' => 'user_shipping_addresses#new', as: :addShippingAddress # new user shipping address
+  get 'user_shippbing_addresses/new' => 'user_shipping_addresses#new', as: :addShippingAddress # new user shipping address
   get 'user_shipping_addresses/edit' => 'user_shipping_addresses#edit', as: :editShippingAddress # edit user shipping address
   post 'user_shipping_addresses/update/(:id)' => 'user_shipping_addresses#update', as: :updateShippingAddress # update user shipping address
   get 'user_shipping_addresses/destroy' => 'user_shipping_addresses#destroy', as: :deleteShippingAddress # update user shipping address
