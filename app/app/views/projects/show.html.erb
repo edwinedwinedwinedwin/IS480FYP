@@ -1,7 +1,6 @@
-  <%= javascript_include_tag "edit-project.js"%>
+<%= javascript_include_tag "edit-project.js"%>
 
 <%= render "layouts/headerUser", :projects => @projects, :images => @project_coverImgs %>
-<%= yield %>
 
 <main class="page-main" id="page-main">
   <section class="project-hero" id="overview">
@@ -23,7 +22,7 @@
       <ul class="list--horizontal">
         <li class="list-item current"><a href="#overview">Overview</a></li>
         <li class="list-item"><a href="#about">About</a></li>
-        <!--<li class="list-item"><a href="#details">Details</a></li> -->
+        <li class="list-item"><a href="#details">Details</a></li>
         <li class="list-item"><a href="#updates">Updates</a></li>
         <li class="list-item"><a href="#team">Team</a></li>
         <li class="list-item"><a href="#fuel">Fund</a></li>
@@ -32,18 +31,17 @@
     </nav>
     </div>
 
-
     <section class="project-content-section" id="about">
-      <div class="wrap">
-        <div class="grid-container">
-          <div class="grid-65">
-            <div class="project-stats grid-container">
-              <div class="project-funding-goal">
+     <div class="wrap">
+      <div class="grid-container">
+       <div class="grid-65">
+        <div class="project-stats grid-container">
+         <div class="project-funding-goal">
                 <!-- <span id="project-funding-goal" contenteditable>$10,000</span>
 
                 <span class="edit-save-button js-edit-save-button" id="project-funding-goal-save">
-									Done
-								</span>-->
+                  Done
+                </span>-->
               </div>
 
               <!-- <div class="project-funding-goal-overlay" id="project-funding-goal-overlay"></div> -->
@@ -75,45 +73,38 @@
                       <span id="project-funding-value">$<%= @current_milestone.target_amount %> </span> funded</span>
                     <% end %>
 
-
                  <!-- <span class="edit-button js-edit-button" id="project-funding-goal-edit" data-container="project-funding">
-										<i class="icon icon--edit"></i>
-										Edit
-									</span>
-									-->
+                    <i class="icon icon--edit"></i>
+                    Edit
+                  </span>
+                  -->
                 </div>
               </div>
             </div>
 
-
             <div id="project-about">
-              <div class="project-about-title" id="project-about-title">
-                <h2 class="heading--small">
+             <div class="project-about-title" id="project-about-title">
+               <h2 class="heading--small">
                   About the Project
                 </h2>
 
                 <span class="edit-button js-edit-button" id="project-description-edit" data-container="project-about">
-									<i class="icon icon--edit"></i>
-									Edit
-								</span>
+                  <i class="icon icon--edit"></i>
+                  Edit
+                </span>
               </div>
 
-
               <div class="project-description">
-                <%= form_for :project_proposal, url: updateDescription_path(:id => @project_proposal.id), remote: true do |f| %>
-
-                    <%= f.text_area :description, :class => "form-input borderless-bottom t--large wordwrapper", id: "project-description", rows: "15" do %>
-
-                        <p class="t--large wordwrapper"><%= @project_proposal.description %></p>
-                        <!--<p class="wordwrapper"></p>-->
-                    <% end %>
-               </div>
-
-                    </div>
+               <%= form_for :project_proposal, url: updateDescription_path(:id => @project_proposal.id), remote: true do |f| %>
+                <%= f.text_area :description, :required => 'required' ,:class => "form-input borderless-bottom t--large wordwrapper", id: "project-description", rows: "15" do %>
+                 <p class="t--large wordwrapper"><%= @project_proposal.description %></p>
+                <% end %>
+              </div>
+             </div>
                     <%= f.button :submit do %>
                      <span class="edit-save-button js-edit-save-button" id="project-description-save">
                        Done
-					           </span>
+                     </span>
                     <% end %>
                 <% end %>
                 </div>
@@ -124,21 +115,21 @@
                 <% if @project.project_status_id == 1 %>
                 <%= link_to liveProjectRequest_path(:id => @project.id), :class =>"fuel-button " do %>
                 <!--<a href="#fuel" class="fuel-button js-scrollto-button" data-scroll-target="#fuel">-->
-									<span class="fuel-button__content">
-										<span class="fuel-button__cta">Submit</span>
-										<span class="fuel-button__text">This Project</span>
+                  <span class="fuel-button__content">
+                    <span class="fuel-button__cta">Submit</span>
+                    <span class="fuel-button__text">This Project</span>
                       <i class="icon icon--chevron-down"></i>
-									</span>
+                  </span>
                 <!--</a>-->
                   <% end %>
                 <% elsif  @project.project_status_id == 6 %>
                     <%= link_to '#', :class =>"fuel-button " do %>
                         <!--<a href="#fuel" class="fuel-button js-scrollto-button" data-scroll-target="#fuel">-->
                         <span class="fuel-button__content">
-										<span class="fuel-button__cta">Live</span>
-										<span class="fuel-button__text">(Pending)</span>
+                    <span class="fuel-button__cta">Live</span>
+                    <span class="fuel-button__text">(Pending)</span>
                       <i class="icon icon--chevron-down"></i>
-									</span>
+                  </span>
                         <!--</a>-->
                     <% end %>
 
@@ -148,10 +139,10 @@
                         <span class="fuel-button__content">
 
                           <span class="fuel-button__text">IS</span>
-										<span class="fuel-button__cta">Live</span>
+                    <span class="fuel-button__cta">Live</span>
 
                       <i class="icon icon--chevron-down"></i>
-									</span>
+                  </span>
                         <!--</a>-->
                     <% end %>
                 <% end %>
@@ -208,7 +199,9 @@
       </div>
     </section>
 
-
+    <section class="project-content-section" id="details">
+      <%= render "projects/inspirations", :project_id => @project.id, :project_inspiration => @project_inspirations %>
+    </section>
 
     <section class="project-content-section" id="updates">
       <div class="wrap" style="position: relative;">
@@ -437,7 +430,7 @@
 
         <span class="fuel-lightbox__delivery">
     <span class="t--strong">Estimated delivery:</span> <%= pr.estimated_delivery.strftime("%B %Y") %>
-		</span>
+    </span>
 
         <a href="#" class="button--fill">Continue</a>
       </div>
@@ -449,49 +442,37 @@
   <div class="fuel-lightbox-container">
     <legend class="form-heading heading">Add Reward</legend>
     <span class="fuel-lightbox__heading">Add new reward base</span>
-    <%= form_for :project_reward, url: createProjectReward_path, method: :post do |f| %>
+    <%= form_for :project_reward, url: createProjectReward_path(@projectReward) do |f| %>
 
         <%= f.hidden_field :project_id, :value => @project.id %>
 
-        <% if @new_reward.errors.any? %>
-            <div class="alert alert-danger" role="alert">
-              <b><u>Errors:</u></b>
-              <ul>
-                <% @new_reward.errors.full_messages.each do |message| %>
-                    <li><%= message %></li>
-                <% end %>
-              </ul>
-            </div>
-        <% end %>
-
         <div class="form-field">
-          <%= f.text_field :name, class: "form-input", placeholder: "Name" %>
+          <%= f.text_field :name, class: "form-input", placeholder: "Name" , :required => 'required' %>
           <label class="form-label" for="name">Name</label>
         </div>
 
         <div class="form-field">
-          <%= f.text_field :min_amount, class: "form-input", placeholder: "Minimum Amount" %>
+          <%= f.number_field :min_amount, step: 0.01, class: "form-input", placeholder: "Minimum Amount", :required => 'required' %>
           <label class="form-label" for="min_amount">Minimum Amount</label>
         </div>
 
         <div class="form-field">
-          <%= f.text_field :description, class: "form-input", placeholder: "Description" %>
+          <%= f.text_field :description, class: "form-input", placeholder: "Description" , :required => 'required' %>
           <label class="form-label" for="description">Description</label>
         </div>
 
         <div class="form-field">
-            <%= f.date_select :estimated_delivery, { start_year:Date.today.year, order: [:month, :year] , :discard_day => true}, :class => "btn btn-default dropdown-toggle"%>
-
+            <%= f.date_select :estimated_delivery, { start_year:Date.today.year, order: [:month, :year] , :discard_day => true}, :class => "btn btn-default dropdown-toggle", :required => 'required'%>
           <label class="form-label" for="estimated_delivery">Estimated Delivery</label>
         </div>
 
         <div class="form-field">
-          <%= f.text_field :no_of_rewards, class: "form-input", placeholder: "Number of Rewards" %>
+          <%= f.number_field :no_of_rewards, class: "form-input", placeholder: "Number of Rewards" , :required => 'required' %>
           <label class="form-label" for="no_of_rewards">Number of Rewards</label>
         </div>
 
         <div class="form-field">
-          <%= f.file_field :img_url, class: "form-input", placeholder: "Image URL" %>
+          <%= f.file_field :img_url, class: "form-input", placeholder: "Image URL" , :required => 'required' %>
           <label class="form-label" for="img_url">Image URL</label>
         </div>
 
@@ -506,34 +487,21 @@
   <div class="fuel-lightbox-container">
     <legend class="form-heading heading">Add Update</legend>
     <span class="fuel-lightbox__heading">Add new update </span>
-    <%= form_for :project_update, url: createProjectUpdate_path, method: :post do |f| %>
-
+    <%= form_for :project_update, url: createProjectUpdate_path(@ProjectUpdate) do |f| %>
         <%= f.hidden_field :project_id, :value => @project.id %>
 
-        <% if @new_update.errors.any? %>
-            <div class="alert alert-danger" role="alert">
-              <b><u>Errors:</u></b>
-              <ul>
-                <% @new_update.errors.full_messages.each do |message| %>
-                    <li><%= message %></li>
-                <% end %>
-              </ul>
-            </div>
-        <% end %>
-
         <div class="form-field">
-          <%= f.text_field :title, class: "form-input", placeholder: "Title" %>
+          <%= f.text_field :title, class: "form-input", placeholder: "Title", :required => 'required' %>
           <label class="form-label" for="name">Title</label>
         </div>
 
         <div class="form-field">
-          <%= f.text_area :description, rows: "5", class: "form-input form-textarea", :id => "update-description", :maxlength => "1000" %>
+          <%= f.text_area :description, rows: "5", class: "form-input form-textarea", :id => "update-description", :maxlength => "1000", :required => 'required' %>
           <label class="form-label" for="description">Description</label>
           <div class="textarea-character-limit js-textarea-limit" data-for="update-description" data-limit="1000">
             <span class="textarea-character-limit__count">1000</span> characters left
           </div>
         </div>
-
 
         <div class="form-field">
           <%= f.file_field :img_url, class: "form-input", placeholder: "Image URL" %>
@@ -551,39 +519,28 @@
     <div class="fuel-lightbox-container">
       <legend class="form-heading heading">Add Milestone</legend>
       <span class="fuel-lightbox__heading">Add new milestone </span>
-      <%= form_for :project_milestone, url: createProjectMilestone_path, method: :post do |f| %>
+      <%= form_for :project_milestone, url: createProjectMilestone_path(@projectMilestone) do |f| %>
 
           <%= f.hidden_field :project_id, :value => @project.id %>
           <%= f.hidden_field :project_status_id, :value => 2 %>
 
-          <% if @new_milestone.errors.any? %>
-              <div class="alert alert-danger" role="alert">
-                <b><u>Errors:</u></b>
-                <ul>
-                  <% @new_milestone.errors.full_messages.each do |message| %>
-                      <li><%= message %></li>
-                  <% end %>
-                </ul>
-              </div>
-          <% end %>
-
           <div class="form-field">
-            <%= f.text_field :name, class: "form-input", placeholder: "Name of milestone" %>
+            <%= f.text_field :name, class: "form-input", placeholder: "Name of milestone", :required => 'required' %>
             <label class="form-label" for="name">Milestone name</label>
           </div>
 
           <div class="form-field">
-            <%= f.date_select :start_date, { start_year:Date.today.year, order: [:month, :year] , :discard_day => true}, :class => "btn btn-default dropdown-toggle"%>
+            <%= f.date_select :start_date, { start_year:Date.today.year, order: [:month, :year] , :discard_day => true}, :class => "btn btn-default dropdown-toggle", :required => 'required'%>
             <label class="form-label" for="start_date">Start Date</label>
           </div>
 
           <div class="form-field">
-            <%= f.date_select :end_date, { start_year:Date.today.year, order: [:month, :year] , :discard_day => true}, :class => "btn btn-default dropdown-toggle"%>
+            <%= f.date_select :end_date, { start_year:Date.today.year, order: [:month, :year] , :discard_day => true}, :class => "btn btn-default dropdown-toggle", :required => 'required'%>
             <label class="form-label" for="end_date">End Date</label>
           </div>
 
           <div class="form-field">
-            <%= f.text_field :target_amount, class: "form-input", placeholder: "Target Amount" %>
+            <%= f.number_field :target_amount, class: "form-input", step: 0.01, :required => 'required' %>
             <label class="form-label" for="name">Target Amount</label>
           </div>
 
