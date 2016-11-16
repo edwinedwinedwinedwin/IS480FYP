@@ -8,10 +8,7 @@ class User < ActiveRecord::Base
 
   mount_uploader :profile_pic, ProfilePicUploader
   validates_uniqueness_of :email, client_validations: {class: User}
-
-  #validates_email :email
-  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
-  validates_presence_of :name, :fb_url, :email, :password, :password_confirmation
+  validates_presence_of :name, :email, :password, :password_confirmation
   validates_length_of :password, minimum: 8, maximum: 40
   validates_length_of :password_confirmation, minimum: 8, maximum: 40
 

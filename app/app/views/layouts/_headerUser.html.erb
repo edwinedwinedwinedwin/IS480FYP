@@ -85,7 +85,7 @@
             <li>
               <% if !projects.nil? %>
                 <% projects.each do |p| %>
-                    <%= image_tag(ProjectProposalImg.find(p.project_proposal_id).img_url, :class=> "img-circular-project") %>
+                    <%= image_tag(ProjectProposalImg.where(:project_proposal_id => p.project_proposal_id).first.img_url, :class=> "img-circular-project") %>
 
                     <li class="site-navigation-list--project__item-title">
                       <%= link_to showProject_path(:id => p.id) do %>

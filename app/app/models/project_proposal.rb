@@ -11,7 +11,6 @@ class ProjectProposal < ActiveRecord::Base
   #validates :name, :email, :presence => true, :on => :create
 
   validates_presence_of :name, :email, :description, :title, :project_category_id
-  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
   def persisted?
 
     false

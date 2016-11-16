@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
     if user and user.authenticate(params[:password])      
         if user.is_banned          
           flash[:alert]="Your account has been banned."
+
           redirect_to login_path
         else
         session[:user_id] = user.id        
@@ -25,7 +26,7 @@ class SessionsController < ApplicationController
       end
     else                
         flash[:alert]="Invalid username/password."
-        redirect_to login_path and return
+        redirect_to login_path
     end
   end
 
