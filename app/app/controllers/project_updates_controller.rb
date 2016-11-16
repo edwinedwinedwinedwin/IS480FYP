@@ -16,9 +16,9 @@ class ProjectUpdatesController < ApplicationController
       @ProjectUpdate.img_url = params{:img_url}
     end
 
-    @ProjectUpdate.save
+    if @ProjectUpdate.save
       redirect_to showProject_path(:id => @ProjectUpdate.project_id) and return
-
+    end
     
   end
 
@@ -37,6 +37,6 @@ class ProjectUpdatesController < ApplicationController
 
   private
   def project_updates_params
-    params.require(:project_update).permit(:title, :description,:project_id)
+    params.require(:project_update).permit(:title, :description,:project_id, :img_url)
   end
 end

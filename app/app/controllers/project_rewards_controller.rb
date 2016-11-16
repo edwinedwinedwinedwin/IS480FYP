@@ -6,42 +6,38 @@ class ProjectRewardsController < ApplicationController
   end
 
   def show
-    @project_reward = ProjectReward.find(params[:id])
+    @projectReward = ProjectReward.find(params[:id])
   end
 
   def new
-    @project_reward= ProjectReward.new
-    @project_reward.project_id = params[:project_id]
+    @projectReward= ProjectReward.new
+    @projectReward.project_id = params[:project_id]
   end
 
   def edit
-  	@project_reward=ProjectReward.find(params[:id])  
+    @projectReward=ProjectReward.find(params[:id])
   end
 
   def create
-    @project_reward=ProjectReward.new(project_rewards_params)
-
-    pID = @project_reward.project_id
-    @project_reward.save
+    @projectReward.new(project_rewards_params)
+    pID = @projectReward.project_id
+    @projectReward.save
     redirect_to showProject_path(:id => @project_reward.project_id)
-
   end
 
   def update
-    @project_reward=ProjectReward.find(params[:id])
-    if @project_reward.update_attributes(project_rewards_params)
-      redirect_to showProject_path(:id => @project_reward.project_id) and return
+    @projectReward
+    if @projectReward.update_attributes(project_rewards_params)
+      redirect_to showProject_path(:id => @projectReward.project_id) and return
     else
       render 'edit'
     end
   end
 
   def destroy
-    @project_reward=ProjectReward.find(params[:id])
-    @project_reward.destroy   
-    #redirect_to :controller => 'project_rewards', :action => 'index' and return
+    @projectReward=ProjectReward.find(params[:id])
+    @projectReward.destroy
     redirect_to projectRewardsIndex_path and return
-    #redirect_to :controller => 'project_rewards', :action => 'index',:id=session[:project_id] and return
   end
 
   private

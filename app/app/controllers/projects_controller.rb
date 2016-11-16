@@ -5,7 +5,8 @@ before_filter :logged_in,:authorize_user
   end
 
   def show
-  @project = Project.find(params[:id])
+
+    @project = Project.find(params[:id])
 
     session[:project_id] = @project.id
 
@@ -32,8 +33,8 @@ before_filter :logged_in,:authorize_user
   #update the status of milestone
     @project_milestones.each do |pm|
       if pm.end_date < Date.today
-        @project_milestones.project_status_id = 5
-        @project_milestones.save
+        pm.project_status_id = 5
+        pm.save
       end
     end
 
@@ -41,9 +42,9 @@ before_filter :logged_in,:authorize_user
     @total_target_amount = ProjectMilestone.where(:project_id => params[:id]).sum(:target_amount)
 
     if !session[:user_id].nil?
-      @new_reward = ProjectReward.new
-      @new_update = ProjectUpdate.new
-      @new_milestone = ProjectMilestone.new
+      @projectReward = ProjectReward.new
+      @ProjectUpdate = ProjectUpdate.new
+      @projectMilestone = ProjectMilestone.new
       @session=session[:user_id]
 
       @projects=ProjectProposal.select("*").joins(:project).where(:projects => {:user_id=>@session})

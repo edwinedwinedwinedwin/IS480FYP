@@ -22,7 +22,7 @@
           <% end %>
           <p>
           <div class="form-field">
-            <%= text_field_tag :email, nil,class: "form-input" %>
+            <%= email_field_tag :email, nil,class: "form-input", :required => 'required' %>
             <label class="form-label" for="email">Email</label>
           </div>
           </p>             
