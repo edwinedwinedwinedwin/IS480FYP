@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   resources :projects
   resources :project_proposals
   resources :project_proposal_imgs
-  
 
   #Other Routes
   get 'pages/comrules' => 'pages#comrules', as: :communityRule # display com rules
@@ -32,6 +31,7 @@ Rails.application.routes.draw do
   get 'changepassword' => 'users#changepass#:id', as: :userChangePassword
   get 'resetpassword' => 'sessions#resetpass', as: :userResetPasswordPage
   post 'resetpassword' => 'users#resetpass', as: :userResetPassword
+
   #Admin
   get 'users/index' => 'users#index', as: :userIndex
   get 'addAdmin' => 'admins#new', as: :addAdmin #display create admin pageget 'addAdmin' => 'admins#new', as: :addAdmin #display create admin page
@@ -53,30 +53,20 @@ Rails.application.routes.draw do
   #Project Proposal
   get 'GetStarted' => 'project_proposals#new', as: :newProposal # display create proposal page
   post 'GetStarted' => 'project_proposals#create', as: :createProposal # process creation of proposal
-
   get  'project_proposals/show/:id' => 'project_proposals#show', as: :showProjectProposal
-  get 'basicinfo' => 'project_proposals#basicinfo', as: :basicInfo_Proposal
-  post 'basicinfo' => 'project_proposals#step1', as: :step1_Proposal
-  get 'descriptions' => 'project_proposals#descriptions', as: :description_Proposal
-  post 'descriptions' => 'project_proposals#step2', as: :step2_Proposal
-
-
   get 'project_proposals/index' => 'project_proposals#index', as: :indexProposaladmin #view index of proposal of projects
-
   post 'project_proposals/accept/(:id)' => 'project_proposals#accept', as: :approveProposal
   post 'project_proposals/reject/(:id)' => 'project_proposals#reject', as: :rejectProposal
   get 'project_proposals/successProposal/:id' => 'project_proposals#successProposal', as: :successProposalSubmission #success page after getstarted
   post 'project_proposals/manage' => 'project_proposals#manage', as: :checkProposalStatus # display create proposal page
   get 'users/manage/(:id)' => 'users#manage', as: :manageProject # display create proposal page
 
-
   #Project Pro
   get 'UploadImg' => 'project_proposal_imgs#new', as: :newCoverImgs
   post 'project_proposal_imgs/create' => 'project_proposal_imgs#create', as: :addCoverImgs # display create proposal page
   post 'project_proposal_imgs/destroy/(:id)'=> 'project_proposal_imgs#destroy', as: :deleteCoverImgs # display create proposal page
 
-
-  #Project Metrics routes  
+  #Project Metrics routes
   get 'projects/rewards_selected/:id' => 'projects#rewards_selected', as: :showRewardsSelected
   get 'projects/funders_details/:id' => 'projects#funders_details', as: :showFundersDetails  
 

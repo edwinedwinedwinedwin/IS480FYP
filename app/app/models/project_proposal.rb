@@ -6,18 +6,10 @@ class ProjectProposal < ActiveRecord::Base
   belongs_to :project_status
   has_one :project
 
-  #validates :title, :project_category_id, :presence => true, :on => :step1, :on => :step2
-  #validates :description, :presence => true, :on => :step2
-  #validates :name, :email, :presence => true, :on => :create
+  validates_presence_of :title, :country
+  validates_presence_of :description, :company_url, :estimated_start_date, :estimated_end_date, :estimated_amt_raise
+  validates_presence_of :name, :email, :creator_title
 
-  validates_presence_of :name, :email, :description, :title, :project_category_id
-  def persisted?
-
-    false
-  end
-  def underscore
-    to_s.underscore
-  end
 
 end
 

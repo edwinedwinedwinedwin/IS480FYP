@@ -25,37 +25,6 @@ class ProjectProposalsController < ApplicationController
 
   end
 
-  def basicinfo
-    @ProjectProposal  = ProjectProposal.new
-  end
-
-  def step1
-    @ProjectProposal = ProjectProposal.new(params_pp_basic)
-    unless @ProjectProposal.valid?(:step1)
-      @ProjectProposal.errors.each {|k, v| puts "#{k.capitalize}: #{v}"}
-      render 'basicinfo'
-    else
-      redirect_to description_Proposal_path(:title => @ProjectProposal.title, :project_category_id => @ProjectProposal.project_category_id)
-    end
-  end
-
-  def descriptions
-    @ProjectProposal  = ProjectProposal.new(params_pp_basic)
-    #@ProjectProposal.title = params[:title]
-    #@ProjectProposal.project_category_id = params[:project_category_id]
-  end
-
-  def step2
-    @ProjectProposal = ProjectProposal.new(params_pp_description)
-    unless @ProjectProposal.valid?(:step2)
-
-      @ProjectProposal.errors.each {|k, v| puts "#{k.capitalize}: #{v}"}
-      render 'descriptions'
-    else
-      redirect_to description_Proposal_path(:title => @ProjectProposal.title, :project_category_id => @ProjectProposal.project_category_id)
-    end
-  end
-
   def manage
     emailStr = params[:email]
     @projectProposals = ProjectProposal.where(email: emailStr)
@@ -66,7 +35,7 @@ class ProjectProposalsController < ApplicationController
     @projectProposal.project_status_id = 2
     @projectProposal.country=params[:project_proposal][:country]
     img_url = params[:project_proposal][:img_url]
-    if  @projectProposal.save
+    if @projectProposal.save
       # upload project proposal images
       if img_url.present?
         img_url.each do |a|
@@ -181,11 +150,4 @@ class ProjectProposalsController < ApplicationController
     params.permit(:project_proposal_img).permit(:img_url)
   end
 
-  def params_pp_basic
-    params.require(:project_proposal).permit(:title, :project_category_id)
-  end
-
-  def params_pp_description
-    params.require(:project_proposal).permit(:title, :project_category_id, :description)
-  end
 end
