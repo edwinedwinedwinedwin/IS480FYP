@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   skip_before_action :authorize, only: [:new, :create, :index]
 
   def changepass
-    current_user_id=session[:user_id]      
+    current_user_id=session[:user_id]
     @user=User.find(current_user_id)
     # only able to change own account password
 
@@ -20,18 +20,18 @@ class UsersController < ApplicationController
     @user=User.find(current_user_id) # only able to edit current logged in user
   end
 
-  def resetpass           
+  def resetpass
     @user = User.find_by_email(params[:email])
     if @user.nil?
       flash[:alert]='You have entered an invalid email.'
-      redirect_to userResetPassword_path and return
+      render 'sessions/resetpass'
     else
       new_password=Array.new(8){[*'0'..'9', *'a'..'z', *'A'..'Z'].sample}.join # generate random password
       new_password_digest=BCrypt::Password.create(new_password, :cost => 11) # generate password digest
       User.update(@user.id,:password_digest=>new_password_digest)
-      SysMailer.reset_password_email(@user,new_password).deliver            
+      SysMailer.reset_password_email(@user,new_password).deliver
       redirect_to login_path and return
-    end    
+    end
   end
 
   def index
@@ -65,20 +65,20 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])    
-    if @user.update(user_params)      
-        if @user.is_admin
-          redirect_to adminDashboard_path and return
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      if @user.is_admin
+        redirect_to adminDashboard_path and return
+      else
+        @projectSession = session[:project_id]
+        if @projectSession.nil?
+          redirect_to dashboardIndex_path and return
         else
-          @projectSession = session[:project_id]
-          if @projectSession.nil?
-            redirect_to dashboardIndex_path and return
-          else
-            redirect_to showProject_path(:id => @projectSession)
-          end
+          redirect_to showProject_path(:id => @projectSession)
         end
+      end
     else
-        render Rails.application.routes.recognize_path(request.referer)[:action] #renders previous get request
+      render Rails.application.routes.recognize_path(request.referer)[:action] #renders previous get request
     end
   end
 
@@ -104,21 +104,22 @@ class UsersController < ApplicationController
       if @user.is_admin
         redirect_to adminManage_path and return
       else
-          #Send email to user who sign up
-          SysMailer.welcome_email(@user).deliver                
-          redirect_to login_path
+        #Send email to user who sign up
+        SysMailer.welcome_email(@user).deliver
+        redirect_to login_path
       end
     else
       if @user.is_admin
-        render '/admins/new' and return
+        render '/admins/new'
       else
-        render 'new' and return
+        render 'new'
       end
     end
   end
- def manage
-      @user = User.find(params[:id])
-      @projects = Project.joins(:project_proposal).where(:project_proposals => {:email=> @user.email, :project_status_id=>3})
+
+  def manage
+    @user = User.find(params[:id])
+    @projects = Project.joins(:project_proposal).where(:project_proposals => {:email=> @user.email, :project_status_id=>3})
   end
 
   def updateProfilePic
@@ -130,7 +131,7 @@ class UsersController < ApplicationController
     checkProjectExist=Project.find_by_user_id(@user.id)
     if checkProjectExist.nil?
       redirect_to dashboardIndex_path
-    else      
+    else
       redirect_to showProject_path(:id => checkProjectExist.id)
     end
   end

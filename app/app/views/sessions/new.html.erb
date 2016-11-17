@@ -4,49 +4,29 @@
 <!-- include bootstrap-->
 <%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track' => true %>
 
-
 <div class="page-main">
   <div class="page-section">
     <legend class="form-heading heading--login">Log In</legend>
-         <br>
-            <strong>TIP: </strong>Login with your registered email and password.
-      <%= form_tag(loginProcess_path) do |f| %>
-      <div class="form-field">
-          <% if flash[:alert] %>
-              <div class="panel panel-danger">
-              <div class="panel-heading"><h2><strong>Your inputs do not meet the requirements:</strong></h2></div>
-                <div class="panel-body alert-design">
-                  <ul style="list-style-type:circle">
-                        <li><%= flash[:alert] %></li>
-                  </ul>
-                </div>
-              </div>
-          <% end %>
-          </div>
+    <strong>TIP: </strong>Login with your registered email and password.
+    <%= form_tag(loginProcess_path) do |f| %>
 
-          <div class="form-field">
-            <%= email_field_tag :email, nil,class: "form-input", :required => 'required'%>
-            <label class="form-label" for="email">Email</label>
-          </div>
+        <div class="form-field">
+          <%= email_field_tag :email, nil,class: "form-input", :required => 'required'%>
+          <label class="form-label" for="email">Email <%= '- '.to_s + flash[:alert] if !flash[:alert].nil? %></label>
+        </div>
 
-          <div class="form-field">
-            <%= password_field_tag :password,nil, class: "form-input", :required => 'required'%>
-            <label class="form-label" for="password">Password</label>
-          </div>
-
-          <div class="form-actions">
-            <%= submit_tag "LOGIN", class: "button--stroke--long" %>
-          </div>
-
-            <div class="form-actions">
-              Need an account? <%= link_to "Sign Up", signup_path%><br>
-              Forget your password? <%= link_to "Reset Password", userResetPassword_path %>
-            </div>
-      <% end %>
-
-</p>
+        <div class="form-field">
+          <%= password_field_tag :password,nil, class: "form-input", :required => 'required'%>
+          <label class="form-label" for="password">Password <%=  '- '.to_s + flash[:alert] if flash[:alert].to_s.include?("password") %></label>
+        </div>
+        <div class="form-actions">
+          <%= submit_tag "LOGIN", class: "button--stroke--long" %><br><br>
+          Need an account? <%= link_to "Sign Up", signup_path %><br>
+          Forget your password? <%= link_to "Reset Password", userResetPasswordPage_path %>
+        </div>
+    <% end %>
   </div>
 </div>
 
 <%= render "layouts/footer" %>
-  <%= yield %>
+<%= yield %>

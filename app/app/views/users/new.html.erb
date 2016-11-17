@@ -6,47 +6,35 @@
 
 <div class="page-main">
   <div class="page-section">
-    <legend class="form-heading heading--signup"> Sign Up</legend>
-    <p><b>Get ready to create, innovate, and change the world.</b></p>
-    <br>
-    <br>
+    <legend class="form-heading heading--signup">Sign Up</legend>
+
     <%= form_for :user, url: createUser_path(@user) do |f| %>
         <%= f.hidden_field :is_admin, :value => false %>
+
         <div class="form-field">
-          <% if @user.errors.any? %>
-              <div class="panel panel-danger">
-              <div class="panel-heading"><h2><strong>Your inputs do not meet the requirements:</strong></h2></div>
-                <div class="panel-body alert-design">
-                  <ul style="list-style-type:circle">
-                    <% @user.errors.full_messages.each do |message| %>
-                        <li><%= message %></li>
-                    <% end %>
-                  </ul>
-                </div>
-              </div>
-          <% end %>
-        </div>        
-        <div class="form-field">
-          <%= f.text_field :name, class: "form-input", placeholder: "First Name & Last Name", :required => 'required' %>
+          <%= f.text_field :name, class: "form-input" %>
           <label class="form-label" for="name">Name</label>
         </div>
 
         <div class="form-field">
-          <%= f.email_field :email, class: "form-input", placeholder: "Email" , :required => 'required'%>
-          <label class="form-label" for="email">Email</label>
+          <%= f.email_field :email, class: "form-input"%>
+          <label class="form-label" for="email">Email <%= @user.errors[:email].first if @user.errors[:email].any? %></label>
+
         </div>
         <div class="form-field">
-          <%= f.password_field :password, class: "form-input login-field login-field-password", placeholder: "Password", :id=>"password-2" , :required => 'required' %>
+          <%= f.password_field :password, class: "form-input login-field login-field-password", :id=>"password-2", :required => 'required' %>
           <label class="form-label" for="password">Password</label>
+
         </div>
         <div class="form-field">
-          <%= f.password_field :password_confirmation, class: "form-input login-field login-field-password", placeholder: "Password Confirmation", :id=>"password-2" , :required => 'required'%>
-          <label class="form-label" for="password">Confirm Password</label>
+          <%= f.password_field :password_confirmation, class: "form-input login-field login-field-password", :id=>"password-2" %>
+          <label class="form-label" for="password">Confirm Password <%= @user.errors[:password_confirmation].first if @user.errors[:password_confirmation].any? %></label>
+
         </div>
 
         <div class="form-field">
           <%= f.text_field :fb_url, class: "form-input" , :required => 'required'%>
-          <label class="form-label" for="fb_url">Facebook</label>
+          <label class="form-label" for="fb_url">Facebook Username</label>
           <small>e.g. 'brenkoh' for http://www.facebook.com/brenkoh</small>
         </div>
 
@@ -66,7 +54,7 @@
 
 <script>
 
-    $('#password-2').hideShowPassword({
+  $('#password-2').hideShowPassword({
     // Make the password visible right away.
     show: false,
     // Create the toggle goodness.

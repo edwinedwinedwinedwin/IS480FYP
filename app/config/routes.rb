@@ -30,9 +30,8 @@ Rails.application.routes.draw do
   get 'dashboard/index' => 'dashboards#index', as: :dashboardIndex # Display page upon successful login
   post 'users/updateProfilePic/(:id)' => 'users#updateProfilePic', as: :updateProfilePic
   get 'changepassword' => 'users#changepass#:id', as: :userChangePassword
-  get 'resetpassword' => 'sessions#resetpass'
+  get 'resetpassword' => 'sessions#resetpass', as: :userResetPasswordPage
   post 'resetpassword' => 'users#resetpass', as: :userResetPassword
-
   #Admin
   get 'users/index' => 'users#index', as: :userIndex
   get 'addAdmin' => 'admins#new', as: :addAdmin #display create admin pageget 'addAdmin' => 'admins#new', as: :addAdmin #display create admin page

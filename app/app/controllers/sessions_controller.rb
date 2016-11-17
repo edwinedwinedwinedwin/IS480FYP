@@ -1,18 +1,21 @@
 class SessionsController < ApplicationController
   before_filter :after_logged_in
   def new
-    render 'new'
+    flash[:alert]= nil
+  end
+
+  def resetpass
+    flash[:alert]= nil
   end
 
   def create
-    user = User.find_by_email(params[:email])    
-    if user and user.authenticate(params[:password])      
-        if user.is_banned          
-          flash[:alert]="Your account has been banned."
-
-          redirect_to login_path
-        else
-        session[:user_id] = user.id        
+    user = User.find_by_email(params[:email])
+    if user and user.authenticate(params[:password])
+      if user.is_banned
+        flash[:alert]="Your account has been banned."
+        render 'new'
+      else
+        session[:user_id] = user.id
         if user.is_admin
           redirect_to adminDashboard_path and return
         else
@@ -22,11 +25,11 @@ class SessionsController < ApplicationController
           else
             redirect_to showProject_path(:id => @checkProject.id)
           end
-        end        
+        end
       end
-    else                
-        flash[:alert]="Invalid username/password."
-        redirect_to login_path
+    else
+      flash[:alert]="Invalid email/password."
+      render 'new'
     end
   end
 
@@ -34,7 +37,7 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     redirect_to login_path and return
   end
-    
+
 end
 
 

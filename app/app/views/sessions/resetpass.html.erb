@@ -5,39 +5,24 @@
 <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 
 <div class="page-main">
-  
-
   <div class="page-section">
-    <legend class="form-heading heading--login"> Reset Password </legend>
-            <br>
-            <strong>TIP: </strong>Enter the email you registered with.
-      <%= form_for :user,controller:'users',action:'resetpass',method: :post do |f| %>  
-          <% if flash[:alert] %>
-              <div class="alert alert-danger" role="alert">
-                <b><u>Errors:</u></b>
-                <ul>
-                  <li><%= flash[:alert] %></li>
-                </ul>
-              </div>
-          <% end %>
-          <p>
-          <div class="form-field">
-            <%= email_field_tag :email, nil,class: "form-input", :required => 'required' %>
-            <label class="form-label" for="email">Email</label>
-          </div>
-          </p>             
+    <legend class="form-heading heading--login">Reset Password</legend>
+    <strong>TIP: </strong>Enter the email you registered with.
+    <%= form_for :user, url: userResetPassword_path do |f| %>
 
-          <p>
-          <div class="form-actions">
-            <%= submit_tag "RESET", class: "button--stroke--long" %>
-          </div>
-          </p>
+        <div class="form-field">
+          <%= email_field_tag :email, nil,class: "form-input", :required => 'required' %>
+          <label class="form-label" for="email">Email  <%= '- '.to_s + flash[:alert] if !flash[:alert].nil? %> </label>
+        </div>
 
-      <% end %>
-
-</p>
+        <div class="form-actions">
+          <%= submit_tag "RESET", class: "button--stroke--long" %>
+          <br><br>
+          <%= link_to "Back to Login", login_path %>
+        </div>
+    <% end %>
   </div>
 </div>
 
 <%= render "layouts/footer" %>
-  <%= yield %>
+<%= yield %>
