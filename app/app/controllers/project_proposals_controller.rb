@@ -174,7 +174,7 @@ class ProjectProposalsController < ApplicationController
 
   private
   def params_pp
-    params.require(:project_proposal).permit(:title, :description, :project_category_id, :name, :email, :country)
+    params.require(:project_proposal).permit(:title, :description, :project_category_id, :name, :email, :country, :creator_title, :estimated_start_date, :estimated_end_date, :company_url, :estimated_amt_raise)
   end
 
   def params_pp_img

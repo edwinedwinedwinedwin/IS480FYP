@@ -26,127 +26,113 @@
       </li>
     </ul>
   </nav>
+
   <%= form_for :project_proposal, url: createProposal_path,:html => { :multipart => true } do |f| %>
   <div class="form-field">
-          <% if @projectProposal.errors.any? %>
-              <div class="panel panel-danger">
-              <div class="panel-heading"><h2><strong>Your inputs do not meet the requirements:</strong></h2></div>
-                <div class="panel-body alert-design">
-                  <ul style="list-style-type:circle">
-                    <% @projectProposal.errors.full_messages.each do |message| %>
-                        <li><%= message %></li>
-                    <% end %>
-                  </ul>
-                </div>
-              </div>
-          <% end %>
+  <% if @projectProposal.errors.any? %>
+   <div class="panel panel-danger">
+    <div class="panel-heading"><h2><strong>Your inputs do not meet the requirements:</strong></h2></div>
+    <div class="panel-body alert-design">
+     <ul style="list-style-type:circle">
+      <% @projectProposal.errors.full_messages.each do |message| %>
+       <li><%= message %></li>
+      <% end %>
+     </ul>
+    </div>
+   </div>
+  <% end %>
   </div>
-    <!--Project title & Category Section-->
+
+  <!--Project title & Category Section-->
   <section class="page-section--small">
     <div class="form--large nl-form getstartedform" id="nl-form">
     <section class="segment" id="section1">
-      
-        <div class="form-field">
-          <p>My project title is</p>
-          <%= f.text_field :title, class: "form-input", :required => 'required'%>
-        </div>
+     <div class="form-field">
+      <p>My project title is</p>
+      <%= f.text_field :title, class: "form-input", :required => 'required'%>
+     </div>
 
-        <div class="form-field">
-          <p>It will impact the</p>
-            <% options = options_from_collection_for_select(ProjectCategory.all, 'id', 'category', '5') %>
-            <%= f.select :project_category_id, options, :class=>"form-input" %>
-          <span>category.</span>
-        </div>
+     <div class="form-field">
+      <p>It will impact the</p>
+       <% options = options_from_collection_for_select(ProjectCategory.all, 'id', 'category', '5') %>
+        <%= f.select :project_category_id, options, :class=>"form-input" %>
+        <span>category.</span>
+     </div>
 
-        <div class="form-field">
-        <i class="icon icon--location-pin"></i>
-        <%= f.country_select :country, ['Singapore'], options = {}, html_options = {:class => "form-input", :id => "resizing_select"} %>
-        <select id="width_tmp_select">
-          <option id="width_tmp_option"></option>
-        </select>
-        </div>
+     <div class="form-field">
+      <i class="icon icon--location-pin"></i>
+      <%= f.country_select :country, ['Singapore'], options = {}, html_options = {:class => "form-input", :id => "resizing_select"} %>
+       <select id="width_tmp_select">
+        <option id="width_tmp_option"></option>
+       </select>
+     </div>
 
-      <div class="form-progress">
-        <div class="grid-container wrap">
-          <div class="grid-65 form-progress-information">
-            <span class="form-progress__title">Project Proposal</span>
-            <span class="form-progress__section">1 / 3</span>
-            <span class="form-progress__description">Basic Info</span>
-          </div>
-        </div>
-      </div>
-      </fieldset>
-      </section>
-     <fieldset>
-        <div class="form-field">
-        <section class="segment" id="section2">
-          <p>Tell us about your project:</p>
-            <%= f.text_area(:description, rows: "4", :class=>"form-input form-textarea",:placeholder=>"Enter your description", :id=>"project-description", :maxlength=>"300", :required => 'required') %>
-          <div class="textarea-character-limit js-textarea-limit" data-for="project-description" data-limit="300"><span class="textarea-character-limit__count">300</span> characters left</div>
-
-          <div class="form-file-dropper-getstarted js-file-dropper bottomoffset">
-            <i class="icon icon--paperclip"></i>
-            Click to add feature images!
-            <div class="form-field-getstarted">
-                <%= f.file_field :img_url,:multiple=>true, :class=>"form-input--fileupload file", :required => 'required' %>
-                <!--label class="form-label" for="img_url">(Image File Size: < 2MB)</label-->
-                <div class="upload-preview"><img /></div>
-            </div>
-          </div>
-          <!-- current -->
-          <!--div class="form-file-dropper js-file-dropper bottomoffset">
-            <i class="icon icon--paperclip"></i>
-            Click to add feature images <%= f.file_field :img_url,:multiple=>true, :class=>"form-input--fileupload file", :name=>"logo", :type=>"file"  %>
-            <div class="upload-preview"><img /></div>
-          </div-->
-        </section>
+     <div class="form-progress">
+      <div class="grid-container wrap">
+       <div class="grid-65 form-progress-information">
+        <span class="form-progress__title">Project Proposal</span>
+        <span class="form-progress__section">1 / 3</span>
+        <span class="form-progress__description">Basic Info</span>
        </div>
-         <!-- js code -->
-         
-         <!--input class="file" name="logo" type="file"-->  
-
-      </fieldset>
-
-      <div class="form-progress">
-        <div class="grid-container wrap">
-          <div class="grid-65 form-progress-information">
-            <span class="form-progress__title">Project Proposal</span>
-            <span class="form-progress__section">2 / 3</span>
-            <span class="form-progress__description">Project Description</span>
-          </div>
-        </div>
       </div>
+     </div>
+   </section>
+   <fieldset>
+    <section class="segment" id="section2">
+    <div class="form-field">
+     <p>Tell us about your project:</p>
+     <%= f.text_area(:description, rows: "4", :class=>"form-input form-textarea",:placeholder=>"Enter your description", :id=>"project-description", :maxlength=>"300", :required => 'required') %>
+     <div class="textarea-character-limit js-textarea-limit" data-for="project-description" data-limit="300"><span class="textarea-character-limit__count">300</span> characters left</div>
+    </div>
+
+    <div class="form-field">
+      <%= f.url_field(:company_url, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"Company Url", :required => 'required') %>
+      <%= f.date_select(:estimated_start_date, {start_year:Date.today.year, order: [:day, :month, :year] }, :required => 'required') %>
+      TO <%= f.date_select(:estimated_end_date,{start_year:Date.today.year, order: [:day, :month, :year] },   :placeholder=>"End Date", :required => 'required') %>
+      <%= f.number_field(:estimated_amt_raise, step: 0.01, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"Estimated Amount Raising", :required => 'required') %>
+    </div>
+
+   <div class="form-field">
+    <div class="form-file-dropper-getstarted js-file-dropper bottomoffset">
+     <i class="icon icon--paperclip"></i>
+      Click to add feature images!
+     <div class="form-field-getstarted">
+      <%= f.file_field :img_url,:multiple=>true, :class=>"form-input--fileupload file", :required => 'required' %>
+      <div class="upload-preview"><img /></div>
+     </div>
+    </div>
+   </div>
+
+   <div class="form-progress">
+    <div class="grid-container wrap">
+     <div class="grid-65 form-progress-information">
+       <span class="form-progress__title">Project Proposal</span>
+       <span class="form-progress__section">2 / 3</span>
+       <span class="form-progress__description">Project Description</span>
+      </div>
+     </div>
+    </div>
+  </section>
+ </fieldset>
+
       
 
       <!-- Personal contact information -->
-      <br/>
       <section class="segment" id="section3">
       <fieldset>
 
-      <p>We'll contact you soon!</p>
+
       <div class="form-field">
+        <p>We'll contact you soon!</p>
        <% if @session.nil? %>
         <%= f.text_field(:name, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"Name", :required => 'required') %>
         <%= f.email_field(:email, rows: "1", :class=>"form-input form-textarea",:placeholder=>"Email", :required => 'required') %>
-        <br/>
+        <%= f.text_field(:creator_title, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"Creator Title", :required => 'required') %>
         <% else %>
          <%= f.text_field(:name, rows: "1", columns: "1", :class=>"form-input form-textarea", :value => @user.name, :required => 'required') %>
          <%= f.email_field(:email, rows: "1", :class=>"form-input form-textarea",:value => @user.email, :required => 'required') %>
-         <br/>
-       <%end %>
-              <%= f.text_field(:name, rows: "1", columns: "1", :class=>"form-input form-textarea", :value => @user.name) %>              
-              <%= f.text_field(:email, rows: "1", :class=>"form-input form-textarea",:value => @user.email) %>
-              <br/>
-
-              <!--p>Location:</p>
-              <i class="icon icon--location-pin"></i>
-              <#%= f.country_select :country, [@user.country], options = {}, html_options = {:class => "form-input", :id => "resizing_select"} %>
-              <select id="width_tmp_select">
-                <option id="width_tmp_option"></option>
-              </select-->
-
-          <%end %>
-
+         <%= f.text_field(:creator_title, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"Creator Title", :required => 'required') %>
+      <% end %>
       </div>
      
       <div class="form-progress">
