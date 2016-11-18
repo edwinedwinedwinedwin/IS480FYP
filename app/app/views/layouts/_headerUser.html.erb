@@ -185,9 +185,9 @@ var preview = $(".upload-preview2 img");
   <div class="fuel-lightbox-container" style="padding: 1% 1rem;">
 
     <legend class="form-heading heading">Edit Profile</legend>
-    <span class="fuel-lightbox__heading">Upload your profile picture</span>
+    <span class="fuel-lightbox__heading">Upload your profile pictures</span>
 
-    <%= form_for :user, url:  updateProfilePic_path(:id => current_user.id) ,method: :post do |f| %>
+    <%= form_for :user, url:  updateProfilePic_path(:id => current_user.id) do |f| %>
 
         <div class="form-field">
 
@@ -206,7 +206,7 @@ var preview = $(".upload-preview2 img");
         </div>
 
         <div class="form-field-getstarted">
-          <%= f.file_field :profile_pic, class: "form-input--fileupload profilepic" %>
+          <%= f.file_field :profile_pic, class: "form-input--fileupload profilepic", :required => 'required' %>
           <div class="upload-preview2"><img class="img-circular-avatarpreview" /></div>
         </div>
 

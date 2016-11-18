@@ -57,7 +57,7 @@ gem 'aws-sdk', '~> 2'
 # Upload images
 gem 'file_validators'
 gem 'carrierwave', '0.10.0'
-gem "mini_magick"
+gem 'mini_magick'
 gem 'fog', require: 'fog/aws' 
 
 # Country state selection for signup(users/new) and getstarted(project_proposals/new)
