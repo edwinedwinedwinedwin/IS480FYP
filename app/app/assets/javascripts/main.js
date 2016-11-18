@@ -328,11 +328,21 @@ $(function() {
     });
 
 
+
+
+
     //THIS IS for the get started page to select the location
     $('#resizing_select').change(function(){
       $("#width_tmp_option").html($('#resizing_select option:selected').text()); 
-      $(this).width($("#width_tmp_select").width());  
+      $(this).width($("#width_tmp_select").width());
+      var $country = $('#resizing_select');
+      if ($country != "Singapore"){
+      	alert("This website is currently not available in your country yet.");
+      }
+
     });
+
+    
 
     //THIS IS for the sortable function for the milestones
     var $component = 'Timeline';

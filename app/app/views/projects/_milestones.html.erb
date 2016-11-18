@@ -7,13 +7,13 @@
   
   <% i = 0 %>
   <% project_milestones.each do |ms|
-      if( i % 2 == 0) %>
+      if( i >= 0) %>
 
   <div class="Timeline-item">
     <div class="Timeline-item-inner">
       <div class="Timeline-item-top">
         <div class="Timeline-item-top-type milestone-title">
-        <button class="accordion"><%= ms.name %></button>
+        <button class="accordion accordion-hover"><%= ms.name.upcase %></button>
         <div class="panel">
     <strong>Target Amount:</strong> $<%= ms.target_amount %>
           <p>
@@ -82,5 +82,14 @@
     end %>
 </div>
       
-              
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
 
+for (i = 0; i < acc.length; i++) {
+    acc[i].onclick = function(){
+        this.classList.toggle("active");
+        this.nextElementSibling.classList.toggle("show");
+  }
+}
+</script>

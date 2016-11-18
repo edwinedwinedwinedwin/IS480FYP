@@ -1771,7 +1771,6 @@ strong,
   color: #000000;
   font-size: 1.25rem;  /*1.25rem*/
   line-height: 1.25;
-  border-radius: 0;
   transition: color, border 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
   .form-input:focus, .form-input--radio:focus {
     color: #000000;/*#6d6d6d;*/
@@ -1788,6 +1787,7 @@ strong,
   line-height: 1.25;
   border-radius: 0;
   transition: color, border 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+
 
   /*newer version*/
 .form-input--fileupload {
@@ -2873,7 +2873,7 @@ strong,
   position: relative;
   display: block;
   padding-bottom: 2.625rem;
-  border-bottom: 3px solid #eaf2f5; }
+  border-bottom: 0px solid #eaf2f5; }
   @media (max-width: 62.5em) {
     .project-stat {
       margin-bottom: 2rem; } }
@@ -2921,8 +2921,8 @@ strong,
     background-color: #0085b3;
     opacity: 1; }
     .fuel-button:hover .icon {
-      -webkit-transform: translateY(0.5rem) translateZ(0);
-              transform: translateY(0.5rem) translateZ(0); }
+      -webkit-transform: translateX(0.5rem) translateZ(0);
+              transform: translateX(0.5rem) translateZ(0); }
   .fuel-button .fuel-button__cta {
     display: block;
     margin-bottom: 0;
@@ -3593,14 +3593,14 @@ strong,
   position: relative;
   background: #ffffff;
   display: block;
-  font-size: 2.4375rem;
+  font-size: 2.1rem;
   text-transform: none;
   font-weight: 200;
   box-shadow: 0 10px 60px -20px rgba(0, 0, 0, 0.7); }
   .project-category-list li {
     background: #ffffff;
     cursor: pointer;
-    padding: 0.5rem 1rem;
+    padding: 0.1rem 3rem;
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
     .project-category-list li:after {
       content: '';
@@ -3610,7 +3610,8 @@ strong,
       bottom: 0;
       left: 1rem;
       right: 1rem;
-      height: 2px; }
+      height: 2px; 
+    }
     .project-category-list li:hover {
       background: #f1f1f1; }
     .project-category-list li.selected {
@@ -3842,6 +3843,8 @@ strong,
   -ms-user-select: none;
   user-select: none;
   position: relative;
+  -webkit-transition: left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   width: 100%; }
   .site-menu-close .icon--large-cross {
     position: absolute;
@@ -4003,7 +4006,7 @@ strong,
 
 .page-main.enabled{
   margin-left:18.75rem;
-      transition: all 0.3s ease; 
+      transition: all 0.45s ease; 
      width: 100vw !important;
      left: 100vw !important;
 }
@@ -5240,10 +5243,10 @@ select.dropdown_address{
   -webkit-user-select: none;
 }
 .Timeline-item:hover:after {
-  border-left-color: #999;
+  border-left-color: #000000;
 }
 .Timeline-item:hover .Timeline-item-inner {
-  border-color: #999;
+  border-color: #ffffff;
 }
 .Timeline-item:hover .Timeline-item-inner:after {
   height: 0;
@@ -5299,17 +5302,16 @@ select.dropdown_address{
   font-size: 24px;
   font-size: 2.4rem;
   font-weight: 200;
-  font-family: Georgia, "Times New Roman", Times, serif;
+  
 }
 .Timeline-item--quote .Timeline-item-content {
-  font-family: Georgia, "Times New Roman", Times, serif;
 }
 .Timeline-item--image .Timeline-item-content-body img {
   max-width: 100%;
   margin-top: 5px;
 }
 .Timeline-item-top {
-  background-color: #f8f8f8;
+  background-color: #dbdbdb;
   padding: 10px 15px;
 }
 .Timeline-item-top:hover {
@@ -5358,7 +5360,7 @@ select.dropdown_address{
 .select-style {
     border: 0px solid #ccc;
     overflow: hidden;
-    background-color:white;
+    background-color:#000000;
     border-bottom:0.25rem solid #f1f1f1;;
 }
 
@@ -5378,6 +5380,7 @@ select.dropdown_address{
 
 .borderless-bottom {
   border-bottom: 0rem;
+  padding-left:0rem;
 }
 
 ::-ms-reveal {
@@ -5414,7 +5417,6 @@ z-index: 3;
 
 /*edwin edit for milestones*/
 button.accordion {
-    background-color: #eee;
     color: #444;
     cursor: pointer;
     padding: 18px;
@@ -5427,7 +5429,7 @@ button.accordion {
 }
 
 button.accordion.active, button.accordion:hover {
-    background-color: #ddd;
+  opacity:0.9;
 }
 
 button.accordion:after {
@@ -5444,7 +5446,7 @@ button.accordion.active:after {
 
 div.panel {
     padding: 0 18px;
-    background-color: white;
+    background-color: #dbdbdb;
     max-height: 0;
     overflow: hidden;
     transition: 0.4s ease-in-out;
@@ -5569,8 +5571,7 @@ Main components
   height: 20px;
   width: 20px;
   border-radius: 50%;
-  background-color: #ffffff;
-  border:3px solid #000000;
+  border:2px solid #00beff;
   -webkit-transition: -webkit-transform 0.2s, background-color 0.5s;
   -moz-transition: -moz-transform 0.2s, background-color 0.5s;
   transition: transform 0.2s, background-color 0.5s;
@@ -5726,4 +5727,11 @@ Main components
   .touch .cd-nav-trigger, .touch #cd-vertical-nav {
     bottom: 40px;
   }
+}
+
+
+.width-dynamic{
+    align-self: center;
+    min-width: 100px;
+    max-width: 1000px;
 }

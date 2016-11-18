@@ -23,6 +23,7 @@
 	margin: 0;
 	-webkit-appearance: none;
 	-moz-appearance: none;
+	border-radius:0px;
 }
 
 .nl-form select {

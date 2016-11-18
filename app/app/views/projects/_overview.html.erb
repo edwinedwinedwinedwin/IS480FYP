@@ -1,20 +1,19 @@
 <div class="project-hero-overlay" id="project-hero-overlay"></div>
-
-<header class="project-header" id="project-header">
- <ul class="meta-tags">
-  <span class="meta-tag" id="project-category">
-  <i class="icon icon--leaf"></i>
-   <span id="project-category__text"><%= project_proposal.project_category.try(:category) %></span>
-    <div class="project-category-selector" id="project-category-selector">
-     <ul class="project-category-list" id="project-category-list">
-      <% ProjectCategory.all.to_a.each do |pc| %>
+  <header class="project-header" id="project-header">
+    <ul class="meta-tags">
+      <span class="meta-tag" id="project-category">
+        <i class="icon icon--leaf"></i>
+          <span id="project-category__text"><%= project_proposal.project_category.try(:category) %></span>
+            <div class="project-category-selector" id="project-category-selector">
+              <ul class="project-category-list" id="project-category-list">
+               <% ProjectCategory.all.to_a.each do |pc| %>
        <% if pc.category.eql?(project_proposal.project_category.try(:category)) %>
         <%= link_to updateCategory_path(:id => project_proposal.id, :project_id => project_id, :project_category_id => pc.id), :class => "project-category-list" do %>
-         <li class="selected" value=<%=pc.id %><%= pc.category %></li>
+         <li class="selected" value=<%=pc.id %>><%= pc.category %></li>
         <% end %>
        <% else %>
         <%= link_to updateCategory_path(:id => project_proposal.id, :project_id => project_id, :project_category_id => pc.id), :class => "project-category-list" do %>
-         <li value= <%=pc.id %> <%= pc.category %></li>
+         <li value= <%=pc.id %>><%= pc.category %></li>
         <% end %>
        <% end %>
       <% end %>
@@ -33,9 +32,9 @@
  <div class="project-title">
   <h1 class="heading--large" id="project-title" style="margin-top:0em;">
    <%= form_for :project_proposal, url: updateTitle_path(:id => project_proposal.id) do |f| %>
-    <%= f.text_field :title , :value => project_proposal.title, :class => "heading--large", :required => 'required', :data=>{:"min-width"=>1000, :"max-width"=>1000}, :style=>"width:800px;" %>
+    <%= f.text_field :title , :value => project_proposal.title, :class => "heading--large width-dynamic", :required => 'required' %>
+        <!--input type="text" class="width-dynamic proba dva" placeholder="Type text here to test."/-->
   </h1>
-
     <%= f.button :submit do %>
      <span class="edit-save-button js-edit-save-button" id="project-title-save">
       Done
@@ -58,3 +57,33 @@
     <span class="profile-tag-text">by <span class="profile-tag__user"><%= full_name%></span></span>
   </div>
 </header>
+
+<!-- script to make the title adjust the width -->
+<script>
+$.fn.textWidth = function(text, font) {
+    
+    if (!$.fn.textWidth.fakeEl) $.fn.textWidth.fakeEl = $('<span>').hide().appendTo(document.body);
+    
+    $.fn.textWidth.fakeEl.text(text || this.val() || this.text() || this.attr('placeholder')).css('font', font || this.css('font'));
+    
+    return $.fn.textWidth.fakeEl.width();
+};
+
+$('.width-dynamic').on('input', function() {
+    var inputWidth = $(this).textWidth();
+    $(this).css({
+        width: inputWidth
+    })
+}).trigger('input');
+
+
+function inputWidth(elem, minW, maxW) {
+    elem = $(this);
+    console.log(elem)
+}
+
+var targetElem = $('.width-dynamic');
+
+inputWidth(targetElem);
+</script>
+
