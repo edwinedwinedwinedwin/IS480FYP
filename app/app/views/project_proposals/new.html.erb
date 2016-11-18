@@ -27,21 +27,8 @@
     </ul>
   </nav>
 
-  <%= form_for :project_proposal, url: createProposal_path,:html => { :multipart => true } do |f| %>
-  <div class="form-field">
-  <% if @projectProposal.errors.any? %>
-   <div class="panel panel-danger">
-    <div class="panel-heading"><h2><strong>Your inputs do not meet the requirements:</strong></h2></div>
-    <div class="panel-body alert-design">
-     <ul style="list-style-type:circle">
-      <% @projectProposal.errors.full_messages.each do |message| %>
-       <li><%= message %></li>
-      <% end %>
-     </ul>
-    </div>
-   </div>
-  <% end %>
-  </div>
+  <%= form_for :project_proposal, url: createProposal_path(@projectProposal),:html => { :multipart => true } do |f| %>
+
 
   <!--Project title & Category Section-->
   <section class="page-section--small">
@@ -49,12 +36,19 @@
     <section class="segment" id="section1">
      <div class="form-field">
       <p>My project title is</p>
-      <%= f.text_field :title, class: "form-input", :required => 'required'%>
+      <%= f.text_field :title, class: "form-input", :required => 'required', :value => @projectProposal.title %>
+      <p><%= 'Project title '.to_s + @projectProposal.errors[:title].first if @projectProposal.errors[:title].any? %></p>
      </div>
 
      <div class="form-field">
       <p>It will impact the</p>
-       <% options = options_from_collection_for_select(ProjectCategory.all, 'id', 'category', '5') %>
+
+       <% if @projectProposal.project_category_id.nil?
+            options = options_from_collection_for_select(ProjectCategory.all, 'id', 'category', '5')
+          else
+            options = options_from_collection_for_select(ProjectCategory.all, 'id', 'category', @projectProposal.project_category_id)
+          end
+      %>
         <%= f.select :project_category_id, options, :class=>"form-input" %>
         <span>category.</span>
      </div>
@@ -81,15 +75,19 @@
     <section class="segment" id="section2">
     <div class="form-field">
      <p>Tell us about your project:</p>
-     <%= f.text_area(:description, rows: "4", :class=>"form-input form-textarea",:placeholder=>"Enter your description", :id=>"project-description", :maxlength=>"300", :required => 'required') %>
+     <%= f.text_area(:description, rows: "4", :class=>"form-input form-textarea",:placeholder=>"Enter your description", :id=>"project-description", :maxlength=>"300", :required => 'required',  :value => @projectProposal.description) %>
      <div class="textarea-character-limit js-textarea-limit" data-for="project-description" data-limit="300"><span class="textarea-character-limit__count">300</span> characters left</div>
     </div>
 
     <div class="form-field">
-      <%= f.url_field(:company_url, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"Company Url", :required => 'required') %>
-      <%= f.date_select(:estimated_start_date, {start_year:Date.today.year, order: [:day, :month, :year] }, :required => 'required') %>
-      TO <%= f.date_select(:estimated_end_date,{start_year:Date.today.year, order: [:day, :month, :year] },   :placeholder=>"End Date", :required => 'required') %>
-      <%= f.number_field(:estimated_amt_raise, step: 0.01, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"Estimated Amount Raising", :required => 'required') %>
+      <%= f.text_field(:company_url, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"Company Url", :required => 'required', :value => @projectProposal.company_url) %>
+      <%= f.date_select(:estimated_start_date, {start_year:Date.today.year, order: [:day, :month, :year] }, :value => @projectProposal.estimated_start_date) %>
+      To <%= f.date_select(:estimated_end_date,{start_year:Date.today.year, order: [:day, :month, :year] }, :value => @projectProposal.estimated_start_date) %>
+      <p>
+        <%=  @projectProposal.errors[:estimated_start_date].first if @projectProposal.errors[:estimated_start_date].any? %>
+        <%=  @projectProposal.errors[:estimated_end_date].first if @projectProposal.errors[:estimated_end_date].any? %>
+      </p>
+      <%= f.number_field(:estimated_amt_raise, step: 0.01, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"Estimated Amount Raising", :required => 'required', :value => @projectProposal.estimated_amt_raise) %>
     </div>
 
    <div class="form-field">
@@ -97,8 +95,9 @@
      <i class="icon icon--paperclip"></i>
       Click to add feature images!
      <div class="form-field-getstarted">
-      <%= f.file_field :img_url,:multiple=>true, :class=>"form-input--fileupload file", :required => 'required' %>
+      <%= f.file_field :img_url,:multiple=>true, :class=>"form-input--fileupload file", :required => 'required', :value => @img_url %>
       <div class="upload-preview"><img /></div>
+       <p><%= 'Images '.to_s + @projectProposal.errors[:img_url].first if @projectProposal.errors[:img_url].any? %></p>
      </div>
     </div>
    </div>
@@ -115,24 +114,20 @@
   </section>
  </fieldset>
 
-      
-
       <!-- Personal contact information -->
       <section class="segment" id="section3">
       <fieldset>
 
-
       <div class="form-field">
         <p>We'll contact you soon!</p>
        <% if @session.nil? %>
-        <%= f.text_field(:name, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"Name", :required => 'required') %>
-        <%= f.email_field(:email, rows: "1", :class=>"form-input form-textarea",:placeholder=>"Email", :required => 'required') %>
-        <%= f.text_field(:creator_title, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"Creator Title", :required => 'required') %>
+        <%= f.text_field(:name, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"Name", :required => 'required', :value => @projectProposal.name) %>
+        <%= f.email_field(:email, rows: "1", :class=>"form-input form-textarea",:placeholder=>"Email", :required => 'required', :value => @projectProposal.email) %>
         <% else %>
          <%= f.text_field(:name, rows: "1", columns: "1", :class=>"form-input form-textarea", :value => @user.name, :required => 'required') %>
          <%= f.email_field(:email, rows: "1", :class=>"form-input form-textarea",:value => @user.email, :required => 'required') %>
-         <%= f.text_field(:creator_title, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"Creator Title", :required => 'required') %>
       <% end %>
+        <%= f.text_field(:creator_title, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"Creator Title", :required => 'required', :value => @projectProposal.creator_title) %>
       </div>
      
       <div class="form-progress">
@@ -145,9 +140,9 @@
           
           <div class="grid-30 push-5">
             <%= f.button "Submit Project Proposal", :class => "button--fill--black button--full" do %>
-        Submit My Project
-        <i class="icon icon--button-arrow-right"></i>
-        <% end %>
+              Submit My Project
+              <i class="icon icon--button-arrow-right"></i>
+            <% end %>
           </div>
         </div>
       </div>

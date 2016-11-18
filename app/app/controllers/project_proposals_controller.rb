@@ -7,9 +7,9 @@ class ProjectProposalsController < ApplicationController
   end
 
   def new
-    @session =session[:user_id]
-    @projectProposal = ProjectProposal.new
+   @projectProposal = ProjectProposal.new
 
+    @session =session[:user_id]
     if !@session.nil?
       @projects=ProjectProposal.select("*").joins(:project).where(:projects => {:user_id=>@session})
       @project_coverImgs = ProjectProposalImg.select('
@@ -18,7 +18,6 @@ class ProjectProposalsController < ApplicationController
                 project_proposals.title as title,
                 projects.id as p_id
                 ').joins(project_proposal: :project).where(:projects => {:user_id => @session})
-      #@project_coverImgs = ProjectProposalImg.select("*").joins(:project_proposal).where(:project_proposal_imgs => {:project_proposal_id => @project.project_proposal_id} )
 
       @user=User.find(@session) # only able to edit current logged in user
     end
@@ -33,7 +32,7 @@ class ProjectProposalsController < ApplicationController
   def create
     @projectProposal = ProjectProposal.new(params_pp)
     @projectProposal.project_status_id = 2
-    @projectProposal.country=params[:project_proposal][:country]
+    @projectProposal.country = params[:project_proposal][:country]
     img_url = params[:project_proposal][:img_url]
     if @projectProposal.save
       # upload project proposal images
@@ -42,26 +41,17 @@ class ProjectProposalsController < ApplicationController
           @ProjectProposalImg = ProjectProposalImg.new(params_pp_img)
           @ProjectProposalImg.project_proposal_id=@projectProposal.id
           @ProjectProposalImg.img_url = a
-          @ProjectProposalImg.save
+          if @ProjectProposalImg.save
+            #do nothing
+          else
+            render 'new'
+          end
         end
       end
       SysMailer.new_proposal_email(@projectProposal).deliver
       redirect_to successProposalSubmission_path(:id =>  @projectProposal.id)
     else
-      @session =session[:user_id]
-      if !@session.nil?
-        @projects=ProjectProposal.select("*").joins(:project).where(:projects => {:user_id=>@session})
-        @project_coverImgs = ProjectProposalImg.select('
-                project_proposal_imgs.project_proposal_id as pp_id,
-                project_proposal_imgs.id as ppi_id,
-                project_proposals.title as title,
-                projects.id as p_id
-                ').joins(project_proposal: :project).where(:projects => {:user_id => @session})
-        #@project_coverImgs = ProjectProposalImg.select("*").joins(:project_proposal).where(:project_proposal_imgs => {:project_proposal_id => @project.project_proposal_id} )
-
-        @user=User.find(@session) # only able to edit current logged in user
-      end
-      render 'new' and return
+      render 'new'
     end
   end
 
@@ -98,7 +88,7 @@ class ProjectProposalsController < ApplicationController
     if !@user.blank?
       SysMailer.accept_proposal_email(@projectProposal).deliver
     else
-      #@new_password_digest=BCrypt::Password.create(@new_password, :cost => 11) # generate password digest
+
       @user=User.new
       @user.name=@projectProposal.name
       @user.email=@projectProposal.email
@@ -119,10 +109,10 @@ class ProjectProposalsController < ApplicationController
     @project.save
     # Project Founder will be assigned to person who submitted project proposal
     @ProjectMember = ProjectMember.new
-    @ProjectMember.role = 'Founder'
+    @ProjectMember.role = @projectProposal.creator_title
     @ProjectMember.email = @user.email
-    @ProjectMember.description = 'Description'
-    @ProjectMember.sub_description ='Sub Description'
+    #@ProjectMember.description = 'Description'
+    #@ProjectMember.sub_description ='Sub Description'
     @ProjectMember.second_role = 'Creator'
     @ProjectMember.project_id = @project.id
     @ProjectMember.project_status_id = 3
@@ -143,7 +133,7 @@ class ProjectProposalsController < ApplicationController
 
   private
   def params_pp
-    params.require(:project_proposal).permit(:title, :description, :project_category_id, :name, :email, :country, :creator_title, :estimated_start_date, :estimated_end_date, :company_url, :estimated_amt_raise)
+    params.require(:project_proposal).permit(:title, :description, :project_category_id, :name, :email, :creator_title, :estimated_start_date, :estimated_end_date, :company_url, :estimated_amt_raise, :country)
   end
 
   def params_pp_img
