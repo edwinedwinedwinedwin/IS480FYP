@@ -1677,6 +1677,37 @@ strong,
     width: 100%;
     color: #00beff;
     text-align: left; }
+  .form--large .form-single {
+    display: block;
+    margin-top: 0.25rem;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.375rem;
+    border-bottom:2px solid #00beff;
+    max-width: 400px;
+    width: 100%;
+    padding: 0.5rem;
+    color: #00beff;
+    text-align: center; 
+  }
+  .form--large .form-number {
+    display: block;
+    margin-top: 0.25rem;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.375rem;
+    border-bottom:2px solid #00beff;
+    min-width:250px;
+    width:1px;
+    padding: 0.5rem;
+    color: #00beff;
+    text-align: center; 
+  }
+  .smallfont{
+    font-size:2rem;
+    padding-bottom:1rem;
+  }
+
   .form--large .form-file-dropper {
     max-width: 735px;
     margin: auto;
@@ -4118,6 +4149,13 @@ ul.site-navigation-list--project li{
  -moz-border-radius: 15px;
  align-content: center;
  float:left;
+}
+.img-circular-project:hover{
+  border-radius: 0px;
+    -ms-transform: matrix(10, 0, 0, 10, 130, -120);
+    -webkit-transform: matrix(10, 0, 0, 10, 130, -120);
+    transform: matrix(10, 0, 0, 10, 130, -120);
+    
 }
 
 .site-navigation-list--project-percentage{

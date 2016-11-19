@@ -53,8 +53,10 @@
         <span>category.</span>
      </div>
 
+
      <div class="form-field">
       <i class="icon icon--location-pin"></i>
+      Location:
       <%= f.country_select :country, ['Singapore'], options = {}, html_options = {:class => "form-input", :id => "resizing_select"} %>
        <select id="width_tmp_select">
         <option id="width_tmp_option"></option>
@@ -75,19 +77,35 @@
     <section class="segment" id="section2">
     <div class="form-field">
      <p>Tell us about your project:</p>
-     <%= f.text_area(:description, rows: "4", :class=>"form-input form-textarea",:placeholder=>"Enter your description", :id=>"project-description", :maxlength=>"300", :required => 'required',  :value => @projectProposal.description) %>
+     <%= f.text_area(:description, rows: "4", :class=>"form-input form-textarea",:placeholder=>"Enter your project description", :id=>"project-description", :maxlength=>"300", :required => 'required',  :value => @projectProposal.description) %>
      <div class="textarea-character-limit js-textarea-limit" data-for="project-description" data-limit="300"><span class="textarea-character-limit__count">300</span> characters left</div>
     </div>
 
     <div class="form-field">
-      <%= f.text_field(:company_url, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"Company Url", :required => 'required', :value => @projectProposal.company_url) %>
-      <%= f.date_select(:estimated_start_date, {start_year:Date.today.year, order: [:day, :month, :year] }, :value => @projectProposal.estimated_start_date) %>
-      To <%= f.date_select(:estimated_end_date,{start_year:Date.today.year, order: [:day, :month, :year] }, :value => @projectProposal.estimated_start_date) %>
+    Do you have a company website?
+    <div class="smallfont">
+    We'd like to know!
+    </div>
+      <%= f.text_field(:company_url, rows: "1", columns: "1", :class=>"form-input form-single",:placeholder=>"Company Url", :required => 'required', :value => @projectProposal.company_url) %>
+    <br/>
+    <div class="smallfont">
+    Estimated Start Date:
+
+    <%= f.date_select(:estimated_start_date, {start_year:Date.today.year, order: [:day, :month, :year] }, :value => @projectProposal.estimated_start_date, :style=>"border:none;") %>
+    </div>
+    
+    <div class="smallfont" style="padding-left:10px;">
+     Estimated End Date:
+      <%= f.date_select(:estimated_end_date,{start_year:Date.today.year, order: [:day, :month, :year] }, :value => @projectProposal.estimated_start_date, :style=>"border:none;") %>
+    </div>
       <p>
         <%=  @projectProposal.errors[:estimated_start_date].first if @projectProposal.errors[:estimated_start_date].any? %>
         <%=  @projectProposal.errors[:estimated_end_date].first if @projectProposal.errors[:estimated_end_date].any? %>
       </p>
-      <%= f.number_field(:estimated_amt_raise, step: 0.01, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"Estimated Amount Raising", :required => 'required', :value => @projectProposal.estimated_amt_raise) %>
+    </div>
+    <div class="form-field">
+      How much do you intend to raise?
+      <%= f.number_field(:estimated_amt_raise, step: 0.01, rows: "1", columns: "1", :class=>"form-input form-number",:placeholder=>"Estimated Amount", :required => 'required', :value => @projectProposal.estimated_amt_raise) %>
     </div>
 
    <div class="form-field">
@@ -127,7 +145,7 @@
          <%= f.text_field(:name, rows: "1", columns: "1", :class=>"form-input form-textarea", :value => @user.name, :required => 'required') %>
          <%= f.email_field(:email, rows: "1", :class=>"form-input form-textarea",:value => @user.email, :required => 'required') %>
       <% end %>
-        <%= f.text_field(:creator_title, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"Creator Title", :required => 'required', :value => @projectProposal.creator_title) %>
+        <%= f.text_field(:creator_title, rows: "1", columns: "1", :class=>"form-input form-textarea",:placeholder=>"Your role in this project, eg. CEO, Founder", :required => 'required', :value => @projectProposal.creator_title) %>
       </div>
      
       <div class="form-progress">
