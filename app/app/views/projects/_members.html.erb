@@ -36,11 +36,12 @@
   <section class="project-team-management" style="display:none;" id="project-team-management">
     <div class="grid-container">
       <div class="grid-35 push-5">
-        <div style="background-repeat: no-repeat;background-position:left center;max-width: 334px;margin:auto;padding-bottom: 100%;">
+        <div style="background-repeat: no-repeat;background-position:center center;max-width: 334px;margin:auto;padding-bottom: 50%;">
           <p class="t--large">Current Member</p>
-
+          <!--EDWIN HELP ME STYLE -->
           <ul class="site-navigation-list">
             <li class="site-navigation-list__item-member">
+
               <ul class="site-navigation-list--member">
                 <li>
                   <% if !project_members.nil? %>
@@ -64,14 +65,43 @@
                 </li>
               </ul>
             </li>
+            <% totalMembers = ProjectMember.where(:project_id => project_id, :project_status_id => 3)
+               if (totalMembers.size > 3)
+            %>
+            <li class="site-navigation-list__item-member">View all <%=totalMembers.size %> members</li>
+            <% end %>
           </ul>
         </div>
 
-        <div style="background-repeat: no-repeat;background-position:left center;max-width: 334px;margin:auto;padding-bottom: 1%;">
+        <div style="background-repeat: no-repeat;background-position:center center;max-width: 334px;margin:auto;padding-bottom: 1%;">
           <p class="t--large">Pending</p>
+          <!--EDWIN HELP ME STYLE -->
+          <ul class="site-navigation-list">
+            <li class="site-navigation-list__item-member">
+              <ul class="site-navigation-list--member">
+                <li>
+                  <% if !project_members.nil? %>
+                      <% project_members.each do |p| %>
+                          <% if p.member_status == 2 %>
+                              <% if User.find(p.user_id).profile_pic.blank? %>
+                                  <%= image_tag('defaultprofile.png', :class=>"img-circular-project") %>
+                              <% else %>
+                                  <%= image_tag(User.find(p.user_id).profile_pic, :class=>"img-circular-project") %>
+                              <% end %>
 
+                            <li class="site-navigation-list--member-title">
+                              <%= User.find(p.user_id).name %>
+                            </li>
+
+                        <% end %>
+                    <% end %>
+                <% end %>
+                </li>
+              </ul>
+            </li>
+          </ul>
         </div>
-      </div>
+        </div>
 
       <div class="grid-50 push-10 t--left">
         <p class="t--large">Type the email(s) of the people you wish to invite:</p>
@@ -104,9 +134,6 @@
 
        <% end %>
       </div>
-
-
-
     </div>
   </section>
 </div>

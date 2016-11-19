@@ -1,15 +1,27 @@
 class ProjectsController < ApplicationController
 before_filter :logged_in,:authorize_user
   def index
-    @Projects = Project.all
+    if !@session.nil?
+
+      @session = session[:user_id]
+      @project_requests = ProjectMember.where(:user_id => @session, :project_status_id => 2)
+
+
+      @projects=ProjectProposal.select("*").joins(:project).where(:projects => {:user_id=>@session})
+
+      @project_coverImgs = ProjectProposalImg.select('
+                  project_proposal_imgs.project_proposal_id as pp_id,
+                  project_proposal_imgs.id as ppi_id,
+                  project_proposals.title as title,
+                  projects.id as p_id
+                  ').joins(project_proposal: :project).where(:projects => {:user_id => @session})
+      @user = User.find(@session)
+    end
   end
 
   def show
-
     @project = Project.find(params[:id])
-
     session[:project_id] = @project.id
-
     @project_proposal = ProjectProposal.find(@project.project_proposal_id)
     @user = User.find(@project.user_id)
     @project_proposal_imgs = ProjectProposalImg.where(:project_proposal_id => @project_proposal.id)
@@ -125,18 +137,12 @@ before_filter :logged_in,:authorize_user
         teamMember = ProjectMember.find_by(:user_id => user.id, :project_id => p_id)
         if(teamMember.nil?)
           #user is not inside this project(allow to add in)
-          @project_members.role = 'Team Member'
           @project_members.email = user.email
-
           @project_members.second_role = 'Crew'
           @project_members.project_id =  p_id
           @project_members.project_status_id = 2
           @project_members.user_id = user.id
           @project_members.save
-
-        else
-          #user is inside this project(not allow to add in)
-
         end
       else
         #user is not existing

@@ -74,9 +74,9 @@ Rails.application.routes.draw do
   get 'projects/funders_details/:id' => 'projects#funders_details', as: :showFundersDetails  
 
   #Projects Routes
+  get 'projects' => 'projects#index', as: :projectsIndex
   post 'projects/updateCategory/(:id)' => 'projects#updateCategory', as: :updateCategory
   get 'projects/show/:id' => 'projects#show', as: :showProject
-  get 'projects/index' => 'projects#index', as: :projectsIndex
   post 'projects/updateDescription/(:id)' => 'projects#updateDescription', as: :updateDescription
   post 'projects/updateTitle/(:id)' => 'projects#updateTitle', as: :updateTitle
   post 'projects/updateMember/(:id)' => 'projects#updateMemberDetails', as: :updateMemberDetails
