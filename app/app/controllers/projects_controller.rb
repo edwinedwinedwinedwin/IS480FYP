@@ -92,9 +92,9 @@ before_filter :logged_in,:authorize_user
   def updateDescription
     @project_proposal = ProjectProposal.find(params[:id])
     @project = Project.where(:project_proposal_id => params[:id]).first
-    tests = params[:project_proposals]
-    test = params[:project_proposals][:description]
-    if !params[:project_proposals].nil? && !param[:project_proposals][:description].nil?
+    tests = params[:project_proposal]
+    test = params[:project_proposal][:description]
+    if !params[:project_proposal].nil? && !params[:project_proposal][:description].nil?
       @project_proposal.description = params[:project_proposal][:description]
       @project_proposal.save
     end
