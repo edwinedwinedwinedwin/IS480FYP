@@ -103,11 +103,11 @@
             <ul class="list">
               <li class="list-item fuel-button-container">
                 <a href="#fuel" class="fuel-button js-scrollto-button" data-scroll-target="#fuel">
-									<span class="fuel-button__content">
-										<span class="fuel-button__cta">Fund</span>
-										<span class="fuel-button__text">This Project</span>
+                  <span class="fuel-button__content">
+                    <span class="fuel-button__cta">Fund</span>
+                    <span class="fuel-button__text">This Project</span>
                       <i class="icon icon--chevron-down"></i>
-									</span>
+                  </span>
                 </a>
               </li>
 
@@ -371,11 +371,12 @@
 
         <span class="fuel-lightbox__delivery">
     <span class="t--strong">Estimated delivery:</span> <%= pr.estimated_delivery.strftime("%B %Y") %>
-		</span>
+    </span>
 
         
         <!--<%# link_to "Continue",pr.paypal_url(project_rewards_path(pr)),:class=>"button--fill" %>-->
-        <%= link_to "Continue",'#',:class=>"button--fill" %>
+        <%# link_to "Continue",'#',:class=>"button--fill" %>
+        <%= link_to 'Continue', makePayment_path(:pr_id=>pr.id), :class=>"button--fill" %>
       </div>
     </div>
 

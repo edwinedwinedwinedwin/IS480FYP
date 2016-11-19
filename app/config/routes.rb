@@ -6,13 +6,14 @@ Rails.application.routes.draw do
   resources :users   
   resources :user_expertises
   resources :project_members
-  resources	:project_milestones
+  resources :project_milestones
   resources :project_rewards
   resources :project_updates
   resources :project_inspirations
   resources :projects
   resources :project_proposals
   resources :project_proposal_imgs
+  resources :payments
 
   #Other Routes
   get 'pages/comrules' => 'pages#comrules', as: :communityRule # display com rules
@@ -46,7 +47,7 @@ Rails.application.routes.draw do
 
   # user_shipping_addresses routes
   get 'user_shipping_addresses/index' => 'user_shipping_addresses#index', as: :manageShippingAddress # get user shipping address
-  get 'user_shippbing_addresses/new' => 'user_shipping_addresses#new', as: :addShippingAddress # new user shipping address
+  get 'user_shipping_addresses/new' => 'user_shipping_addresses#new', as: :addShippingAddress # new user shipping address
   get 'user_shipping_addresses/edit' => 'user_shipping_addresses#edit', as: :editShippingAddress # edit user shipping address
   post 'user_shipping_addresses/update/(:id)' => 'user_shipping_addresses#update', as: :updateShippingAddress # update user shipping address
   get 'user_shipping_addresses/destroy' => 'user_shipping_addresses#destroy', as: :deleteShippingAddress # update user shipping address
@@ -101,12 +102,15 @@ Rails.application.routes.draw do
   post 'project_updates/destroy/(:id)' => 'project_updates#destroy'
 
   #Explore routes
-  get 'explores/index' => 'explores#index', as: :viewAllProject
-  get 'explores/payment' => 'explores#payment', as: :makePayment
+  get 'explores/index' => 'explores#index', as: :viewAllProject  
   get 'explores/filterProjects' => 'explores#filterProjects', as: :viewFilterProject
   get 'explores/show/(:id)' => 'explores#show', as: :viewProject
   get 'explores/message/(:id)' => 'explores#message', as: :messageMember
-
+  # payment for project rewards route
+  get 'payments/new' => 'payments#new', as: :makePayment
+  post 'payments/create' => 'payments#create', as: :processPayment
+  post "/payments/:id" => "registrations#show"
+  post "/hook" => "payments#hook"
 
   # project reward backers routes
   get 'project_reward_backers/index' => 'project_reward_backers#index',  as: :projectRewardBackersIndex
