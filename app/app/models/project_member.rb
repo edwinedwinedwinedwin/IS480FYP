@@ -5,6 +5,6 @@ class ProjectMember < ActiveRecord::Base
   belongs_to :user
   validates :user,presence: true
   validates :email, :presence=>true
-  validates :role,:presence=>true
+
 
 end

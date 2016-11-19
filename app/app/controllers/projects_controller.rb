@@ -54,10 +54,7 @@ before_filter :logged_in,:authorize_user
                   project_proposals.title as title,
                   projects.id as p_id
                   ').joins(project_proposal: :project).where(:projects => {:user_id => @session})
-
-      @user = User.find(@user.id)
     end
-
   end
 
   def new
@@ -67,24 +64,9 @@ before_filter :logged_in,:authorize_user
   def create
     @Project = Project.new(projects_params)
     if @Project.save
-      #redirect_to :controller => 'projects', :action => 'index' and return
       redirect_to projectsIndex_path and return
     else
       render 'new'
-    end
-  end
-
-  def edit
-    @Project = Project.find(params[:id])
-  end
-
-  def update
-    @Project = Project.find(params[:id])
-    if @Project.update(projects_params)
-      #redirect_to :controller => 'projects', :action => 'index' and return
-      redirect_to projectsIndex_path and return
-    else
-      render 'edit'
     end
   end
 
@@ -141,8 +123,7 @@ before_filter :logged_in,:authorize_user
           #user is not inside this project(allow to add in)
           @project_members.role = 'Team Member'
           @project_members.email = user.email
-          @project_members.description = 'Description'
-          @project_members.sub_description = 'Sub Description'
+
           @project_members.second_role = 'Crew'
           @project_members.project_id =  p_id
           @project_members.project_status_id = 2
@@ -165,7 +146,6 @@ before_filter :logged_in,:authorize_user
     @memberDetails.role = params[:project_member][:role]
     @memberDetails.description = params[:project_member][:description]
     @memberDetails.sub_description = params[:project_member][:sub_description]
-
     @memberDetails.save
     redirect_to showProject_path(params[:project_member][:project_id]) and return
   end

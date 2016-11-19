@@ -48,15 +48,16 @@
 
               <div class="grid-30">
                 <div class="project-stat">
+
                   <%  if !@current_milestone.nil? %>
                       <% no_Of_Days = @current_milestone.end_date.to_date - Date.today.to_date %>
-
                       <span class="project-stat__data"><%= no_Of_Days.to_i %></span>
                       <span class="project-stat__description">Days remaining</span>
                   <% else %>
-                      <span class="project-stat__data">0</span>
+                      <%eno_Of_Days = @project_proposal.estimated_end_date - Date.today.to_date %>
+                      <span class="project-stat__data"><%= eno_Of_Days.to_i %></span>
                       <span class="project-stat__description">Days remaining</span>
-                  <% end %>
+                 <% end %>
                 </div>
               </div>
               <div class="grid-30 push-5">
@@ -69,9 +70,12 @@
                 <div class="project-stat" id="project-funding">
                   <span class="project-stat__data">$0</span>
                   <span class="project-stat__description">of
+
                     <%  if !@current_milestone.nil? %>
-                      <span id="project-funding-value">$<%= @current_milestone.target_amount %> </span> funded</span>
-                    <% end %>
+                      <span id="project-funding-value">$<%= number_with_precision(@current_milestone.target_amount, :precision => 2) %> </span> funded</span>
+                  <% else %>
+                      <span id="project-funding-value">$<%= number_with_precision(@project_proposal.estimated_amt_raise, :precision => 2)  %> </span> funded</span>
+                 <% end %>
 
                  <!-- <span class="edit-button js-edit-button" id="project-funding-goal-edit" data-container="project-funding">
                     <i class="icon icon--edit"></i>
@@ -97,7 +101,7 @@
               <div class="project-description">
                <%= form_for :project_proposal, url: updateDescription_path(:id => @project_proposal.id), remote: true do |f| %>
                 <%= f.text_area :description, :required => 'required' ,:class => "form-input borderless-bottom t--large wordwrapper", id: "project-description", rows: "10" do %>
-                 <p class="t--large wordwrapper"><%= @project_proposal.description %></p>
+                 <!--<p class="t--large wordwrapper"><%= @project_proposal.description %></p>-->
                 <% end %>
               </div>
              </div>
@@ -168,25 +172,7 @@
 
                       <li class="project-share-button">
                         <a href="#">
-                          <i class="icon icon--twitter"></i>
-                        </a>
-                      </li>
-
-                      <li class="project-share-button">
-                        <a href="#">
                           <i class="icon icon--youtube"></i>
-                        </a>
-                      </li>
-
-                      <li class="project-share-button">
-                        <a href="#">
-                          <i class="icon icon--pinterest"></i>
-                        </a>
-                      </li>
-
-                      <li class="project-share-button">
-                        <a href="#">
-                          <i class="icon icon--google-plus"></i>
                         </a>
                       </li>
                     </ul>
@@ -211,15 +197,6 @@
           <%= image_tag("defaultprofile.png", :class => "img-circular-avatar") %>
         </div>
 
-        <ul class="update-icons">
-          <li class="selected">
-            <i class="icon icon--updates-grid"></i>
-          </li>
-
-          <!--i>
-            <i class="icon icon--updates-list"></i>
-          </li-->
-        </ul>
       </div>
 
       <%= render "projects/updates", :project_id => @project.id, :project_updates => @project_updates %>
@@ -250,12 +227,10 @@
     <section class="project-content-section" id="timeline">
       <h2 class="heading--small section-heading">
         Timeline
-
       </h2>
 
 
       <div class="wrap">
-
         <%  if !@current_milestone.nil? %>
           <div class="diamond section-header">
             <div class="diamond-inner">

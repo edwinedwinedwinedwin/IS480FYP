@@ -60,7 +60,7 @@ class ProjectMembersController < ApplicationController
 
   private
   def project_members_params
-    params.require(:project_member).permit(:email,:user_id, :second_role,:role,:project_id,:project_status_id)
+    params.require(:project_member).permit(:email,:user_id, :second_role,:project_id,:project_status_id)
   end
 
 end
