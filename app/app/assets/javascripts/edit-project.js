@@ -180,7 +180,8 @@ $(function() {
 				// Set contenteditable
 				projectDescription.el
 					.attr('contenteditable', 'true')
-					.addClass('edit-on');
+					.addClass('edit-on')
+					.removeAttr('disabled');
 
 				projectDescription.saveButton
 					.addClass('enabled');
@@ -194,6 +195,7 @@ $(function() {
 			projectDescription.el
 				.removeAttr('contenteditable')
 				.removeClass('edit-on')
+				.addClass('disabled', 'enabled')
 				.blur();
 
 			if(!saveChanges) {
@@ -201,6 +203,7 @@ $(function() {
 			}
 
 			projectDescription.saveButton.removeClass('enabled');
+
 
 			$editButtons.removeClass('hidden');
 

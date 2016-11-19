@@ -5202,8 +5202,8 @@ select.dropdown_address{
   position: relative;
   margin-bottom: 40px;
   width: 345px;
-  border: 3px solid #000000;
-  background-color: #9fd86c;
+  border: 2px solid #9fd86c;
+  background-color: #ffffff;
   -webkit-transition: all .3s ease;
   transition: all .3s ease;
   margin: -10px 0 -20px;
@@ -5212,11 +5212,11 @@ select.dropdown_address{
   content: "";
   position: absolute;
   top: 50%;
-  right: -78px;
+  right: -23%;
   border-radius: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
-  background-color: #999;
+  background-color: #9fd86c;
   width: 12px;
   height: 12px;
 }
@@ -5224,7 +5224,7 @@ select.dropdown_address{
   width: 20px;
   height: 20px;
   position: absolute;
-  right: -9px;
+  right: -23%;
   top: 50%;
   height: 0;
   width: 0;
@@ -5243,10 +5243,10 @@ select.dropdown_address{
   -webkit-user-select: none;
 }
 .Timeline-item:hover:after {
-  border-left-color: #000000;
+  border-left-color: #9fd86c;
 }
 .Timeline-item:hover .Timeline-item-inner {
-  border-color: #ffffff;
+  border-color: #9fd86c;
 }
 .Timeline-item:hover .Timeline-item-inner:after {
   height: 0;
@@ -5311,7 +5311,7 @@ select.dropdown_address{
   margin-top: 5px;
 }
 .Timeline-item-top {
-  background-color: #dbdbdb;
+  background-color: #ffffff;
   padding: 10px 15px;
 }
 .Timeline-item-top:hover {
@@ -5320,7 +5320,7 @@ select.dropdown_address{
 }
 .Timeline-item-top-type {
   float: left;
-  text-transform: uppercase;
+  text-transform: capitalize;
   letter-spacing: 1px;
   font-size: 11px;
   font-size: 1.1rem;
@@ -5417,15 +5417,17 @@ z-index: 3;
 
 /*edwin edit for milestones*/
 button.accordion {
-    color: #444;
+    color: #000000;
     cursor: pointer;
     padding: 18px;
+    padding-bottom:2px;
     width: 100%;
     border: none;
-    text-align: left;
+    text-align: center;
     outline: none;
     font-size: 15px;
     transition: 0.4s;
+
 }
 
 button.accordion.active, button.accordion:hover {
@@ -5435,9 +5437,16 @@ button.accordion.active, button.accordion:hover {
 button.accordion:after {
     content: '\02795';
     font-size: 13px;
-    color: #777;
+    color: #9fd86c;
+    font-color:#9fd86c;
     float: right;
     margin-left: 5px;
+    margin-right:130px;
+    width:20px;
+    height:20px;
+    border-radius:15px;
+    border: 1px solid;
+    background-color: #9fd86c;
 }
 
 button.accordion.active:after {
@@ -5446,11 +5455,14 @@ button.accordion.active:after {
 
 div.panel {
     padding: 0 18px;
-    background-color: #dbdbdb;
+    background-color: #ffffff;
     max-height: 0;
     overflow: hidden;
     transition: 0.4s ease-in-out;
     opacity: 0;
+    font-family: "Proxima Nova", sans-serif;
+    font-size:15px;
+
 }
 
 div.panel.show {

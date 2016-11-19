@@ -13,20 +13,22 @@
     <div class="Timeline-item-inner">
       <div class="Timeline-item-top">
         <div class="Timeline-item-top-type milestone-title">
-        <button class="accordion accordion-hover"><%= ms.name.upcase %></button>
-        <div class="panel">
-    <strong>Target Amount:</strong> $<%= ms.target_amount %>
-          <p>
-            <% if ms.project_status_id == 5%>
-            <%= ms.project_status.try(:status)%>
-            <% else %>
+          <button class="accordion accordion-hover"><%= ms.name.upcase %><br/>
+            <strong>Target Amount:</strong> $<%= ms.target_amount %><br/>
             <strong>Start Date:</strong> <%= ms.start_date.strftime("%B %Y")%>
-            <br/>
-            <strong>End Date:</strong> <%= ms.end_date.strftime("%B %Y")%>
+          </button>
+          <div class="panel">
+            
+              <% if ms.project_status_id == 5%>
+              <%= ms.project_status.try(:status)%>
+              <% else %>
+              
+              <br/>
+              <strong>End Date:</strong> <%= ms.end_date.strftime("%B %Y")%><br/>
+              <strong>Amount Raised:</strong>
 
-            <% end %>
-          </p>
-  </div>
+              <% end %>
+          </div>
         </div>
       </div>
 <!--      <div class="Timeline-item-content">
