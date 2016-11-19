@@ -19,10 +19,13 @@ class ProjectRewardsController < ApplicationController
   end
 
   def create
-    @projectReward.new(project_rewards_params)
-    pID = @projectReward.project_id
-    @projectReward.save
-    redirect_to showProject_path(:id => @project_reward.project_id)
+    @projectReward =ProjectReward.new(project_rewards_params)
+
+    if @projectReward.save
+    redirect_to showProject_path(:id => @projectReward.project_id)
+    else
+      render 'new'
+    end
   end
 
   def update
@@ -42,6 +45,6 @@ class ProjectRewardsController < ApplicationController
 
   private
   def project_rewards_params
-    params.require(:project_reward).permit(:name,:min_amount,:description,:estimated_delivery,:no_of_rewards,:project_id,:img_url)
+    params.require(:project_reward).permit(:name,:min_amount,:description,:estimated_delivery,:no_of_rewards,:img_url,:project_id)
   end
 end

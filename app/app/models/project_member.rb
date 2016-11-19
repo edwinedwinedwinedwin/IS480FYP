@@ -3,8 +3,7 @@ class ProjectMember < ActiveRecord::Base
 
   belongs_to :project
   belongs_to :user
+
   validates :user,presence: true
-  validates :email, :presence=>true
-
-
+  validates :email1, :presence=>true
 end
