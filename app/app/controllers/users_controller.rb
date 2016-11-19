@@ -8,16 +8,28 @@ class UsersController < ApplicationController
     @user=User.find(current_user_id)
     # only able to change own account password
 
-    @projects=ProjectProposal.select("*").joins(:project).where(:projects => {:user_id=>current_user_id})
+    @projects=ProjectProposal.select("*").joins(:project).where(:projects => {:user_id=>@user.id})
     @project_coverImgs = ProjectProposalImg.select('
                 project_proposal_imgs.project_proposal_id as pp_id,
                 project_proposal_imgs.id as ppi_id,
                 project_proposals.title as title,
                 projects.id as p_id
-                ').joins(project_proposal: :project).where(:projects => {:user_id => current_user_id})
-    #@project_coverImgs = ProjectProposalImg.select("*").joins(:project_proposal).where(:project_proposal_imgs => {:project_proposal_id => @project.project_proposal_id} )
+                ').joins(project_proposal: :project).where(:projects => {:user_id => @user.id})
+  end
 
-    @user=User.find(current_user_id) # only able to edit current logged in user
+  def changepassProcess
+
+    current_user_id=session[:user_id]
+    if !current_user_id.nil?
+      @user=User.find(current_user_id)
+      if @user.update(user_params)
+        redirect_to dashboardIndex_path and return
+      else
+        render 'changepass'
+      end
+    else
+      redirect_to login_path and return
+    end
   end
 
   def resetpass

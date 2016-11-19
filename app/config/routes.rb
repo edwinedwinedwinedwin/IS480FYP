@@ -28,7 +28,8 @@ Rails.application.routes.draw do
   get 'editprofile' => 'users#edit#:id', as: :editUserProfile
   get 'dashboard/index' => 'dashboards#index', as: :dashboardIndex # Display page upon successful login
   post 'users/updateProfilePic/(:id)' => 'users#updateProfilePic', as: :updateProfilePic
-  get 'changepassword' => 'users#changepass#:id', as: :userChangePassword
+  get 'changepassword' => 'users#changepass', as: :userChangePasswordPage
+  post 'changepassword' => 'users#changepassProcess', as: :userChangePassword
   get 'resetpassword' => 'sessions#resetpass', as: :userResetPasswordPage
   post 'resetpassword' => 'users#resetpass', as: :userResetPassword
 
