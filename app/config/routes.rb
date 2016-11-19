@@ -61,8 +61,8 @@ Rails.application.routes.draw do
   post 'project_proposals/accept/(:id)' => 'project_proposals#accept', as: :approveProposal
   post 'project_proposals/reject/(:id)' => 'project_proposals#reject', as: :rejectProposal
   get 'project_proposals/successProposal/:id' => 'project_proposals#successProposal', as: :successProposalSubmission #success page after getstarted
-  post 'project_proposals/manage' => 'project_proposals#manage', as: :checkProposalStatus # display create proposal page
-  get 'users/manage/(:id)' => 'users#manage', as: :manageProject # display create proposal page
+  post 'project_proposals/manage' => 'project_proposals#manage', as: :checkProposalStatus
+  get 'users/manage/(:id)' => 'users#manage', as: :manageProject
 
   #Project Pro
   get 'UploadImg' => 'project_proposal_imgs#new', as: :newCoverImgs
@@ -74,7 +74,8 @@ Rails.application.routes.draw do
   get 'projects/funders_details/:id' => 'projects#funders_details', as: :showFundersDetails  
 
   #Projects Routes
-  get 'projects' => 'projects#index', as: :projectsIndex
+  get 'projects/index' => 'projects#index', as: :projectsIndex
+  get 'manageProjects' => 'projects#manage#:id', as: :manageProjects
   post 'projects/updateCategory/(:id)' => 'projects#updateCategory', as: :updateCategory
   get 'projects/show/:id' => 'projects#show', as: :showProject
   post 'projects/updateDescription/(:id)' => 'projects#updateDescription', as: :updateDescription
@@ -82,6 +83,8 @@ Rails.application.routes.draw do
   post 'projects/updateMember/(:id)' => 'projects#updateMemberDetails', as: :updateMemberDetails
   post 'projects/addMembers' => 'projects#addMembers', as: :addMembers
   post 'projects/liveProjectRequests/(:id)' => 'projects#liveProjectRequest', as: :liveProjectRequest
+  post 'projects/accept/(:id)' => 'projects#accept', as: :approveLive
+  post 'projects/reject/(:id)' => 'projects#reject', as: :rejectLive
 
   # user expertises routes
   get 'user_expertises/index' => 'user_expertises#index', as: :allExpertise

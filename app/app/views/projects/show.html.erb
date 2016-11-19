@@ -22,7 +22,7 @@
       <ul class="list--horizontal">
         <li class="list-item current"><a href="#overview">Overview</a></li>
         <li class="list-item"><a href="#about">About</a></li>
-        <li class="list-item"><a href="#details">Details</a></li>
+        <!--<li class="list-item"><a href="#details">Details</a></li>-->
         <li class="list-item"><a href="#updates">Updates</a></li>
         <li class="list-item"><a href="#team">Team</a></li>
         <li class="list-item"><a href="#fuel">Fund</a></li>
@@ -100,15 +100,15 @@
 
               <div class="project-description">
 
-                <%= form_for :project_proposal, url: updateDescription_path(:id => @project_proposal.id) do |f| %>
-                    <%= f.text_area :description, :required => 'required' ,:class => "form-input borderless-bottom t--large wordwrapper", id: "project-description", rows: "10", :disabled => true do %>
+                <%= form_for :project_proposal, url: updateDescription_path(:id => @project_proposal.id), remote: true do |f| %>
+                    <%= f.text_area :description, :required => 'required' ,:class => "form-input borderless-bottom t--large wordwrapper", id: "project-description", rows: "10", :disabled=>true do %>
                         <!--<p class="t--large wordwrapper"><%= @project_proposal.description %></p>-->
                     <% end %>
               </div>
 
              </div>
                     <%= f.button :submit do %>
-                     <span class="edit-save-button js-edit-save-button" id="project-description-save">
+                     <span class="edit-save-button " id="project-description-save">
                        Done
                      </span>
                     <% end %>
@@ -187,9 +187,9 @@
       </div>
     </section>
 
-    <section class="project-content-section" id="details">
-      <%= render "projects/inspirations", :project_id => @project.id, :project_inspiration => @project_inspirations %>
-    </section>
+    <!--<section class="project-content-section" id="details">
+      <% render "projects/inspirations", :project_id => @project.id, :project_inspiration => @project_inspirations %>
+    </section>-->
 
     <section class="project-content-section" id="updates">
       <div class="wrap" style="position: relative;">

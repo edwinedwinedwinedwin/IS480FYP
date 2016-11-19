@@ -1,7 +1,31 @@
 class ProjectsController < ApplicationController
-before_filter :logged_in,:authorize_user
+before_filter :logged_in,:authorize_user, only:  [:manage, :liveProjectRequests, :updateCategory, :updateDescription, :updateMemberDetails, :updateTitle, :addMembers]
+before_filter :logged_in,:authorize_admin, only: [:accept ,:reject, :index]
+
   def index
-    if !@session.nil?
+    @projects = Project.all
+  end
+
+  def reject
+    @project=Project.find(params[:id])
+    @project.project_status_id = 4
+    @project.save
+    #Send email to user who sign up
+   SysMailer.reject_proposal_email(@project).deliver
+   redirect_to adminDashboard_path and return
+  end
+
+  def accept
+   @project=Project.find(params[:id])
+   @project.project_status_id = 7
+    @project.save
+    #Send email to user who sign up
+    SysMailer.accept_proposal_email(@project).deliver
+    redirect_to adminDashboard_path and return
+  end
+
+  def manage
+    if !session[:user_id].nil?
 
       @session = session[:user_id]
       @project_requests = ProjectMember.where(:user_id => @session, :project_status_id => 2)

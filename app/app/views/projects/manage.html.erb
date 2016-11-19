@@ -1,36 +1,71 @@
-<%= stylesheet_link_tag "style" %>
-<%= stylesheet_link_tag "component" %>
-<%= stylesheet_link_tag "flickity/flickity.css" %>
-<%= javascript_include_tag "application"%>
+<%= render "layouts/headerUser", :projects => @projects, :images => @project_coverImgs %>
 
-<p id="notice"><%= notice %></p>
-<legend class="form-heading--tables heading"><h1>Manage Project</h1></legend><br>
-<%= link_to '< BACK', {:controller => "dashboards", :action => "index" }, class: "back--button" %>
+<legend class="form-heading--tables heading"><h1>Manage Project & Request</h1></legend>
 
-<table class="table-show">
-  <thead>
-  <tr class="tr-row">
-    <th class="th-row"><strong>Project Title</strong></th>
-    <th class="th-row"><strong>Project Category</strong></th>
-    <th class="th-row"><strong>Project Description</strong></th>
-    <th class="th-row"><strong>Project Status</strong></th>
-    <th class="th-row"><strong>Actions</strong></th>
-  </tr>
-  </thead>
+<%= link_to '< BACK', dashboardIndex_path , class: "back--button" %>
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <div id="project-proposal-table">
+      <div class="table-responsive">
+        <table id="admin-project-proposal-table" class="table table-hover admin-tables dt-responsive dataTable no-footer dtr-inline display nowrap" cellspacing="0" width="100%">
+          <thead>
+          <tr>
+            <th data-priority="1"></th>
+            <th data-priority="2">Project Title <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
+            <th data-priority="4">Creator's contact details</th>
+            <th data-priority="3">Action</th>
+          </tr>
+          </thead>
 
-  <tbody>
-  <% @projects.each do |p| %>
-      <tr class="tr-row">
-        <td class="td-row"><%= p.project_proposal.title%></td>
-        <td class="td-row"><%= p.project_proposal.project_category.try(:category)%></td>
-        <td class="td-row"><%= p.project_proposal.description %></td>
-        <td class="td-row"><%= p.project_status.try(:status) %></td>
-        <td class="td-row">
-          <%= link_to showProject_path(:id => p.id), :class=>"btn btn-success" do %>View<% end %>
+          <tbody>
+          <% @project_requests.each do |p| %>
+              <tr>
+                <td></td>
+                <td><%= ProjectProposal.find(Project.find(p.project_id).project_proposal_id ).title %></td>
+                <td>
+                  <%= User.find(Project.find(p.project_id).user_id).name %><br/>
+                  <%= User.find(Project.find(p.project_id).user_id).email %><br/>
+                </td>
 
-        </td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
-<br>
+                <td>
+                  <div class="btn-group">
+                    <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Actions <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <%= link_to approveProposal_path(:id => p.id) do %>
+                            View the project
+                        <% end %>
+                      </li>
+                      <% if p.project_status_id != 3 %>
+                          <% if p.project_status_id != 4 %> <!-- pending -->
+                              <li>
+                                <%= link_to approveProposal_path(:id => p.id) do %>
+                                    Accept the Team
+                                <% end %>
+                              </li>
+                          <% end %>
+                      <% end %>
+
+                      <% if p.project_status_id != 4 %>
+                          <li>
+                            <%= link_to rejectProposal_path(:id => p.id) do %>
+                                Reject the Team
+                            <% end %>
+                          </li>
+                          <li role="separator" class="divider"></li>
+                      <% end %>
+
+                      <li><a href="mailto:<%= User.find(Project.find(p.project_id).user_id).email %>?subject=<%= ProjectProposal.find(Project.find(p.project_id).project_proposal_id ).title  %>">Email Creator</a></li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
