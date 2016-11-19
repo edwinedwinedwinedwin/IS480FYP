@@ -27,7 +27,8 @@ Rails.application.routes.draw do
 
   get 'logout' => 'sessions#destroy', as: :logout # log out and invalidate session
   get 'editprofile' => 'users#edit#:id', as: :editUserProfile
-  get 'dashboard/index' => 'dashboards#index', as: :dashboardIndex # Display page upon successful login
+  get 'home' => 'dashboards#index', as: :dashboardIndex # Display page upon successful login
+
   post 'users/updateProfilePic/(:id)' => 'users#updateProfilePic', as: :updateProfilePic
   get 'changepassword' => 'users#changepass', as: :userChangePasswordPage
   post 'changepassword' => 'users#changepassProcess', as: :userChangePassword

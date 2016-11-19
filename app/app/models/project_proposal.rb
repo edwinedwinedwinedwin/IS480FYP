@@ -7,9 +7,8 @@ class ProjectProposal < ActiveRecord::Base
   has_one :project
 
   validates_uniqueness_of :title, client_validations: {class: ProjectProposal}
-  validates_presence_of :title, :country
-  validates_presence_of :description, :company_url, :estimated_amt_raise
-  validates_presence_of :name, :email, :creator_title
-
+  validates_presence_of :title, :description
+  validates_presence_of :company_url, :estimated_amt_raise, :country,on: :create
+  validates_presence_of :name, :email, :creator_title, on: :create
 end
 

@@ -80,7 +80,9 @@ before_filter :logged_in,:authorize_user
   def updateDescription
     @project_proposal = ProjectProposal.find(params[:id])
     @project = Project.where(:project_proposal_id => params[:id]).first
-    if !params[:project_proposal].nil? && !params[:project_proposal][:description].nil?
+    tests = params[:project_proposals]
+    test = params[:project_proposals][:description]
+    if !params[:project_proposals].nil? && !param[:project_proposals][:description].nil?
       @project_proposal.description = params[:project_proposal][:description]
       @project_proposal.save
     end
@@ -89,7 +91,9 @@ before_filter :logged_in,:authorize_user
 
   def updateTitle
     @project_proposal = ProjectProposal.find(params[:id])
+
     @project = Project.where(:project_proposal_id => params[:id]).first
+
     if !params[:project_proposal].nil? && !params[:project_proposal][:title].nil?
       @project_proposal.title = params[:project_proposal][:title]
       @project_proposal.save
