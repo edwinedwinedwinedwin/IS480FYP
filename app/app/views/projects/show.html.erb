@@ -100,7 +100,7 @@
 
               <div class="project-description">
                <%= form_for :project_proposal, url: updateDescription_path(:id => @project_proposal.id), remote: true do |f| %>
-                <%= f.text_area :description, :required => 'required' ,:class => "form-input borderless-bottom t--large wordwrapper", id: "project-description", rows: "10" do %>
+                <%= f.text_area :description, :required => 'required' ,:class => "form-input borderless-bottom t--large wordwrapper", id: "project-description", rows: "10", :disabled=>true do %>
                  <!--<p class="t--large wordwrapper"><%= @project_proposal.description %></p>-->
                 <% end %>
               </div>
