@@ -1,4 +1,7 @@
 class Payment < ActiveRecord::Base
+
+    #validates :user_shipping_address_id, presence: { message: "Please create a user shipping address." }
+
 	def paypal_url(return_path)    
     values = {
         business: "ybcosg-facilitator@gmail.com",

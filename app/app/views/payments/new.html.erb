@@ -13,24 +13,14 @@
     <br>
     <%= form_for :payment, url: processPayment_path(@payment) do |f| %>               
         <%= f.hidden_field :pr_id, :value => @project_reward.id %>      
+        <%= f.hidden_field :project_id, :value => @project_reward.project_id %>      
+        <% if !@current_milestone.nil? %>
+          <%= f.hidden_field :project_milestone_id, :value => @current_milestone.id %>      
+        <% end %>
         <%= f.hidden_field :project_reward_id, :value => @project_reward.id %>      
         <%= f.hidden_field :user_id, :value => @user.id %>
-        <%= f.hidden_field :user_name, :value => @user.name %>                
-        <%= f.hidden_field :user_shipping_address_id, :value =>@user_shipping_address.id %>        
-        <div class="form-field">
-          <!--<%# if @payment.errors.any? %>
-              <div class="panel panel-danger">
-              <div class="panel-heading"><h2><strong>Your inputs do not meet the requirements:</strong></h2></div>
-                <div class="panel-body alert-design">
-                  <ul style="list-style-type:circle">
-                    <%# @payment.errors.full_messages.each do |message| %>
-                        <li><%#= message %></li>
-                    <%# end %>
-                  </ul>
-                </div>
-              </div>
-          <%# end %> 
-        </div> -->        
+        <%= f.hidden_field :payment_status, :value => "Pending" %>
+        <%= f.hidden_field :user_name, :value => @user.name %>                              
         
         <figure class="fuel-reward-thumbnail">
           <% image_tag(@project_reward.img_url,:class=> "img-circular") %>
@@ -42,10 +32,15 @@
         </div>
 
         <div class="form-field">
-          <%= f.text_field :amount,:readonly=>true,:value=>@project_reward.min_amount, class: "form-input", placeholder: "Amount" %>
+          <%= f.number_field :amount, :value=>@project_reward.min_amount, class: "form-input", placeholder: "Amount",:min=>@project_reward.min_amount,:step=>0.01 %>
           <label class="form-label" for="email">Amount ($)</label>          
         </div>
         
+        <% if !@user_shipping_address.nil? %>
+          <%= f.hidden_field :user_shipping_address_id, :value =>@user_shipping_address.id %>                  
+        <% end %>
+        
+        <%# @user_shipping_addresses.each do |x|%>       
         <div class="form-actions">
           <%= f.submit "Submit", class: "button--stroke--long" %>
         </div>

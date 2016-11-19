@@ -373,10 +373,10 @@
     <span class="t--strong">Estimated delivery:</span> <%= pr.estimated_delivery.strftime("%B %Y") %>
     </span>
 
-        
-        <!--<%# link_to "Continue",pr.paypal_url(project_rewards_path(pr)),:class=>"button--fill" %>-->
-        <%# link_to "Continue",'#',:class=>"button--fill" %>
-        <%= link_to 'Continue', makePayment_path(:pr_id=>pr.id), :class=>"button--fill" %>
+        <% @payment=Payment.find_by_user_id(session[:user_id] %>
+        <% if @payment.nil? %>
+          <%= link_to 'Continue', makePayment_path(:pr_id=>pr.id), :class=>"button--fill" %>
+        <% end %>
       </div>
     </div>
 

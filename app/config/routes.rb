@@ -109,7 +109,6 @@ Rails.application.routes.draw do
   # payment for project rewards route
   get 'payments/new' => 'payments#new', as: :makePayment
   post 'payments/create' => 'payments#create', as: :processPayment
-  post "/payments/:id" => "registrations#show"
   post "/hook" => "payments#hook"
 
   # project reward backers routes
