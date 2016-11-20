@@ -1682,10 +1682,9 @@ strong,
     margin-top: 0.25rem;
     margin-left: auto;
     margin-right: auto;
-    font-size: 1.375rem;
     border-bottom:2px solid #00beff;
-    max-width: 400px;
-    width: 100%;
+    min-width: 500px;
+    width:60%;
     padding: 0.5rem;
     color: #00beff;
     text-align: center; 
@@ -1695,10 +1694,9 @@ strong,
     margin-top: 0.25rem;
     margin-left: auto;
     margin-right: auto;
-    font-size: 1.375rem;
     border-bottom:2px solid #00beff;
-    min-width:250px;
-    width:1px;
+    min-width:380px;
+    width:100px;
     padding: 0.5rem;
     color: #00beff;
     text-align: center; 
@@ -3388,10 +3386,19 @@ strong,
 
 #project-title-save {
   position: fixed;
-  top: 100%;
+  top: 80%;
   left: 100%;
   margin-top: -3.75rem;
   margin-left: -16.125rem; }
+
+@media (max-width: 48em) {
+  #project-title-save {
+  position: fixed;
+  top: 85%;
+  left: 100%;
+  margin-top: -3.75rem;
+  margin-left: -16.125rem; }
+}
 
 #project-description-save {
   float: right;
@@ -5784,4 +5791,19 @@ Main components
     align-self: center;
     min-width: 100px;
     max-width: 1000px;
+
+}
+
+.current-members{
+  background-repeat: no-repeat;
+  background-position:center center;
+  max-width: 334px;
+  margin:auto;
+  padding-bottom: 50%;
+  border: 2px solid #eeeeee;
+}
+
+.member-styles{
+  float:left;
+  margin-left:50px;
 }

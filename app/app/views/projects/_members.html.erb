@@ -36,22 +36,24 @@
   <section class="project-team-management" style="display:none;" id="project-team-management">
     <div class="grid-container">
       <div class="grid-35 push-5">
-        <div style="background-repeat: no-repeat;background-position:center center;max-width: 334px;margin:auto;padding-bottom: 50%;">
+        <div class="current-members">
           <p class="t--large">Current Member</p>
           <!--EDWIN HELP ME STYLE -->
           <ul class="site-navigation-list">
             <li class="site-navigation-list__item-member">
-
               <ul class="site-navigation-list--member">
                 <li>
+
                   <% if !project_members.nil? %>
                       <% project_members.each do |p| %>
+                       <div class = "member-styles">
                           <% if p.member_status == 3 %>
                           <% if User.find(p.user_id).profile_pic.blank? %>
-                              <%= image_tag('defaultprofile.png', :class=>"img-circular-project") %>
+                              <%= image_tag('defaultprofile.png', :class=>"img-circular-project-avatar") %>
                           <% else %>
-                              <%= image_tag(User.find(p.user_id).profile_pic, :class=>"img-circular-project") %>
+                              <%= image_tag(User.find(p.user_id).profile_pic, :class=>"img-circular-project-avatar") %>
                           <% end %>
+                        </div>
 
                         <li class="site-navigation-list--member-title">
                           <%= User.find(p.user_id).name %>

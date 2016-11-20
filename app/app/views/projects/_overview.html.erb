@@ -29,10 +29,10 @@
   </span>
  </ul>
 
- <div class="project-title">
+ <div class="project-title" style="z-index:1;">
   <h1 class="heading--large" id="project-title" style="margin-top:0em;">
    <%= form_for :project_proposal, url: updateTitle_path(:id => project_proposal.id) do |f| %>
-    <%= f.text_field :title , :value => project_proposal.title, :class => "heading--large"%>
+    <%= f.text_field :title , :value => project_proposal.title, :class => "heading--large width-dynamic"%>
   </h1>
     <%= f.button :submit do %>
      <span class="edit-save-button js-edit-save-button" id="project-title-save">
@@ -45,8 +45,14 @@
      Edit
     </span>
   </div>
+  <% if !current_milestone.nil? %>
+  <h2 class="heading" style="font-size:25px; padding-bottom:30px; z-index:-1;">
+    Current Milestone: <%= current_milestone.name %>
+  </h2>
+  <% end %>
+  
 
-  <div class="profile-tag">
+  <div class="profile-tag" style="padding:0px;">
     <% if User.find(Project.find(project_id).user_id).profile_pic.blank? %>
         <%= image_tag('defaultprofile.png', :class=>"img-circular-project-avatar") %>
     <% else %>
@@ -55,6 +61,9 @@
     <% full_name = User.find(Project.find(project_id).user_id).name %>        
     <span class="profile-tag-text">by <span class="profile-tag__user"><%= full_name%></span></span>
   </div>
+  
+
+
 </header>
 
 <!-- script to make the title adjust the width -->
