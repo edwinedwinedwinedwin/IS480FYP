@@ -12,7 +12,7 @@
 
   <ul class="project-team-members" style="position: relative;" id="project-team-members">
     <% project_members.each do |pm| %>
-        <% if pm.member_status == 3 || pm.member_status == 2 %>
+        <% if pm.member_status == 3 %>
         <li class="project-team-member">
           <div class="project-team-member-thumbnail js-lightbox-open" data-content-container="#team-lightbox-content-<%= pm.pm_id %>">
             <% if User.find(pm.user_id).profile_pic.blank? %>

@@ -127,7 +127,9 @@ Rails.application.routes.draw do
   get 'project_members/new' => 'project_members#new'
   get 'project_members/edit/:id' => 'project_members#edit'
   post 'project_members' => 'project_members#create'
-  post 'project_members/destroy/(:id)' => 'project_members#destroy'
+  post 'project_members/destroy/(:id)' => 'project_members#destroy', as: :leaveTeam
+  post 'project_members/join/(:id)' => 'project_members#join', as: :joinTeam
+
 
   #project milstone
   get 'project_milestones/new' => 'project_milestones#new'

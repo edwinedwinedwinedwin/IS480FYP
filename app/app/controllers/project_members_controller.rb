@@ -58,8 +58,14 @@ class ProjectMembersController < ApplicationController
   def destroy
     @project_member=ProjectMember.find(params[:id])
     @project_member.destroy
-    #redirect_to :controller => 'project_members', :action => 'index'
-    redirect_to projectMembersIndex_path and return
+    redirect_to manageProjects_path and return
+  end
+
+  def join
+    @project_member=ProjectMember.find(params[:id])
+    @project_member.project_status_id = 3
+    @project_member.save
+    redirect_to manageProjects_path and return
   end
 
   private

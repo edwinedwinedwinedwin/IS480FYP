@@ -11,7 +11,7 @@ before_filter :logged_in,:authorize_admin, only: [:accept ,:reject, :index]
     @project.project_status_id = 4
     @project.save
     #Send email to user who sign up
-   SysMailer.reject_proposal_email(@project).deliver
+   SysMailer.reject_request_go_live(@project).deliver
    redirect_to adminDashboard_path and return
   end
 
@@ -20,7 +20,7 @@ before_filter :logged_in,:authorize_admin, only: [:accept ,:reject, :index]
    @project.project_status_id = 7
     @project.save
     #Send email to user who sign up
-    SysMailer.accept_proposal_email(@project).deliver
+    SysMailer.accept_request_go_live(@project).deliver
     redirect_to adminDashboard_path and return
   end
 
@@ -28,7 +28,7 @@ before_filter :logged_in,:authorize_admin, only: [:accept ,:reject, :index]
     if !session[:user_id].nil?
 
       @session = session[:user_id]
-      @project_requests = ProjectMember.where(:user_id => @session, :project_status_id => 2)
+      @project_requests = ProjectMember.order('project_status_id ASC').where(:user_id => @session, :project_status_id => [2,3])
 
 
       @projects=ProjectProposal.select("*").joins(:project).where(:projects => {:user_id=>@session})
@@ -204,8 +204,6 @@ before_filter :logged_in,:authorize_admin, only: [:accept ,:reject, :index]
     if !session[:user_id].nil?
 
       @session = session[:user_id]
-      @project_requests = ProjectMember.where(:user_id => @session, :project_status_id => 2)
-
 
       @projects=ProjectProposal.select("*").joins(:project).where(:projects => {:user_id=>@session})
 
@@ -225,8 +223,6 @@ before_filter :logged_in,:authorize_admin, only: [:accept ,:reject, :index]
     if !session[:user_id].nil?
 
       @session = session[:user_id]
-      @project_requests = ProjectMember.where(:user_id => @session, :project_status_id => 2)
-
 
       @projects=ProjectProposal.select("*").joins(:project).where(:projects => {:user_id=>@session})
 

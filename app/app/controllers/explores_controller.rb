@@ -34,7 +34,7 @@ class ExploresController < ApplicationController
     user_id=session[:user_id]
     if !user_id.nil?
       @current_User = User.find(user_id)
-      checkCreator = ProjectMember.find_by(:user_id => @current_User.id, :project_id => @project.id)
+      checkCreator = ProjectMember.find_by(:user_id => @current_User.id, :project_id => @project.id, :project_status_id => 3)
       if !checkCreator.nil?
         redirect_to showProject_path(:id => params[:id])
       end

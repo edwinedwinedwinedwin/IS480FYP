@@ -1,6 +1,6 @@
 <%= render "layouts/headerUser", :projects => @projects, :images => @project_coverImgs %>
 
-<legend class="form-heading--tables heading"><h1>Manage Project & Request</h1></legend>
+<legend class="form-heading--tables heading"><h1>Manage Projects & Join Requests</h1></legend>
 
 <%= link_to '< BACK', dashboardIndex_path , class: "back--button" %>
 <div class="row">
@@ -11,58 +11,96 @@
           <thead>
           <tr>
             <th data-priority="1"></th>
+
             <th data-priority="2">Project Title <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
-            <th data-priority="4">Creator's contact details</th>
-            <th data-priority="3">Action</th>
+            <th data-priority="5">Category <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
+            <th data-priority="3">Status <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
+            <th>Project Description</th>
+            <th>Images</th>
+            <th data-priority="6">Creator's contact details</th>
+            <th data-priority="4">Action</th>
           </tr>
           </thead>
-
           <tbody>
           <% @project_requests.each do |p| %>
-              <tr>
-                <td></td>
-                <td><%= ProjectProposal.find(Project.find(p.project_id).project_proposal_id ).title %></td>
-                <td>
-                  <%= User.find(Project.find(p.project_id).user_id).name %><br/>
-                  <%= User.find(Project.find(p.project_id).user_id).email %><br/>
-                </td>
 
-                <td>
-                  <div class="btn-group">
-                    <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Actions <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <%= link_to approveProposal_path(:id => p.id) do %>
-                            View the project
-                        <% end %>
-                      </li>
-                      <% if p.project_status_id != 3 %>
-                          <% if p.project_status_id != 4 %> <!-- pending -->
+                  <tr>
+                    <td></td>
+
+                    <td><%= ProjectProposal.find(Project.find(p.project_id).project_proposal_id).title %></td>
+                    <td><%= ProjectProposal.find(Project.find(p.project_id).project_proposal_id).project_category.try(:category)%></td>
+                    <td>
+                      <% if p.project_status_id == 2 %>
+                          <span class="label label-warning">Waiting to Accept</span>
+                      <% else %>
+                          <% if Project.find(p.project_id).project_status_id == 1 %>
+                              <span class="label label-warning">Project In Progress</span>
+                          <% elsif Project.find(p.project_id).project_status_id == 6 %>
+                              <span class="label label-warning">Request Sent for Live</span>
+                          <% elsif Project.find(p.project_id).project_status_id == 4 %>
+                              <span class="label label-danger">Live Rejected</span>
+                          <% else %>
+                              <span class="label label-success">On Live</span>
+                          <% end %>
+                      <% end %>
+                    </td>
+                    <td><%= ProjectProposal.find(Project.find(p.project_id).project_proposal_id ).description %></td>
+                    <td>
+
+                      <% @ProjectProposalImgs = ProjectProposal.find(Project.find(p.project_id).project_proposal_id).project_proposal_imgs %>
+                      <% @ProjectProposalImgs.each do | pImg | %>
+                          <%= image_tag(pImg.img_url,:class=>"img-circular-project") %>
+                      <% end %>
+
+                    </td>
+                    <td>
+                      <%= User.find(Project.find(p.project_id).user_id).name %><br/>
+                      <%= User.find(Project.find(p.project_id).user_id).email %><br/>
+
+                    </td>
+                    <td>
+                      <div class="btn-group">
+                        <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Actions <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                          <% if p.project_status_id == 2 %>
                               <li>
-                                <%= link_to approveProposal_path(:id => p.id) do %>
-                                    Accept the Team
+                                <%= link_to viewProject_path(:id => p.project_id) do %>
+                                    View Project
+                                <% end %>
+                              </li>
+                              <li>
+                                <%= link_to joinTeam_path(:id => p.id) do %>
+                                   Join the Team
+                                <% end %>
+                              </li>
+                              <li>
+                                <%= link_to leaveTeam_path(:id => p.id) do %>
+                                    Reject the Offer
+                                <% end %>
+                              </li>
+                              <li role="separator" class="divider"></li>
+                              <li><a href="mailto:<%= User.find(Project.find(p.project_id).user_id).email %>?subject=<%= ProjectProposal.find(Project.find(p.project_id).project_proposal_id ).title %>">Email Creator</a></li>
+
+                        <% else %>
+                              <li>
+                                <%= link_to showProject_path(:id => p.project_id) do %>
+                                    Edit Project
+                                <% end %>
+                              </li>
+
+                              <li>
+                                <%= link_to leaveTeam_path(:id => p.id) do %>
+                                    Leave Team
                                 <% end %>
                               </li>
                           <% end %>
-                      <% end %>
-
-                      <% if p.project_status_id != 4 %>
-                          <li>
-                            <%= link_to rejectProposal_path(:id => p.id) do %>
-                                Reject the Team
-                            <% end %>
-                          </li>
-                          <li role="separator" class="divider"></li>
-                      <% end %>
-
-                      <li><a href="mailto:<%= User.find(Project.find(p.project_id).user_id).email %>?subject=<%= ProjectProposal.find(Project.find(p.project_id).project_proposal_id ).title  %>">Email Creator</a></li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
-          <% end %>
+                          </ul>
+                      </div>
+                    </td>
+                  </tr>
+              <% end %>
           </tbody>
         </table>
       </div>
