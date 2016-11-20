@@ -3,7 +3,7 @@
       <li class="fuel-reward" >
 
         <header class="fuel-reward-header">
-          <span class="fuel-reward__price">$<%= pr.min_amount %></span>
+          <span class="fuel-reward__price">$<%= number_with_precision(pr.min_amount, :precision => 2) %></span>
 
           <%
               noOfBacker = Payment.where(:project_reward_id => pr.id).count('project_reward_id')

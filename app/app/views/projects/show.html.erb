@@ -164,23 +164,6 @@
                        <%= @project.country %>
                     </a>
                   </li>
-
-                  <li class="list-item">
-                    <span class="project-meta-text">Share</span>
-                    <ul class="project-share-buttons">
-                      <li class="project-share-button">
-                        <a href="#">
-                          <i class="icon icon--facebook"></i>
-                        </a>
-                      </li>
-
-                      <li class="project-share-button">
-                        <a href="#">
-                          <i class="icon icon--youtube"></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
                 </ul>
               </li>
             </ul>
@@ -249,23 +232,15 @@
           </div>
         <% end %>
 
-          <div class="grid-container">
+        <div class="grid-container">
           <%= render "projects/milestones", :project_id => @project.id, :project_milestones => @project_milestones %>
-
-
             </div>
             <div class="grid-25">
             </div>
 
-            <div class="grid-50">
+            <div class="grid-50"></div>
 
-
-
-            </div>
-
-            <div class="grid-25">
-
-            </div>
+            <div class="grid-25"></div>
           </div>
 
           <div class="js-lightbox-open" data-content-container="#fuel-lightbox-content-addmilestone">
@@ -312,13 +287,13 @@
           <div class="grid-60 push-5">
             <span class="team-lightbox__name"><%= User.find(pm.user_id).name %></span>
 
-            <ul class="meta-tags">
+            <!--<ul class="meta-tags">
               <li class="meta-tag">
 
                 <% bio = User.find(pm.user_id).bio_url %>
                 <% if !(bio.nil? || bio.empty?) %>
                     <%= link_to bio, :target => "_blank" do %>
-                        <i class="icon icon--visit"></i>
+                        <i class="icon icon&#45;&#45;visit"></i>
                         <%= bio %>
                     <% end %>
                 <% end %>
@@ -331,19 +306,19 @@
               <% instagram = pm.instagram_url %>
               <% if !(twitter.nil? || twitter.empty?) %>
                   <%= link_to twitter, :target => "_blank" do %>
-                      <i class="icon icon--twitter-with-circle"></i>
+                      <i class="icon icon&#45;&#45;twitter-with-circle"></i>
                   <% end %>
               <% end %>
               <% if !(instagram.nil? || instagram.empty?) %>
                   <%= link_to instagram, :target => "_blank" do %>
-                      <i class="icon icon--instagram-with-circle"></i>
+                      <i class="icon icon&#45;&#45;instagram-with-circle"></i>
                   <% end %>
               <% end %>
               <% if !(fb.nil? || fb.empty?) %>
                   <%= link_to fb, :target => "_blank" do %>
-                      <i class="icon icon--facebook-with-circle"></i>
+                      <i class="icon icon&#45;&#45;facebook-with-circle"></i>
                   <% end %>
-              <% end %>
+              <% end %>-->
             </div>
 
             <%= form_for :project_member, url: updateMemberDetails_path do |p| %>
@@ -351,18 +326,36 @@
                 <%= p.hidden_field :project_id, :value => @project.id %>
 
                 <div class="form-field">
-                  <%= p.text_field :role, class: "form-input form-textarea", :value => pm.role %>
+                  <%= p.text_field :role, class: "form-input" , :value => pm.role,:required => 'required'%>
                   <label class="form-label" for="role">Role</label>
                 </div>
 
                 <div class="form-field">
-                  <%= p.text_area :description, class: "form-input form-textarea",rows: "5", :value => pm.description,  :id=>"project-description", :maxlength=>"1000" %>
-                  <label class="form-label" for="description">Description</label>
+                  <%= p.text_area :description, class: "form-input form-textarea",rows: "5", :value => pm.description,  :id=>"project-description", :maxlength=>"1000",:required => 'required' %>
+                  <label class="form-label" for="description">Heading</label>
                 </div>
 
                 <div class="form-field">
                   <%= p.text_area :sub_description, class: "form-input form-textarea", rows: "5", :value => pm.sub_description ,  :id=>"project-description", :maxlength=>"1000"%>
-                  <label class="form-label" for="sub_description">Sub Description</label>
+                  <label class="form-label" for="sub_description">More Information</label>
+                </div>
+
+                <div class="form-field">
+                  <i class="icon icon--visit"></i>
+                  <%= p.text_field :bio_url, class: "form-input", :value => User.find(pm.user_id).bio_url %>
+                  <label class="form-label" for="role">Bio Url</label>
+                </div>
+
+                <div class="form-field">
+                  <i class="icon icon--facebook-with-circle"></i>
+                  <%= p.text_field :fb_url, class: "form-input", :value => User.find(pm.user_id).fb_url,:required => 'required' %>
+                  <label class="form-label" for="role">Facebook Username</label>
+                </div>
+
+                <div class="form-field">
+                  <i class="icon icon--twitter-with-circle"></i>
+                  <%= p.text_field :twitter_url, class: "form-input", :value => User.find(pm.user_id).twitter_url %>
+                  <label class="form-label" for="role">Twitter Username</label>
                 </div>
 
                 <div class="form-actions">
@@ -375,22 +368,7 @@
 
       </div>
 
-      <div class="team-lightbox-expertise">
-        <span class="team-lightbox-expertise__heading">Expertise</span>
-        <% userExpertises = UserExpertise.select(:expertise_name).where(:user_id => pm.user_id).uniq %>
-        <ul class="meta-tags">
-          <% if !userExpertises.nil? %>
-              <% userExpertises.each do |uE| %>
-                  <li class="meta-tag"><%= uE.expertise_name %></li>
-              <% end %>
-          <% end %>
-          <li class="meta-tag endorse">
-            <%= link_to newExpertise_path(:user_id => pm.user_id, :project_id => @project.id) do %>
-                Endorse an Expertise +
-            <% end %>
-          </li>
-        </ul>
-      </div>
+
     </div>
 <% end %>
 
@@ -398,7 +376,7 @@
     <div class="l--hidden" id="fuel-lightbox-content-<%= pr.id %>">
       <div class="fuel-lightbox-container">
         <span class="fuel-lightbox__heading">You selected:</span>
-        <span class="fuel-lightbox__value">$<%= pr.min_amount %></span>
+        <span class="fuel-lightbox__value">$<%=  %>number_with_precision(pr.min_amount, :precision => 2)</span>
         <span class="fuel-lightbox__title"><%= pr.name %></span>
 
         <p class="t--small">Feeling generous? Fuel Up! <a href="#">Increase your support.</a></p>
@@ -489,7 +467,7 @@
         </div>
 
         <div class="form-actions">
-          <td align=right><%= f.submit "Create Update", class: "button--stroke--long" %></td>
+          <td align=right><%= f.submit "Post Update", class: "button--stroke--long" %></td>
         </div>
     <% end %>
   </div>
@@ -530,8 +508,6 @@
       <% end %>
     </div>
   </div>
-
-
 
 <%= render "layouts/footer" %>
 <%= yield %>

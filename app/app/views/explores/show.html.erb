@@ -12,10 +12,12 @@
     <%= render "explores/overview", :project_id => @project.id, :project_proposal => @project_proposal, :project_categories => @project_categories %>
     <%= render "explores/coverpage", :project_id => @project.id, :project_proposal => @project_proposal, :project_proposal_imgs => @project_proposal_imgs %>
 
+    <% payments = Payment.where(:project_milestone_id=>@current_milestone.id).sum(:amount) %>
+    <% percentage=(payments/@current_milestone.target_amount)*100 %>
     <div class="project-fuel">
-      <div class="project-fuel-bar js-project-fuel-bar" data-fuel="50%">
+      <div class="project-fuel-bar js-project-fuel-bar" data-fuel="<%=percentage%>%">
         <div class="project-fuel-bar__text">
-          0% funded
+          <%=number_with_precision(percentage, :precision => 1)%>% funded
         </div>
       </div>
     </div>
@@ -50,29 +52,32 @@
               <div class="grid-30">
                 <div class="project-stat">
                   <%  if !@current_milestone.nil? %>
-                      <% no_Of_Days = @current_milestone.end_date.to_date - Date.today.to_date %>
-
+                      <% no_Of_Days = @current_milestone.end_date.to_date - Date.today %>
                       <span class="project-stat__data"><%= no_Of_Days.to_i %></span>
                       <span class="project-stat__description">Days remaining</span>
                   <% else %>
-                      <span class="project-stat__data">0</span>
+                      <% eno_Of_Days = @project_proposal.estimated_end_date - Date.today %>
+                      <span class="project-stat__data"><%= eno_Of_Days.to_i %></span>
                       <span class="project-stat__description">Days remaining</span>
                   <% end %>
                 </div>
               </div>
               <div class="grid-30 push-5">
                 <div class="project-stat">
-                  <span class="project-stat__data">0%</span>
+                  <span class="project-stat__data"><%= number_with_precision(percentage,:precision => 1) %>%</span>
                   <span class="project-stat__description">Funded</span>
                 </div>
               </div>
               <div class="grid-30 push-10">
                 <div class="project-stat" id="project-funding">
-                  <span class="project-stat__data">$0</span>
+                  <span class="project-stat__data">$<%=number_with_precision(payments, :precision => 2)%></span>
                   <span class="project-stat__description">of
+
                     <%  if !@current_milestone.nil? %>
-                      <span id="project-funding-value">$<%= @current_milestone.target_amount %> </span> funded</span>
-                    <% end %>
+                      <span id="project-funding-value">$<%= number_with_precision(@current_milestone.target_amount, :precision => 2) %> </span> funded</span>
+                  <% else %>
+                      <span id="project-funding-value">$<%= number_with_precision(@project_proposal.estimated_amt_raise, :precision => 2)  %> </span> funded</span>
+                 <% end %>
 
                 </div>
               </div>
@@ -89,9 +94,8 @@
 
 
               <div class="project-description">
-
                         <p class="t--large wordwrapper"><%= @project_proposal.description %></p>
-                        <!--<p class="wordwrapper"></p>-->
+
 
                </div>
 
@@ -119,41 +123,6 @@
                        <%= @project.country %>
                     </a>
                   </li>
-
-                  <li class="list-item">
-                    <span class="project-meta-text">Share</span>
-                    <ul class="project-share-buttons">
-                      <li class="project-share-button">
-                        <a href="#">
-                          <i class="icon icon--facebook"></i>
-                        </a>
-                      </li>
-
-                      <li class="project-share-button">
-                        <a href="#">
-                          <i class="icon icon--twitter"></i>
-                        </a>
-                      </li>
-
-                      <li class="project-share-button">
-                        <a href="#">
-                          <i class="icon icon--youtube"></i>
-                        </a>
-                      </li>
-
-                      <li class="project-share-button">
-                        <a href="#">
-                          <i class="icon icon--pinterest"></i>
-                        </a>
-                      </li>
-
-                      <li class="project-share-button">
-                        <a href="#">
-                          <i class="icon icon--google-plus"></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
                 </ul>
               </li>
             </ul>
@@ -169,20 +138,11 @@
         <h2 class="section-heading heading--small">Updates
         </h2>
 
-        <ul class="update-icons">
-          <li class="selected">
-            <i class="icon icon--updates-grid"></i>
-          </li>
-
-          <li>
-            <i class="icon icon--updates-list"></i>
-          </li>
-        </ul>
       </div>
 
       <%= render "explores/updates", :project_id => @project.id, :project_updates => @project_updates %>
 
-      <a href="#" class="project-content__load-more">Load More</a>
+      <!--<a href="#" class="project-content__load-more">Load More</a>-->
     </section>
 
     <section class="project-content-section" id="team">
@@ -240,9 +200,6 @@
 
 
       </div>
-    </section>
-    <section class="project-content-section" id="discuss">
-      <a href="#" class="project-content__load-more">Load More</a>
     </section>
   </article>
 </main>
@@ -309,10 +266,6 @@
                   <% end %>
               <% end %>
             </div>
-
-
-
-
           </div>
         </div>
 
@@ -336,22 +289,7 @@
 
       </div>
 
-      <div class="team-lightbox-expertise">
-        <span class="team-lightbox-expertise__heading">Expertise</span>
-        <% userExpertises = UserExpertise.select(:expertise_name).where(:user_id => pm.user_id).uniq %>
-        <ul class="meta-tags">
-          <% if !userExpertises.nil? %>
-              <% userExpertises.each do |uE| %>
-                  <li class="meta-tag"><%= uE.expertise_name %></li>
-              <% end %>
-          <% end %>
-          <li class="meta-tag endorse">
-            <%= link_to newExpertise_path(:user_id => pm.user_id, :project_id => @project.id) do %>
-                Endorse an Expertise +
-            <% end %>
-          </li>
-        </ul>
-      </div>
+
     </div>
 <% end %>
 
@@ -359,7 +297,7 @@
     <div class="l--hidden" id="fuel-lightbox-content-<%= pr.id %>">
       <div class="fuel-lightbox-container">
         <span class="fuel-lightbox__heading">You selected:</span>
-        <span class="fuel-lightbox__value">$<%= pr.min_amount %></span>
+        <span class="fuel-lightbox__value">$<%=number_with_precision( pr.min_amount, :precision => 2)%></span>
         <span class="fuel-lightbox__title"><%= pr.name %></span>
 
         <p class="t--small">Feeling generous? Fuel Up! <a href="#">Increase your support.</a></p>

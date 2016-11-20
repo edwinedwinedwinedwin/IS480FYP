@@ -181,6 +181,13 @@ before_filter :logged_in,:authorize_admin, only: [:accept ,:reject, :index]
     @memberDetails.description = params[:project_member][:description]
     @memberDetails.sub_description = params[:project_member][:sub_description]
     @memberDetails.save
+
+    @memberUserProfile = User.find(@memberDetails.user_id)
+    @memberUserProfile.fb_url = params[:project_member][:fb_url]
+    @memberUserProfile.twitter_url = params[:project_member][:twitter_url]
+    @memberUserProfile.bio_url = params[:project_member][:bio_url]
+    @memberUserProfile.save
+
     redirect_to showProject_path(params[:project_member][:project_id]) and return
   end
 
