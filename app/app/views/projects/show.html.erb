@@ -127,7 +127,7 @@
                   <span class="fuel-button__content">
                     <span class="fuel-button__cta">Submit</span>
                     <span class="fuel-button__text">This Project</span>
-                      <i class="icon icon--chevron-right"></i>
+                      <i class="icon icon--chevron-down"></i>
                   </span>
                 <!--</a>-->
                   <% end %>
@@ -137,7 +137,7 @@
                         <span class="fuel-button__content">
                     <span class="fuel-button__cta">Live</span>
                     
-                      <i class="icon icon--chevron-right"></i>
+                      <i class="icon icon--chevron-down"></i>
                   </span>
                         <!--</a>-->
                     <% end %>
@@ -332,12 +332,12 @@
                 </div>
 
                 <div class="form-field">
-                  <%= p.text_area :description, class: "form-input form-textarea",rows: "5", :value => pm.description,  :id=>"project-description", :maxlength=>"1000",:required => 'required' %>
+                  <%= p.text_area :description, class: "form-input form-textarea text-area-border",rows: "5", :value => pm.description,  :id=>"project-description", :maxlength=>"1000",:required => 'required' %>
                   <label class="form-label" for="description">Heading</label>
                 </div>
 
                 <div class="form-field">
-                  <%= p.text_area :sub_description, class: "form-input form-textarea", rows: "5", :value => pm.sub_description ,  :id=>"project-description", :maxlength=>"1000"%>
+                  <%= p.text_area :sub_description, class: "form-input form-textarea text-area-border", rows: "5", :value => pm.sub_description ,  :id=>"project-description", :maxlength=>"1000"%>
                   <label class="form-label" for="sub_description">More Information</label>
                 </div>
 
