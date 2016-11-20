@@ -30,5 +30,18 @@ class SysMailer < ApplicationMailer
  def reject_proposal_email(project_proposal)
    @project_proposal = project_proposal
    mail(to: @project_proposal.email, subject: '[YBCO] Project Proposal Result: Rejected')
- end 
+ end
+
+  def accept_request_go_live(project)
+    @project = project
+    @creator_user = User.find(@project.user_id)
+    mail(to: @creator_user.email, subject: '[YBCO] Project Live Result: Approved')
+  end
+
+  def reject_request_go_live(project)
+    @project = project
+    @creator_user = User.find(@project.user_id)
+    mail(to: @creator_user.email, subject: '[YBCO] Project Live Result: Rejected')
+  end
+
 end
