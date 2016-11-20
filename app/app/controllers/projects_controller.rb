@@ -194,10 +194,43 @@ before_filter :logged_in,:authorize_admin, only: [:accept ,:reject, :index]
   def rewards_selected
     @project = Project.find(params[:id])
     @rewards = ProjectReward.where(:project_id => params[:id])    
+    if !session[:user_id].nil?
+
+      @session = session[:user_id]
+      @project_requests = ProjectMember.where(:user_id => @session, :project_status_id => 2)
+
+
+      @projects=ProjectProposal.select("*").joins(:project).where(:projects => {:user_id=>@session})
+
+      @project_coverImgs = ProjectProposalImg.select('
+                  project_proposal_imgs.project_proposal_id as pp_id,
+                  project_proposal_imgs.id as ppi_id,
+                  project_proposals.title as title,
+                  projects.id as p_id
+                  ').joins(project_proposal: :project).where(:projects => {:user_id => @session})
+      @user = User.find(@session)
+    end
   end
 
   def funders_details
-    @project = Project.find(params[:id])    
+    @project = Project.find(params[:id])
+    @payments = Payment.where(:project_id=>params[:id])    
+    if !session[:user_id].nil?
+
+      @session = session[:user_id]
+      @project_requests = ProjectMember.where(:user_id => @session, :project_status_id => 2)
+
+
+      @projects=ProjectProposal.select("*").joins(:project).where(:projects => {:user_id=>@session})
+
+      @project_coverImgs = ProjectProposalImg.select('
+                  project_proposal_imgs.project_proposal_id as pp_id,
+                  project_proposal_imgs.id as ppi_id,
+                  project_proposals.title as title,
+                  projects.id as p_id
+                  ').joins(project_proposal: :project).where(:projects => {:user_id => @session})
+      @user = User.find(@session)
+    end
   end
 
   private

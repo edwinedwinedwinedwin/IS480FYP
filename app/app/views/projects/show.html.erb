@@ -8,9 +8,11 @@
     <%= render "projects/coverpage", :project_id => @project.id, :project_proposal => @project_proposal, :project_proposal_imgs => @project_proposal_imgs %>
 
     <div class="project-fuel">
-      <div class="project-fuel-bar js-project-fuel-bar" data-fuel="50%">
+    <% payments = Payment.where(:project_milestone_id=>@current_milestone.id).sum(:amount) %>
+    <% percentage=(payments/@current_milestone.target_amount)*100 %>
+      <div class="project-fuel-bar js-project-fuel-bar" data-fuel="<%=percentage%>%">
         <div class="project-fuel-bar__text">
-          0% funded
+          <%=number_with_precision(percentage, :precision => 1)%>% funded
         </div>
       </div>
     </div>
@@ -50,25 +52,25 @@
                 <div class="project-stat">
 
                   <%  if !@current_milestone.nil? %>
-                      <% no_Of_Days = @current_milestone.end_date.to_date - Date.today.to_date %>
+                      <% no_Of_Days = @current_milestone.end_date.to_date - Date.today %>
                       <span class="project-stat__data"><%= no_Of_Days.to_i %></span>
                       <span class="project-stat__description">Days remaining</span>
                   <% else %>
-                      <%eno_Of_Days = @project_proposal.estimated_end_date - Date.today.to_date %>
+                      <% eno_Of_Days = @project_proposal.estimated_end_date - Date.today %>
                       <span class="project-stat__data"><%= eno_Of_Days.to_i %></span>
                       <span class="project-stat__description">Days remaining</span>
                  <% end %>
                 </div>
-              </div>
+              </div>              
               <div class="grid-30 push-5">
-                <div class="project-stat">
-                  <span class="project-stat__data">0%</span>
+                <div class="project-stat">                
+                  <span class="project-stat__data"><%= number_with_precision(percentage,:precision => 1) %>%</span>
                   <span class="project-stat__description">Funded</span>
                 </div>
               </div>
               <div class="grid-30 push-10">
                 <div class="project-stat" id="project-funding">
-                  <span class="project-stat__data">$0</span>
+                  <span class="project-stat__data">$<%=number_with_precision(payments, :precision => 2)%></span>
                   <span class="project-stat__description">of
 
                     <%  if !@current_milestone.nil? %>
