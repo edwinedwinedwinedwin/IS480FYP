@@ -8,8 +8,9 @@
     <%= render "projects/coverpage", :project_id => @project.id, :project_proposal => @project_proposal, :project_proposal_imgs => @project_proposal_imgs %>
 
     <div class="project-fuel">
-    <% payments = Payment.where(:project_milestone_id=>@current_milestone.id).sum(:amount) %>
-    <% percentage=(payments/@current_milestone.target_amount)*100 %>
+
+    <% payments = Payment.where(:project_milestone_id=>@current_milestone.id).sum(:amount) if !@current_milestone.nil? %>
+    <% percentage=(payments/@current_milestone.target_amount)*100 if !@current_milestone.nil? %>
       <div class="project-fuel-bar js-project-fuel-bar" data-fuel="<%=percentage%>%">
         <div class="project-fuel-bar__text">
           <%=number_with_precision(percentage, :precision => 1)%>% funded
