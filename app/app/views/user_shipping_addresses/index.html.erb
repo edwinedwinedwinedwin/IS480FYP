@@ -10,7 +10,7 @@
 <%= link_to '< BACK', dashboardIndex_path,class: "back--button" %>
 <table class="table-show">
   <thead>
-    <tr class="tr-row">      
+    <tr class="tr-row">            
       <th class="th-row">Address Line 1</th>      
       <th class="th-row">Address Line 2</th>
       <th class="th-row">Country</th>
@@ -32,7 +32,7 @@
         <td class="td-row"><%= userShippingAddress.state %></td>
         <td class="td-row"><%= userShippingAddress.city %></td>
         <td class="td-row"><%= userShippingAddress.postal_code %></td>  
-        <td class="td-row"><%= link_to 'Edit Address(X)',editShippingAddress_path(:id=>userShippingAddress.id)%></td>  
+        <td class="td-row"><%= link_to 'Edit Address',editShippingAddress_path(:id=>userShippingAddress.id)%></td>  
         <td class="td-row"><%= link_to 'Delete Address',deleteShippingAddress_path(:id=>userShippingAddress.id) %></td>  
       </tr>
       <% end %> 

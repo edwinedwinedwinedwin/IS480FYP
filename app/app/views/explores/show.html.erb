@@ -313,7 +313,7 @@
         <% no_of_rewards = ProjectReward.find(pr.id).no_of_rewards %>
         <% noOfBacker = Payment.where(:project_reward_id => pr.id).count('project_reward_id') %>
         <% @payment=Payment.find_by_user_id(session[:user_id]) %>
-        <% if @payment.nil? && noOfBacker<no_of_rewards %>
+        <% if @payment.nil? && noOfBacker<no_of_rewards && !session[:user_id].nil? %>
           <%= link_to 'Continue', makePayment_path(:pr_id=>pr.id), :class=>"button--fill" %>
         <% end %>
       </div>

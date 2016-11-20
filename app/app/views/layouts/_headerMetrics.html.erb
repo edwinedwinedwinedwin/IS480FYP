@@ -318,15 +318,15 @@
 
     <nav class="site-menu-block-user site-navigation">
        <ul class="site-navigation-list--sub">
-					<li class="site-navigation-list__item">
+          <li class="site-navigation-list__item">
             <%= link_to '< Home', showProject_path(:id=>@project.id) ,rel: "internal" %>
-					</li>					
-					<li class="site-navigation-list__item">
+          </li>         
+          <li class="site-navigation-list__item">
             <%= link_to 'Rewards Selected', showRewardsSelected_path(:id=>@project.id), rel: "internal" %>
-					</li>
-					<li class="site-navigation-list__item">
+          </li>
+          <li class="site-navigation-list__item">
             <%= link_to "Funders' Details", showFundersDetails_path(:id=>@project.id) , rel: "internal" %>
-					</li>					
+          </li>         
       </ul>
       <br><br><br>
       <ul class="site-navigation-list--small">

@@ -1,5 +1,4 @@
-<%= render "layouts/headerLogin" %>
-<%= yield %>
+<%= render "layouts/headerUser", :projects => @projects, :images => @project_coverImgs %>
 
 <!-- include bootstrap-->
 <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -20,8 +19,7 @@
         <%= f.hidden_field :project_reward_id, :value => @project_reward.id %>      
         <%= f.hidden_field :user_id, :value => @user.id %>
         <%= f.hidden_field :payment_status, :value => "Pending" %>
-        <%= f.hidden_field :user_name, :value => @user.name %>                              
-        
+        <%= f.hidden_field :user_name, :value => @user.name %>                                             
         <figure class="fuel-reward-thumbnail">
           <% image_tag(@project_reward.img_url,:class=> "img-circular") %>
         </figure>
@@ -34,13 +32,74 @@
         <div class="form-field">
           <%= f.number_field :amount, :value=>@project_reward.min_amount, class: "form-input", placeholder: "Amount",:min=>@project_reward.min_amount,:step=>0.01 %>
           <label class="form-label" for="email">Amount ($)</label>          
-        </div>
-        
-        <% if !@user_shipping_address.nil? %>
-          <%= f.hidden_field :user_shipping_address_id, :value =>@user_shipping_address.id %>                  
+        </div>        
+        <% if !@user_shipping_addresses.nil? %>          
+          <!-- User Shipping Address radio -->
+            <%# f.hidden_field :user_shipping_address_id, :value =>@user_shipping_address.id %>           
+            <%# f.collection_select :provider_id, Provider.order(:name),:id,:name, include_blank: true %>
+            <%# f.collection_select :user_shipping_address_id, x.id,:id,:name %>
+            <br><%= f.select :user_shipping_address_id, @user_shipping_addresses.map(&:id),{:include_blank => 'Select shipping address id'} %>
+            <div class="form-field">
+            <table class="table-show">
+              <table border="1">
+              <tr>
+                <th>ID</th>
+                <th>  Address</th>
+                <th> </th>
+                <th>Country</th>
+                <th>Postal_Code</th>
+                </tr>                
+                 <% @user_shipping_addresses.each do |x| %>                       
+                    <% address = x.id.to_s+" "+x.address_line_1+" "+x.address_line_2+" "+x.country+" "+x.postal_code %><br>
+                    <tr>
+                      <td><%= x.id.to_s%>&nbsp&nbsp&nbsp</td>
+                      <td><%= x.address_line_1 %></td>
+                      <td><%= x.address_line_2 %>&nbsp&nbsp&nbsp</td>
+                      <td><%= x.country %></td>
+                      <td><%= x.postal_code %></td>
+                    </tr>
+                 <% end %>                 
+              </table>
+            </div>
+        <% else %>          
+        <!-- New User Shipping Address -->
+          <div class="form-field">
+            <%= f.text_field :address_line_1, class: "form-input", placeholder: "Address Line 1" %>
+            <label class="form-label" for="address_line_1">Address Line 1</label>
+          </div>
+
+          <div class="form-field">
+            <%= f.text_field :address_line_2, class: "form-input", placeholder: "Address Line 2" %>
+            <label class="form-label" for="address_line_2">Address Line 2</label>
+          </div>  
+                  
+          <div class="form-field">
+            <select name="country" class="countries" id="countryId">
+              <option value="">Select Country</option>
+            </select>                       
+            <label class="form-label" for="country">Country</label>
+          </div>                         
+          
+          <div class="form-field">
+            <select name="state" class="states" id="stateId">
+              <option value="">Select State</option>
+            </select>
+            <label class="form-label" for="state">State</label>       
+          </div>
+
+          <div class="form-field">
+            <select name="city" class="cities" id="cityId">
+              <option value="">Select City</option>
+            </select>
+            <label class="form-label" for="city">City</label>
+          </div>                  
+
+          <div class="form-field">
+            <%= f.text_field :postal_code, class: "form-input", placeholder: "Postal Code"  %> 
+            <label class="form-label" for="postal_code">Postal Code</label>       
+          </div>
         <% end %>
-        
-        <%# @user_shipping_addresses.each do |x|%>       
+
         <div class="form-actions">
           <%= f.submit "Submit", class: "button--stroke--long" %>
         </div>
