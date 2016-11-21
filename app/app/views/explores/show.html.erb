@@ -130,8 +130,6 @@
       </div>
     </section>
 
-
-
     <section class="project-content-section" id="updates">
       <div class="wrap" style="position: relative;">
         <h2 class="section-heading heading--small">Updates
@@ -161,41 +159,35 @@
 
       <!--<a href="#" class="fuel-pledge-another">Pledge Another Amount <i class="icon icon--chevron-right"></i></a>-->
     </section>
+
     <section class="project-content-section" id="timeline">
       <h2 class="heading--small section-heading">
         Timeline
-
       </h2>
 
 
       <div class="wrap">
-
-        <%  if !@current_milestone.nil? %>
-          <div class="diamond section-header">
-            <div class="diamond-inner">
-              <span class="flag"></span>
-              <p class="wordwrapper"><%=@project_proposal.title %></p>
-              <% no_Of_Days = @current_milestone.end_date.to_date - Date.today.to_date %>
-              <p class="wordwrapper">$<%=@total_target_amount %></p>
-              <p class="wordwrapper"><%= no_Of_Days.to_i %> DAYS LEFT</p>
+        <%  if @project_milestones.size >= 1 %>
+            <div class="diamond section-header">
+              <div class="diamond-inner">
+                <span class="flag"></span>
+                <% no_Of_Days = @current_milestone.end_date.to_date - Date.today.to_date %>
+                <div class="wordwrapper diamondamount">$<%=number_with_precision(@total_target_amount ,:precision => 0) %></div>
+                <div class="wordwrapper diamondtitle"><%=@project_proposal.title.split.map(&:capitalize).join(' ') %></div>
+                <p class="wordwrapper diamonddays"><%= no_Of_Days.to_i %> DAYS LEFT</p>
+              </div>
             </div>
-          </div>
         <% end %>
 
-          <div class="grid-container">
-            <div class="grid-25">
-            </div>
+        <div class="grid-container">
+          <%= render "explores/milestones", :project_id => @project.id, :project_milestones => @project_milestones %>
+        </div>
+        <div class="grid-25"></div>
 
-            <div class="grid-50">
-              <%= render "explores/milestones", :project_id => @project.id, :project_milestones => @project_milestones %>
+        <div class="grid-50"></div>
 
-            </div>
-
-            <div class="grid-25">
-
-            </div>
-          </div>
-
+        <div class="grid-25"></div>
+      </div>
 
       </div>
     </section>

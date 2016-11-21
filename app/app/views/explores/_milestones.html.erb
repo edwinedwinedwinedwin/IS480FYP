@@ -1,74 +1,71 @@
 <div class="Timeline" id="Timeline">
   <div class="Timeline-line">
-    <div class="Timeline-line-menu">
-    </div>
+    <div class="Timeline-line-menu"></div>
   </div>
 
 
   <% i = 0 %>
   <% project_milestones.each do |ms|
-    payments = Payment.where(:project_milestone_id=>ms.id).sum(:amount)
-    if( i % 2 == 0) %>
+    payments = Payment.where(:project_milestone_id=>ms.id).sum(:amount) %>
 
+
+      <% if ms.project_status_id == 5%>
           <div class="Timeline-item">
-            <div class="Timeline-item-inner">
-              <div class="Timeline-item-top">
-                <div class="Timeline-item-top-type milestone-title">
-                  <button class="accordion accordion-hover"><%= ms.name.upcase %><br/>
-                    <strong>Target Amount:</strong> $<%= number_with_precision(ms.target_amount  ,:precision => 0) %><br/>
-                    <strong>Start Date:</strong> <%= ms.start_date.strftime("%d %B %Y")%>
-                  </button>
-                  <div class="panel">
-
-                    <% if ms.project_status_id == 5%>
-                        <%= ms.project_status.try(:status)%><br/>
-                        <strong>Amount Raised:</strong>$<%= number_with_precision(payments,:precision => 0) %><br/>
-                    <% else %>
-
-                        <br/>
-                        <strong>End Date:</strong> <%= ms.end_date.strftime("%d %B %Y")%><br/>
-
-                        <strong>Amount Raised:</strong>$<%= number_with_precision(payments,:precision => 0) %><br/>
-
-                    <% end %>
+            <div class="Timeline-item-inner" style="border:2px solid transparent; background-color:#d4dddf;">
+              <div class="Timeline-item-top" style="background-color:#d4dddf;">
+                <div class="Timeline-item-top-type milestone-title" style="float:none;">
+                  <div style="color:#c2ced1;font-family:'Alternate Gothic No1 D', serif; font-size:30px; height:40px;">
+                    $<%=number_with_precision(ms.target_amount, :precision => 0)%>
                   </div>
+                  <div style ="color:#a5aeb0; height:25px; font-size:20px;">
+                    <%= ms.name %>
+                  </div>
+                  <div class="project-status-timeline">
+                    <%= ms.project_status.try(:status).upcase%>
+                  </div>
+
                 </div>
               </div>
             </div>
           </div>
-
       <% else %>
-
           <div class="Timeline-item">
-            <div class="Timeline-item-inner">
-              <div class="Timeline-item-top">
-                <div class="Timeline-item-top-type milestone-title">
-                  <button class="accordion accordion-hover"><%= ms.name.upcase %><br/>
-                    <strong>Target Amount:</strong> $<%= number_with_precision(ms.target_amount  ,:precision => 0) %><br/>
-                    <strong>Start Date:</strong> <%= ms.start_date.strftime("%d %B %Y")%>
+            <div class="Timeline-item-inner" style="border:2px solid #9fd86c; background-color:transparent;">
+              <div class="Timeline-item-top" style="background-color:transparent;">
+                <div class="Timeline-item-top-type milestone-title" style="float:none;">
+                  <button class="accordion accordion-hover">
+                    <div style="color:#c2ced1;font-family:'Alternate Gothic No1 D', serif; font-size:30px; height:40px;">
+                      $<%=number_with_precision(ms.target_amount, :precision => 0)%>
+                    </div>
+                    <div style ="color:#a5aeb0; height:25px; font-size:20px;">
+                      <%= ms.name %>
+                    </div>
+                    <div class="project-status-timeline" style="font-size:15px; color:#dbdbdb">
+                      <%= ms.project_status.try(:status).upcase%>
+                    </div>
                   </button>
+
                   <div class="panel">
+                    <div style="color:#c2ced1;font-family:'Alternate Gothic No1 D', serif; font-size:30px; height:40px;">
+                      $<%= number_with_precision(payments,:precision => 0) %> Funded
+                    </div>
+                    <div class="project-status-timeline" style="font-size:18px; color:#dbdbdb; margin-top:1em;">
+                      <%= ms.start_date.strftime("%B %Y").upcase%><br/>
+                      <div style="color:#dbdbdb;"> To  </div>
+                      <%= ms.end_date.strftime("%B %Y").upcase%>
+                    </div>
 
-                    <% if ms.project_status_id == 5%>
-                        <%= ms.project_status.try(:status)%><br/>
-                        <strong>Amount Raised:</strong>$<%= number_with_precision(payments,:precision => 0) %><br/>
-                    <% else %>
-
-                        <br/>
-                        <strong>End Date:</strong> <%= ms.end_date.strftime("%d %B %Y")%><br/>
-                        <strong>Amount Raised:</strong>$<%= number_with_precision(payments,:precision => 0) %><br/>
-
-                    <% end %>
                   </div>
+
+
                 </div>
               </div>
             </div>
-
           </div>
-
       <% end %>
-  <% i=i+1
-     end %>
+
+  <% end %>
+
 </div>
 
 <script>
