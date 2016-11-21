@@ -189,7 +189,7 @@
 
       <%= render "projects/updates", :project_id => @project.id, :project_updates => @project_updates %>
 
-      <a href="#" class="project-content__load-more">Load More</a>
+      <!--a href="#" class="project-content__load-more">Load More</a-->
     </section>
 
     <section class="project-content-section" id="team">
@@ -448,7 +448,7 @@
         </div>
 
         <div class="form-field">
-          <%= f.text_area :description, rows: "5", class: "form-input form-textarea", :id => "update-description", :maxlength => "300", :required => 'required' %>
+          <%= f.text_area :description, rows: "5", class: "form-input form-textarea text-area-border", :id => "update-description", :maxlength => "300", :required => 'required' %>
           <label class="form-label" for="description">Description</label>
 
         </div>
