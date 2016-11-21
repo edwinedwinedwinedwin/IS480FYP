@@ -2031,7 +2031,9 @@ strong,
   font-size: 2.5rem;
   text-transform: uppercase;
   line-height: 1;
-  display: block; }
+  display: block;
+  padding:1.5em;
+   }
 
 .team-lightbox__position {
   display: block;
@@ -3060,7 +3062,9 @@ strong,
 
 .lightbox-pic{ 
   width:9.35em;
-  height:9.35em; 
+  height:9.35em;
+  margin-bottom:3em;
+  margin-left:2em; 
 }
 
 .project-team-member-thumbnail {
@@ -3265,8 +3269,9 @@ strong,
   z-index: 3; }
   .fuel-reward-thumbnail img {
     width: 100%;
-    height: auto;
-    display: block; }
+    height: 100%;
+    display: block; 
+  }
 
 .fuel-pledge-another {
   color: #ffffff;
@@ -5218,7 +5223,7 @@ select.dropdown_address{
   *zoom: 1;
 }
 .Timeline {
-  width: 830px;
+  max-width: 900px;
   margin: 0 auto;
   position: relative;
 }
@@ -5234,6 +5239,7 @@ select.dropdown_address{
   position: absolute;
   border: 1px solid #dedede;
   height: 100%;
+  z-index:-1;
 }
 .Timeline-line.is-active .Timeline-line-menu {
   opacity: 1;
@@ -5251,7 +5257,7 @@ select.dropdown_address{
   position: relative;
   margin-bottom: 40px;
   width: 280px;
-  border: 1px solid #9fd86c;
+  border: 1px solid #d4dddf;
   background-color: #ffffff;
   -webkit-transition: all .3s ease;
   transition: all .3s ease;
@@ -5261,7 +5267,7 @@ select.dropdown_address{
   content: "";
   position: absolute;
   top: 50%;
-  right:-50.5%;
+  right:-64.5%;
   border-radius: 50%;
   align-content: center;
   -webkit-transform: translateY(-50%);
@@ -5275,7 +5281,7 @@ select.dropdown_address{
   height: 20px;
   position: absolute;
   top: 50%;
-  left: 148%;
+  left: 48%;
   height: 0;
   width: 0;
   border-bottom: 8px solid transparent;
@@ -5301,9 +5307,10 @@ select.dropdown_address{
 .Timeline-item:hover .Timeline-item-inner:after {
   height: 0;
   width: 0;
-  border-bottom: 8px solid transparent;
-  border-left: 8px solid #999;
-  border-top: 8px solid transparent;
+  border-bottom: 8px solid #000000;
+  border-left: 8px solid #000000;
+  border-top: 8px solid #000000;
+  border-color: #9fd86c;
 }
 .Timeline-item:hover .Timeline-item-top-tools {
   opacity: 1;
@@ -5322,7 +5329,7 @@ select.dropdown_address{
 }
 .Timeline-item:nth-child(odd) .Timeline-item-inner:before {
   right: auto;
-  left: -48.5%;
+  left: -50%;
 }
 .Timeline-item:nth-child(odd) .Timeline-item-inner:after {
   height: 0;

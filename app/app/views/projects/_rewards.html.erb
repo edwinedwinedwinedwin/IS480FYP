@@ -3,7 +3,7 @@
       <li class="fuel-reward" >
 
         <header class="fuel-reward-header">
-          <span class="fuel-reward__price">$<%= number_with_precision(pr.min_amount, :precision => 2) %></span>
+          <span class="fuel-reward__price">$<%= number_with_precision(pr.min_amount, :precision => 0) %></span>
 
           <%
               noOfBacker = Payment.where(:project_reward_id => pr.id).count('project_reward_id')
@@ -24,8 +24,10 @@
           <p><%= pr.estimated_delivery.strftime("%B %Y") %></p>
         </div>
 
-        <figure class="fuel-reward-thumbnail">
-          <%= image_tag(ProjectReward.find(pr.id).img_url) %>
+        <figure class="fuel-reward-thumbnail" style="margin:0em 0px;">
+        <div style="max-height:100px; max-width:200px;">
+          <%= image_tag(ProjectReward.find(pr.id).img_url, :style=>"max-height:80px; max-width:200px;") %>
+        </div>
         </figure>
 
 
