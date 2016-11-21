@@ -1,8 +1,7 @@
 class UserShippingAddressesController < ApplicationController
   before_filter :logged_in,:authorize_user
   def index    
-
-    @userShippingAddresses=UserShippingAddress.where(:user_id=>@session)
+    @userShippingAddresses=UserShippingAddress.where(:user_id=>session[:user_id])
     if !session[:user_id].nil?
       @session = session[:user_id]
       @projects=ProjectProposal.select("*").joins(:project).where(:projects => {:user_id=>@session})
@@ -53,9 +52,7 @@ class UserShippingAddressesController < ApplicationController
 
   def create    
     @user_shipping_address=UserShippingAddress.new(user_shipping_address_params)
-    @user_shipping_address.country=params[:country]
-    @user_shipping_address.city=params[:city]
-    @user_shipping_address.state=params[:state]
+    #@user_shipping_address.country=params[:country]
     if @user_shipping_address.save
       redirect_to manageShippingAddress_path and return
       #redirect_to :controller => 'user_shipping_address', :action => 'index',:id=session[:project_id] and return
@@ -83,6 +80,6 @@ class UserShippingAddressesController < ApplicationController
 
   private
   def user_shipping_address_params
-    params.require(:user_shipping_address).permit(:address_line_1,:address_line_2,:country,:state,:city,:postal_code,:user_id)
+    params.require(:user_shipping_address).permit(:address_line_1,:address_line_2,:country,:postal_code,:user_id)
   end
 end

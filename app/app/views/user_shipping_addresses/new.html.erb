@@ -4,8 +4,7 @@
   
 
   <div class="page-section">
-    <legend class="form-heading heading"> Add User Shipping Address </legend>
-
+    <legend class="form-heading heading"> Add User Shipping Address </legend>      
       <%= form_for(@user_shipping_address) do |f| %>                        
           <%= f.hidden_field :user_id, :value => @session %>
           <% if @user_shipping_address.errors.any? %>
@@ -29,26 +28,12 @@
             <label class="form-label" for="address_line_2">Address Line 2</label>
           </div>  
                   
-          <div class="form-field">
-            <select name="country" class="countries" id="countryId", required="required">
-              <option value="">Select Country</option>
-            </select>                       
-            <label class="form-label" for="country">Country</label>
-          </div>                         
-          
-          <div class="form-field">
-            <select name="state" class="states" id="stateId", required="required">
-              <option value="">Select State</option>
-            </select>
-            <label class="form-label" for="state">State</label>       
-          </div>
-
-          <div class="form-field">
-            <select name="city" class="cities" id="cityId">
-              <option value="">Select City</option>
-            </select>
-            <label class="form-label" for="city">City</label>
-          </div>                  
+          <div class="form-field">        
+          <%= f.country_select :country, ['Singapore'], options = {}, html_options = {:class => "form-input", :id => "resizing_select"} %>
+           <select id="width_tmp_select">
+            <option id="width_tmp_option"></option>
+           </select>
+         </div>
 
           <div class="form-field">
             <%= f.text_field :postal_code, class: "form-input", placeholder: "Postal Code" , :required => 'required' %>

@@ -2,11 +2,9 @@
 <%= stylesheet_link_tag "component" %>
   <%= stylesheet_link_tag "flickity/flickity.css" %>
   <%= javascript_include_tag "application"%>
-<p id="notice"><%= notice %></p>
-
+<p id="notice"><%= notice %></p>  
 <br>
 <legend class="form-heading--tables heading"><h1>Manage User's Shipping Addresses</h1></legend>
-
 <%= link_to '< BACK', dashboardIndex_path,class: "back--button" %>
 <table class="table-show">
   <thead>
@@ -14,8 +12,6 @@
       <th class="th-row">Address Line 1</th>      
       <th class="th-row">Address Line 2</th>
       <th class="th-row">Country</th>
-      <th class="th-row">State</th>
-      <th class="th-row">City</th>
       <th class="th-row">Postal Code</th>
       <th class="th-row">Actions</th>
       <th class="th-row" colspan="3"></th>
@@ -24,16 +20,15 @@
 
   <tbody>
   <% if !@userShippingAddresses.nil? %>
-    <% @userShippingAddresses.each do |userShippingAddress| %>
+    <% @userShippingAddresses.each do |x|%>    
+
       <tr class="tr-row">        
-        <td class="td-row"><%= userShippingAddress.address_line_1 %></td>        
-        <td class="td-row"><%= userShippingAddress.address_line_2 %></td>
-        <td class="td-row"><%= userShippingAddress.country %></td>
-        <td class="td-row"><%= userShippingAddress.state %></td>
-        <td class="td-row"><%= userShippingAddress.city %></td>
-        <td class="td-row"><%= userShippingAddress.postal_code %></td>  
-        <td class="td-row"><%= link_to 'Edit Address',editShippingAddress_path(:id=>userShippingAddress.id)%></td>  
-        <td class="td-row"><%= link_to 'Delete Address',deleteShippingAddress_path(:id=>userShippingAddress.id) %></td>  
+        <td class="td-row"><%= x.address_line_1 %></td>        
+        <td class="td-row"><%= x.address_line_2 %></td>
+        <td class="td-row"><%= x.country %></td>
+        <td class="td-row"><%= x.postal_code %></td>  
+        <td class="td-row"><%= link_to 'Edit Address',editShippingAddress_path(:id=>x.id)%></td>  
+        <td class="td-row"><%= link_to 'Delete Address',deleteShippingAddress_path(:id=>x.id) %></td>  
       </tr>
       <% end %> 
   <% end%>
