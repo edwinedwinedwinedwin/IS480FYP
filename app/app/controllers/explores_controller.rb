@@ -63,10 +63,10 @@ class ExploresController < ApplicationController
     #update the status of milestone
 
     @project_milestones.each do |pm|
-      if pm.end_date.to_date < Date.today
-        @project_milestones.project_status_id = 5
-        @project_milestones.save
-      end
+      if pm.end_date < Date.today
+        pm.project_status_id = 5
+        pm.save
+     end
     end
 
 
