@@ -30,7 +30,7 @@
                 <div class="admin-dashboard-summary-content">
                     <div class="display">
                         <div class="float-left">
-                            <div class="admin-dashboard-header-value-profit"><%= @paymentRaised %></div>
+                            <div class="admin-dashboard-header-value-profit"><%= number_with_precision(@paymentRaised, :precision => 0) %></div>
                             <div class="admin-dashboard-header">TOTAL FUND RAISED</div>
                         </div>
                         <div class="float-right">
