@@ -404,7 +404,7 @@
         </div>
 
         <div class="form-field">
-          <%= f.number_field :min_amount, step: 1, class: "form-input", placeholder: "Minimum Amount", :required => 'required' %>
+          <%= f.number_field :min_amount, step: 1, min: 1, class: "form-input", placeholder: "Minimum Amount", :required => 'required' %>
           <label class="form-label" for="min_amount">Minimum Amount</label>
         </div>
 
@@ -419,7 +419,7 @@
         </div>
 
         <div class="form-field">
-          <%= f.number_field :no_of_rewards, step: 1 ,class: "form-input", placeholder: "Number of Rewards" , :required => 'required' %>
+          <%= f.number_field :no_of_rewards, step: 1 ,min: 1,class: "form-input", placeholder: "Number of Rewards" , :required => 'required' %>
           <label class="form-label" for="no_of_rewards">Number of Rewards</label>
         </div>
 
