@@ -21,6 +21,9 @@
        <th data-priority="5">Category <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
        <th data-priority="3">Status <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></th>
        <th>Project Description</th>
+       <th>Estimated Start - End Date</th>
+        <th>Duration</th>
+        <th>Estimated Amount Raise</th>
        <th>Images</th>
        <th data-priority="6">Creator's contact details</th>
        <th data-priority="4">Action</th>
@@ -44,6 +47,10 @@
         <% end %>
        </td>
        <td><%= p.description %></td>
+        <td><%= p.estimated_start_date .strftime("%d %B %Y").upcase %> - <%= p.estimated_end_date.strftime("%d %B %Y").upcase %></td>
+        <% noOfDays =  (p.estimated_end_date.to_date - p.estimated_start_date.to_date) %>
+        <td><%= noOfDays.to_i + 1 %> Day</td>
+        <td>$<%= number_with_precision(p.estimated_amt_raise, :precision => 0)%></td>
        <td>
          <% @ProjectProposalImgs = p.project_proposal_imgs %>
          <!-- get project proposal images-->
@@ -57,6 +64,7 @@
         <td>
          <%= p.name %><br/>
          <%= p.email %><br/>
+          <%= link_to p.company_url, p.company_url%>
         </td>
 
         <td>

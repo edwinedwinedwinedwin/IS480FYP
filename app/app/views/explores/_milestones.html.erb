@@ -15,7 +15,9 @@
               <div class="Timeline-item-top" style="background-color:#d4dddf;">
                 <div class="Timeline-item-top-type milestone-title" style="float:none;">
                   <div style="color:#c2ced1;font-family:'Alternate Gothic No1 D', serif; font-size:30px; height:40px;">
-                    $<%=number_with_precision(ms.target_amount, :precision => 0)%>
+
+                        $<%=number_with_precision(payments, :precision => 0)%>
+
                   </div>
                   <div style ="color:#a5aeb0; height:25px; font-size:20px;">
                     <%= ms.name %>
@@ -35,7 +37,9 @@
                 <div class="Timeline-item-top-type milestone-title" style="float:none;">
                   <button class="accordion accordion-hover">
                     <div style="color:#c2ced1;font-family:'Alternate Gothic No1 D', serif; font-size:30px; height:40px;">
-                      $<%= number_with_precision(payments,:precision => 0) %>
+
+                          $<%=number_with_precision(ms.target_amount, :precision => 0)%>
+
                     </div>
                     <div style ="color:#a5aeb0; height:25px; font-size:20px;">
                       <%= ms.name %>
