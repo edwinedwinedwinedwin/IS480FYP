@@ -65,13 +65,13 @@
               </div>              
               <div class="grid-30 push-5">
                 <div class="project-stat">                
-                  <span class="project-stat__data"><%= number_with_precision(percentage,:precision => 1) %>%</span>
+                  <span class="project-stat__data"><%= number_with_precision(percentage,:precision => 0) %>%</span>
                   <span class="project-stat__description">Funded</span>
                 </div>
               </div>
               <div class="grid-30 push-10">
                 <div class="project-stat" id="project-funding">
-                  <span class="project-stat__data">$<%=number_with_precision(payments, :precision => 2)%></span>
+                  <span class="project-stat__data">$<%=number_with_precision(payments, :precision => 0)%></span>
                   <span class="project-stat__description">of
 
                     <%  if !@current_milestone.nil? %>
@@ -219,25 +219,22 @@
 
 
       <div class="wrap">
-      <div class="diamond section-header">
-            <div class="diamond-inner">
-        <%  if !@current_milestone.nil? %>
-          
-              <span class="flag"></span>
-              <!--<p class="t--large wordwrapper"><%=@project_proposal.title.split.map(&:capitalize).join(' ') %>asdasdas</p>-->
-              <% no_Of_Days = @current_milestone.end_date.to_date - Date.today.to_date %>
-              <div class="wordwrapper diamondamount">$<%=@total_target_amount %></div>
-              <div class="wordwrapper diamondtitle"><%=@project_proposal.title.split.map(&:capitalize).join(' ') %></div>
+        <%  if @project_milestones.size >= 1 %>
+       <div class="diamond section-header">
+        <div class="diamond-inner">
+         <span class="flag"></span>
+           <% no_Of_Days = @current_milestone.end_date.to_date - Date.today.to_date %>
+            <div class="wordwrapper diamondamount">$<%=number_with_precision(@total_target_amount ,:precision => 0) %></div>
+          <div class="wordwrapper diamondtitle"><%=@project_proposal.title.split.map(&:capitalize).join(' ') %></div>
               <p class="wordwrapper diamonddays"><%= no_Of_Days.to_i %> DAYS LEFT</p>
-            </div>
-          </div>
+        </div>
+       </div>
         <% end %>
 
         <div class="grid-container">
           <%= render "projects/milestones", :project_id => @project.id, :project_milestones => @project_milestones %>
             </div>
-            <div class="grid-25">
-            </div>
+            <div class="grid-25"></div>
 
             <div class="grid-50"></div>
 
@@ -247,11 +244,7 @@
           <div class="js-lightbox-open" data-content-container="#fuel-lightbox-content-addmilestone">
             <%= image_tag("newMileStoneBtn.png") %>
           </div>
-
       </div>
-    </section>
-    <section class="project-content-section" id="discuss">
-      <!--a href="#" class="project-content__load-more">Load More</a-->
     </section>
   </article>
 </main>
@@ -332,12 +325,12 @@
                 </div>
 
                 <div class="form-field">
-                  <%= p.text_area :description, class: "form-input form-textarea text-area-border",rows: "5", :value => pm.description,  :id=>"project-description", :maxlength=>"1000",:required => 'required' %>
+                  <%= p.text_area :description, class: "form-input form-textarea text-area-border",rows: "5", :value => pm.description,  :id=>"project-description", :maxlength=>"300",:required => 'required' %>
                   <label class="form-label" for="description">Heading</label>
                 </div>
 
                 <div class="form-field">
-                  <%= p.text_area :sub_description, class: "form-input form-textarea text-area-border", rows: "5", :value => pm.sub_description ,  :id=>"project-description", :maxlength=>"1000"%>
+                  <%= p.text_area :sub_description, class: "form-input form-textarea text-area-border", rows: "5", :value => pm.sub_description ,  :id=>"project-description", :maxlength=>"300"%>
                   <label class="form-label" for="sub_description">More Information</label>
                 </div>
 
@@ -377,7 +370,7 @@
     <div class="l--hidden" id="fuel-lightbox-content-<%= pr.id %>">
       <div class="fuel-lightbox-container">
         <span class="fuel-lightbox__heading">You selected:</span>
-        <span class="fuel-lightbox__value">$<%=  %>number_with_precision(pr.min_amount, :precision => 2)</span>
+        <span class="fuel-lightbox__value">$<%= number_with_precision(pr.min_amount, :precision => 0) %></span>
         <span class="fuel-lightbox__title"><%= pr.name %></span>
 
         <p class="t--small">Feeling generous? Fuel Up! <a href="#">Increase your support.</a></p>
@@ -411,7 +404,7 @@
         </div>
 
         <div class="form-field">
-          <%= f.number_field :min_amount, step: 0.01, class: "form-input", placeholder: "Minimum Amount", :required => 'required' %>
+          <%= f.number_field :min_amount, step: 1, class: "form-input", placeholder: "Minimum Amount", :required => 'required' %>
           <label class="form-label" for="min_amount">Minimum Amount</label>
         </div>
 
@@ -426,7 +419,7 @@
         </div>
 
         <div class="form-field">
-          <%= f.number_field :no_of_rewards, class: "form-input", placeholder: "Number of Rewards" , :required => 'required' %>
+          <%= f.number_field :no_of_rewards, step: 1 ,class: "form-input", placeholder: "Number of Rewards" , :required => 'required' %>
           <label class="form-label" for="no_of_rewards">Number of Rewards</label>
         </div>
 
@@ -455,11 +448,9 @@
         </div>
 
         <div class="form-field">
-          <%= f.text_area :description, rows: "5", class: "form-input form-textarea", :id => "update-description", :maxlength => "1000", :required => 'required' %>
+          <%= f.text_area :description, rows: "5", class: "form-input form-textarea", :id => "update-description", :maxlength => "300", :required => 'required' %>
           <label class="form-label" for="description">Description</label>
-          <div class="textarea-character-limit js-textarea-limit" data-for="update-description" data-limit="1000">
-            <span class="textarea-character-limit__count">1000</span> characters left
-          </div>
+
         </div>
 
         <div class="form-field">
@@ -489,17 +480,17 @@
           </div>
 
           <div class="form-field">
-            <%= f.date_select :start_date, { start_year:Date.today.year, order: [:month, :year] , :discard_day => true}, :class => "btn btn-default dropdown-toggle", :required => 'required'%>
+            <%= f.date_select :start_date, { start_year:Date.today.year, order: [:day, :month, :year]}, :class => "btn btn-default dropdown-toggle", :required => 'required'%>
             <label class="form-label" for="start_date">Start Date</label>
           </div>
 
           <div class="form-field">
-            <%= f.date_select :end_date, { start_year:Date.today.year, order: [:month, :year] , :discard_day => true}, :class => "btn btn-default dropdown-toggle", :required => 'required'%>
+            <%= f.date_select :end_date, { start_year:Date.today.year, order: [:day, :month, :year]}, :class => "btn btn-default dropdown-toggle", :required => 'required'%>
             <label class="form-label" for="end_date">End Date</label>
           </div>
 
           <div class="form-field">
-            <%= f.number_field :target_amount, class: "form-input", step: 0.01, :required => 'required' %>
+            <%= f.number_field :target_amount, class: "form-input", step: 1, min: 1, :required => 'required' %>
             <label class="form-label" for="name">Target Amount</label>
           </div>
 
