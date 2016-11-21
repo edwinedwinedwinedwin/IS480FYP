@@ -12,12 +12,16 @@
 
         <div class="form-field">
           <%= email_field_tag :email, nil,class: "form-input", :required => 'required'%>
-          <label class="form-label" for="email">Email <%= '- '.to_s + flash[:alert] if !flash[:alert].nil? %></label>
+          <label class="form-label" for="email">Email 
+            <label style="color:red;"><%= '- '.to_s + flash[:alert] if !flash[:alert].nil? %></label>
+          </label>
         </div>
 
         <div class="form-field">
           <%= password_field_tag :password,nil, class: "form-input", :required => 'required'%>
-          <label class="form-label" for="password">Password <%=  '- '.to_s + flash[:alert] if flash[:alert].to_s.include?("password") %></label>
+          <label class="form-label" for="password">Password 
+          <label style="color:red;"><%=  '- '.to_s + flash[:alert] if flash[:alert].to_s.include?("password") %></label>
+          </label>
         </div>
         <div class="form-actions">
           <%= submit_tag "LOGIN", class: "button--stroke--long" %><br><br>

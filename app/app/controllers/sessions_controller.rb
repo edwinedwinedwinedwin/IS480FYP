@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
     user = User.find_by_email(params[:email])
     if user and user.authenticate(params[:password])
       if user.is_banned
-        flash[:alert]="Your account has been banned."
+        flash[:alert]="Your account has been banned"
         render 'new'
       else
         session[:user_id] = user.id
@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
         end
       end
     else
-      flash[:alert]="Invalid email/password."
+      flash[:alert]="Invalid email/password"
       render 'new'
     end
   end
