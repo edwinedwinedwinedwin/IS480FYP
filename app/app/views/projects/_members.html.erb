@@ -37,7 +37,7 @@
     <div class="grid-container">
       <div class="grid-35 push-5">
         <div class="current-members">
-          <p class="t--large">Current Member</p>
+          <p class="t--large" style="margin-bottom:0.5rem;">Current Member(s)</p>
           <!--EDWIN HELP ME STYLE -->
           <ul class="site-navigation-list">
             <li class="site-navigation-list__item-member">
@@ -55,10 +55,10 @@
                           <% end %>
                         </div>
 
-                        <li class="site-navigation-list--member-title">
-                          <%= User.find(p.user_id).name %>
+                        <li class="site-navigation-list--member-title member-font">
+                          <%= User.find(p.user_id).name.capitalize %>
                         </li>
-                        <li class="site-navigation-list--member-details bottom-push">
+                        <li class="site-navigation-list--member-details bottom-push member-font" style="font-size:0.8em;">
                           <%= p.role if !p.role.nil? %>
                         </li>
                     <% end %>
@@ -75,8 +75,8 @@
           </ul>
         </div>
 
-        <div style="background-repeat: no-repeat;background-position:center center;max-width: 334px;margin:auto;padding-bottom: 1%;">
-          <p class="t--large">Pending</p>
+        <div class="pending-members">
+          <p class="t--large" style="margin-bottom:0.5rem;">Pending Member(s)</p>
           <!--EDWIN HELP ME STYLE -->
           <ul class="site-navigation-list">
             <li class="site-navigation-list__item-member">
@@ -84,14 +84,16 @@
                 <li>
                   <% if !project_members.nil? %>
                       <% project_members.each do |p| %>
+                      <div class = "member-styles">
                           <% if p.member_status == 2 %>
                               <% if User.find(p.user_id).profile_pic.blank? %>
-                                  <%= image_tag('defaultprofile.png', :class=>"img-circular-project") %>
+                                  <%= image_tag('defaultprofile.png', :class=>"img-circular-project-avatar") %>
                               <% else %>
-                                  <%= image_tag(User.find(p.user_id).profile_pic, :class=>"img-circular-project") %>
+                                  <%= image_tag(User.find(p.user_id).profile_pic, :class=>"img-circular-project-avatar") %>
                               <% end %>
+                      </div>
 
-                            <li class="site-navigation-list--member-title">
+                            <li class="site-navigation-list--member-title member-font">
                               <%= User.find(p.user_id).name %>
                             </li>
 
