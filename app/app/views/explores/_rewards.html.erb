@@ -24,8 +24,10 @@
           <p><%= pr.estimated_delivery.strftime("%B %Y") %></p>
         </div>
 
-        <figure class="fuel-reward-thumbnail">
-          <%= image_tag(ProjectReward.find(pr.id).img_url) %>
+        <figure class="fuel-reward-thumbnail" style="margin:0em 0px;">
+          <div style="max-height:100px; max-width:200px;">
+            <%= image_tag(ProjectReward.find(pr.id).img_url, :style=>"max-height:80px; max-width:200px;") %>
+          </div>
         </figure>
 
         <div class="fuel-reward-select">

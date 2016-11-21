@@ -7,8 +7,6 @@
   <% i = 0 %>
   <% project_milestones.each do |ms|
     payments = Payment.where(:project_milestone_id=>ms.id).sum(:amount) %>
-  
-    
     <% if ms.project_status_id == 5%>
     <div class="Timeline-item">
       <div class="Timeline-item-inner" style="border:2px solid transparent; background-color:#d4dddf;">
@@ -35,7 +33,7 @@
                 <div class="Timeline-item-top-type milestone-title" style="float:none;">
                       <button class="accordion accordion-hover">
                       <div style="color:#c2ced1;font-family:'Alternate Gothic No1 D', serif; font-size:30px; height:40px;">
-                        $<%=number_with_precision(ms.target_amount, :precision => 0)%>
+                        $<%= number_with_precision(payments,:precision => 0) %>
                       </div>
                       <div style ="color:#a5aeb0; height:25px; font-size:20px;">
                         <%= ms.name %>
@@ -50,9 +48,9 @@
                         $<%= number_with_precision(payments,:precision => 0) %> Funded 
                         </div>
                         <div class="project-status-timeline" style="font-size:18px; color:#dbdbdb; margin-top:1em;">
-                        <%= ms.start_date.strftime("%B %Y").upcase%><br/>
+                        <%= ms.start_date.strftime("%d %B %Y").upcase%><br/>
                         <div style="color:#dbdbdb;"> To  </div>
-                        <%= ms.end_date.strftime("%B %Y").upcase%>
+                        <%= ms.end_date.strftime("%d %B %Y").upcase%>
                         </div>
 
                       </div>
