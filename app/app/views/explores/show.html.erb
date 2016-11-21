@@ -319,7 +319,17 @@
         <% noOfBacker = Payment.where(:project_reward_id => pr.id).count('project_reward_id') %>
         <% @payment=Payment.find_by_user_id(session[:user_id]) %>
         <% if @payment.nil? && noOfBacker<no_of_rewards && !session[:user_id].nil? %>
-          <%= link_to 'Continue', makePayment_path(:pr_id=>pr.id), :class=>"button--fill" %>
+            <% if noOfBacker<no_of_rewards %>
+                <% if !session[:user_id].nil? %>
+                    <%= link_to 'Continue', makePayment_path(:pr_id=>pr.id), :class=>"button--fill" %>
+                <% else %>
+                  Please log in to purchase this proejct reward.
+                <% end %>
+            <% else %>
+              This project reward is no longer available.
+            <% end %>          
+        <% else %>
+          You have already purchased this project reward.
         <% end %>
       </div>
     </div>

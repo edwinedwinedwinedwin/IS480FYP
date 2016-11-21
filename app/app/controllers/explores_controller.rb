@@ -15,7 +15,7 @@ class ExploresController < ApplicationController
   end
 
   def filterProjects    
-    @filterProjects =Project.select("*").joins(:project_proposal).where(:project_proposals => {:project_category_id=>params[:project][:category]})    
+    @filterProjects =Project.select("*").joins(:project_proposal).where(:project_proposals => {:project_category_id=>params[:project][:category]},:project_status_id=>7)    
 
     if !session[:user_id].nil?
       @current_User = User.find(session[:user_id])
