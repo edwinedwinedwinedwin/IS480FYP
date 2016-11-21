@@ -17,7 +17,12 @@
     <div class="project-fuel">
       <div class="project-fuel-bar js-project-fuel-bar" data-fuel="<%=percentage%>%">
         <div class="project-fuel-bar__text">
-          <%=number_with_precision(percentage, :precision => 1)%>% funded
+          <% if payments.to_i == 0 %>
+              0
+          <% else %>
+              <%=number_with_precision(percentage, :precision => 1)%>
+          <% end %>
+          % funded
         </div>
       </div>
     </div>

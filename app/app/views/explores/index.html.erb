@@ -74,10 +74,11 @@
 			gridsChosen = ["horizontal", "square", "square", "vertical", "square--large","square", "square", "square", "square", "horizontal", "horizontal", "horizontal", "square--large", "square", "square-fresh", "square", "square"]
 		%>
       	<% @allProjects.each do |p| %>
+          <% if p.project_status_id == 7 %>
             <%= render "explores/projectGridView", :p => p, :girdStyle => "square explore-project--dark" %>
+          <% end %>
       <% end %>
 		</ul>
-		  <a href="#" class="project-explore__load-more">Load More</a>
 	</section>
 </main>
 

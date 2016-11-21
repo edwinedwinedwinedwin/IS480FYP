@@ -3,7 +3,7 @@
 <% else %>
     <li class="explore-project explore-project--<%= girdStyle %>" style="background-image:url(<%=ProjectProposalImg.where(:project_proposal_id => p.project_proposal_id).first.img_url %>);">
 <% end %>
-<% @current_milestone = ProjectMilestone.order('start_date ASC').where(:project_id => params[:id]).where.not(:project_status_id => 5).first %>
+<% @current_milestone = ProjectMilestone.order('start_date ASC').where(:project_id => p.id).where.not(:project_status_id => 5).first %>
 
 
   <header class="explore-project-header">
@@ -29,11 +29,20 @@
 
     <div class="explore-project-description__background"></div>
   </div>
-  <% ran = rand(50...75)%>
+<% payments = Payment.where(:project_milestone_id=>@current_milestone.id).sum(:amount) if !@current_milestone.nil?%>
+<% percentage=(payments/@current_milestone.target_amount)*100 if !@current_milestone.nil?%>
+
   <footer class="explore-project-footer whitebackground">
     <ul class="meta-tags">
       <li class="meta-tag ">
-        <span class="meta-tag__data ">0%</span>
+        <span class="meta-tag__data ">
+          <% if payments.to_i == 0 %>
+              0
+          <% else %>
+         <%=number_with_precision(percentage, :precision => 1)%>
+         <% end %>
+          %
+        </span>
         Funded
       </li>
 
