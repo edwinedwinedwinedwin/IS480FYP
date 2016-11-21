@@ -34,7 +34,7 @@
       <% @projectProposals.each do |p| %>
       <tr>
        <td></td>
-       <td><%= p.created_at.strftime("%d %b %Y %H:%M") %></td>
+       <td><%= p.created_at .strftime("%d %B %Y").upcase %></td>
        <td><%= p.title %></td>
        <td><%= p.project_category.try(:category)%></td>
        <td>

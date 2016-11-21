@@ -32,7 +32,7 @@
                     <% if p.project_status_id == 6 %>
                         <tr>
                           <td></td>
-                          <td><%= p.created_at %></td>
+                          <td><%= p.created_at .strftime("%d %B %Y").upcase %></td>
                           <td><%= ProjectProposal.find(p.project_proposal_id).title %></td>
                           <td><%= ProjectProposal.find(p.project_proposal_id).project_category.try(:category)%></td>
                           <td>

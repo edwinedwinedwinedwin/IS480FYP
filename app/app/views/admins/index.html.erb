@@ -145,7 +145,7 @@
                                     <% if p.project_status_id == 2 %>
                                     <tr>
                                         <td></td>
-                                        <td><%= p.created_at %></td>
+                                        <td><%= p.created_at .strftime("%d %B %Y").upcase %></td>
                                         <td><%= p.title %></td>
                                         <td><%= p.project_category.try(:category)%></td>
                                         <td>
