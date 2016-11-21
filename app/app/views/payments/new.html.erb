@@ -30,7 +30,7 @@
         </div>
 
         <div class="form-field">
-          <%= f.number_field :amount, :value=>@project_reward.min_amount, class: "form-input", placeholder: "Amount",:min=>@project_reward.min_amount,:step=>1%>
+          <%= f.number_field :amount, :value=> number_with_precision(@project_reward.min_amount, :precision => 0),class: "form-input", placeholder: "Amount",:min=>@project_reward.min_amount,:step=>1%>
           <label class="form-label" for="email">Amount ($)</label>          
         </div>        
         <% if !@user_shipping_addresses.blank? %>
@@ -39,7 +39,7 @@
              %>
             <br>
            <div class="form-field">
-             <%= f.select :user_shipping_address_id,options,{:include_blank => 'Select Shipping Address',:class => "form-input"},:required=>'required' %>
+             <%= f.select :user_shipping_address_id,options,{:include_blank => 'Select Shipping Address'}, html_options = {:class => "form-input",:style=>"border-top:none; border-left:none; border-right:none; background-color:#ffffff;border-radius:0px;", :required=>'required'} %>
              <label class="form-label" for="shippingAddress">Shipping Address</label>
            </div>
         <% else %>          
