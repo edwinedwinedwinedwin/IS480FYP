@@ -7,6 +7,7 @@
   
   <% i = 0 %>
   <% project_milestones.each do |ms|
+    payments = Payment.where(:project_milestone_id=>ms.id).sum(:amount)
       if( i % 2 == 0) %>
 
   <div class="Timeline-item">
@@ -24,8 +25,9 @@
               <% else %>
               
               <br/>
-              <strong>End Date:</strong> <%= ms.end_date.strftime("@d %B %Y")%><br/>
-              <strong>Amount Raised:</strong>
+              <strong>End Date:</strong> <%= ms.end_date.strftime("%d %B %Y")%><br/>
+
+              <strong>Amount Raised:</strong>$<%= number_with_precision(payments,:precision => 0) %><br/>
 
               <% end %>
           </div>
@@ -52,7 +54,7 @@
 
                 <br/>
                 <strong>End Date:</strong> <%= ms.end_date.strftime("%d %B %Y")%><br/>
-                <strong>Amount Raised:</strong>
+                <strong>Amount Raised:</strong>$<%= number_with_precision(payments,:precision => 0) %><br/>
 
             <% end %>
           </div>
