@@ -29,10 +29,8 @@
           </div>  
                   
           <div class="form-field">        
-          <%= f.country_select :country, ['Singapore'], options = {}, html_options = {:class => "form-input", :id => "resizing_select"} %>
-           <select id="width_tmp_select">
-            <option id="width_tmp_option"></option>
-           </select>
+          <%= f.country_select :country, ['Singapore'], options = {}, html_options = {:class => "form-input", :style=>"border-top:none;border-left:none;border-right:none;background:white;"} %>
+           <label class="form-label" for="address_line_2">Country</label>
          </div>
 
           <div class="form-field">
