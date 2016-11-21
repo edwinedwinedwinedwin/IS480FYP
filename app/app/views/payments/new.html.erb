@@ -30,38 +30,22 @@
         </div>
 
         <div class="form-field">
-          <%= f.number_field :amount, :value=>@project_reward.min_amount, class: "form-input", placeholder: "Amount",:min=>@project_reward.min_amount,:step=>0.01 %>
+          <%= f.number_field :amount, :value=>@project_reward.min_amount, class: "form-input", placeholder: "Amount",:min=>@project_reward.min_amount,:step=>1 %>
           <label class="form-label" for="email">Amount ($)</label>          
         </div>        
-        <% if !@user_shipping_addresses.blank? %>                              
-            <br><%= f.select :user_shipping_address_id, @user_shipping_addresses.map(&:id),{:include_blank => 'Select shipping address id'},:required=>"required" %>
-            <div class="form-field">
-            <table class="table-show">
-              <table border="1">
-              <tr>
-                <th>ID</th>
-                <th>  Address</th>
-                <th> </th>
-                <th>Country</th>
-                <th>Postal_Code</th>
-                </tr>                
-                 <% @user_shipping_addresses.each do |x| %>                       
-                    <% address = x.id.to_s+" "+x.address_line_1+" "+x.address_line_2+" "+x.country+" "+x.postal_code %><br>
-                    <tr>
-                      <td><%= x.id.to_s%>&nbsp&nbsp&nbsp</td>
-                      <td><%= x.address_line_1 %></td>
-                      <td><%= x.address_line_2 %>&nbsp&nbsp&nbsp</td>
-                      <td><%= x.country %></td>
-                      <td><%= x.postal_code %></td>
-                    </tr>
-                 <% end %>                 
-              </table>
-             </table>
-            </div>
+        <% if !@user_shipping_addresses.blank? %>
+             <%
+               options = options_from_collection_for_select(UserShippingAddress.where(:user_id => @user.id ), 'id',:full_address , '1')
+             %>
+            <br>
+           <div class="form-field">
+             <%= f.select :user_shipping_address_id,options,{:include_blank => 'Select Shipping Address',:class => "form-input"},:required=>'required' %>
+             <label class="form-label" for="shippingAddress">Shipping Address</label>
+           </div>
         <% else %>          
         <!-- New User Shipping Address -->
           <div class="form-field">
-            <%= f.text_field :address_line_1, class: "form-input", placeholder: "Address Line 1" %>
+            <%= f.text_field :address_line_1, class: "form-input", placeholder: "Address Line 1",:required=>'required' %>
             <label class="form-label" for="address_line_1">Address Line 1</label>
           </div>
 
@@ -71,14 +55,14 @@
           </div>  
                   
           <div class="form-field">        
-          <%= f.country_select :country, ['Singapore'], options = {}, html_options = {:class => "form-input", :id => "resizing_select"} %>
+          <%= f.country_select :country, ['Singapore'], options = {}, html_options = {:class => "form-input", :id => "resizing_select",:required=>'required'} %>
            <select id="width_tmp_select">
             <option id="width_tmp_option"></option>
            </select>
          </div>
 
           <div class="form-field">
-            <%= f.text_field :postal_code, class: "form-input", placeholder: "Postal Code"  %> 
+            <%= f.text_field :postal_code, class: "form-input", placeholder: "Postal Code",:required=>'required' %>
             <label class="form-label" for="postal_code">Postal Code</label>       
           </div>
         <% end %>
