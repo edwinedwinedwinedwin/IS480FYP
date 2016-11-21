@@ -33,12 +33,8 @@
           <%= f.number_field :amount, :value=>@project_reward.min_amount, class: "form-input", placeholder: "Amount",:min=>@project_reward.min_amount,:step=>0.01 %>
           <label class="form-label" for="email">Amount ($)</label>          
         </div>        
-        <% if !@user_shipping_addresses.nil? %>          
-          <!-- User Shipping Address radio -->
-            <%# f.hidden_field :user_shipping_address_id, :value =>@user_shipping_address.id %>           
-            <%# f.collection_select :provider_id, Provider.order(:name),:id,:name, include_blank: true %>
-            <%# f.collection_select :user_shipping_address_id, x.id,:id,:name %>
-            <br><%= f.select :user_shipping_address_id, @user_shipping_addresses.map(&:id),{:include_blank => 'Select shipping address id'} %>
+        <% if !@user_shipping_addresses.blank? %>                              
+            <br><%= f.select :user_shipping_address_id, @user_shipping_addresses.map(&:id),{:include_blank => 'Select shipping address id'},:required=>"required" %>
             <div class="form-field">
             <table class="table-show">
               <table border="1">
