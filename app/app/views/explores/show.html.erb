@@ -20,7 +20,7 @@
           <% if payments.to_i == 0 %>
               0
           <% else %>
-              <%=number_with_precision(percentage, :precision => 1)%>
+              <%=number_with_precision(percentage, :precision => 0)%>
           <% end %>
           % funded
         </div>
@@ -69,19 +69,19 @@
               </div>
               <div class="grid-30 push-5">
                 <div class="project-stat">
-                  <span class="project-stat__data"><%= number_with_precision(percentage,:precision => 1) %>%</span>
+                  <span class="project-stat__data"><%= number_with_precision(percentage,:precision => 0) %>%</span>
                   <span class="project-stat__description">Funded</span>
                 </div>
               </div>
               <div class="grid-30 push-10">
                 <div class="project-stat" id="project-funding">
-                  <span class="project-stat__data">$<%=number_with_precision(payments, :precision => 2)%></span>
+                  <span class="project-stat__data">$<%=number_with_precision(payments, :precision => 0)%></span>
                   <span class="project-stat__description">of
 
                     <%  if !@current_milestone.nil? %>
-                      <span id="project-funding-value">$<%= number_with_precision(@current_milestone.target_amount, :precision => 2) %> </span> funded</span>
+                      <span id="project-funding-value">$<%= number_with_precision(@current_milestone.target_amount, :precision => 0) %> </span> funded</span>
                   <% else %>
-                      <span id="project-funding-value">$<%= number_with_precision(@project_proposal.estimated_amt_raise, :precision => 2)  %> </span> funded</span>
+                      <span id="project-funding-value">$<%= number_with_precision(@project_proposal.estimated_amt_raise, :precision => 0)  %> </span> funded</span>
                  <% end %>
 
                 </div>
@@ -94,19 +94,13 @@
                 <h2 class="heading--small">
                   About the Project
                 </h2>
-
               </div>
 
-
               <div class="project-description">
-                        <p class="t--large wordwrapper"><%= @project_proposal.description %></p>
-
-
-               </div>
-
-                    </div>
-
-                </div>
+               <p class="t--large wordwrapper"><%= @project_proposal.description %></p>
+              </div>
+             </div>
+            </div>
 
           <div class="grid-25 push-10">
             <ul class="list">
@@ -142,7 +136,6 @@
       <div class="wrap" style="position: relative;">
         <h2 class="section-heading heading--small">Updates
         </h2>
-
       </div>
 
       <%= render "explores/updates", :project_id => @project.id, :project_updates => @project_updates %>
