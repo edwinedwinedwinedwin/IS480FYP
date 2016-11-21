@@ -38,8 +38,7 @@ class PaymentsController < ApplicationController
       @user_shipping_address.address_line_1 = params[:payment][:address_line_1]
       @user_shipping_address.address_line_2 = params[:payment][:address_line_2]
       @user_shipping_address.country = params[:payment][:country]
-      @user_shipping_address.city = params[:payment][:city]
-      @user_shipping_address.state = params[:payment][:state]
+
       @user_shipping_address.postal_code = params[:payment][:postal_code]
       @user_shipping_address.user_id = session[:user_id]
       @user_shipping_address.save        

@@ -39,13 +39,13 @@ class UserShippingAddressesController < ApplicationController
   	@user_shipping_address=UserShippingAddress.find(params[:id])
     if !session[:user_id].nil?
       @session = session[:user_id]
-      @projects=ProjectProposal.select("*").joins(:project).where(:projects => {:user_id=>@session})
+      @projects=ProjectProposal.select("*").joins(:project).where(:projects => {:user_id=>session[:user_id]})
       @project_coverImgs = ProjectProposalImg.select('
                   project_proposal_imgs.project_proposal_id as pp_id,
                   project_proposal_imgs.id as ppi_id,
                   project_proposals.title as title,
                   projects.id as p_id
-                  ').joins(project_proposal: :project).where(:projects => {:user_id => @session})
+                  ').joins(project_proposal: :project).where(:projects => {:user_id => session[:user_id]})
       @user = User.find(session[:user_id])
     end
   end
@@ -55,7 +55,6 @@ class UserShippingAddressesController < ApplicationController
     #@user_shipping_address.country=params[:country]
     if @user_shipping_address.save
       redirect_to manageShippingAddress_path and return
-      #redirect_to :controller => 'user_shipping_address', :action => 'index',:id=session[:project_id] and return
     else
       render addShippingAddress_path and return
     end
@@ -65,7 +64,6 @@ class UserShippingAddressesController < ApplicationController
     @user_shipping_address=UserShippingAddress.find(params[:id])
     if @user_shipping_address.update_attributes(user_shipping_address_params)
     	redirect_to manageShippingAddress_path and return
-      #redirect_to :controller => 'user_shipping_address', :action => 'index',:id=session[:project_id] and return
     else
       render updateShippingAddress_path and return
     end
