@@ -2983,7 +2983,7 @@ strong,
   margin-top: 2.5rem;
   margin-bottom: 2rem;
   padding-bottom: 1.5rem;
-  border-bottom: 2px solid #f1f1f1; }
+  border-bottom: 0px solid #f1f1f1; }
   .project-location .icon {
     font-size: 1rem;
     transition: color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
