@@ -2,6 +2,7 @@ class DashboardsController < ApplicationController
   before_filter :logged_in,:authorize_user
   def index
 		@current_User = User.find(session[:user_id])
+
 		if !session[:user_id].nil?
 
 			@projects=ProjectProposal.select("*").joins(:project).where(:projects => {:user_id => session[:user_id]})

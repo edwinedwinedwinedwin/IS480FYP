@@ -22,17 +22,17 @@
         </div>        
 
         <div class="form-field">
-          <%= f.text_field :name, class: "form-input",:readonly=>true%>
+          <%= f.text_field :name, class: "form-input",:readonly=>true %>
           <label class="form-label" for="first-name">Name</label>
         </div>
 
         <div class="form-field" align="left">
-          <%= f.text_field :email, class: "form-input" %>
+          <%= f.text_field :email, class: "form-input" , :required => 'required'%>
           <label class="form-label" for="email">Email</label>
         </div>
               
         <div class="form-field">
-            <%= f.file_field :profile_pic, class: "form-input" %>
+            <%= f.file_field :profile_pic, class: "form-input" , :required => 'required'%>
             <label class="form-label" for="bio_url">Profile Picture (File Size: < 2MB)</label>                      
         </div>
         <% current_user=User.find(session[:user_id]) %>        
@@ -49,7 +49,7 @@
         </div>
 
         <div class="form-field">
-          <%= f.text_field :fb_url, class: "form-input" %>
+          <%= f.text_field :fb_url, class: "form-input" , :required => 'required' %>
           <label class="form-label" for="fb_url">Facebook</label>
           <small>e.g. 'brenkoh' (without quotes) for http://www.facebook.com/brenkoh</small>
         </div>
@@ -64,24 +64,16 @@
           <label class="form-label" for="twitter_url">Twitter</label>
         </div>
 
-        <div class="form-field">
-            <%= f.country_select :country %>
-          </div>  
-
-
         <div class="form-actions">
           <%= f.submit "CONFIRM", class: "button--stroke--long" %>
         </div>
     <% end %>
 
-
     <div class="form-actions">
       <%= link_to "BACK", '/dashboards/index' %>
-      <%# link_to "BACK", request.referer.present? ? request.referer : default_path %>
     </div>
 
   </div>
 </div>
 
 <%= render "layouts/footer" %>
-<
