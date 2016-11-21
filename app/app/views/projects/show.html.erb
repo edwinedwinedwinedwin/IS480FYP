@@ -21,7 +21,7 @@
 
   <article class="project-content">
     <div id="project-navigation-sticky-wrapper" class="sticky-wrapper">
-      <nav class="projdect-navigation list-horizontal-scroller" id="project-navigation">
+      <nav class="project-navigation list-horizontal-scroller" id="project-navigation">
       <ul class="list--horizontal">
         <li class="list-item current"><a href="#overview">Overview</a></li>
         <li class="list-item"><a href="#about">About</a></li>
@@ -121,7 +121,7 @@
           <div class="grid-25 push-10">
             <ul class="list">
               <li class="list-item fuel-button-container">
-                <% if @project.project_status_id == 1 %>
+                <% if @project.project_status_id == 1 || @project.project_status_id == 4 %>
                 <%= link_to liveProjectRequest_path(:id => @project.id), :class =>"fuel-button " do %>
                 <!--<a href="#fuel" class="fuel-button js-scrollto-button" data-scroll-target="#fuel">-->
                   <span class="fuel-button__content">
@@ -132,29 +132,19 @@
                 <!--</a>-->
                   <% end %>
                 <% elsif  @project.project_status_id == 6 %>
-                    <%= link_to '#', :class =>"fuel-button " do %>
-                        <!--<a href="#fuel" class="fuel-button js-scrollto-button" data-scroll-target="#fuel">-->
-                        <span class="fuel-button__content">
+                   <span class="fuel-button__content">
+                     <span class="fuel-button__text">Request For</span>
                     <span class="fuel-button__cta">Live</span>
-                    
-                      <i class="icon icon--chevron-down"></i>
+                    <i class="icon icon--chevron-down"></i>
                   </span>
-                        <!--</a>-->
-                    <% end %>
 
                 <% elsif  @project.project_status_id == 7 %>
-                    <%= link_to '#', :class =>"fuel-button" do %>
-                        <!--<a href="#fuel" class="fuel-button js-scrollto-button" data-scroll-target="#fuel">-->
-                        <span class="fuel-button__content">
-
-                          <span class="fuel-button__text">IS</span>
+                   <span class="fuel-button__content">
+                     <span class="fuel-button__text">IS</span>
                     <span class="fuel-button__cta">Live</span>
-
-                      <i class="icon icon--chevron-right"></i>
+                     <i class="icon icon--chevron-right"></i>
                   </span>
-                        <!--</a>-->
-                    <% end %>
-                <% end %>
+                  <% end %>
               </li>
 
               <li class="list-item">

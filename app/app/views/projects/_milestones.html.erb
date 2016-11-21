@@ -21,7 +21,8 @@
           <div class="panel">
             
               <% if ms.project_status_id == 5%>
-              <%= ms.project_status.try(:status)%>
+              <%= ms.project_status.try(:status)%><br/>
+                <strong>Amount Raised:</strong>$<%= number_with_precision(payments,:precision => 0) %><br/>
               <% else %>
               
               <br/>
@@ -49,7 +50,8 @@
           <div class="panel">
 
             <% if ms.project_status_id == 5%>
-                <%= ms.project_status.try(:status)%>
+                <%= ms.project_status.try(:status)%><br/>
+                <strong>Amount Raised:</strong>$<%= number_with_precision(payments,:precision => 0) %><br/>
             <% else %>
 
                 <br/>
