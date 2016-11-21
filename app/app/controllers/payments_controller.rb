@@ -33,7 +33,7 @@ class PaymentsController < ApplicationController
   def create           
     @payment = Payment.new(payment_params) 
     @user_shipping_address_id = params[:payment][:user_shipping_address_id]
-    if @user_shipping_address_id.nil
+    if @user_shipping_address_id.nil?
       @user_shipping_address = UserShippingAddress.new
       @user_shipping_address.address_line_1 = params[:payment][:address_line_1]
       @user_shipping_address.address_line_2 = params[:payment][:address_line_2]
