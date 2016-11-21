@@ -40,7 +40,7 @@
       <div class= "smallfont" style="color:red;"><%= 'Project title '.to_s + @projectProposal.errors[:title].first if @projectProposal.errors[:title].any? %></p>
      </div>
 
-     <div class="form-field">
+     <div class="form-field" style="padding-bottom:0.5em;">
       <p>It will impact the</p>
 
        <% if @projectProposal.project_category_id.nil?
