@@ -12,8 +12,8 @@
     <% payments = Payment.where(:project_milestone_id=>@current_milestone.id).sum(:amount) if !@current_milestone.nil? %>
     <% percentage=(payments/@current_milestone.target_amount)*100 if !@current_milestone.nil? %>
       <div class="project-fuel-bar js-project-fuel-bar" data-fuel="<%=percentage%>%">
-        <div class="project-fuel-bar__text">
-          <%=number_with_precision(percentage, :precision => 1)%>% funded
+        <div class="project-fuel-bar__text" style="color:white;">
+          <%=number_with_precision(percentage, :precision => 0)%>% funded
         </div>
       </div>
     </div>
