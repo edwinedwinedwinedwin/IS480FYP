@@ -290,11 +290,10 @@
         <span class="fuel-lightbox__value">$<%=number_with_precision( pr.min_amount, :precision => 2)%></span>
         <span class="fuel-lightbox__title"><%= pr.name %></span>
 
-        <p class="t--small">Feeling generous? Fuel Up! <a href="#">Increase your support.</a></p>
+        <!--p class="t--small">Feeling generous? Fuel Up! <a href="#">Increase your support.</a></p-->
 
         <div class="fuel-lightbox__description">
-          <p class="t--large">This package includes our <%= pr.name %> to be sent to (<%= pr.no_of_rewards %>) families in need. And
-            receive a personal thank you from us.</p>
+          <p class="t--large">This package includes <%= pr.no_of_rewards %> <%= pr.name + "s" %> to be sent to you.</p>
         </div>
 
         <span class="fuel-lightbox__delivery">
@@ -308,13 +307,13 @@
                 <% if !session[:user_id].nil? %>
                     <%= link_to 'Continue', makePayment_path(:pr_id=>pr.id), :class=>"button--fill" %>
                 <% else %>
-                  Please log in to purchase this proejct reward.
+                  Please log in to purchase this project reward.
                 <% end %>
             <% else %>
               This project reward is no longer available.
             <% end %>          
         <% else %>
-          You have already purchased this project reward.
+          You have already funded this project reward.
         <% end %>
       </div>
     </div>

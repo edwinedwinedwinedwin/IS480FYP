@@ -30,7 +30,7 @@
         </div>
 
         <div class="form-field">
-          <%= f.number_field :amount, :value=>@project_reward.min_amount, class: "form-input", placeholder: "Amount",:min=>@project_reward.min_amount,:step=>1 %>
+          <%= f.number_field :amount, :value=>@project_reward.min_amount, class: "form-input", placeholder: "Amount",:min=>@project_reward.min_amount,:step=>1%>
           <label class="form-label" for="email">Amount ($)</label>          
         </div>        
         <% if !@user_shipping_addresses.blank? %>
@@ -55,10 +55,8 @@
           </div>  
                   
           <div class="form-field">        
-          <%= f.country_select :country, ['Singapore'], options = {}, html_options = {:class => "form-input", :id => "resizing_select",:required=>'required'} %>
-           <select id="width_tmp_select">
-            <option id="width_tmp_option"></option>
-           </select>
+          <%= f.country_select :country, ['Singapore'], options = {}, html_options = {:class => "form-input",:required=>'required', :style=>"border-top:none; border-left:none; border-right:none; background-color:#ffffff;border-radius:0px;"} %>
+          <label class="form-label" for="address_line_2">Country</label>
          </div>
 
           <div class="form-field">
