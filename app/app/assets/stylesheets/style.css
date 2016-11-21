@@ -5541,6 +5541,7 @@ div.panel {
 div.panel.show {
     opacity: 1;
     max-height: 500px;
+    box-shadow:none;
 }
 
 
@@ -5827,15 +5828,32 @@ Main components
   background-position:center center;
   max-width: 334px;
   margin:auto;
-  padding-bottom: 50%;
   border: 2px solid #eeeeee;
+  padding:2%;
+  margin-bottom:1em;
 }
 
 .member-styles{
   float:left;
-  margin-left:50px;
+  margin-left:60px;
 }
 
 .text-area-border{
   border:1px solid #f1f1f1;
+}
+
+.member-font{
+ font-family: "Proxima Nova", sans-serif; 
+ font-size:1.00em;
+ font-weight:600;
+}
+
+.pending-members{
+  background-repeat: no-repeat;
+  background-position:center center;
+  max-width: 334px;
+  margin:auto;
+  border: 2px solid #eeeeee;
+  padding:2%;
+  margin-bottom:1em;
 }
