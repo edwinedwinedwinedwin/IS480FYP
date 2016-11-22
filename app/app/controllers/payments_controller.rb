@@ -12,7 +12,7 @@ class PaymentsController < ApplicationController
      @project_reward = ProjectReward.find(params[:pr_id])    
      @user = User.find(session[:user_id])           
      @user_shipping_addresses = UserShippingAddress.where(:user_id=>session[:user_id])
-     @payment = Payment.new
+     @Payment = Payment.new
       if !session[:user_id].nil?
 
       @session = session[:user_id]
