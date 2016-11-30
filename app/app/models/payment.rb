@@ -11,7 +11,8 @@ class Payment < ActiveRecord::Base
         amount: self.amount,
         item_name: self.project_reward_name,
         item_number: self.project_reward_id,
-        quantity: '1'
+        quantity: '1',
+        :currency_code => 'SGD'
         #notify_url: "#{Rails.application.secrets.app_host}/hook"
     }
     "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
