@@ -2,7 +2,7 @@
   <% i = 1 %>
 <% project_updates.each do |u| %>
   <% if i % 2 == 0 %>
-          <div class="grid-50 js-lightbox-open" data-content-container="#fuel-lightbox-content-<%= u.id %>">
+          <div class="grid-50">
             <section href="" class="card">
               <header class="card-header">
                 <div class="card-meta">
@@ -41,9 +41,7 @@
           </div>
 
   <% end %>
-      <div class="fuel-reward-select">
-        <a href="#" class="button--stroke">Select</a>
-      </div>
+     
     <% i += 1 %>
 <% end %>
 </div>
