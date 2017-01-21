@@ -191,6 +191,28 @@ before_filter :logged_in,:authorize_admin, only: [:accept ,:reject, :index]
     redirect_to showProject_path(params[:project_member][:project_id]) and return
   end
 
+def flatten_estimated_date_array hash
+  %w(1 2 3).map { |e| hash["estimated_delivery(#{e}i)"].to_i }
+end
+
+def updateRewardDetails
+  @rewardDetails = ProjectReward.find(params[:project_reward][:id])
+  @rewardDetails.name = params[:project_reward][:name]
+  @rewardDetails.min_amount = params[:project_reward][:min_amount]
+  @rewardDetails.description = params[:project_reward][:description]
+  @rewardDetails.estimated_delivery = Date.new *flatten_estimate_ddate_array(params[:project_reward])
+  @rewardDetails.no_of_rewards = params[:project_reward][:no_of_rewards]
+
+  reward_img_url = params[:project_reward][:img_url]
+  if !reward_img_url.nil? || !reward_img_url.blank?
+    @rewardDetails.img_url = reward_img_url
+  end
+
+  @rewardDetails.save
+
+  redirect_to showProject_path(params[:project_reward][:project_id]) and return
+end
+
   def liveProjectRequests
     @project = Project.find(params[:id])
     @project.project_status_id = 6

@@ -1,13 +1,12 @@
 <ul class="fuel-rewards">
   <% project_rewards.each do |pr| %>
-      <li class="fuel-reward" >
+      <li class="fuel-reward js-lightbox-open" data-content-container="#fuel-lightbox-content-<%=  pr.id %>">
 
         <header class="fuel-reward-header">
           <span class="fuel-reward__price">$<%= number_with_precision(pr.min_amount, :precision => 0) %></span>
 
           <%
               noOfBacker = Payment.where(:project_reward_id => pr.id).count('project_reward_id')
-
               remainReward = pr.no_of_rewards - noOfBacker.to_i
           %>
           <span class="fuel-reward__backers"><%= noOfBacker.to_i%> Backers</span>
@@ -29,8 +28,9 @@
           <%= image_tag(ProjectReward.find(pr.id).img_url, :style=>"max-height:80px; max-width:200px;") %>
         </div>
         </figure>
-
-
+        <div class="fuel-reward-select">
+          <a href="#" class="button--stroke">Update</a>
+        </div>
       </li>
   <%end %>
 </ul>
