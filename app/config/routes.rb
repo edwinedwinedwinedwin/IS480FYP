@@ -82,6 +82,8 @@ Rails.application.routes.draw do
   post 'projects/updateTitle/(:id)' => 'projects#updateTitle', as: :updateTitle
   post 'projects/updateMember/(:id)' => 'projects#updateMemberDetails', as: :updateMemberDetails
   post 'projects/updateReward/(:id)' => 'projects#updateRewardDetails', as: :updateRewardDetails
+  post 'projects/updateUpdates/(:id)' => 'projects#updateUpdatesDetails', as: :updateUpdatesDetails
+  post 'projects/updateMilestone/(:id)' => 'projects#updateMilestoneDetails', as: :updateMilestoneDetails
 
   post 'projects/addMembers' => 'projects#addMembers', as: :addMembers
   post 'projects/liveProjectRequests/(:id)' => 'projects#liveProjectRequest', as: :liveProjectRequest
